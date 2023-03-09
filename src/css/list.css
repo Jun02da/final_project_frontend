@@ -19,13 +19,12 @@
   display: block;
 }
 
-.image_item {
+.img_css {
   margin: auto;
 }
 
-.img_item {
+.img_css {
   margin-top: 20px;
-  margin-left: 15px;
 }
 
 .button_active {

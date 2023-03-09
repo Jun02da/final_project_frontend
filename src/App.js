@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Sidebar from "./Sidebar.js";
 import image_import from "./img/img01.png"; // eslint-disable-line no-unused-vars
+import image_import2 from "./img/img02.png";
 import "./css/profile.css";
 import "./css/header.css";
 import "./css/list.css";
@@ -127,8 +128,9 @@ function App(props) {
             </button>
           </div>
         </article>
-        <div>
-          <img src={image_import} alt="img01" />
+        <div className="img_css">
+          <img src={image_import} alt="img01" width={450} height={450} />
+          <img src={image_import2} alt="img02" width={450} height={450} />
         </div>
       </div>
     </div>
