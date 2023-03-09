@@ -1,11 +1,20 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .profile_main {
-  margin: auto;
-  background-color: antiquewhite;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 .image {
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 48px;
+  margin-top: 32px;
   float: left;
+  display: block;
 }
 
 .profile {
@@ -13,33 +22,62 @@
   padding: 21px 16px;
   height: 90px;
   margin-bottom: 10px;
-  text-align: center;
+  margin-top: 10px;
 }
 
-.summaryContainer {
+.profile_state {
   display: flex;
   padding: 21px 16px;
   height: 90px;
   margin-bottom: 10px;
 }
 
-.summaryContainer .item {
-  flex-grow: 1;
-}
-
-.summaryContainer .number {
+.profile_state .number {
   font-size: 19px;
   font-weight: bold;
+}
+
+.profile_state .item {
+  display: inline-block;
+  line-height: 1.5;
+  margin-right: 130px;
+  cursor: pointer;
+}
+
+.profile-state {
+  margin-top: 2.3px;
 }
 
 .profile_button {
   border: none;
   transition-duration: 0.1s;
-  margin-left: 5px;
   border-radius: 5px;
   background-color: #dee2e6;
+  line-height: 28px;
+  padding: 0px 32px;
+  margin-left: 30px;
+  font-size: 16px;
 }
 
 .profile_button:active {
   background-color: #adb5bd;
+}
+
+.profile .profile_state .profile_bio {
+  float: left;
+  width: calc(66.666% - 2rem);
+}
+
+.profile_id {
+  display: inline-block;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.profile_bio {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 36px;
+  margin-left: 220px;
 }

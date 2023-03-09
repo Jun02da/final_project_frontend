@@ -4,12 +4,11 @@
 
 #menuicon + label {
   display: block;
-  margin: 30px;
   width: 60px;
-  height: 50px;
   position: relative;
   right: 0;
-  cursor: pointer;
+  align-items: center;
+  margin-left: 10px;
 }
 
 #menuicon + label span:nth-child(1) {
@@ -23,7 +22,7 @@
   bottom: 0;
 }
 #menuicon:checked + label {
-  z-index: 2;
+  z-index: 100;
 }
 #menuicon:checked + label span {
   background: #fff;

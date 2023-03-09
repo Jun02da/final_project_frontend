@@ -38,12 +38,11 @@ function App(props) {
       <div className="header_main">
         <header className="header">
           <h2>POPO</h2>
+
           <nav>
             <div>
               <div className="header_li">
                 <input type="text" placeholder="검색"></input>
-              </div>
-              <div>
                 <Sidebar />
               </div>
             </div>
@@ -75,8 +74,7 @@ function App(props) {
           />
           <div className="profile">
             <div className="item">
-              <div>yjhan713</div>
-              <div>Hello</div>
+              <div className="profile_id">yjhan713</div>
             </div>
             <div className="item">
               <div>
@@ -84,7 +82,7 @@ function App(props) {
               </div>
             </div>
           </div>
-          <div className="summaryContainer">
+          <div className="profile_state">
             <div className="item">
               <div>게시물</div>
               <div className="number">5</div>
@@ -96,6 +94,11 @@ function App(props) {
             <div className="item">
               <div>방문자</div>
               <div className="number">600</div>
+            </div>
+          </div>
+          <div className="profile_bio">
+            <div>
+              <p class="profile_real_name">한용재 hihihihihihi📷✈️🏕️</p>
             </div>
           </div>
         </section>
@@ -129,8 +132,10 @@ function App(props) {
           </div>
         </article>
         <div className="img_css">
-          <img src={image_import} alt="img01" width={450} height={450} />
-          <img src={image_import2} alt="img02" width={450} height={450} />
+          <img src={image_import} alt="img01" width={385} height={400} />
+          <img src={image_import2} alt="img02" width={385} height={400} />
+          <img src={image_import2} alt="img02" width={385} height={400} />
+          <img src={image_import2} alt="img02" width={385} height={400} />
         </div>
       </div>
     </div>
