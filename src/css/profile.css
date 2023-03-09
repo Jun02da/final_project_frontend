@@ -1,0 +1,45 @@
+.profile_main {
+  margin: auto;
+  background-color: antiquewhite;
+}
+
+.image {
+  margin: 10px;
+  float: left;
+}
+
+.profile {
+  display: flex;
+  padding: 21px 16px;
+  height: 90px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.summaryContainer {
+  display: flex;
+  padding: 21px 16px;
+  height: 90px;
+  margin-bottom: 10px;
+}
+
+.summaryContainer .item {
+  flex-grow: 1;
+}
+
+.summaryContainer .number {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.profile_button {
+  border: none;
+  transition-duration: 0.1s;
+  margin-left: 5px;
+  border-radius: 5px;
+  background-color: #dee2e6;
+}
+
+.profile_button:active {
+  background-color: #adb5bd;
+}

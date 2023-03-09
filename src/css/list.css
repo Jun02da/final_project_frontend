@@ -1,0 +1,42 @@
+.article {
+  border-bottom: 1px solid #dbdbdb;
+  background-color: cadetblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.list {
+  display: block;
+}
+
+.save {
+  display: block;
+}
+
+.upload {
+  display: block;
+}
+
+.image_item {
+  margin: auto;
+}
+
+.img_item {
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.button_active {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  transition-duration: 0.1s;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.button_active:active {
+  font-weight: bold;
+  border-top: 1.5px solid black;
+}
