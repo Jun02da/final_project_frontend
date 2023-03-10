@@ -19,8 +19,8 @@ export default function Home() {
   function goAdmin() {
     movePage("/Admin");
   }
-  function goApexcharts() {
-    movePage("/apexcharts");
+  function goPageAA() {
+    movePage("/PageAA");
   }
 
   return (
@@ -29,7 +29,7 @@ export default function Home() {
       <Login />
       <button onClick={goBoard}>게시판</button>
       <button onClick={goAdmin}>관리자페이지</button>
-      <button onClick={goApexcharts}>Apexcharts 페이지 이동</button>
+      <button onClick={goPageAA}>설정 페이지 이동</button>
       <div className="header">
         <Header />
       </div>
