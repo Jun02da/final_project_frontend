@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../css/board_index.css";
 
 function Board() {
   const [title, setTitle] = useState("");

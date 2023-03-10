@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { getAnnouncements } from "../utils/api";
 
 function Announcement() {
   const [announcement, setAnnouncement] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(announcement);
+    getAnnouncements(announcement);
     setAnnouncement("");
   };
 
