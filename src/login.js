@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "./css/login.css";
-// import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
 export default function Login() {
-  // const movePage = useNavigate();
-
-  // function goMember() {
-  //   movePage("/membership");
-  // }
-
   const [showModal1, setShowModal1] = useState(false);
 
   const handleOpenModal1 = () => {
