@@ -7,6 +7,7 @@ import Membership from "./membership";
 import Main from "./Main";
 import Board from "./components/Board";
 import Admin from "./components/Admin";
+import ApexCharts from "./components/Charts/ApexCharts.js";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path={"/detail"} element={<Main />}></Route>
           <Route path={"/Board"} element={<Board />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
+          <Route path={"/apexcharts"} element={<ApexCharts />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
