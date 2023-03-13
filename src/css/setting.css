@@ -1,0 +1,41 @@
+#settingLayout {
+  list-style-type: none;
+  margin: 0px;
+  width: 300px;
+  height: 100%;
+  font-weight: bold;
+  background-color: #e8d1dc;
+  overflow: auto; /* 내용이 넘칠경우 스크롤 생성 */
+  position: fixed; /* 위치고정 */
+}
+#settingLayout::-webkit-scrollbar {
+  display: none; /* 스크롤바 없애기(기능은 살아있음) */
+}
+#settingSidebar {
+  list-style-type: none;
+  font-size: larger;
+  background-color: #ffede6;
+  padding: 10px;
+}
+#settingSidebarDetail {
+  list-style-type: none;
+  font-size: large;
+  background-color: #e8d4d1;
+  padding: 10px;
+  margin: 10px;
+}
+
+#settingContentOuter {
+  margin-left: 300px; /* 좌측 사이드바 고정치만큼 이동 */
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+#settingContentInner {
+  background-color: white;
+  display: inline-block;
+  padding: 20px;
+  margin: 20px;
+  width: auto;
+  height: 100%;
+}

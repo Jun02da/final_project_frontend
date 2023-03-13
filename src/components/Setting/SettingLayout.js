@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import setting_logo from "../../image/setting_logo01.png";
 import { useNavigate } from "react-router-dom";
+import "../../css/setting.css";
 
 export function SettingLayout() {
   // 토글 기능을 사용한 활성화/비활성화
@@ -86,125 +87,130 @@ export function SettingLayout() {
     movePage("/PageDD");
   }
   return (
-    <section>
-      {/* 임시 로고 */}
-      <div onClick={goPageHome}>
-        <img src={setting_logo} width={300} />
+    <section id="settingLayout">
+      {/* 
+        임시 로고
+        로고 클릭시 홈으로 이동  
+      */}
+      <div>
+        <div onClick={goPageHome}>
+          <img src={setting_logo} width={100} />
+        </div>
       </div>
-      <aside>
-        {/* 설정 사이드바 */}
-        <header>Menu</header>
-        <nav>
+      <hr />
+      <div>
+        <div>
           {/* 설정 내부 검색창? */}
-          <div>
-            <input />
-            <button>
-              <SearchOutlined />
-            </button>
-          </div>
-          <ul>
-            <li>
-              <span onClick={toggleChangeA}>
-                <BarChartOutlined />
-                &nbsp; PageA &nbsp;
-                {/* 상태에 따라서 화살표 아이콘 변화 */}
-                {toggleMenuA ? <UpOutlined /> : <DownOutlined />}
-              </span>
-              {/* 
+          <input />
+          <button>
+            <SearchOutlined />
+          </button>
+        </div>
+        {/* 설정 사이드바 */}
+        <ul id="settingSidebar">
+          <li>
+            <span onClick={toggleChangeA}>
+              <BarChartOutlined />
+              &nbsp; PageA &nbsp;
+              {/* 상태에 따라서 화살표 아이콘 변화 */}
+              {toggleMenuA ? <UpOutlined /> : <DownOutlined />}
+            </span>
+            {/* 
                 설정 내부메뉴
+
                 메뉴창만 조작시 메뉴창이 닫히지 않는다
-                예) PageA => PageB
+                현재 페이지를 클릭할 시 이벤트 발생 X
                 그러나 다른 범위로 넘어갈 경우 메뉴창이 닫힘
+                예) PageAA=> PageAB
               */}
-              {toggleMenuA && (
-                <ul>
-                  <li>
-                    <p onClick={goPageAA}>PageAA</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageAB}>PageAB</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageAC}>PageAC</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageAD}>PageAD</p>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <span onClick={toggleChangeB}>
-                <UserOutlined />
-                &nbsp; PageB &nbsp;
-                {toggleMenuB ? <UpOutlined /> : <DownOutlined />}
-              </span>
-              {toggleMenuB && (
-                <ul>
-                  <li>
-                    <p onClick={goPageBA}>PageBA</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageBB}>PageBB</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageBC}>PageBC</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageBD}>PageBD</p>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <span onClick={toggleChangeC}>
-                <LockOutlined />
-                &nbsp; PageC &nbsp;
-                {toggleMenuC ? <UpOutlined /> : <DownOutlined />}
-              </span>
-              {toggleMenuC && (
-                <ul>
-                  <li>
-                    <p onClick={goPageCA}>PageCA</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageCB}>PageCB</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageCC}>PageCC</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageCD}>PageCD</p>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <span onClick={toggleChangeD}>
-                <InfoCircleOutlined />
-                &nbsp; PageD &nbsp;
-                {toggleMenuD ? <UpOutlined /> : <DownOutlined />}
-              </span>
-              {toggleMenuD && (
-                <ul>
-                  <li>
-                    <p onClick={goPageDA}>PageDA</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageDB}>PageDB</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageDC}>PageDC</p>
-                  </li>
-                  <li>
-                    <p onClick={goPageDD}>PageDD</p>
-                  </li>
-                </ul>
-              )}
-            </li>
-          </ul>
-        </nav>
-      </aside>
+            {toggleMenuA && (
+              <ul id="settingSidebarDetail">
+                <li>
+                  <p onClick={goPageAA}>PageAA</p>
+                </li>
+                <li>
+                  <p onClick={goPageAB}>PageAB</p>
+                </li>
+                <li>
+                  <p onClick={goPageAC}>PageAC</p>
+                </li>
+                <li>
+                  <p onClick={goPageAD}>PageAD</p>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li>
+            <span onClick={toggleChangeB}>
+              <UserOutlined />
+              &nbsp; PageB &nbsp;
+              {toggleMenuB ? <UpOutlined /> : <DownOutlined />}
+            </span>
+            {toggleMenuB && (
+              <ul id="settingSidebarDetail">
+                <li>
+                  <p onClick={goPageBA}>PageBA</p>
+                </li>
+                <li>
+                  <p onClick={goPageBB}>PageBB</p>
+                </li>
+                <li>
+                  <p onClick={goPageBC}>PageBC</p>
+                </li>
+                <li>
+                  <p onClick={goPageBD}>PageBD</p>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li>
+            <span onClick={toggleChangeC}>
+              <LockOutlined />
+              &nbsp; PageC &nbsp;
+              {toggleMenuC ? <UpOutlined /> : <DownOutlined />}
+            </span>
+            {toggleMenuC && (
+              <ul id="settingSidebarDetail">
+                <li>
+                  <p onClick={goPageCA}>PageCA</p>
+                </li>
+                <li>
+                  <p onClick={goPageCB}>PageCB</p>
+                </li>
+                <li>
+                  <p onClick={goPageCC}>PageCC</p>
+                </li>
+                <li>
+                  <p onClick={goPageCD}>PageCD</p>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li>
+            <span onClick={toggleChangeD}>
+              <InfoCircleOutlined />
+              &nbsp; PageD &nbsp;
+              {toggleMenuD ? <UpOutlined /> : <DownOutlined />}
+            </span>
+            {toggleMenuD && (
+              <ul id="settingSidebarDetail">
+                <li>
+                  <p onClick={goPageDA}>PageDA</p>
+                </li>
+                <li>
+                  <p onClick={goPageDB}>PageDB</p>
+                </li>
+                <li>
+                  <p onClick={goPageDC}>PageDC</p>
+                </li>
+                <li>
+                  <p onClick={goPageDD}>PageDD</p>
+                </li>
+              </ul>
+            )}
+          </li>
+        </ul>
+      </div>
     </section>
   );
 }

@@ -37,7 +37,7 @@ export default function App() {
           <Route path={"/detail"} element={<Main />}></Route>
           <Route path={"/Board"} element={<Board />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
-          {/* 설정 페이지 관련 임시 하드코딩 */}
+          {/* 설정 페이지 관련 임시 페이지 */}
           <Route path={"/PageAA"} element={<PageAA />}></Route>
           <Route path={"/PageAB"} element={<PageAB />}></Route>
           <Route path={"/PageAC"} element={<PageAC />}></Route>
