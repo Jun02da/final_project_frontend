@@ -85,3 +85,32 @@
   margin-top: 36px;
   margin-left: 220px;
 }
+
+.body {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  justify-content: space-between;
+}
+
+.header > h2 {
+  margin-left: 20px;
+}
+
+header > nav {
+  width: 300px;
+  height: 100%;
+}
+
+.header_li {
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

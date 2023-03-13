@@ -1,12 +1,9 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "./Sidebar.js";
 import image_import from "./image/img01.png";
 import image_import2 from "./image/img02.png";
 import "./css/profile.css";
-import "./css/header.css";
-import "./css/list.css";
-import "./css/Sidebar.css";
+import "./css/profile_list.css";
 
 import {
   AiOutlineUnorderedList,
@@ -14,6 +11,7 @@ import {
   AiOutlinePlusCircle,
   AiFillSetting,
   AiFillHome,
+  AiOutlineMenu,
 } from "react-icons/ai";
 
 function Mypage(props) {
@@ -56,7 +54,7 @@ function Mypage(props) {
             <div>
               <div className="header_li">
                 <input type="text" placeholder="검색"></input>
-                <Sidebar />
+                <AiOutlineMenu />
               </div>
             </div>
           </nav>

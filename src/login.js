@@ -20,27 +20,27 @@ export default function Login() {
       <Modal
         isOpen={showModal1}
         onRequestClose={handleCloseModal1}
-        className="custom-modal"
+        className="login_modal"
       >
         <h2 className="login">로그인</h2>
-        <div className="login-form">
+        <div className="login_form">
           <label htmlFor="email">이메일</label>
           <input type="email" placeholder="이메일 입력" />
         </div>
-        <div className="login-form">
+        <div className="login_form">
           <label htmlFor="password">비밀번호</label>
           <input type="password" placeholder="비밀번호 입력" />
         </div>
         <br />
-        <button className="but">로그인</button>
+        <button className="login_button">로그인</button>
         <br />
-        <button onClick={handleCloseModal1} className="but">
+        <button onClick={handleCloseModal1} className="login_button">
           닫기
         </button>
         <br />
         <button
           onClick={() => (window.location.href = "/MemberShip")}
-          className="but"
+          className="login_button"
         >
           회원가입
         </button>

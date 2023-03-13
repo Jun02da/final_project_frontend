@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.custom-modal {
+.login_modal {
   border: 1px solid #000;
   border-radius: 5px;
   padding: 30px;
@@ -15,13 +15,13 @@
   background-color: #fff;
 }
 
-.but {
+.login_button {
   margin-bottom: 10px;
   width: 100%;
   height: 7%;
 }
 
-.login-form input {
+.login_form input {
   width: 100%;
   box-sizing: border-box;
   padding: 10px;

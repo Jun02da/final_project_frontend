@@ -3,7 +3,7 @@ import "./css/membership.css";
 
 function MemberShip() {
   return (
-    <form className="form">
+    <form className="member">
       <h2>회원가입</h2>
 
       <div>
