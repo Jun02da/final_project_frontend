@@ -2,19 +2,28 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import AccountDelete from "./AccountDelete";
 import Announcement from "./Announcement";
+import ReportedPosts from "./ReportedPosts";
+import ApexCharts from "./Charts/ApexCharts.js";
 
 const { Header, Footer, Content, Sider } = Layout;
 
 function Admin() {
   const [showDelete, setShowDelete] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(false);
+  const [showReport, setShowReport] = useState(false);
+  const [showChart, setShowChart] = useState(false);
 
   const handleDeleteToggle = () => {
     setShowDelete(!showDelete);
   };
-
   const handleAnnouncementToggle = () => {
     setShowAnnouncement(!showAnnouncement);
+  };
+  const handleReportToggle = () => {
+    setShowReport(!showReport);
+  };
+  const handleChartToggle = () => {
+    setShowChart(!showChart);
   };
 
   const handleMenuItemClick = (event) => {
@@ -23,6 +32,10 @@ function Admin() {
       handleDeleteToggle();
     } else if (target === "announcement") {
       handleAnnouncementToggle();
+    } else if (target === "report") {
+      handleReportToggle();
+    } else if (target === "chart") {
+      handleChartToggle();
     }
   };
 
@@ -46,11 +59,15 @@ function Admin() {
             >
               <Menu.Item key="delete">계정 삭제</Menu.Item>
               <Menu.Item key="announcement">공지사항</Menu.Item>
+              <Menu.Item key="report">신고 게시물 관리</Menu.Item>
+              <Menu.Item key="chart">통계</Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
+            {showReport && <ReportedPosts />}
+            {showChart && <ApexCharts />}
           </Content>
         </Layout>
       </Content>
