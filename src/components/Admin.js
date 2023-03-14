@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import AccountDelete from "./AccountDelete";
 import Announcement from "./Announcement";
+import ReportedPosts from "./ReportedPosts";
 
 const { Header, Footer, Content, Sider } = Layout;
 
 function Admin() {
   const [showDelete, setShowDelete] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(false);
+  const [showReport, setShowReport] = useState(false);
 
   const handleDeleteToggle = () => {
     setShowDelete(!showDelete);
@@ -17,12 +19,18 @@ function Admin() {
     setShowAnnouncement(!showAnnouncement);
   };
 
+  const handleReportToggle = () => {
+    setShowReport(!showReport);
+  };
+
   const handleMenuItemClick = (event) => {
     const target = event.key;
     if (target === "delete") {
       handleDeleteToggle();
     } else if (target === "announcement") {
       handleAnnouncementToggle();
+    } else if (target === "report") {
+      handleReportToggle();
     }
   };
 
@@ -46,11 +54,13 @@ function Admin() {
             >
               <Menu.Item key="delete">계정 삭제</Menu.Item>
               <Menu.Item key="announcement">공지사항</Menu.Item>
+              <Menu.Item key="report">신고 게시물 관리</Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
+            {showReport && <ReportedPosts />}
           </Content>
         </Layout>
       </Content>
