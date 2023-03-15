@@ -8,6 +8,8 @@ import Board from "./components/Help/Board";
 import Admin from "./components/Admin";
 import FAQ from "./components/Help/FAQ.js";
 import Advice from "./components/Help/Advice.js";
+import Bio from "./bio";
+import Buy from "./buy";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
           <Route path={"/FAQ"} element={<FAQ />}></Route>
           <Route path={"/Advice"} element={<Advice />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
+          <Route path={"/bio"} element={<Bio />}></Route>
+          <Route path={"/buy"} element={<Buy />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

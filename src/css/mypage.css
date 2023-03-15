@@ -1,0 +1,68 @@
+.mypage_header {
+  /* 마이페이지 헤더 phopo 글씨 크기*/
+  font-size: 30px;
+}
+
+.mypage_menu {
+  /* 마이페이지 메뉴 css*/
+  text-align: center;
+  list-style: none;
+  font-size: 25px;
+  font-weight: 500;
+}
+.mypage_menu > a {
+  /* 마이페이지 메뉴안에 Han Yonjae 글씨 css */
+  text-decoration: none;
+  color: black;
+}
+
+.mypage_menu > button {
+  /* 마이페이지 메뉴 버튼 css */
+  border: none;
+  background-color: rgba(0, 0, 0, 0); /* 배경 투명색 */
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 10px;
+  font-weight: bold;
+  transition-duration: 0.1s;
+}
+
+.slider_img {
+  margin: auto;
+  margin-top: 30px;
+  display: block;
+  width: 50%;
+}
+
+.button_active {
+  /* 마이페이지 메뉴 버튼 클릭시 색 변경 */
+  font-weight: bold;
+  transition-duration: 0.1s;
+  display: inline;
+}
+
+.button_active:active {
+  /* 마이페이지 메뉴 버튼 클릭시 색 변경 */
+  color: lightsteelblue;
+}
+
+.profile_author {
+  /* 마이페이지 작가소개 css <bio.js> */
+  text-align: center;
+  display: block;
+  margin-top: 100px;
+  border-radius: 20%;
+}
+
+.profile_author > img {
+  /* 마이페이지 작가소개 사진 css <bio.js> */
+  border-radius: 20%;
+  width: 400px;
+}
+
+.profile_author > p {
+  /* 마이페이지 작가소개 글 css <bio.js> */
+  margin-left: 400px;
+  margin-right: 400px;
+  display: block;
+}
