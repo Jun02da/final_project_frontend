@@ -4,6 +4,12 @@ import AccountDelete from "./AccountDelete";
 import Announcement from "./Announcement";
 import ReportedPosts from "./ReportedPosts";
 import ApexCharts from "./Charts/ApexCharts.js";
+import {
+  BarChartOutlined,
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+  SoundOutlined,
+} from "@ant-design/icons";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -57,10 +63,22 @@ function Admin() {
               style={{ height: "100%" }}
               onClick={handleMenuItemClick}
             >
-              <Menu.Item key="delete">계정 삭제</Menu.Item>
-              <Menu.Item key="announcement">공지사항</Menu.Item>
-              <Menu.Item key="report">신고 게시물 관리</Menu.Item>
-              <Menu.Item key="chart">통계</Menu.Item>
+              <Menu.Item key="delete">
+                <DeleteOutlined />
+                &nbsp;&nbsp;계정 삭제
+              </Menu.Item>
+              <Menu.Item key="announcement">
+                <SoundOutlined />
+                &nbsp;&nbsp;공지사항
+              </Menu.Item>
+              <Menu.Item key="report">
+                <ExclamationCircleOutlined />
+                &nbsp;&nbsp;신고 게시물 관리
+              </Menu.Item>
+              <Menu.Item key="chart">
+                <BarChartOutlined />
+                &nbsp;&nbsp;통계
+              </Menu.Item>
             </Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
