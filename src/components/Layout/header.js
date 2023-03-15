@@ -9,7 +9,6 @@ export default function Header() {
   function goMypage() {
     movePage("/mypage");
   }
-
   function goBoard() {
     movePage("/Board");
   }
@@ -20,7 +19,9 @@ export default function Header() {
   function goLogin() {
     movePage("/LoginTest");
   }
-
+  function goHome() {
+    movePage("/");
+  }
   return (
     <header>
       <div>
@@ -30,7 +31,7 @@ export default function Header() {
             마이페이지 이동
           </button>
           <button onClick={goBoard} className="NavMenuTitle">
-            게시판
+            고객지원
           </button>
           <button onClick={goAdmin} className="NavMenuTitle">
             관리자페이지
@@ -39,7 +40,7 @@ export default function Header() {
 
         <br />
 
-        <div>
+        <div onClick={goHome}>
           <h1 className="Title">P H O P O</h1>
         </div>
       </div>
