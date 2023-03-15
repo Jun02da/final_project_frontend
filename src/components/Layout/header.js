@@ -1,45 +1,47 @@
-import React from 'react';
+import React from "react";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
-import Login from "../../login"
+import Login from "../../login";
 
 export default function Header() {
-const movePage = useNavigate();
+  const movePage = useNavigate();
 
-function goMypage() {
-  movePage("/mypage");
-}
+  function goMypage() {
+    movePage("/mypage");
+  }
 
-function goBoard() {
-  movePage("/Board");
-}
-function goAdmin() {
-  movePage("/Admin");
-}
+  function goBoard() {
+    movePage("/Board");
+  }
+  function goAdmin() {
+    movePage("/Admin");
+  }
 
-function goLogin() {
-  movePage("/LoginTest")
-}
-
+  function goLogin() {
+    movePage("/LoginTest");
+  }
 
   return (
     <header>
       <div>
-        <nav className='NavMenu'>
+        <nav className="NavMenu">
           <Login />
-          <button onClick={goMypage} className='NavMenuTitle'>마이페이지 이동</button>
-          <button onClick={goBoard} className='NavMenuTitle'>게시판</button>
-          <button onClick={goAdmin} className='NavMenuTitle'>관리자페이지</button>
+          <button onClick={goMypage} className="NavMenuTitle">
+            마이페이지 이동
+          </button>
+          <button onClick={goBoard} className="NavMenuTitle">
+            게시판
+          </button>
+          <button onClick={goAdmin} className="NavMenuTitle">
+            관리자페이지
+          </button>
         </nav>
 
         <br />
-        
+
         <div>
-          <h1 className='Title'>Pho_po</h1>
+          <h1 className="Title">P H O P O</h1>
         </div>
-
-
-
       </div>
     </header>
   );

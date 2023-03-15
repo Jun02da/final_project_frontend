@@ -9,7 +9,9 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   SoundOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -44,6 +46,12 @@ export default function Admin() {
       handleChartToggle();
     }
   };
+  // Home으로 이동하는 함수
+  const movePage = useNavigate();
+
+  function goHome() {
+    movePage("/");
+  }
 
   return (
     <Layout className="layout">
@@ -52,6 +60,11 @@ export default function Admin() {
         <h1 style={{ color: "#fff" }}>관리자 페이지</h1>
       </Header>
       <Content style={{ padding: "0 50px" }}>
+        {/* Home 버튼 */}
+        <button onClick={goHome}>
+          <HomeOutlined />
+          &nbsp;&nbsp;HOME
+        </button>
         <Layout
           className="site-layout-background"
           style={{ padding: "24px 0" }}
@@ -63,6 +76,7 @@ export default function Admin() {
               style={{ height: "100%" }}
               onClick={handleMenuItemClick}
             >
+              {/* 메뉴 앞에 아이콘 추가 */}
               <Menu.Item key="delete">
                 <DeleteOutlined />
                 &nbsp;&nbsp;계정 삭제
@@ -93,5 +107,3 @@ export default function Admin() {
     </Layout>
   );
 }
-
-

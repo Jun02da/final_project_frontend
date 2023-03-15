@@ -3,7 +3,66 @@ import Chart from "react-apexcharts";
 import "../../css/chart.css";
 
 function ApexCharts() {
-  // export const ApexCharts = () => {
+  // Bar 변수
+  var seriesBar = [
+    {
+      name: "Male",
+      data: [44, 55, 41, 67, 22, 43, 34],
+    },
+    {
+      name: "Female",
+      data: [13, 23, 20, 8, 13, 27, 49],
+    },
+  ];
+  var optionsBar = {
+    chart: {
+      toolbar: {
+        show: true,
+        tools: {
+          download: true, // download기능을 메인기능으로 선정
+          zoom: false,
+        },
+      },
+      stacked: true, // 위에 쌓아서 나타내기
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false, // 가로 or 세로
+        borderRadius: 10, // 모서리 동글동글
+      },
+    },
+    dataLabels: {
+      enabled: true, // 수치 표시
+    },
+    stroke: {
+      curve: "smooth", // 포인트를 곡선 방식으로 연결합니다. 스플라인이라고도 함
+    },
+    grid: {
+      row: {
+        opacity: 0.5, // 투명도
+      },
+    },
+    xaxis: {
+      categories: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"], // x축
+    },
+    colors: ["#546E7A", "#E91E63"], // 색상 지정
+    noData: {
+      text: "No Data", // 데이터가 없는 경우
+    },
+  };
+  // Donut 변수
+  var seriesDonut = [500, 1234];
+  var optionsDonut = {
+    legend: {
+      show: true,
+      position: "bottom",
+    },
+    labels: ["Male", "Female"],
+    colors: ["#546E7A", "#E91E63"], // 색상 지정
+    noData: {
+      text: "No Data", // 데이터가 없는 경우
+    },
+  };
   // area변수
   var seriesArea = [
     {
@@ -152,140 +211,31 @@ function ApexCharts() {
       text: "No Data", // 데이터가 없는 경우
     },
   };
-  // Bar 변수
-  var seriesBar = [
-    {
-      name: "Male",
-      data: [44, 55, 41, 67, 22, 43, 34],
+  // PolarArea 변수
+  var seriesPolarArea = [6543, 2109, 3456, 5678, 7890, 8765, 9876, 10000];
+  var optionsPolarArea = {
+    labels: [
+      "00:00 ~ 03:00",
+      "03:00 ~ 06:00",
+      "06:00 ~ 09:00",
+      "09:00 ~ 12:00",
+      "12:00 ~ 15:00",
+      "15:00 ~ 18:00",
+      "18:00 ~ 21:00",
+      "21:00 ~ 24:00",
+    ],
+    stroke: {
+      show: true,
+      colors: ["#fff"],
+      width: 2,
     },
-    {
-      name: "Female",
-      data: [13, 23, 20, 8, 13, 27, 49],
-    },
-  ];
-  var optionsBar = {
-    chart: {
-      toolbar: {
-        show: true,
-        tools: {
-          download: true, // download기능을 메인기능으로 선정
-          zoom: false,
-        },
-      },
-      stacked: true, // 위에 쌓아서 나타내기
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false, // 가로 or 세로
-        borderRadius: 10, // 모서리 동글동글
-      },
+    fill: {
+      opacity: 0.8, // 투명도
     },
     dataLabels: {
       enabled: true, // 수치 표시
     },
-    stroke: {
-      curve: "smooth", // 포인트를 곡선 방식으로 연결합니다. 스플라인이라고도 함
-    },
-    grid: {
-      row: {
-        opacity: 0.5, // 투명도
-      },
-    },
-    xaxis: {
-      categories: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"], // x축
-    },
-    colors: ["#546E7A", "#E91E63"], // 색상 지정
-    noData: {
-      text: "No Data", // 데이터가 없는 경우
-    },
   };
-  // Donut 변수
-  var seriesDonut = [500, 1234];
-  var optionsDonut = {
-    legend: {
-      show: true,
-      position: "bottom",
-    },
-    labels: ["Male", "Female"],
-    colors: ["#546E7A", "#E91E63"], // 색상 지정
-    noData: {
-      text: "No Data", // 데이터가 없는 경우
-    },
-  };
-  // PolarArea 변수
-  var seriesPolarArea = [25, 28, 24, 30, 58, 87, 98, 100];
-  var optionsPolarArea = {
-    labels: [
-      "00 ~ 03",
-      "03 ~ 06",
-      "06 ~ 09",
-      "09 ~ 12",
-      "12 ~ 15",
-      "15 ~ 18",
-      "18 ~ 21",
-      "21 ~ 24",
-    ],
-    stroke: {
-      colors: ["#fff"],
-    },
-    fill: {
-      opacity: 0.8,
-    },
-  };
-  // // Radialbars변수
-  // var seriesRadialbars = [95];
-  // var optionsRadialbars = {
-  //   chart: {
-  //     offsetY: -20,
-  //     sparkline: {
-  //       enabled: true,
-  //     },
-  //   },
-  //   plotOptions: {
-  //     radialBar: {
-  //       startAngle: -90, // 반원형태로 만듬
-  //       endAngle: 90,
-  //       track: {
-  //         background: "#e7e7e7",
-  //         strokeWidth: "98%",
-  //         margin: 5,
-  //         dropShadow: {
-  //           enabled: true,
-  //           top: 2,
-  //           left: 0,
-  //           color: "#999",
-  //           opacity: 1,
-  //           blur: 2,
-  //         },
-  //       },
-  //       dataLabels: {
-  //         name: {
-  //           show: false,
-  //         },
-  //         value: {
-  //           offsetY: -30, // 텍스트 표시 위치 차트크기에 따라 조절 필요
-  //           fontSize: "30px",
-  //         },
-  //       },
-  //     },
-  //   },
-  //   grid: {
-  //     padding: {
-  //       top: -10,
-  //     },
-  //   },
-  //   fill: {
-  //     type: "gradient",
-  //     gradient: {
-  //       shade: "light",
-  //       shadeIntensity: 0.4,
-  //       inverseColors: false,
-  //       opacityFrom: 1,
-  //       opacityTo: 1,
-  //       stops: [0, 50, 53, 91],
-  //     },
-  //   },
-  // };
 
   return (
     <div>
@@ -294,15 +244,13 @@ function ApexCharts() {
 
       <div id="chartArea">
         <h3>이번주 방문자</h3>
-        {/* bar 그래프
-        대표기능: 다운로드 */}
+        {/* bar 그래프 */}
         <Chart options={optionsBar} series={seriesBar} type="bar" width="720" />
       </div>
 
       <div id="chartArea">
         <h3>전체회원 남여비율</h3>
-        {/* donut 그래프
-        대표기능: 비율 계산 */}
+        {/* donut 그래프 */}
         <Chart
           options={optionsDonut}
           series={seriesDonut}
@@ -313,8 +261,7 @@ function ApexCharts() {
 
       <div id="chartArea">
         <h3>이번달 방문자</h3>
-        {/* area 그래프
-        대표기능: Zoom */}
+        {/* area 그래프 */}
         <Chart
           options={optionsArea}
           series={seriesArea}
@@ -325,7 +272,7 @@ function ApexCharts() {
 
       <div id="chartArea">
         <h3>방문 시간대</h3>
-        {/* PolarArea 그래프*/}
+        {/* PolarArea 그래프 */}
         <Chart
           options={optionsPolarArea}
           series={seriesPolarArea}
@@ -333,16 +280,6 @@ function ApexCharts() {
           width="720"
         />
       </div>
-      {/* <div>
-        radialBar 그래프
-        대표기능: 진행도 또는 성취도
-        <Chart
-          options={optionsRadialbars}
-          series={seriesRadialbars}
-          type="radialBar"
-          width="720"
-        />
-      </div> */}
     </div>
   );
 }
