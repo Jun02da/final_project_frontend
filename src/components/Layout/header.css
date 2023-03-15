@@ -1,5 +1,25 @@
-.header {
-    position : sticky;
-    top: 0;
-    z-index: 200;
+.Title{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 0px;
+    font-size: 100px;
+    font-weight: bold;
+    font-family: 'Palatino Linotype';
+    text-align: center;
+}
+.NavMenu{
+    
+    list-style-type: none;
+    vertical-align: top;
+    margin : 20px;
+    display: flex;
+    float :right
+    
+}
+
+.NavMenuTitle{
+    border: 0;
+    background-color: transparent;
+    margin-right: 10px;
+    font-weight: bold;
 }

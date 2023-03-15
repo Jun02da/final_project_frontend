@@ -1,80 +1,49 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
-import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBIcon,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBBtn,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBCollapse,
-} from 'mdb-react-ui-kit';
+import React from "react";
+import "./header.css";
+import { useNavigate } from "react-router-dom";
+import Login from "../../login";
 
-export default function App() {
-  const [showBasic, setShowBasic] = useState(false);
+export default function Header() {
+  const movePage = useNavigate();
 
+  function goMypage() {
+    movePage("/mypage");
+  }
+  function goBoard() {
+    movePage("/Board");
+  }
+  function goAdmin() {
+    movePage("/Admin");
+  }
+
+  function goLogin() {
+    movePage("/LoginTest");
+  }
+  function goHome() {
+    movePage("/");
+  }
   return (
-    <MDBNavbar expand='sm' light bgColor='light'>
-      <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>POPO</MDBNavbarBrand>
+    <header>
+      <div>
+        <nav className="NavMenu">
+          <Login />
+          <button onClick={goMypage} className="NavMenuTitle">
+            마이페이지 이동
+          </button>
+          <button onClick={goBoard} className="NavMenuTitle">
+            고객지원
+          </button>
+          <button onClick={goAdmin} className="NavMenuTitle">
+            관리자페이지
+          </button>
+        </nav>
 
-        <MDBNavbarToggler
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-          onClick={() => setShowBasic(!showBasic)}
-        >
-          
-          <MDBIcon icon='bars' fas />
-        </MDBNavbarToggler>
+        <br />
 
-        <MDBCollapse navbar show={showBasic}>
-          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='#'>
-                Home
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-          
-            <MDBNavbarItem>
-              <MDBNavbarLink href='https://naver.com'>Link</MDBNavbarLink>
-              {/* <Link to = {"https://naver.com"}>Link</Link> */}
-              </MDBNavbarItem>
-        
-            <MDBNavbarItem>
-              <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                  Dropdown
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem link>Action</MDBDropdownItem>
-                  <MDBDropdownItem link>Another action</MDBDropdownItem>
-                  <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavbarItem>
-
-          </MDBNavbarNav>
-
-        
-          <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='검색' aria-label='Search' />
-            <MDBBtn color='primary'>Search</MDBBtn>  
-          </form>
-
-
-
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
-    
+        <div onClick={goHome}>
+          <h1 className="Title">P H O P O</h1>
+        </div>
+      </div>
+    </header>
   );
 }
-
