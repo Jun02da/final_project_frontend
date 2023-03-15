@@ -7,7 +7,7 @@ import ApexCharts from "./Charts/ApexCharts.js";
 
 const { Header, Footer, Content, Sider } = Layout;
 
-function Admin() {
+export default function Admin() {
   const [showDelete, setShowDelete] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(false);
   const [showReport, setShowReport] = useState(false);
@@ -76,4 +76,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+

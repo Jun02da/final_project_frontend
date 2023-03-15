@@ -3,7 +3,7 @@ import Header from "./components/Layout/header";
 import "./css/App.css";
 import Footer from "./components/Layout/footer";
 import Main from "./components/ImgCard";
-import Login from "./login";
+
 
 export default function Home() {
   const movePage = useNavigate();
