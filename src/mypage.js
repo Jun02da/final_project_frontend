@@ -14,10 +14,15 @@ export default function Mypage() {
     movePage("/buy");
   }
 
+  function gohome() {
+    movePage("/");
+  }
+
   return (
     <div>
       <header>
         <h2 className="mypage_header">pho_po</h2>
+        <button onClick={gohome}>홈화면</button>
       </header>
       <div className="mypage_menu">
         <a href="http://localhost:3000/mypage">
