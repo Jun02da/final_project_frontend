@@ -12,6 +12,7 @@ export default function Home() {
   //   movePage("/mypage");
   // }
 
+<<<<<<< HEAD
   // function goBoard() {
   //   movePage("/Board");
   // }
@@ -21,6 +22,14 @@ export default function Home() {
   // function goPageAA() {
   //   movePage("/PageAA");
   // }
+=======
+  function goBoard() {
+    movePage("/Board");
+  }
+  function goAdmin() {
+    movePage("/Admin");
+  }
+>>>>>>> fe2c560cd3c7766a667b3172097c2abb32a34e1b
 
   return (
     <div>
@@ -28,8 +37,12 @@ export default function Home() {
       <Login />
       <button onClick={goBoard}>게시판</button>
       <button onClick={goAdmin}>관리자페이지</button>
+<<<<<<< HEAD
       <button onClick={goPageAA}>설정 페이지 이동</button> */}
       <div>
+=======
+      <div className="header">
+>>>>>>> fe2c560cd3c7766a667b3172097c2abb32a34e1b
         <Header />
       </div>
       <Main />
