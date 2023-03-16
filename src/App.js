@@ -8,8 +8,9 @@ import Board from "./components/Help/Board";
 import Admin from "./components/Admin";
 import FAQ from "./components/Help/FAQ.js";
 import Advice from "./components/Help/Advice.js";
-import Bio from "./bio";
-import Buy from "./buy";
+import Bio from "./components/MyPage/Bio.js";
+import Buy from "./components/MyPage/Buy.js";
+import Upload from "./components/MyPage/Upload.js";
 
 export default function App() {
   return (
@@ -25,8 +26,9 @@ export default function App() {
           <Route path={"/FAQ"} element={<FAQ />}></Route>
           <Route path={"/Advice"} element={<Advice />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
-          <Route path={"/bio"} element={<Bio />}></Route>
-          <Route path={"/buy"} element={<Buy />}></Route>
+          <Route path={"/Bio"} element={<Bio />}></Route>
+          <Route path={"/Buy"} element={<Buy />}></Route>
+          <Route path={"/Upload"} element={<Upload />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

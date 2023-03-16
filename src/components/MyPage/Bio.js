@@ -1,35 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import React from "react";
-import "./css/mypage.css";
-import profile_Img from "./image/profile.jpg";
+import "../../css/mypage.css";
+import profile_Img from "../../image/profile.jpg";
+import Header from "../Layout/MyPageHeader";
+import Footer from "../Layout/footer";
 /* bio.js = 작가소개 */
 export default function Bio() {
-  const movePage = useNavigate();
-
-  function gobio() {
-    movePage("/bio");
-  }
-
-  function gobuy() {
-    movePage("/buy");
-  }
   return (
     <div>
-      <header>
-        <h2 className="mypage_header">pho_po</h2>
-      </header>
-      <div className="mypage_menu">
-        <a href="http://localhost:3000/mypage">
-          <h3 className="mypage_id">Han Yongjae</h3>
-        </a>
-        <button className="button_active" onClick={gobio}>
-          작가소개
-        </button>
-        <button className="button_active" onClick={gobuy}>
-          사진구매
-        </button>
-        <button className="button_active">업로드</button>
-      </div>
+      <Header />
       <div className="profile_author">
         <img src={profile_Img} alt="zz" />
         <h2>백다흠</h2>
@@ -45,6 +23,7 @@ export default function Bio() {
           어려워요”라고 했다.
         </p>
       </div>
+      <Footer />
     </div>
   );
 }
