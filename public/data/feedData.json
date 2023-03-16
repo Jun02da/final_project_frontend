@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "profileSrc": "/images/HaeYongLee/websta_circle.png",
+    "profileId": "hey.yong44",
+    "feedImg": "/image/feeds.png",
+    "content": "저녁엔 피맥 한잔~",
+    "likeCount": "4"
+  },
+  {
+    "id": 2,
+    "profileSrc": "/images/HaeYongLee/websta_circle.png",
+    "profileId": "killer_dong",
+    "feedImg": "/image/feeds.png",
+    "content": "잘자는 댕댕이 짱아",
+    "likeCount": "1"
+  },
+  {
+    "id": 3,
+    "profileSrc": "/images/HaeYongLee/websta_circle.png",
+    "profileId": "hong_killer",
+    "feedImg": "/image/feeds.png",
+    "content": "봄에는 역시 벚꽃 구경",
+    "likeCount": "9"
+  }
+]
