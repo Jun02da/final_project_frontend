@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import Slider_img from "./slider_img";
+import MypageTest from "./MypageTest";
 import "./css/mypage.css";
 
 export default function Mypage() {
@@ -37,7 +38,7 @@ export default function Mypage() {
         <button className="button_active">업로드</button>
       </div>
       <div className="mypage_slider">
-        <Slider_img />
+        <MypageTest />
       </div>
     </div>
   );

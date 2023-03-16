@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "./css/login.css";
-import "./components/Layout/header.css";
+import "./css/MainHeader.css";
 
 
 Modal.setAppElement("#root");

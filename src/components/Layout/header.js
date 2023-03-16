@@ -1,5 +1,5 @@
 import React from "react";
-import "./header.css";
+import "../../css/MainHeader.css";
 import { useNavigate } from "react-router-dom";
 import Login from "../../login";
 
@@ -14,10 +14,6 @@ export default function Header() {
   }
   function goAdmin() {
     movePage("/Admin");
-  }
-
-  function goLogin() {
-    movePage("/LoginTest");
   }
   function goHome() {
     movePage("/");
