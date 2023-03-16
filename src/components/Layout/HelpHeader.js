@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./HelpHeader.css";
+import "../../css/HelpHeader.css";
 import Login from "../../login";
 
 export default function HelpHeader() {

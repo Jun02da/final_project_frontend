@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./MyPageHeader.css";
+import "../../css/MyPageHeader.css";
 import "../../css/mypage.css";
 import Login from "../../login";
 
