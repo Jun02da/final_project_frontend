@@ -1,5 +1,5 @@
-import HelpHeader from "./HelpHeader";
-import Footer from "../../components/Layout/footer.js";
+import Header from "../Layout/HelpHeader.js";
+import Footer from "../Layout/footer.js";
 import { Collapse } from "antd";
 
 const { Panel } = Collapse;
@@ -29,7 +29,7 @@ const AdviceContent = () => (
 export default function FAQ() {
   return (
     <div>
-      <HelpHeader />
+      <Header />
       <div>
         <AdviceContent />
       </div>

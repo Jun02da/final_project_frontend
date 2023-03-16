@@ -1,0 +1,27 @@
+.NavMenu {
+  list-style-type: none;
+  vertical-align: top;
+  margin: 20px;
+  display: flex;
+  float: right;
+}
+
+.NavMenuTitle {
+  border: 0;
+  background-color: transparent;
+  margin-right: 10px;
+  font-weight: bold;
+}
+#SubLogo {
+  list-style-type: none;
+  vertical-align: top;
+  margin: 20px;
+  display: flex;
+  float: left;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Palatino Linotype";
+}
+#SubHeaderLayout {
+  margin-bottom: 100px;
+}

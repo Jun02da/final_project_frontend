@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HelpHeader from "./HelpHeader";
+import Header from "../Layout/HelpHeader.js";
 import Footer from "../../components/Layout/footer.js";
 
 function Board() {
@@ -29,7 +29,7 @@ function Board() {
 
   return (
     <>
-      <HelpHeader />
+      <Header />
       <div className="container">
         <h1>회원 게시판</h1>
         <form className="form" onSubmit={handleSubmit}>
