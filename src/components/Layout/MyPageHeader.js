@@ -28,6 +28,8 @@ export default function MyPageHeader() {
   function goUpload() {
     movePage("/Upload");
   }
+  const userName = "Han Yongjae";
+
   return (
     <>
       {/* 고정 부분 */}
@@ -38,7 +40,7 @@ export default function MyPageHeader() {
         <nav className="NavMenu">
           <Login />
           <button onClick={goMypage} className="NavMenuTitle">
-            마이페이지 이동
+            마이페이지
           </button>
           <button onClick={goBoard} className="NavMenuTitle">
             고객지원
@@ -52,7 +54,7 @@ export default function MyPageHeader() {
       {/* 유저에 따라서 이름이 변경되야함 */}
       <div className="mypage_menu">
         <a href="http://localhost:3000/mypage">
-          <h3 className="mypage_id">Han Yongjae</h3>
+          <h3 className="mypage_id">{userName}</h3>
         </a>
         <button className="button_active" onClick={goBio}>
           작가소개

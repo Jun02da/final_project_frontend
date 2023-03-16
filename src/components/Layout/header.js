@@ -24,7 +24,7 @@ export default function Header() {
         <nav className="NavMenu">
           <Login />
           <button onClick={goMypage} className="NavMenuTitle">
-            마이페이지 이동
+            마이페이지
           </button>
           <button onClick={goBoard} className="NavMenuTitle">
             고객지원
