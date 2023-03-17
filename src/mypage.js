@@ -7,11 +7,13 @@ import Footer from "./components/Layout/footer";
 export default function Mypage() {
   return (
     <div>
+
       <Header />
       <div>
         <MypageImgslider />
       </div>
       <Footer />
+      
     </div>
   );
 }

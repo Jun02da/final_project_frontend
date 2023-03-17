@@ -58,7 +58,7 @@ export default function App() {
         className="mySwiper"
       >
 
-        {/* 사진 데이터를 ImgCard.json에서 가져옴 */}
+        {/* 사진 데이터를 ImgCard.json에서 가져옴  */}
         {Test.itemData.map((item)=>(
         <SwiperSlide key={item.img}>
           
