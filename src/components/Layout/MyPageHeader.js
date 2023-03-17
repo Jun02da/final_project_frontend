@@ -21,7 +21,15 @@ export default function MyPageHeader() {
   }
   function goBio() {
     movePage("/Bio");
+    // // 권한이 있는 경우 Bio
+    // // 권한이 없는 경우 OtherBio
+    // if (사용자 === 권한있는 사용자){
+    //   movePage("/Bio");
+    // } else {
+    //   movePage("/OtherBio")
+    // }
   }
+
   function goUpload() {
     movePage("/Upload");
   }

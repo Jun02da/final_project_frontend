@@ -71,19 +71,19 @@ export default function Communication() {
               <EnvironmentOutlined
                 style={{ fontSize: "50px", color: "#025ce2" }}
               />
-              <div>based in Seoul, S.Korea</div>
+              <div>based&nbsp;in&nbsp;Seoul, S.Korea</div>
             </div>
             <div id="CommunicationReachDetail">
               <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Tel: 010-1234-5678</div>
+              <div>Tel:&nbsp;010 1234&nbsp;5678</div>
             </div>
             <div id="CommunicationReachDetail">
               <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Test@naver.com</div>
+              <div>Email: Test@naver.com</div>
             </div>
             <div id="CommunicationReachDetail">
               <CommentOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>카카오톡ID: test1234</div>
+              <div>Kakao: test1234</div>
             </div>
           </div>
         </div>
