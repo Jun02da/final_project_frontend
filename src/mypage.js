@@ -1,5 +1,5 @@
 import React from "react";
-import MypageImgslider from "./MypageImgslider";
+import MypageImgslider from "./components/MypageImgslider";
 import "./css/mypage.css";
 import Header from "./components/Layout/MyPageHeader";
 import Footer from "./components/Layout/footer";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from 'swiper';
-import Test from './components/ImgCard.json' //테스트 데이터
+import Test from './ImgCard.json' //테스트 데이터
 
 
 // import 스와이퍼 스타일
@@ -12,7 +12,7 @@ import "swiper/css/thumbs";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel"
-import "./css/MypageSlider.css"
+import "../css/MypageSlider.css"
 
 
 // 적용할 모듈
