@@ -22,8 +22,8 @@ export default function MyPageHeader() {
   function goBio() {
     movePage("/Bio");
   }
-  function goBuy() {
-    movePage("/Buy");
+  function goContact() {
+    movePage("/Contact");
   }
   function goUpload() {
     movePage("/Upload");
@@ -59,8 +59,8 @@ export default function MyPageHeader() {
         <button className="button_active" onClick={goBio}>
           작가소개
         </button>
-        <button className="button_active" onClick={goBuy}>
-          사진구매
+        <button className="button_active" onClick={goContact}>
+          Contact
         </button>
         <button className="button_active" onClick={goUpload}>
           업로드

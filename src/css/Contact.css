@@ -1,0 +1,34 @@
+#ContactContent {
+  margin: 50px 200px;
+  padding: 20px;
+  display: flex;
+}
+#ContactImage {
+  margin: 20px;
+  width: 400px;
+  image-rendering: auto;
+  flex: auto;
+  border-radius: 10%;
+}
+#ContactText {
+  margin: 20px;
+  padding: 20px;
+  width: 400px;
+  flex: auto;
+}
+#ContactInputName {
+  margin-bottom: 25px;
+  width: 100%;
+  height: 3.25em;
+}
+#ContactInputEmail {
+  margin-bottom: 25px;
+  width: 100%;
+  height: 3.25em;
+}
+#ContactTextareaMessage {
+  margin-bottom: 25px;
+  width: 100%;
+  height: 12.25em;
+  resize: none;
+}

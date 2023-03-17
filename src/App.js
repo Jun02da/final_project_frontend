@@ -8,7 +8,7 @@ import Board from "./components/Help/Board";
 import FAQ from "./components/Help/FAQ.js";
 import Advice from "./components/Help/Advice.js";
 import Bio from "./components/MyPage/Bio.js";
-import Buy from "./components/MyPage/Buy.js";
+import Contact from "./components/MyPage/Contact.js";
 import Upload from "./components/MyPage/Upload.js";
 
 export default function App() {
@@ -25,7 +25,7 @@ export default function App() {
           <Route path={"/Advice"} element={<Advice />}></Route>
           <Route path={"/mypage"} element={<Mypage />}></Route>
           <Route path={"/Bio"} element={<Bio />}></Route>
-          <Route path={"/Buy"} element={<Buy />}></Route>
+          <Route path={"/Contact"} element={<Contact />}></Route>
           <Route path={"/Upload"} element={<Upload />}></Route>
         </Routes>
       </BrowserRouter>
