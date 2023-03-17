@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from 'swiper';
-import Test from './ImgCard.json' //테스트 데이터
+import Test from './Mainhome/ImgCard.json' //테스트 데이터
 
 
 // import 스와이퍼 스타일
