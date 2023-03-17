@@ -3,7 +3,9 @@ import "../../css/mypage.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined } from "@ant-design/icons";
-// 편집이 가능한 버전
+// 버튼을 통해서만 편집이 가능하기 때문에
+// 권한이 없는 사용자일 경우 버튼을 가리고
+// 권한이 있는 사용자일 경우 버튼을 표시하여 구분할 예정
 export default function Bio() {
   // ==== 이미지 부분 ====
   const [image, setImage] = useState(

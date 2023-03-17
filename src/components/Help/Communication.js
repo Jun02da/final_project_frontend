@@ -27,13 +27,13 @@ export default function Communication() {
       [name]: value, // name 키를 가진 값을 value 로 설정
     });
   };
-  // 작성한 내용을 보내는 함수
-  // emailjs를 사용해서 설정한 이메일로 전송
+  // 작성한 내용을 emailjs를 사용해서 미리 설정한 이메일로 보내는 함수
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
+        // emailjs에서 생성하여 받은 고유값
         "service_phopo",
         "template_2ztncua",
         form.current,
@@ -44,12 +44,14 @@ export default function Communication() {
           alert("전송이 완료되었습니다");
           console.log(result.text);
           setInputs({
+            // 전송 후 빈칸으로 초기화
             CommunicationName: "",
             CommunicationEmail: "",
             CommunicationMessage: "",
           });
         },
         (error) => {
+          // 실패할 경우
           alert("전송을 실패했습니다");
           console.log(error.text);
         }
@@ -59,10 +61,12 @@ export default function Communication() {
     <div>
       <Header />
       <div id="Communication">
+        {/* 문의 안내 부분 */}
         <div id="CommunicationReach">
           <h3>Reach Me</h3>
           <hr />
           <div id="CommunicationReachContent">
+            {/* 추후에 자세한 내용은 수정 */}
             <div id="CommunicationReachDetail">
               <EnvironmentOutlined
                 style={{ fontSize: "50px", color: "#025ce2" }}
@@ -83,6 +87,7 @@ export default function Communication() {
             </div>
           </div>
         </div>
+        {/* 이메일 전송 부분 */}
         <div id="CommunicationMail">
           <h3>Or Mail Me</h3>
           <hr />
@@ -117,6 +122,9 @@ export default function Communication() {
                 required
               />
             </div>
+            {/* 전송 버튼 
+                input창들이 빈칸일 경우 알려줌
+            */}
             <button type="submit" id="CommunicationSendButton">
               Send
             </button>
