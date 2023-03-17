@@ -2,7 +2,6 @@ import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
 import "../../css/Communication.css";
 import {
-  SendOutlined,
   EnvironmentOutlined,
   PhoneOutlined,
   MailOutlined,
@@ -42,7 +41,7 @@ export default function Communication() {
       )
       .then(
         (result) => {
-          alert("전송되었습니다");
+          alert("전송이 완료되었습니다");
           console.log(result.text);
           setInputs({
             CommunicationName: "",
@@ -66,20 +65,20 @@ export default function Communication() {
           <div id="CommunicationReachContent">
             <div id="CommunicationReachDetail">
               <EnvironmentOutlined
-                style={{ fontSize: "50px", color: "#08c" }}
+                style={{ fontSize: "50px", color: "#025ce2" }}
               />
               <div>based in Seoul, S.Korea</div>
             </div>
             <div id="CommunicationReachDetail">
-              <PhoneOutlined style={{ fontSize: "50px", color: "#08c" }} />
+              <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
               <div>Tel: 010-1234-5678</div>
             </div>
             <div id="CommunicationReachDetail">
-              <MailOutlined style={{ fontSize: "50px", color: "#08c" }} />
+              <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
               <div>Test@naver.com</div>
             </div>
             <div id="CommunicationReachDetail">
-              <CommentOutlined style={{ fontSize: "50px", color: "#08c" }} />
+              <CommentOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
               <div>카카오톡ID: test1234</div>
             </div>
           </div>
@@ -95,6 +94,7 @@ export default function Communication() {
                 value={CommunicationName}
                 id="CommunicationName"
                 placeholder=" Name"
+                required
               />
             </div>
             <div>
@@ -104,6 +104,7 @@ export default function Communication() {
                 value={CommunicationEmail}
                 id="CommunicationEmail"
                 placeholder=" Email"
+                required
               />
             </div>
             <div>
@@ -113,13 +114,12 @@ export default function Communication() {
                 value={CommunicationMessage}
                 id="CommunicationMessage"
                 placeholder=" Message"
-              ></textarea>
+                required
+              />
             </div>
-            {/* <input type="submit" value="send" /> */}
-            <SendOutlined
-              style={{ fontSize: "32px", color: "#08c" }}
-              onClick={sendEmail}
-            />
+            <button type="submit" id="CommunicationSendButton">
+              Send
+            </button>
           </form>
         </div>
       </div>

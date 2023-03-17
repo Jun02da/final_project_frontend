@@ -1,6 +1,7 @@
 import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
 import { Collapse } from "antd";
+import "../../css/FAQ.css";
 
 const { Panel } = Collapse;
 
@@ -13,7 +14,7 @@ const text2 = `
 const text3 = `
   대답 3
 `;
-const AdviceContent = () => (
+const FAQContent = () => (
   <Collapse accordion>
     <Panel header="질문 1" key="1">
       <p>{text1}</p>
@@ -30,9 +31,12 @@ export default function FAQ() {
   return (
     <div>
       <Header />
-      <div>
-        <AdviceContent />
+      <div id="FAQContentOutter">
+        <h3>자주 묻는 질문</h3>
+        <hr />
+        <FAQContent />
       </div>
+      <br />
       <Footer />
     </div>
   );

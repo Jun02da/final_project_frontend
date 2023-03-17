@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import "./css/login.css";
 import "./css/MainHeader.css";
 
-
 Modal.setAppElement("#root");
 
 export default function Login() {
@@ -18,7 +17,9 @@ export default function Login() {
 
   return (
     <div>
-      <button onClick={handleOpenModal1} className='NavMenuTitle'>로그인</button>
+      <button onClick={handleOpenModal1} className="NavMenuTitle">
+        로그인
+      </button>
       <Modal
         isOpen={showModal1}
         onRequestClose={handleCloseModal1}
@@ -48,7 +49,10 @@ export default function Login() {
         </button>
         <br />
       </Modal>
-      <button onClick={() => (window.location.href = "/MemberShip")} className='NavMenuTitle'>
+      <button
+        onClick={() => (window.location.href = "/MemberShip")}
+        className="NavMenuTitle"
+      >
         회원가입
       </button>
     </div>
