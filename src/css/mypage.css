@@ -74,4 +74,8 @@
   resize: none;
   text-align: center;
   overflow-x: hidden;
+  margin: 20px;
+}
+#BioEditDiv {
+  margin: 10px;
 }

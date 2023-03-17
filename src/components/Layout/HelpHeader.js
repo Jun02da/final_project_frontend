@@ -24,8 +24,8 @@ export default function HelpHeader() {
   function goPageFAQ() {
     movePage("/FAQ");
   }
-  function goPageAdvice() {
-    movePage("/Advice");
+  function goPageCommunication() {
+    movePage("/Communication");
   }
   return (
     <>
@@ -57,8 +57,8 @@ export default function HelpHeader() {
         <span onClick={goPageFAQ} id="HelpHeaderMenu">
           FAQ
         </span>
-        <span onClick={goPageAdvice} id="HelpHeaderMenu">
-          1:1 문의
+        <span onClick={goPageCommunication} id="HelpHeaderMenu">
+          문의
         </span>
         <hr />
       </div>

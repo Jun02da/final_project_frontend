@@ -3,7 +3,7 @@ import "../../css/mypage.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined } from "@ant-design/icons";
-/* bio.js = 작가소개 */
+// 편집이 가능한 버전
 export default function Bio() {
   // ==== 이미지 부분 ====
   const [image, setImage] = useState(
@@ -101,7 +101,7 @@ export default function Bio() {
               id="BioEditTextarea"
             />
           ) : (
-            <div>{text}</div>
+            <div id="BioEditDiv">{text}</div>
           )}
           {/* 편집 On/Off 버튼*/}
           <EditOutlined

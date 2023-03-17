@@ -22,9 +22,6 @@ export default function MyPageHeader() {
   function goBio() {
     movePage("/Bio");
   }
-  function goContact() {
-    movePage("/Contact");
-  }
   function goUpload() {
     movePage("/Upload");
   }
@@ -56,11 +53,11 @@ export default function MyPageHeader() {
         <a href="http://localhost:3000/mypage">
           <h3 className="mypage_id">{userName}</h3>
         </a>
-        <button className="button_active" onClick={goBio}>
-          작가소개
+        <button className="button_active" onClick={goMypage}>
+          게시물
         </button>
-        <button className="button_active" onClick={goContact}>
-          Contact
+        <button className="button_active" onClick={goBio}>
+          정보
         </button>
         <button className="button_active" onClick={goUpload}>
           업로드

@@ -1,0 +1,37 @@
+#Communication {
+  margin: 20px;
+  padding: 20px;
+}
+#CommunicationReach {
+  margin: 20px;
+  padding: 20px;
+}
+#CommunicationReachContent {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+}
+#CommunicationReachDetail {
+  margin: 10px;
+  text-align: center;
+  flex: auto;
+}
+#CommunicationReachDetail > div {
+  font-size: 25px;
+}
+#CommunicationMail {
+  margin: 20px;
+  padding: 20px;
+}
+#CommunicationName,
+#CommunicationEmail {
+  margin-bottom: 25px;
+  width: 33%;
+  height: 3.25em;
+}
+#CommunicationMessage {
+  margin-bottom: 25px;
+  width: 66%;
+  height: 12.25em;
+  resize: none;
+}
