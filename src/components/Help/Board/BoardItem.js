@@ -10,8 +10,16 @@ function BoardItem({ item }) {
   const movePage = useNavigate();
 
   function goBoardDetail() {
-    movePage("/BoardDetail");
+    movePage("/BoardDetail", {
+      state: {
+        id: item.id,
+        title: item.title,
+        createdAt: item.createdAt,
+        name: item.name,
+      },
+    });
   }
+
   return (
     <div className="BoardListContent" onClick={goBoardDetail}>
       <span>{item.id}</span>
