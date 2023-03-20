@@ -19,9 +19,6 @@ export default function HelpHeader() {
   function goHome() {
     movePage("/");
   }
-  function goPageBoard() {
-    movePage("/Board");
-  }
   function goPageFAQ() {
     movePage("/FAQ");
   }
@@ -56,7 +53,7 @@ export default function HelpHeader() {
       </div>
       {/* 고객지원 내용 */}
       <div id="HelpHeaderMenuSection">
-        <span onClick={goPageBoard} id="HelpHeaderMenu">
+        <span onClick={goBoard} id="HelpHeaderMenu">
           게시판
         </span>
         <span onClick={goPageFAQ} id="HelpHeaderMenu">
