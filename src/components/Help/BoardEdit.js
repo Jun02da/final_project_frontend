@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
-
+// 기존의 Board페이지를 BoardEdit페이지로 변경함
 function BoardEdit() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

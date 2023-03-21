@@ -10,6 +10,7 @@ function BoardList({ items }) {
       {items.map((item) => (
         <BoardItem item={item} />
       ))}
+      <hr />
     </div>
   );
 }
