@@ -25,7 +25,7 @@ export default function MasonryImageList() {
       {test.itemData.map((item) => ( 
       // hover-zoom 을 이용해서 이미지 위에 마우스를 올리면 이미지가 확대되는 효과
         <ImageListItem key={item.img} className="banner_img"> 
-          <Link to="detail">
+          <Link to="mypage">
             <img
               src={`${item.img}?w=400&fit=crop&auto=format`}
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -34,7 +34,7 @@ export default function MasonryImageList() {
           </Link>
       {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
           <p className="hover_text">
-            {item.title}
+            @{item.title}
           </p>
         </ImageListItem>
       ))}

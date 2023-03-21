@@ -8,13 +8,11 @@
     display:none;
   }
   .banner_img:after{
-    content:'';
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.3);
     z-index: 10;
   }
   .banner_img {
@@ -28,12 +26,15 @@
   .hover_text {
     position: absolute;
     color: #fff;
+    background-color: #A4A4A480;
+    width: 100%;
+    text-align: center;
     vertical-align: bottom;
     z-index: 20;
     font-weight: 600;
     font-size: 20px;
-	top: 50%;
+	top: auto;
 	left: 50%;
-    transform: translate( -50%, -50%);
+    transform: translate( -50%, -100%);
   }
 
