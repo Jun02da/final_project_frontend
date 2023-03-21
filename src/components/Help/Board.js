@@ -1,22 +1,22 @@
 import BoardList from "./Board/BoardList";
 import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
-import axios from "axios";
-import { useState, useEffect } from "react";
+// import axios from "axios";
+// import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Board() {
-  const [posts, setPosts] = useState([]);
-  // 웹에서 서버로 요청 -> 나 리스트 전달해줘
-  const getPosts = () => {
-    axios
-      .get("서버주소") // axios를 통해 HTTP요청을 보내는 코드
-      .then((response) => {
-        // then()에서는 HTTP요청을 통해 받아온 데이터를 처리할 수 있다
-        setPosts(response.data); // 이전에 useState로 생성했던 setPosts함수를 통해 data를 posts에 저장
-      });
-  };
-  useEffect(getPosts, []);
+  // const [posts, setPosts] = useState([]);
+  // // 웹에서 서버로 요청 -> 나 리스트 전달해줘
+  // const getPosts = () => {
+  //   axios
+  //     .get("서버주소") // axios를 통해 HTTP요청을 보내는 코드
+  //     .then((response) => {
+  //       // then()에서는 HTTP요청을 통해 받아온 데이터를 처리할 수 있다
+  //       setPosts(response.data); // 이전에 useState로 생성했던 setPosts함수를 통해 data를 posts에 저장
+  //     });
+  // };
+  // useEffect(getPosts, []);
   const list = [
     {
       id: 1,

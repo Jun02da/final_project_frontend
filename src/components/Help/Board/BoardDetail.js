@@ -5,9 +5,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../../../css/BoardDetail.css";
 
 export function BoardDetail() {
-  // Board에서 클릭한 데이터를 받음
+  // BoardItem에서 클릭한 데이터를 받음
   const location = useLocation();
-  const id = location.state.id;
+  // const id = location.state.id;
   const title = location.state.title;
   const createdAt = location.state.createdAt;
   const name = location.state.name;
