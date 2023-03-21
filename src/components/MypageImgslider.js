@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper";
 import Test from "./Mainhome/ImgCard.json"; //테스트 데이터
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import 스와이퍼 스타일
 import "swiper/css";
@@ -20,12 +20,6 @@ import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
 export default function App() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const movePage = useNavigate();
-
-  function godetail() {
-    movePage("/detail");
-  }
-
   return (
     <>
       <Swiper
@@ -42,12 +36,12 @@ export default function App() {
         {/* 사진 데이터를 ImgCard.json에서 가져옴 */}
         {Test.itemData.map((item) => (
           <SwiperSlide key={item.img}>
-            <a href="http://localhost:3000/detail">
+            <Link to="/detail">
               <img
                 src={`${item.img}?w=1500&fit=crop&auto=format`}
                 alt={item.title}
               />
-            </a>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
