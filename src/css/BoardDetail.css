@@ -1,0 +1,24 @@
+#BoardDetailSection {
+  max-width: 66%;
+  padding: 10px;
+  margin: 0 auto;
+}
+#BoardDetailSectionContent {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+#BoardDetailTitle {
+  margin: 20px;
+  text-align: center;
+  font-size: xx-large;
+}
+#BoardDetailCreateAt,
+#BoardDetailName {
+  margin: 20px;
+}
+#BoardDetailContent {
+  margin: 20px;
+  padding: 10px;
+}

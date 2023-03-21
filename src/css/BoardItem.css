@@ -5,22 +5,44 @@
   --button-bg-color: #0d6efd;
   --button-hover-bg-color: #025ce2;
 }
-
+.BoardContentHeader {
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: bold;
+}
 .BoardListContent {
   border-radius: 5px;
-  background-color: white;
   margin: 20px;
-  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: large;
 }
+.BoardContentHeaderId,
+.BoardListContentId {
+  width: 12.5%;
+}
+.BoardContentHeaderTitle,
+.BoardListContentTitle {
+  width: 47.5%;
+}
+.BoardContentHeaderCreateAt,
+.BoardListContentCreateAt {
+  width: 20%;
+}
+.BoardContentHeaderName,
+.BoardListContentName {
+  width: 20%;
+}
 .BoardListContentTitle {
   font-weight: bold;
 }
 #BoardContentDiv {
-  max-width: 66%;
+  max-width: 75%;
   padding: 10px;
   margin: 0 auto;
 }
@@ -69,9 +91,6 @@
 
   margin: 20px;
   padding: 0.5rem 1rem;
-
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   cursor: pointer;
 
