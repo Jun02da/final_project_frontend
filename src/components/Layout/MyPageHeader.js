@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/MyPageHeader.css";
 import "../../css/mypage.css";
 import Login from "../../login";
+import ImageUploader from "../ImageUploader";
 
 export default function MyPageHeader() {
   const movePage = useNavigate();
@@ -67,8 +68,8 @@ export default function MyPageHeader() {
         <button className="button_active" onClick={goBio}>
           정보
         </button>
-        <button className="button_active" onClick={goUpload}>
-          업로드
+        <button className="button_active">
+          <ImageUploader />
         </button>
       </div>
     </>
