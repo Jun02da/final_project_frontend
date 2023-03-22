@@ -22,6 +22,7 @@ export default function App() {
 
   return (
     <>
+      <div className = 'MySwiperTop'>
       <Swiper
         spaceBetween={10}
         loop={true}
@@ -45,7 +46,7 @@ export default function App() {
           </SwiperSlide>
         ))}
       </Swiper>
-
+      </div>
       {/* 하단 미리보기 이미지 부분 */}
       <Swiper
         onSwiper={setThumbsSwiper}

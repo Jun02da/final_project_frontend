@@ -26,6 +26,7 @@
     "moment-timezone": "^0.5.41",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
+    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.7.1",

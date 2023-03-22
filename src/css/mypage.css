@@ -8,23 +8,62 @@
   text-align: center;
   list-style: none;
   font-size: 25px;
-  font-weight: 500;
 }
 .mypage_menu > a {
   /* 마이페이지 메뉴안에 Han Yonjae 글씨 css */
   text-decoration: none;
   color: black;
+  font-size: 50px;
+  font-weight: 900;
 }
 
 .mypage_menu > button {
   /* 마이페이지 메뉴 버튼 css */
-  border: none;
-  background-color: rgba(0, 0, 0, 0); /* 배경 투명색 */
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: 10px;
+  /* border: none; */
+  /* background-color: rgba(0, 0, 0, 0); 배경 투명색 */
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 110px;
+  height: 50px;
   font-weight: bold;
+  font-size:medium;
   transition-duration: 0.1s;
+}
+/* 한줄소개 */
+.AboutMe
+{
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+  color: #a0a0a0;
+}
+
+/* 마이페이지 sns 아이콘 */
+.Icon_set {
+  text-align: center;
+  margin-top: 40px;
+}
+/* 마이페이지 sns 아이콘 */
+.Icon {
+  margin: 30px;
+}
+/* 통계 */
+.stat_set {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.stat {
+  display: inline-block;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.stat_1{
+  font-weight: 400;
+  font-size: 40px;
+  margin-top: -20px;
+  color: black;
 }
 
 .slider_img {

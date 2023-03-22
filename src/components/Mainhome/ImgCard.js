@@ -2,9 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import test from "./ImgCard.json"; //ImgCard.json <<<< 테스트용 데이터
 import "../../css/MainHome.css"; //메인홈 이미지 카드에서 프로필 정보를 보기 위한 css
+
+
+
 
 export default function MasonryImageList() {
   return (
@@ -31,7 +35,19 @@ export default function MasonryImageList() {
               />
             </Link>
             {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
-            <p className="hover_text">@{item.title}</p>
+            {/* 프로필 사진과 닉네임 */}
+            <ul className="hover_text" style = {{listStyleType: 'none'}} >
+
+              <li style ={{float: "left", margin: 8, marginLeft: -10}}>
+                <Avatar alt="icon" src={item.pro} />
+              </li>
+
+              <li style ={{float: "left", marginTop : 8}}>
+                <p>닉네임 나오는 곳</p>
+              </li>
+
+            </ul>
+
           </ImageListItem>
         ))}
       </ImageList>

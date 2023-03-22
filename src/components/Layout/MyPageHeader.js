@@ -1,9 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../css/MyPageHeader.css";
 import "../../css/mypage.css";
 import Login from "../../login";
 import ImageUploader from "../ImageUploader";
+
+//마이페이지 기능 버튼
+import  { Button }  from  'react-bootstrap' ;
+
+//마이페이지 기능 버튼 아래 아이콘들
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
+const stat = [
+  {id: 1, bookmark: 123, views: 18449, post: 130}
+]
+
 
 export default function MyPageHeader() {
   const movePage = useNavigate();
@@ -59,19 +73,42 @@ export default function MyPageHeader() {
       </div>
       {/* 유저에 따라서 이름이 변경되야함 */}
       <div className="mypage_menu">
-        <a href="http://localhost:3000/mypage">
-          <h3 className="mypage_id">{userName}</h3>
-        </a>
-        <button className="button_active" onClick={goMypage}>
-          게시물
-        </button>
-        <button className="button_active" onClick={goBio}>
-          정보
-        </button>
-        <button className="button_active">
-          <ImageUploader />
-        </button>
+        <Link to="/mypage">
+          <p className="mypage_id">{userName}</p>
+        </Link>
+        <Button variant="dark" size = 'lg' className="button_active" onClick={goMypage}>게시물</Button>
+        <Button variant="outline-dark" size = 'lg' className="button_active" onClick={goBio}>정보</Button>
+        <Button variant="outline-dark" size = 'lg' className="button_active"><ImageUploader /></Button>
       </div>
+    {/* 한줄소개 */}
+      <p className='AboutMe'>이곳은 한줄로 적는 자기소개 구역입니다 테스트를 해야하니 아무말이나 적어봅니다 가나다라마바사</p>
+
+    {/* sns 아이콘 */}
+      <div className="Icon_set" >
+        <InstagramIcon className="Icon" sx={{ fontSize: 30 }}/>
+        <FacebookIcon className="Icon" sx={{ fontSize: 30 }}/>
+        <TwitterIcon className="Icon" sx={{ fontSize: 30 }}/>
+      </div> 
+
+    <div className='stat_set'>
+      <div className='stat'>
+        <p >총 즐겨찾기 수</p>
+        <p className='stat_1'>{stat[0].bookmark}회</p>
+      </div>
+
+      <div className='stat'>
+        <p >누적 조회수</p>
+        <p className='stat_1'>{stat[0].views}회</p>
+      </div>
+
+      <div className='stat'>
+        <p >전체 게시물</p>
+        <p className='stat_1'>{stat[0].post}개</p>
+      </div>
+    </div> 
+    
+
+
     </>
   );
 }

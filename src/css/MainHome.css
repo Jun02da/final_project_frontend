@@ -26,15 +26,15 @@
   .hover_text {
     position: absolute;
     color: #fff;
-    background-color: #A4A4A480;
+    background-color: #69696980;
     width: 100%;
     text-align: center;
     vertical-align: bottom;
     z-index: 20;
     font-weight: 500;
     font-size: 20px;
-	top: auto;
-	left: 50%;
+	  top: auto;
+	  left: 50%;
     transform: translate( -50%, -100%);
   }
 
