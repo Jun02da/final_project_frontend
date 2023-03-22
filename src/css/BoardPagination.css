@@ -23,13 +23,13 @@
 }
 .BoardPaginationLeftArrow:hover {
   color: rgba(255, 255, 255, 0.85);
-  box-shadow: #a1b3a6 0 0px 0px 40px inset;
+  box-shadow: #0d6efd 0 0px 0px 40px inset;
 }
 .BoardPaginationButton:hover {
   color: rgba(255, 255, 255, 0.85);
-  box-shadow: #a1b3a6 0 0px 0px 40px inset;
+  box-shadow: #0d6efd 0 0px 0px 40px inset;
 }
 .BoardPaginationRightArrow:hover {
   color: rgba(255, 255, 255, 0.85);
-  box-shadow: #a1b3a6 0 0px 0px 40px inset;
+  box-shadow: #0d6efd 0 0px 0px 40px inset;
 }
