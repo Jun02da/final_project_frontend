@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/HelpHeader.css";
 import Login from "../../login";
-import banner from "../../image/HelpHeaderBanner01.jpg";
+import banner from "../../image/HelpHeaderBanner03.jpg";
 
 export default function HelpHeader() {
   const movePage = useNavigate();
@@ -62,9 +62,9 @@ export default function HelpHeader() {
         <span onClick={goPageCommunication} id="HelpHeaderMenu">
           문의
         </span>
-        <hr />
-        <br />
       </div>
+      <hr />
+      <br />
     </>
   );
 }

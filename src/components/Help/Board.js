@@ -1,22 +1,12 @@
 import BoardList from "./Board/BoardList";
 import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
-// import axios from "axios";
-// import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Pagenation from "./Board/BoardPagination.js";
 
 function Board() {
-  // const [posts, setPosts] = useState([]);
-  // // 웹에서 서버로 요청 -> 나 리스트 전달해줘
-  // const getPosts = () => {
-  //   axios
-  //     .get("서버주소") // axios를 통해 HTTP요청을 보내는 코드
-  //     .then((response) => {
-  //       // then()에서는 HTTP요청을 통해 받아온 데이터를 처리할 수 있다
-  //       setPosts(response.data); // 이전에 useState로 생성했던 setPosts함수를 통해 data를 posts에 저장
-  //     });
-  // };
-  // useEffect(getPosts, []);
+  // 임시 하드코딩 데이터
   const list = [
     {
       id: 1,
@@ -89,12 +79,274 @@ function Board() {
       name: "홍길동",
       content: "내용 10",
     },
+    {
+      id: 11,
+      title: "제목입니다 (11)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 11",
+    },
+    {
+      id: 12,
+      title: "제목입니다 (12)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 12",
+    },
+    {
+      id: 13,
+      title: "제목입니다 (13)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 13",
+    },
+    {
+      id: 14,
+      title: "제목입니다 (14)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 14",
+    },
+    {
+      id: 15,
+      title: "제목입니다 (15)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 15",
+    },
+    {
+      id: 16,
+      title: "제목입니다 (16)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 16",
+    },
+    {
+      id: 17,
+      title: "제목입니다 (17)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 17",
+    },
+    {
+      id: 18,
+      title: "제목입니다 (18)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 18",
+    },
+    {
+      id: 19,
+      title: "제목입니다 (19)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 19",
+    },
+    {
+      id: 20,
+      title: "제목입니다 (20)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 20",
+    },
+    {
+      id: 21,
+      title: "제목입니다 (21)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 21",
+    },
+    {
+      id: 22,
+      title: "제목입니다 (22)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 22",
+    },
+    {
+      id: 23,
+      title: "제목입니다 (23)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 23",
+    },
+    {
+      id: 24,
+      title: "제목입니다 (24)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 24",
+    },
+    {
+      id: 25,
+      title: "제목입니다 (25)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 25",
+    },
+    {
+      id: 26,
+      title: "제목입니다 (26)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 26",
+    },
+    {
+      id: 27,
+      title: "제목입니다 (27)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 27",
+    },
+    {
+      id: 28,
+      title: "제목입니다 (28)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 28",
+    },
+    {
+      id: 29,
+      title: "제목입니다 (29)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 29",
+    },
+    {
+      id: 30,
+      title: "제목입니다 (30)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 30",
+    },
+    {
+      id: 31,
+      title: "제목입니다 (31)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 31",
+    },
+    {
+      id: 32,
+      title: "제목입니다 (32)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 32",
+    },
+    {
+      id: 33,
+      title: "제목입니다 (33)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 33",
+    },
+    {
+      id: 34,
+      title: "제목입니다 (34)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 34",
+    },
+    {
+      id: 35,
+      title: "제목입니다 (35)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 35",
+    },
+    {
+      id: 36,
+      title: "제목입니다 (36)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 36",
+    },
+    {
+      id: 37,
+      title: "제목입니다 (37)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 37",
+    },
+    {
+      id: 38,
+      title: "제목입니다 (38)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 38",
+    },
+    {
+      id: 39,
+      title: "제목입니다 (39)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 39",
+    },
+    {
+      id: 40,
+      title: "제목입니다 (40)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 40",
+    },
+    {
+      id: 41,
+      title: "제목입니다 (41)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 41",
+    },
+    {
+      id: 42,
+      title: "제목입니다 (42)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 42",
+    },
+    {
+      id: 43,
+      title: "제목입니다 (43)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 43",
+    },
+    {
+      id: 44,
+      title: "제목입니다 (44)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 44",
+    },
+    {
+      id: 45,
+      title: "제목입니다 (45)",
+      createdAt: "2021.06.30",
+      name: "홍길동",
+      content: "내용 45",
+    },
   ];
   const movePage = useNavigate();
 
   function goBoardEdit() {
     movePage("/BoardEdit");
   }
+  // 데이터 부분
+  const [contentInfo, setContentInfo] = useState([]);
+
+  useEffect(() => {
+    setContentInfo(list);
+  }, []);
+  // 페이징 부분
+  const [page, setPage] = useState(1); //페이지
+  const limit = 10; // posts가 보일 최대한의 갯수
+  const offset = (page - 1) * limit; // 시작점과 끝점을 구하는 offset
+
+  const postsData = (posts) => {
+    if (posts) {
+      let result = posts.slice(offset, offset + limit);
+      return result;
+    }
+  };
   return (
     <div>
       <Header />
@@ -109,7 +361,13 @@ function Board() {
           <span className="BoardContentHeaderName">글쓴이</span>
         </div>
         <hr />
-        <BoardList items={list} />
+        <BoardList items={postsData(contentInfo)} />
+        <Pagenation
+          limit={limit}
+          page={page}
+          totalPosts={contentInfo.length}
+          setPage={setPage}
+        />
       </div>
       <br />
       <Footer />

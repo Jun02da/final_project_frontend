@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/mypage.css";
+import "../../css/Bio.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 // 버튼을 통해서만 편집이 가능하기 때문에
@@ -31,11 +32,10 @@ export default function OtherBio() {
         </div>
         <br />
         <h2>Han Yongjae</h2>
-        <br />
         {/* 소개글 부분 */}
-        <p>
-          <div id="BioEditDiv">{text}</div>
-        </p>
+        <textarea id="BioTextareaEditOff" rows={10} readOnly>
+          {text}
+        </textarea>
       </div>
       <Footer />
     </div>
