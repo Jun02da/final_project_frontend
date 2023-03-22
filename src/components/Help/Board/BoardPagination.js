@@ -14,7 +14,7 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
           setPage(page - 1);
           setCurrPage(page - 2);
         }}
-        disabled={page === 1}
+        disabled={page === 1} // 0페이지는 없기 때문에 막아준다
         className="BoardPaginationLeftArrow"
       >
         &lt;&lt;
@@ -63,7 +63,7 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
           setPage(page + 1);
           setCurrPage(page);
         }}
-        disabled={page === numPages}
+        disabled={page === numPages} // 마지막 페이지이기 떄문에 막음
       >
         &gt;&gt;
       </button>
