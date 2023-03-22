@@ -1,0 +1,11 @@
+.BoardPaginationDiv {
+  text-align: center;
+  margin: 0 auto;
+}
+.BoardPaginationContent {
+  display: inline-block;
+  padding: 8px 16px;
+}
+.BoardPaginationContent:hover {
+  color: red;
+}
