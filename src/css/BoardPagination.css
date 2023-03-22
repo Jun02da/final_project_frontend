@@ -1,11 +1,35 @@
-.BoardPaginationDiv {
+#BoardPaginationDiv {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
   text-align: center;
   margin: 0 auto;
 }
-.BoardPaginationContent {
-  display: inline-block;
-  padding: 8px 16px;
+.BoardPaginationLeftArrow {
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 5px 10px;
 }
-.BoardPaginationContent:hover {
-  color: red;
+.BoardPaginationButton {
+  background-color: white;
+  padding: 5px 10px;
+}
+.BoardPaginationRightArrow {
+  background-color: white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 5px 10px;
+}
+.BoardPaginationLeftArrow:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: #a1b3a6 0 0px 0px 40px inset;
+}
+.BoardPaginationButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: #a1b3a6 0 0px 0px 40px inset;
+}
+.BoardPaginationRightArrow:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: #a1b3a6 0 0px 0px 40px inset;
 }

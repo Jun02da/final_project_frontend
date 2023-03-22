@@ -8,31 +8,31 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
   let lastNum = currPage - (currPage % 5) + 5;
 
   return (
-    <div className="BoardPaginationDiv">
-      <div
+    <div id="BoardPaginationDiv">
+      <button
         onClick={() => {
           setPage(page - 1);
           setCurrPage(page - 2);
         }}
         disabled={page === 1}
-        className="BoardPaginationContent"
+        className="BoardPaginationLeftArrow"
       >
-        &lt;
-      </div>
-      <div
+        &lt;&lt;
+      </button>
+      <button
         onClick={() => setPage(firstNum)}
         aria-current={page === firstNum ? "page" : null}
-        className="BoardPaginationContent"
+        className="BoardPaginationButton"
       >
         {firstNum}
-      </div>
+      </button>
       {Array(4)
         .fill()
         .map((_, i) => {
           if (i <= 2) {
             return (
-              <div
-                className="BoardPaginationContent"
+              <button
+                className="BoardPaginationButton"
                 border="true"
                 key={i + 1}
                 onClick={() => {
@@ -41,32 +41,32 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
                 aria-current={page === firstNum + 1 + i ? "page" : null}
               >
                 {firstNum + 1 + i}
-              </div>
+              </button>
             );
           } else if (i >= 3) {
             return (
-              <div
-                className="BoardPaginationContent"
+              <button
+                className="BoardPaginationButton"
                 border="true"
                 key={i + 1}
                 onClick={() => setPage(lastNum)}
                 aria-current={page === lastNum ? "page" : null}
               >
                 {lastNum}
-              </div>
+              </button>
             );
           }
         })}
-      <div
-        className="BoardPaginationContent"
+      <button
+        className="BoardPaginationRightArrow"
         onClick={() => {
           setPage(page + 1);
           setCurrPage(page);
         }}
         disabled={page === numPages}
       >
-        &gt;
-      </div>
+        &gt;&gt;
+      </button>
     </div>
   );
 }
