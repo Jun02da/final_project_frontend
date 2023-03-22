@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "../../css/mypage.css";
+import "../../css/Bio.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
@@ -40,7 +41,7 @@ export default function Bio() {
     천천히 신중하게 말하는 스타일인 그는 “사진이 좋다는 얘기가 퍼지면서 의뢰가 많아진 거 아니냐”고 물어야 마지못해 “입소문이 재미있고 무섭던데요”라고 했다.
     “백 작가한테 안찍으면 일류가 아니라는 말 나오겠다”고 하자 “그렇게 생각해주시면 너무 고맙지요”라고 가까스로 대답했다.
     그러면서 “사람 찍는 게 가장 어려워요”라고 했다.`);
-  //   editable은 input 또는 text상태로 만들기
+  //   editable은 읽기모드 또는 편집가능 상태로 만들기
   const [editable, setEditable] = useState(false);
   const editToggle = () => {
     setEditable(!editable);

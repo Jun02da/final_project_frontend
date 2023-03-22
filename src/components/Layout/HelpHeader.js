@@ -62,9 +62,9 @@ export default function HelpHeader() {
         <span onClick={goPageCommunication} id="HelpHeaderMenu">
           문의
         </span>
-        <hr />
-        <br />
       </div>
+      <hr />
+      <br />
     </>
   );
 }

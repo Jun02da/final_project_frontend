@@ -66,17 +66,3 @@
   margin-right: 400px;
   display: block;
 }
-#BioTextareaEditOff,
-#BioTextareaEditOn {
-  width: 75%;
-  border: none;
-  resize: none;
-  text-align: center;
-  overflow-x: hidden;
-  margin: 20px;
-}
-#BioEditSpan {
-  font-size: 22px;
-  margin: 10px;
-  padding: 10px;
-}

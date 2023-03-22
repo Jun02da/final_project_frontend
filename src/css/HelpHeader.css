@@ -27,15 +27,11 @@
 }
 #HelpHeaderMenuSection {
   text-align: center;
-  margin: 10px;
 }
 #HelpHeaderMenu {
   margin: 20px;
-  padding: 30px;
-  font-size: 20px;
-}
-#HelpHeaderMenu:hover {
-  color: red;
+  padding: 15px;
+  font-size: 26px;
 }
 #HelpHeaderBanner {
   margin: 0 auto;

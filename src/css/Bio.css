@@ -1,0 +1,22 @@
+#BioTextareaEditOff {
+  width: 75%;
+  border: none;
+  resize: none;
+  text-align: center;
+  overflow-x: hidden;
+  margin: 20px;
+}
+#BioTextareaEditOn {
+  width: 75%;
+  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
+  resize: none;
+  text-align: center;
+  overflow-x: hidden;
+  margin: 20px;
+}
+/* 수정 버튼 */
+#BioEditSpan {
+  font-size: 22px;
+  margin: 10px;
+  padding: 10px;
+}
