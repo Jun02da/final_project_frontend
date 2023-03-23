@@ -1,72 +1,12 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import "../../css/chart.css";
-
+import { useState } from "react";
+import "../../css/Dashboard.css";
 function MyPageChart() {
-  // Bar 변수
-  var seriesBar = [
+  // 조회수(Views) 관련
+  var sample = [
     {
-      name: "Male",
-      data: [44, 55, 41, 67, 22, 43, 34],
-    },
-    {
-      name: "Female",
-      data: [13, 23, 20, 8, 13, 27, 49],
-    },
-  ];
-  var optionsBar = {
-    chart: {
-      toolbar: {
-        show: true,
-        tools: {
-          download: true, // download기능을 메인기능으로 선정
-          zoom: false,
-        },
-      },
-      stacked: true, // 위에 쌓아서 나타내기
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false, // 가로 or 세로
-        borderRadius: 10, // 모서리 동글동글
-      },
-    },
-    dataLabels: {
-      enabled: true, // 수치 표시
-    },
-    stroke: {
-      curve: "smooth", // 포인트를 곡선 방식으로 연결합니다. 스플라인이라고도 함
-    },
-    grid: {
-      row: {
-        opacity: 0.5, // 투명도
-      },
-    },
-    xaxis: {
-      categories: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"], // x축
-    },
-    colors: ["#546E7A", "#E91E63"], // 색상 지정
-    noData: {
-      text: "No Data", // 데이터가 없는 경우
-    },
-  };
-  // Donut 변수
-  var seriesDonut = [500, 1234];
-  var optionsDonut = {
-    legend: {
-      show: true,
-      position: "bottom",
-    },
-    labels: ["Male", "Female"],
-    colors: ["#546E7A", "#E91E63"], // 색상 지정
-    noData: {
-      text: "No Data", // 데이터가 없는 경우
-    },
-  };
-  // area변수
-  var seriesArea = [
-    {
-      name: "방문자",
+      name: "Views",
       data: [
         {
           x: 1,
@@ -191,16 +131,14 @@ function MyPageChart() {
       ],
     },
   ];
-  var optionsArea = {
+  var optionsTest1 = {
     chart: {
       toolbar: {
-        show: true,
-        tools: {
-          download: false,
-          zoom: true, // zoom기능을 메인기능으로 선정
-        },
+        show: false,
       },
+      width: "100%",
     },
+    colors: ["#7831ED"],
     dataLabels: {
       enabled: false, // 값 표시 X
     },
@@ -211,71 +149,85 @@ function MyPageChart() {
       text: "No Data", // 데이터가 없는 경우
     },
   };
-  // PolarArea 변수
-  var seriesPolarArea = [6543, 2109, 3456, 5678, 7890, 8765, 9876, 10000];
-  var optionsPolarArea = {
-    labels: [
-      "00:00 ~ 03:00",
-      "03:00 ~ 06:00",
-      "06:00 ~ 09:00",
-      "09:00 ~ 12:00",
-      "12:00 ~ 15:00",
-      "15:00 ~ 18:00",
-      "18:00 ~ 21:00",
-      "21:00 ~ 24:00",
-    ],
-    stroke: {
-      show: true,
-      colors: ["#fff"],
-      width: 2,
+  var optionsTest2 = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+      width: "100%",
     },
-    fill: {
-      opacity: 0.8, // 투명도
-    },
+    colors: ["#32edc8"],
     dataLabels: {
-      enabled: true, // 수치 표시
+      enabled: false, // 값 표시 X
+    },
+    stroke: {
+      curve: "straight", // 모서리 각지게
+    },
+    noData: {
+      text: "No Data", // 데이터가 없는 경우
     },
   };
+  var optionsTest3 = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+      width: "100%",
+    },
+    colors: ["#ed3254"],
+    dataLabels: {
+      enabled: false, // 값 표시 X
+    },
+    stroke: {
+      curve: "straight", // 모서리 각지게
+    },
+    noData: {
+      text: "No Data", // 데이터가 없는 경우
+    },
+  };
+  // 3개중 1개만 true로 설정하여서 클릭한 1개의 그래프만 나오도록 설정
+  const [showTest1, setShowTest1] = useState(true);
+  const [showTest2, setShowTest2] = useState(false);
+  const [showTest3, setShowTest3] = useState(false);
 
+  const handleTest1 = () => {
+    setShowTest1(true);
+    setShowTest2(false);
+    setShowTest3(false);
+  };
+  const handleTest2 = () => {
+    setShowTest1(false);
+    setShowTest2(true);
+    setShowTest3(false);
+  };
+  const handleTest3 = () => {
+    setShowTest1(false);
+    setShowTest2(false);
+    setShowTest3(true);
+  };
   return (
     <div>
-      <div id="chartArea">
-        <h3>이번주 방문자</h3>
-        {/* bar 그래프 */}
-        <Chart options={optionsBar} series={seriesBar} type="bar" width="720" />
+      <div id="MyPageChartButtonDiv">
+        <button onClick={handleTest1} id="MyPageChartButton1">
+          버튼 1
+        </button>
+        <button onClick={handleTest2} id="MyPageChartButton2">
+          버튼 2
+        </button>
+        <button onClick={handleTest3} id="MyPageChartButton3">
+          버튼 3
+        </button>
       </div>
-
-      <div id="chartArea">
-        <h3>전체회원 남여비율</h3>
-        {/* donut 그래프 */}
-        <Chart
-          options={optionsDonut}
-          series={seriesDonut}
-          type="donut"
-          width="720"
-        />
-      </div>
-
-      <div id="chartArea">
-        <h3>이번달 방문자</h3>
-        {/* area 그래프 */}
-        <Chart
-          options={optionsArea}
-          series={seriesArea}
-          type="area"
-          width="720"
-        />
-      </div>
-
-      <div id="chartArea">
-        <h3>방문 시간대</h3>
-        {/* PolarArea 그래프 */}
-        <Chart
-          options={optionsPolarArea}
-          series={seriesPolarArea}
-          type="polarArea"
-          width="720"
-        />
+      <div id="MyPageChartDiv">
+        {showTest1 && (
+          <Chart options={optionsTest1} series={sample} type="area" />
+        )}
+        {showTest2 && (
+          <Chart options={optionsTest2} series={sample} type="area" />
+        )}
+        {showTest3 && (
+          <Chart options={optionsTest3} series={sample} type="area" />
+        )}
       </div>
     </div>
   );

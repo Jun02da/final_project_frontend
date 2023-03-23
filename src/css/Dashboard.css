@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+/* 버튼 관련 */
+:root {
+  --button1-color: #ffffff;
+  --button1-bg-color: #7831ed;
+  --button1-hover-bg-color: #4812a1;
+  --button2-color: #ffffff;
+  --button2-bg-color: #32edc8;
+  --button2-hover-bg-color: #05a081;
+  --button3-color: #ffffff;
+  --button3-bg-color: #ed3254;
+  --button3-hover-bg-color: #d3405c;
+}
+#MyPageChartButton1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: var(--button1-bg-color);
+  color: var(--button1-color);
+
+  margin: 20px;
+  padding: 0.5rem 1rem;
+
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 4px;
+
+  display: inline-block;
+  width: auto;
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.5s;
+}
+#MyPageChartButton1:active,
+#MyPageChartButton1:hover,
+#MyPageChartButton1:focus {
+  background: var(--button1-hover-bg-color);
+  outline: 0;
+}
+#MyPageChartButton1:disabled {
+  opacity: 0.5;
+}
+#MyPageChartButton2 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: var(--button2-bg-color);
+  color: var(--button2-color);
+
+  margin: 20px;
+  padding: 0.5rem 1rem;
+
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 4px;
+
+  display: inline-block;
+  width: auto;
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.5s;
+}
+#MyPageChartButton2:active,
+#MyPageChartButton2:hover,
+#MyPageChartButton2:focus {
+  background: var(--button2-hover-bg-color);
+  outline: 0;
+}
+#MyPageChartButton2:disabled {
+  opacity: 0.5;
+}
+#MyPageChartButton3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: var(--button3-bg-color);
+  color: var(--button3-color);
+
+  margin: 20px;
+  padding: 0.5rem 1rem;
+
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 4px;
+
+  display: inline-block;
+  width: auto;
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+
+  transition: 0.5s;
+}
+#MyPageChartButton3:active,
+#MyPageChartButton3:hover,
+#MyPageChartButton3:focus {
+  background: var(--button3-hover-bg-color);
+  outline: 0;
+}
+#MyPageChartButton3:disabled {
+  opacity: 0.5;
+}
+#MyPageChartButtonDiv {
+  text-align: center;
+}
+/* 그래프 관련 */
+#MyPageChartDiv {
+  width: 66%;
+  margin: 0 auto;
+}
