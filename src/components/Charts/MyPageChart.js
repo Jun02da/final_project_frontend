@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../../css/Dashboard.css";
 function MyPageChart() {
   // 데이터 관련
-  var sample1 = [
+  var ViewsData = [
     {
       name: "Views",
       data: [
@@ -131,7 +131,7 @@ function MyPageChart() {
       ],
     },
   ];
-  var sample2 = [
+  var GreatData = [
     {
       name: "Great",
       data: [
@@ -258,7 +258,7 @@ function MyPageChart() {
       ],
     },
   ];
-  var sample3 = [
+  var FollowersData = [
     {
       name: "Followers",
       data: [
@@ -268,150 +268,150 @@ function MyPageChart() {
         },
         {
           x: 2,
-          y: 90,
+          y: 15,
         },
         {
           x: 3,
-          y: 50,
+          y: 25,
         },
         {
           x: 4,
-          y: 77,
+          y: 35,
         },
         {
           x: 5,
-          y: 55,
+          y: 45,
         },
         {
           x: 6,
-          y: 45,
+          y: 50,
         },
         {
           x: 7,
-          y: 88,
+          y: 55,
         },
         {
           x: 8,
-          y: 20,
+          y: 60,
         },
         {
           x: 9,
-          y: 36,
-        },
-        {
-          x: 10,
-          y: 23,
-        },
-        {
-          x: 11,
-          y: 88,
-        },
-        {
-          x: 12,
-          y: 66,
-        },
-        {
-          x: 13,
-          y: 45,
-        },
-        {
-          x: 14,
-          y: 99,
-        },
-        {
-          x: 15,
           y: 65,
         },
         {
+          x: 10,
+          y: 70,
+        },
+        {
+          x: 11,
+          y: 75,
+        },
+        {
+          x: 12,
+          y: 80,
+        },
+        {
+          x: 13,
+          y: 85,
+        },
+        {
+          x: 14,
+          y: 90,
+        },
+        {
+          x: 15,
+          y: 95,
+        },
+        {
           x: 16,
-          y: 88,
+          y: 100,
         },
         {
           x: 17,
-          y: 32,
+          y: 105,
         },
         {
           x: 18,
-          y: 46,
+          y: 110,
         },
         {
           x: 19,
-          y: 69,
+          y: 115,
         },
         {
           x: 20,
-          y: 84,
+          y: 120,
         },
         {
           x: 21,
-          y: 88,
+          y: 125,
         },
         {
           x: 22,
-          y: 66,
+          y: 130,
         },
         {
           x: 23,
-          y: 45,
+          y: 135,
         },
         {
           x: 24,
-          y: 89,
+          y: 145,
         },
         {
           x: 25,
-          y: 45,
+          y: 150,
         },
         {
           x: 26,
-          y: 88,
+          y: 155,
         },
         {
           x: 27,
-          y: 32,
+          y: 160,
         },
         {
           x: 28,
-          y: 46,
+          y: 165,
         },
         {
           x: 29,
-          y: 69,
+          y: 170,
         },
         {
           x: 30,
-          y: 84,
+          y: 175,
         },
       ],
     },
   ];
   // 데이터 y 값 총합
-  var sample1Total = 0;
-  sample1.map((e) => {
+  var ViewsDataTotal = 0;
+  ViewsData.map((e) => {
     e.data.map((e) => {
-      sample1Total = sample1Total + e.y;
-      return sample1Total;
+      ViewsDataTotal = ViewsDataTotal + e.y;
+      return ViewsDataTotal;
     });
-    return sample1Total;
+    return ViewsDataTotal;
   });
-  var sample2Total = 0;
-  sample2.map((e) => {
+  var GreatDataTotal = 0;
+  GreatData.map((e) => {
     e.data.map((e) => {
-      sample2Total = sample2Total + e.y;
-      return sample2Total;
+      GreatDataTotal = GreatDataTotal + e.y;
+      return GreatDataTotal;
     });
-    return sample2Total;
+    return GreatDataTotal;
   });
-  var sample3Total = 0;
-  sample3.map((e) => {
+  var FollowersDataTotal = 0;
+  FollowersData.map((e) => {
     e.data.map((e) => {
-      sample3Total = sample3Total + e.y;
-      return sample3Total;
+      FollowersDataTotal = FollowersDataTotal + e.y;
+      return FollowersDataTotal;
     });
-    return sample3Total;
+    return FollowersDataTotal;
   });
   // 옵션 관련
-  var optionsTest1 = {
+  var ViewsOptions = {
     chart: {
       toolbar: {
         show: false,
@@ -429,7 +429,7 @@ function MyPageChart() {
       text: "No Data", // 데이터가 없는 경우
     },
   };
-  var optionsTest2 = {
+  var GreatOptions = {
     chart: {
       toolbar: {
         show: false,
@@ -447,7 +447,7 @@ function MyPageChart() {
       text: "No Data", // 데이터가 없는 경우
     },
   };
-  var optionsTest3 = {
+  var FollowersOptions = {
     chart: {
       toolbar: {
         show: false,
@@ -466,51 +466,59 @@ function MyPageChart() {
     },
   };
   // 3개중 1개만 true로 설정하여서 클릭한 1개의 그래프만 나오도록 설정
-  const [showTest1, setShowTest1] = useState(true);
-  const [showTest2, setShowTest2] = useState(false);
-  const [showTest3, setShowTest3] = useState(false);
+  const [showViewsChart, setShowViewsChart] = useState(true);
+  const [showGreatChart, setShowGreatChart] = useState(false);
+  const [showFollowersChart, setShowFollowersChart] = useState(false);
 
-  const handleTest1 = () => {
-    setShowTest1(true);
-    setShowTest2(false);
-    setShowTest3(false);
+  const onlyViewsChart = () => {
+    setShowViewsChart(true);
+    setShowGreatChart(false);
+    setShowFollowersChart(false);
   };
-  const handleTest2 = () => {
-    setShowTest1(false);
-    setShowTest2(true);
-    setShowTest3(false);
+  const onlyGreatChart = () => {
+    setShowViewsChart(false);
+    setShowGreatChart(true);
+    setShowFollowersChart(false);
   };
-  const handleTest3 = () => {
-    setShowTest1(false);
-    setShowTest2(false);
-    setShowTest3(true);
+  const onlyFollowersChart = () => {
+    setShowViewsChart(false);
+    setShowGreatChart(false);
+    setShowFollowersChart(true);
   };
   return (
     <div id="MyPageDashboard">
       <div id="MyPageChartButtonDiv">
-        <button onClick={handleTest1} id="MyPageChartButton1">
+        {/*
+          autoFocus로 기본 포커스 지정
+          데이터의 총합을 계산하여서 각각 명시
+        */}
+        <button onClick={onlyViewsChart} id="MyPageChartButton1" autoFocus>
           <div>조회수</div>
-          <div id="MyPageChartButtonTotal">{sample1Total}</div>
+          <div id="MyPageChartButtonTotal">{ViewsDataTotal}</div>
         </button>
-        <button onClick={handleTest2} id="MyPageChartButton2">
+        <button onClick={onlyGreatChart} id="MyPageChartButton2">
           <div>좋아요</div>
-          <div id="MyPageChartButtonTotal">{sample2Total}</div>
+          <div id="MyPageChartButtonTotal">{GreatDataTotal}</div>
         </button>
-        <button onClick={handleTest3} id="MyPageChartButton3">
+        <button onClick={onlyFollowersChart} id="MyPageChartButton3">
           <div>팔로워</div>
-          <div id="MyPageChartButtonTotal">{sample3Total}</div>
+          <div id="MyPageChartButtonTotal">{FollowersDataTotal}</div>
         </button>
       </div>
       ,
       <div id="MyPageChartDiv">
-        {showTest1 && (
-          <Chart options={optionsTest1} series={sample1} type="area" />
+        {showViewsChart && (
+          <Chart options={ViewsOptions} series={ViewsData} type="area" />
         )}
-        {showTest2 && (
-          <Chart options={optionsTest2} series={sample2} type="area" />
+        {showGreatChart && (
+          <Chart options={GreatOptions} series={GreatData} type="area" />
         )}
-        {showTest3 && (
-          <Chart options={optionsTest3} series={sample3} type="area" />
+        {showFollowersChart && (
+          <Chart
+            options={FollowersOptions}
+            series={FollowersData}
+            type="area"
+          />
         )}
       </div>
     </div>
