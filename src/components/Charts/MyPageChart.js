@@ -156,7 +156,7 @@ function MyPageChart() {
       },
       width: "100%",
     },
-    colors: ["#32edc8"],
+    colors: ["#05a081"],
     dataLabels: {
       enabled: false, // 값 표시 X
     },
@@ -174,7 +174,7 @@ function MyPageChart() {
       },
       width: "100%",
     },
-    colors: ["#ed3254"],
+    colors: ["#d3405c"],
     dataLabels: {
       enabled: false, // 값 표시 X
     },

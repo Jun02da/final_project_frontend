@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+/* 버튼 관련 */
+:root {
+  --page-button-bg-color: #ffffff;
+  --page-button-hover-color: #ffffff;
+  --page-button-hover-bg-color: #0d6efd;
+}
+
 #BoardPaginationDiv {
   font-family: Arial, sans-serif;
   font-weight: bold;
@@ -6,30 +14,36 @@
   margin: 0 auto;
 }
 .BoardPaginationLeftArrow {
-  background-color: white;
+  background: var(--page-button-bg-color);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   padding: 5px 10px;
 }
 .BoardPaginationButton {
-  background-color: white;
+  background: var(--page-button-bg-color);
   padding: 5px 10px;
 }
 .BoardPaginationRightArrow {
-  background-color: white;
+  background: var(--page-button-bg-color);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   padding: 5px 10px;
 }
-.BoardPaginationLeftArrow:hover {
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: #0449b0 0 0px 0px 40px inset;
+.BoardPaginationLeftArrow:active,
+.BoardPaginationButton:active,
+.BoardPaginationRightArrow:active,
+.BoardPaginationLeftArrow:hover,
+.BoardPaginationButton:hover,
+.BoardPaginationRightArrow:hover,
+.BoardPaginationLeftArrow:focus,
+.BoardPaginationButton:focus,
+.BoardPaginationRightArrow:focus {
+  background: var(--page-button-hover-bg-color);
+  color: var(--page-button-hover-color);
+  outline: 0;
 }
-.BoardPaginationButton:hover {
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: #0d6efd 0 0px 0px 40px inset;
-}
-.BoardPaginationRightArrow:hover {
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: #0449b0 0 0px 0px 40px inset;
+.BoardPaginationLeftArrow:disabled,
+.BoardPaginationButton:disabled,
+.BoardPaginationRightArrow:disabled {
+  opacity: 0.5;
 }
