@@ -126,6 +126,7 @@ export default function MyPageHeader() {
           <p className="stat_1">{stat[0].post}개</p>
         </div>
       </div>
+      
     </>
   );
 }
