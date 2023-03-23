@@ -1,15 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 /* 버튼 관련 */
 :root {
-  --button1-color: #ffffff;
-  --button1-bg-color: #7831ed;
-  --button1-hover-bg-color: #38176e;
-  --button2-color: #ffffff;
-  --button2-bg-color: #05a081;
-  --button2-hover-bg-color: #246e5f;
-  --button3-color: #ffffff;
-  --button3-bg-color: #d3405c;
-  --button3-hover-bg-color: #a10521;
+  --button1-color: black;
+  --button1-bg-color: white;
+  --button1-hover-color: white;
+  --button1-hover-bg-color: #7831ed;
+  --button2-color: black;
+  --button2-bg-color: white;
+  --button2-hover-color: white;
+  --button2-hover-bg-color: #05a081;
+  --button3-color: black;
+  --button3-bg-color: white;
+  --button3-hover-color: white;
+  --button3-hover-bg-color: #d3405c;
 }
 #MyPageChartButton1 {
   -webkit-appearance: none;
@@ -19,32 +22,31 @@
   background: var(--button1-bg-color);
   color: var(--button1-color);
 
-  margin: 20px;
   padding: 0.5rem 1rem;
 
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 18px;
   text-align: center;
   text-decoration: none;
 
   border: none;
-  border-radius: 4px;
+  /* 투명도로 연하게 설정 */
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 
   display: inline-block;
   width: auto;
 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
   cursor: pointer;
 
-  transition: 0.5s;
+  transition: 0.3s;
 }
 #MyPageChartButton1:active,
 #MyPageChartButton1:hover,
 #MyPageChartButton1:focus {
   background: var(--button1-hover-bg-color);
+  color: var(--button1-hover-color);
   outline: 0;
 }
 #MyPageChartButton1:disabled {
@@ -57,33 +59,28 @@
 
   background: var(--button2-bg-color);
   color: var(--button2-color);
-
-  margin: 20px;
   padding: 0.5rem 1rem;
 
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 18px;
   text-align: center;
   text-decoration: none;
 
   border: none;
-  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 
   display: inline-block;
   width: auto;
 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
   cursor: pointer;
 
-  transition: 0.5s;
+  transition: 0.3s;
 }
 #MyPageChartButton2:active,
 #MyPageChartButton2:hover,
 #MyPageChartButton2:focus {
   background: var(--button2-hover-bg-color);
+  color: var(--button2-hover-color);
   outline: 0;
 }
 #MyPageChartButton2:disabled {
@@ -97,32 +94,30 @@
   background: var(--button3-bg-color);
   color: var(--button3-color);
 
-  margin: 20px;
   padding: 0.5rem 1rem;
 
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 18px;
   text-align: center;
   text-decoration: none;
 
   border: none;
-  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 
   display: inline-block;
   width: auto;
 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
   cursor: pointer;
 
-  transition: 0.5s;
+  transition: 0.3s;
 }
 #MyPageChartButton3:active,
 #MyPageChartButton3:hover,
 #MyPageChartButton3:focus {
   background: var(--button3-hover-bg-color);
+  color: var(--button3-hover-color);
   outline: 0;
 }
 #MyPageChartButton3:disabled {
@@ -133,6 +128,16 @@
 }
 /* 그래프 관련 */
 #MyPageChartDiv {
-  width: 66%;
+  width: 75%;
   margin: 0 auto;
+}
+#MyPageDashboard {
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
+  border-radius: 20px;
+  width: 75%;
+}
+#MyPageChartButtonTotal {
+  font-size: 36px;
 }
