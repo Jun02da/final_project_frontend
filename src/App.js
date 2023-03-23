@@ -9,9 +9,9 @@ import FAQ from "./components/Help/FAQ.js";
 import Communication from "./components/Help/Communication.js";
 import Bio from "./components/MyPage/Bio.js";
 import OtherBio from "./components/MyPage/OtherBio.js";
-import Upload from "./components/MyPage/Upload.js";
 import Board from "./components/Help/Board.js";
 import BoardDetail from "./components/Help/Board/BoardDetail";
+import Dashboard from "./components/MyPage/Dashboard.js";
 
 export default function App() {
   return (
@@ -28,9 +28,9 @@ export default function App() {
           <Route path={"/mypage"} element={<Mypage />}></Route>
           <Route path={"/Bio"} element={<Bio />}></Route>
           <Route path={"/OtherBio"} element={<OtherBio />}></Route>
-          <Route path={"/Upload"} element={<Upload />}></Route>
           <Route path={"/Board"} element={<Board />}></Route>
           <Route path={"/BoardDetail"} element={<BoardDetail />}></Route>
+          <Route path={"/Dashboard"} element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import "../../css/chart.css";
 
-function ApexCharts() {
+function AdminChart() {
   // Bar 변수
   var seriesBar = [
     {
@@ -283,4 +283,4 @@ function ApexCharts() {
     </div>
   );
 }
-export default ApexCharts;
+export default AdminChart;

@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import AccountDelete from "./AccountDelete";
 import Announcement from "./Announcement";
 import ReportedPosts from "./ReportedPosts";
-import ApexCharts from "./Charts/ApexCharts.js";
+import AdminChart from "./Charts/AdminChart.js";
 import {
   BarChartOutlined,
   DeleteOutlined,
@@ -99,7 +99,7 @@ export default function Admin() {
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
             {showReport && <ReportedPosts />}
-            {showChart && <ApexCharts />}
+            {showChart && <AdminChart />}
           </Content>
         </Layout>
       </Content>
