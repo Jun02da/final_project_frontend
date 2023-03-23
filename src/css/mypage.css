@@ -26,12 +26,11 @@
   width: 110px;
   height: 50px;
   font-weight: bold;
-  font-size:medium;
+  font-size: medium;
   transition-duration: 0.1s;
 }
 /* 한줄소개 */
-.AboutMe
-{
+.AboutMe {
   text-align: center;
   margin-top: 40px;
   font-weight: bold;
@@ -60,7 +59,7 @@
   cursor: pointer;
 }
 
-.stat_1{
+.stat_1 {
   font-weight: 400;
   font-size: 40px;
   margin-top: -20px;
