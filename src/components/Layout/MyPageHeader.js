@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../../css/MyPageHeader.css";
 import "../../css/mypage.css";
 import Login from "../../login";
-import ImageUploader from "../ImageUploader";
 
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
@@ -96,9 +95,6 @@ export default function MyPageHeader() {
           onClick={goDashboard}
         >
           통계
-        </Button>
-        <Button variant="outline-dark" size="lg" className="button_active">
-          <ImageUploader />
         </Button>
       </div>
       {/* 한줄소개 */}

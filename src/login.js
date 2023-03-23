@@ -24,6 +24,7 @@ export default function Login() {
         isOpen={showModal1}
         onRequestClose={handleCloseModal1}
         className="login_modal"
+        style={{ overlay: { zIndex: 1000 }, content: { zIndex: 1000 } }}
       >
         <h2 className="login">로그인</h2>
         <div className="login_form">

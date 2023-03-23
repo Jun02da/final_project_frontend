@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper";
-import Test from "./Mainhome/ImgCard.json"; //테스트 데이터
 import { Link } from "react-router-dom";
+
+import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
+import ImageUploader from "./ImageUploader";
 
 // import 스와이퍼 스타일
 import "swiper/css";
@@ -12,17 +14,24 @@ import "swiper/css/thumbs";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
+
+// 슬라이더 css
 import "../css/MypageSlider.css";
 
-// 적용할 모듈
-import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
-
-export default function App() {
+export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+
+  const handleUpload = (newImages) => {
+    const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
+    setImageUrls([...imageUrls, ...newImageUrls]);
+  };
 
   return (
     <>
-      <div className = 'MySwiperTop'>
+      <button>
+        <ImageUploader onUpload={handleUpload} />
+      </button>
       <Swiper
         spaceBetween={10}
         loop={true}
@@ -34,19 +43,16 @@ export default function App() {
         modules={[FreeMode, Navigation, Thumbs, Autoplay, EffectFade]}
         className="mySwiper2"
       >
-        {/* 사진 데이터를 ImgCard.json에서 가져옴 */}
-        {Test.itemData.map((item) => (
-          <SwiperSlide key={item.img}>
+        {/* 업로드된 이미지 보여주기 */}
+        {imageUrls.map((imageUrl, index) => (
+          <SwiperSlide key={index}>
             <Link to="/detail">
-              <img
-                src={`${item.img}?w=1500&fit=crop&auto=format`}
-                alt={item.title}
-              />
+              <img src={imageUrl} alt={`Imagefile ${index}`} />
             </Link>
           </SwiperSlide>
         ))}
       </Swiper>
-      </div>
+
       {/* 하단 미리보기 이미지 부분 */}
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -59,13 +65,10 @@ export default function App() {
         modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
         className="mySwiper"
       >
-        {/* 사진 데이터를 ImgCard.json에서 가져옴  */}
-        {Test.itemData.map((item) => (
-          <SwiperSlide key={item.img}>
-            <img
-              src={`${item.img}?w=400&fit=crop&auto=format`}
-              alt={item.title}
-            />
+        {/* 업로드된 이미지 보여주기 */}
+        {imageUrls.map((imageUrl, index) => (
+          <SwiperSlide key={index}>
+            <img src={imageUrl} alt={`Imagefile ${index}`} />
           </SwiperSlide>
         ))}
       </Swiper>
