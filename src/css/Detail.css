@@ -1,0 +1,59 @@
+body {
+  background-color: #fafafa;
+}
+
+.feed {
+  width: 1500px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  background-color: #fafafa;
+  margin-bottom: 60px;
+}
+.detailSwiper {
+  width: 100%;
+  height: 100%;
+}
+.detailSwiper-Slide {
+  text-align: left;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide feedImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feedTop {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedTop span {
+  display: flex;
+}
+
+.feedTop span a {
+  margin-left: 15px;
+}
+
+.feedbottom {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.feedbottom .heartLine {
+  display: flex;
+}
+
+.commentLine .comment {
+  width: 92%;
+}

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./home";
 import Mypage from "./mypage";
 import Membership from "./membership";
-import Main from "./Main";
+import Detail from "./Detail";
 import Admin from "./components/Admin";
 import BoardEdit from "./components/Help/BoardEdit";
 import FAQ from "./components/Help/FAQ.js";
@@ -20,7 +20,7 @@ export default function App() {
         <Routes>
           <Route path={"/membership"} element={<Membership />}></Route>
           <Route path={"/"} element={<Home />}></Route>
-          <Route path={"/detail"} element={<Main />}></Route>
+          <Route path={"/detail"} element={<Detail />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
           <Route path={"/BoardEdit"} element={<BoardEdit />}></Route>
           <Route path={"/FAQ"} element={<FAQ />}></Route>

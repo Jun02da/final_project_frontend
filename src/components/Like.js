@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 
-const CommentHeart = () => {
+const Like = () => {
   const [heartClass, setHeartClass] = useState("heartUnclicked");
 
   const handleHeartClass = () => {
@@ -21,4 +21,4 @@ const CommentHeart = () => {
   );
 };
 
-export default CommentHeart;
+export default Like;
