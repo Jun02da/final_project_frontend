@@ -116,17 +116,17 @@ export default function MyPageHeader() {
       {/* Dashboard 페이지로 이동 추가 */}
       <div className="stat_set" onClick={goDashboard}>
         <div className="stat">
-          <p>총 즐겨찾기 수</p>
+          <p className="stat_2">총 즐겨찾기 수</p>
           <p className="stat_1">{stat[0].bookmark}회</p>
         </div>
 
         <div className="stat">
-          <p>누적 조회수</p>
+          <p className="stat_2">누적 조회수</p>
           <p className="stat_1">{stat[0].views}회</p>
         </div>
 
         <div className="stat">
-          <p>전체 게시물</p>
+          <p className="stat_2">전체 게시물</p>
           <p className="stat_1">{stat[0].post}개</p>
         </div>
       </div>

@@ -57,6 +57,7 @@
   display: inline-block;
   margin-left: 40px;
   margin-right: 40px;
+  cursor: pointer;
 }
 
 .stat_1{
@@ -64,6 +65,11 @@
   font-size: 40px;
   margin-top: -20px;
   color: black;
+}
+
+.stat_2 {
+  color: #a0a0a0;
+  font-weight: 600;
 }
 
 .slider_img {
