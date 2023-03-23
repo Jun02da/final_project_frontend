@@ -33,7 +33,7 @@
 }
 .MySwiperTop {
   height: 75vh;
-  width: 95vh;
+  width: 115vh;
   overflow:hidden;
   margin:0 auto;
 }
@@ -47,7 +47,7 @@
 /* 하단 미리보기 이미지 슬라이드 */
 .mySwiper {
   height: 15vh;
-  width: 95vh;
+  width: 115vh;
   box-sizing: border-box;
   padding: 10px 0;
   margin-bottom: 150px;

@@ -52,7 +52,7 @@ function ImageUploader({ onUpload }) {
   return (
     <div className="image-uploader">
       <div {...getRootProps()} className="dropzone">
-        사진 올리기
+        UPLOAD
       </div>
       {previewImage && (
         <Modal

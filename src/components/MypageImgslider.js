@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
 import ImageUploader from "./ImageUploader";
+import '../css/Imguploadbtn.css';
+
 
 // import 스와이퍼 스타일
 import "swiper/css";
@@ -29,13 +31,16 @@ export default function MypageImgslider() {
 
   return (
     <>
-      <button>
+    {/* 업로드 버튼 */}
+      <button className="floating">
         <ImageUploader onUpload={handleUpload} />
       </button>
+
+    <div className = 'MySwiperTop'>
       <Swiper
         spaceBetween={10}
         loop={true}
-        autoplay={{ delay: 3000 }} //자동으로 사진 넘겨주는 슬라이드기능
+        autoplay={{ delay: 3000,disableOnInteraction: false }} //자동으로 사진 넘겨주는 슬라이드기능
         effect="fade"
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
@@ -52,7 +57,7 @@ export default function MypageImgslider() {
           </SwiperSlide>
         ))}
       </Swiper>
-
+    </div>
       {/* 하단 미리보기 이미지 부분 */}
       <Swiper
         onSwiper={setThumbsSwiper}

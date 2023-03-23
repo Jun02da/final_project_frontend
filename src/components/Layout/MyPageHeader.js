@@ -104,11 +104,11 @@ export default function MyPageHeader() {
       </p>
 
       {/* sns 아이콘 */}
-      <div className="Icon_set">
+      {/* <div className="Icon_set">
         <InstagramIcon className="Icon" sx={{ fontSize: 30 }} />
         <FacebookIcon className="Icon" sx={{ fontSize: 30 }} />
         <TwitterIcon className="Icon" sx={{ fontSize: 30 }} />
-      </div>
+      </div> */}
       {/* Dashboard 페이지로 이동 추가 */}
       <div className="stat_set" onClick={goDashboard}>
         <div className="stat">
