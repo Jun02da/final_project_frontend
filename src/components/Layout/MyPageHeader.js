@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../../css/MyPageHeader.css";
 import "../../css/mypage.css";
 import Login from "../../login";
-
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 
@@ -126,7 +125,6 @@ export default function MyPageHeader() {
           <p className="stat_1">{stat[0].post}개</p>
         </div>
       </div>
-      
     </>
   );
 }

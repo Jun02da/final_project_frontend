@@ -11,6 +11,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -20,59 +21,79 @@ export default function Login() {
     setIsModalOpen(false);
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
+  const handleGoogleLogin = () => {
+    const clientId =
+      "714984022192-9rsjafb1p404qn867a0tgiv9l7bgegko.apps.googleusercontent.com"; // 발급받은 클라이언트 ID를 입력합니다.
+    const redirectUri = "http://localhost:3000"; // 로그인 후 리다이렉트할 URL을 입력합니다.
+    const scope = "email profile"; // 요청할 권한(scope)을 입력합니다.
 
-  useEffect(() => {
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${localStorage.getItem("token")}`;
-    axios
-      .get("http://192.168.0.209:8090/user/me")
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+    window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+  };
   const handleLogin = () => {
     axios
       .post(
         "http://192.168.0.209:8090/login",
         { email, password },
-        { withCredentials: true, crossDomain: true, credentials: "include" }
+        {
+          withCredentials: true,
+          crossDomain: true,
+          credentials: "include",
+        }
       )
       .then((response) => {
         const token = response.data;
-        alert("로그인 성공.");
         if (token) {
           localStorage.setItem("token", token);
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          alert("토큰 받았습니다.");
-
-          window.location.href = "/";
+          setIsLoggedIn(true);
+          alert("로그인 성공");
+          handleCloseModal();
         } else {
-          delete axios.defaults.headers.common["Authorization"];
-          alert("토큰 받기 실패");
+          alert("로그인 실패");
         }
       })
       .catch((error) => {
         console.error(error);
-        alert("로그인에 실패했습니다.");
+        alert("로그인 실패");
       });
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios
+        .get("http://192.168.0.209:8090/user/me")
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    delete axios.defaults.headers.common["Authorization"];
+    setIsLoggedIn(false); // 로그아웃이 성공하면 isLoggedIn 값을 false로 설정
+    alert("로그아웃되었습니다.");
+  };
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      handleLogout();
+    } else {
+      handleOpenModal();
+    }
+  };
   return (
     <div>
-      <button onClick={handleOpenModal} className="NavMenuTitle">
-        로그인
+      <button onClick={handleButtonClick} className="NavMenuTitle">
+        {isLoggedIn ? "로그아웃" : "로그인"}
       </button>
       <Modal
         isOpen={isModalOpen}
@@ -102,6 +123,9 @@ export default function Login() {
         <br />
         <button className="login_button" onClick={handleLogin}>
           로그인
+        </button>
+        <button className="login_button" onClick={handleGoogleLogin}>
+          구글로그인
         </button>
         <br />
         <button onClick={handleCloseModal} className="login_button">

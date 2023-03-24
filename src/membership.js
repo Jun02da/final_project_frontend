@@ -10,6 +10,7 @@ export default function MemberShip() {
   const [Memberpassword1, setMemberPassword1] = useState("");
   const [Username, setUserName] = useState("");
   const [Userphonenumber, setUserPhoneNumber] = useState("");
+
   const movePage = useNavigate();
 
   function goHome() {
@@ -24,7 +25,6 @@ export default function MemberShip() {
   function goAdmin() {
     movePage("/Admin");
   }
-
   const onMemberemail = (e) => {
     setMemberEmail(e.target.value);
   };
@@ -59,32 +59,23 @@ export default function MemberShip() {
       return;
     }
     try {
-      const checkResponse = await axios.get(
-        "http://192.168.0.209:8090/signup",
-        {
-          params: { email: Memberemail },
-        }
-      );
-      if (checkResponse.data.exists) {
-        alert("이미 사용 중인 이메일 주소입니다.");
-        return;
-      }
       const response = await axios.post("http://192.168.0.209:8090/signup", {
         email: Memberemail,
         password: Memberpassword,
         nickname: Username,
         phone: Userphonenumber,
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         goHome();
       }
     } catch (error) {
-      if (error.response) {
+      if (error.response.status === 400) {
+        alert(`이미 사용 중인 이메일 주소입니다. `);
+      } else {
         alert(`회원가입 중 오류가 발생했습니다. `);
       }
     }
   };
-
   return (
     <div className="membership-page">
       <nav className="NavMenu">
@@ -160,7 +151,6 @@ export default function MemberShip() {
             onChange={onUserphonenumber}
           />
         </div>
-
         <br />
 
         <button type="submit">가입하기</button>
