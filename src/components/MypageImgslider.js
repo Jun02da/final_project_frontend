@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper";
 import { Link } from "react-router-dom";
-
+import Test from "./Mainhome/ImgCard.json"; //테스트 데이터
 import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
 import ImageUploader from "./ImageUploader";
 import '../css/Imguploadbtn.css';
@@ -40,7 +40,7 @@ export default function MypageImgslider() {
       <Swiper
         spaceBetween={10}
         loop={true}
-        autoplay={{ delay: 3000,disableOnInteraction: false }} //자동으로 사진 넘겨주는 슬라이드기능
+        autoplay={{ delay: 3000, disableOnInteraction: false}} //자동으로 사진 넘겨주는 슬라이드기능
         effect="fade"
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
@@ -52,7 +52,10 @@ export default function MypageImgslider() {
         {imageUrls.map((imageUrl, index) => (
           <SwiperSlide key={index}>
             <Link to="/detail">
-              <img src={imageUrl} alt={`Imagefile ${index}`} />
+            <img 
+              src={imageUrl}
+              alt={`Imagefile ${index}`} 
+            />
             </Link>
           </SwiperSlide>
         ))}
@@ -73,7 +76,10 @@ export default function MypageImgslider() {
         {/* 업로드된 이미지 보여주기 */}
         {imageUrls.map((imageUrl, index) => (
           <SwiperSlide key={index}>
-            <img src={imageUrl} alt={`Imagefile ${index}`} />
+            <img 
+              src={imageUrl}
+              alt={`Imagefile ${index}`} 
+            />
           </SwiperSlide>
         ))}
       </Swiper>
