@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -10,9 +11,15 @@ import "../../css/MainHome.css"; //메인홈 이미지 카드에서 프로필 �
 
 
 
+
 export default function MasonryImageList() {
+
   return (
-    //  이미지카드 디자인 틀
+    <>
+
+    
+    
+     {/* 이미지카드 디자인 틀 */}
     <Box
       sx={{
         width: "auto",
@@ -32,6 +39,7 @@ export default function MasonryImageList() {
                 src={`${item.img}?w=400&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.title}
+                
               />
             </Link>
             {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
@@ -39,7 +47,7 @@ export default function MasonryImageList() {
             <ul className="hover_text" style = {{listStyleType: 'none'}} >
 
               <li style ={{float: "left", margin: 8, marginLeft: -10}}>
-                <Avatar alt="icon" src={item.pro} />
+                <Avatar alt="icon" src={item.profile} />
               </li>
 
               <li style ={{float: "left", marginTop : 8}}>
@@ -52,5 +60,6 @@ export default function MasonryImageList() {
         ))}
       </ImageList>
     </Box>
+    </>
   );
 }
