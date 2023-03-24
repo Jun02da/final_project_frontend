@@ -9,27 +9,23 @@ import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 // 권한이 있는 사용자일 경우 버튼을 표시하여 구분할 예정
 export default function Bio() {
   // ==== 이미지 부분 ====
-  const [image, setImage] = useState(
-    "https://pbs.twimg.com/media/DumtB0bUwAA2k7U.jpg"
+  const [BioImage, setBioImage] = useState(
+    "https://pbs.twimg.com/media/DumtB0bUwAA2k7U.jpg" // 임시 이미지
   );
-  const fileInput = useRef(null);
-  const [file, setFile] = useState("");
+  const BioFileInput = useRef(null);
+  const [BioFile, setBioFile] = useState("");
 
-  const onChange = (e) => {
+  const onChangeBioImage = (e) => {
     if (e.target.files[0]) {
-      setFile(e.target.files[0]);
+      setBioFile(e.target.files[0]);
     } else {
-      //업로드 취소할 시 기본이미지로 변경
-      setImage(
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-      );
-      return;
+      setBioImage(BioImage); // 업로드 취소할 시 기존이미지 유지
     }
     //화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setImage(reader.result);
+        setBioImage(reader.result);
       }
     };
     reader.readAsDataURL(e.target.files[0]);
@@ -57,14 +53,21 @@ export default function Bio() {
       <div className="profile_author">
         <div>
           {/* 이미지 부분 */}
-          <img src={image} alt="zz" />
-
+          <img src={BioImage} alt="BioImage" />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            accept="image/jpg,image/png,image/jpeg"
+            name="profile_img"
+            onChange={onChangeBioImage}
+            ref={BioFileInput}
+          />
           <div>
             {/* 이미지 편집 버튼 */}
             <span
               id="BioEditSpan"
               onClick={() => {
-                fileInput.current.click();
+                BioFileInput.current.click();
               }}
             >
               <CameraOutlined style={{ fontSize: "40px" }} />
@@ -83,19 +86,10 @@ export default function Bio() {
               </span>
             )}
           </div>
-          <input
-            type="file"
-            style={{ display: "none" }}
-            accept="image/jpg,image/png,image/jpeg"
-            name="profile_img"
-            onChange={onChange}
-            ref={fileInput}
-          />
         </div>
         <br />
-        <h2>Han Yongjae</h2>
         {/* 소개글 부분 */}
-        {/* editable의 값에 따라 input 혹은 text를 리턴해준다 */}
+        {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
         {editable ? (
           <textarea
             rows={10}

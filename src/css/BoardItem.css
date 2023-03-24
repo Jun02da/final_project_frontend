@@ -69,8 +69,6 @@
 
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  transition: 0.5s;
 }
 #BoardWriteButton:active,
 #BoardWriteButton:hover,
@@ -87,11 +85,10 @@
   background: #ffffff;
   margin: 20px;
   padding: 0.5rem 1rem;
-  transition: 0.5s;
 }
 .BoardListContent:active,
 .BoardListContent:hover,
 .BoardListContent:focus {
-  background: #ffede6;
+  background: #fbfbfb;
   outline: 0;
 }

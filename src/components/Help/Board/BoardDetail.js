@@ -7,7 +7,7 @@ import "../../../css/BoardDetail.css";
 export function BoardDetail() {
   // BoardItem에서 클릭한 데이터를 받음
   const location = useLocation();
-  // const id = location.state.id;
+  const id = location.state.id;
   const title = location.state.title;
   const createdAt = location.state.createdAt;
   const name = location.state.name;
@@ -25,8 +25,7 @@ export function BoardDetail() {
         <button id="BoardWriteButton" onClick={goBoard}>
           목록
         </button>
-        <div id="BoardDetailSectionContent">
-          {/* <div>id: {id}</div> */}
+        <div id="BoardDetailSectionContent" key={id}>
           <div id="BoardDetailTitle">{title}</div>
           <div id="BoardDetailName">글쓴이: {name}</div>
           <div id="BoardDetailCreateAt">작성일: {createdAt}</div>

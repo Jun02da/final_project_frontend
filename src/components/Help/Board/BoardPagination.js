@@ -4,9 +4,12 @@ import "../../../css/BoardPagination.css";
 export default function Pagination({ page, totalPosts, limit, setPage }) {
   const numPages = Math.ceil(totalPosts / limit);
   const [currPage, setCurrPage] = useState(page);
+  // firstNum의 값과 lastNum은 page가 6번, 11번, 16번 등등
+  // 넘어갈때까지 고정적인 값을 갖게 된다.
   let firstNum = currPage - (currPage % 5) + 1;
   let lastNum = currPage - (currPage % 5) + 5;
-
+  // page와 currPage를 분리시켜 두어 Next 화살표를 누를때
+  // setCurrPage가 작동되게 만들어 Page가 6일때 값을 받도록 한다
   return (
     <div id="BoardPaginationDiv">
       <button
@@ -17,7 +20,7 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
         disabled={page === 1} // 0페이지는 없기 때문에 막아준다
         className="BoardPaginationLeftArrow"
       >
-        &lt;&lt;
+        &lt;
       </button>
       <button
         onClick={() => setPage(firstNum)}
@@ -56,6 +59,7 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
               </button>
             );
           }
+          return null;
         })}
       <button
         className="BoardPaginationRightArrow"
@@ -65,7 +69,7 @@ export default function Pagination({ page, totalPosts, limit, setPage }) {
         }}
         disabled={page === numPages} // 마지막 페이지이기 떄문에 막음
       >
-        &gt;&gt;
+        &gt;
       </button>
     </div>
   );

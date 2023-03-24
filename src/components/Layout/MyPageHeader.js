@@ -8,10 +8,10 @@ import Login from "../../login";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 
-//마이페이지 기능 버튼 아래 아이콘들
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
+// //마이페이지 기능 버튼 아래 아이콘들
+// import InstagramIcon from "@mui/icons-material/Instagram";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import TwitterIcon from "@mui/icons-material/Twitter";
 
 const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
@@ -126,7 +126,6 @@ export default function MyPageHeader() {
           <p className="stat_1">{stat[0].post}개</p>
         </div>
       </div>
-      
     </>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../css/BoardItem.css";
 /*
     이 함수는 item을 받아서
-    해당 item의 id, title, createdAt을
+    해당 item의 id, title, createdAt, name을
     박스에 담아 출력한다
 */
 function BoardItem({ item }) {
