@@ -5,7 +5,7 @@ import "../../css/FAQ.css";
 
 // 자주 묻는 질문을 추후에 작성하면 됨
 const { Panel } = Collapse;
-
+// 클릭하면 나오는 내용 부분
 const text1 = `
   대답 1
 `;
@@ -24,6 +24,7 @@ const text5 = `
 const text6 = `
   대답 6
 `;
+// 자주 묻는 질문 내용
 const FAQContent = () => (
   <Collapse accordion>
     <Panel header="질문 1" key="1">

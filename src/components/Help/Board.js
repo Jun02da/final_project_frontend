@@ -3,7 +3,7 @@ import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Pagenation from "./Board/BoardPagination.js";
+import BoardPagination from "./Board/BoardPagination.js";
 
 function Board() {
   // 임시 하드코딩 데이터
@@ -351,9 +351,11 @@ function Board() {
     <div>
       <Header />
       <div id="BoardContentDiv">
+        {/* === 글쓰기 버튼 부분 === */}
         <button id="BoardWriteButton" onClick={goBoardEdit}>
           글쓰기
         </button>
+        {/* === 게시판 헤드 부분 === */}
         <div className="BoardContentHeader">
           <span className="BoardContentHeaderId">번호</span>
           <span className="BoardContentHeaderTitle">제목</span>
@@ -361,8 +363,10 @@ function Board() {
           <span className="BoardContentHeaderName">글쓴이</span>
         </div>
         <hr />
+        {/* === 게시판 내용 부분 === */}
         <BoardList items={postsData(contentInfo)} />
-        <Pagenation
+        {/* === Pagination 부분 === */}
+        <BoardPagination
           limit={limit}
           page={page}
           totalPosts={contentInfo.length}
