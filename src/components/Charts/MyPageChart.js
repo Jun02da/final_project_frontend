@@ -32,7 +32,7 @@ function MyPageChart() {
     });
     return FollowersDataTotal;
   });
-  // 옵션 관련
+  // 그래프 옵션 관련
   var ViewsOptions = {
     chart: {
       toolbar: {
