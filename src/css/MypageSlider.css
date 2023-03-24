@@ -5,9 +5,11 @@
 }
 
 .swiper-slide {
-  font-size: 18px;
   background: #fff;
-  display: flex;
+
+  
+  justify-content: center;
+  
 }
 
 .swiper-slide img {
@@ -40,6 +42,7 @@
   width: 105vh;
   height: 75vh;
   object-fit: cover;
+  border-radius: 10px;
 }
 /* 하단 미리보기 이미지 슬라이드 */
 .mySwiper {

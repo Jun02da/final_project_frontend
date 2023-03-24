@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper";
 import { Link } from "react-router-dom";
 import Test from "./Mainhome/ImgCard.json"; //테스트 데이터
-import { FreeMode, Navigation, Thumbs, Autoplay, Mousewheel } from "swiper";
+import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper";
 import ImageUploader from "./ImageUploader";
 import '../css/Imguploadbtn.css';
 
@@ -68,9 +68,8 @@ export default function MypageImgslider() {
         spaceBetween={1}
         slidesPerView={10}
         freeMode={true}
-        mousewheel={true}
         watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
+        modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
         {/* 업로드된 이미지 보여주기 */}
