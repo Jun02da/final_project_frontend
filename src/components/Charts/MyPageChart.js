@@ -6,7 +6,15 @@ import "../../css/Dashboard.css";
 import ViewsData from "./sampleData/ViewsData.json";
 import GreatData from "./sampleData/GreatData.json";
 import FollowersData from "./sampleData/FollowersData.json";
+// import axios from "axios";
 function MyPageChart() {
+  // axios.get('ViewsData 주소')
+  // .then((Response)=>{ViewsData = Response.data})
+  // axios.get('GreatData 주소')
+  // .then((Response)=>{GreatData = Response.data})
+  // axios.get('FollowersData 주소')
+  // .then((Response)=>{FollowersData = Response.data})
+
   // 데이터 y값 총합
   var ViewsDataTotal = 0;
   ViewsData.map((e) => {

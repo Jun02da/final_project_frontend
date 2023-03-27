@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/HelpHeader.css";
 import Login from "../../login";
-import banner from "../../image/HelpHeaderBanner03.jpg";
+import banner from "../../image/HelpHeaderBanner.jpg";
 
 export default function HelpHeader() {
   const movePage = useNavigate();
