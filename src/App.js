@@ -12,6 +12,8 @@ import Board from "./components/Help/Board.js";
 import BoardDetail from "./components/Help/Board/BoardDetail";
 import Dashboard from "./components/MyPage/Dashboard.js";
 
+
+
 export default function App() {
   return (
     <div className="App">
