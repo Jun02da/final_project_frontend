@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/membership.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,21 @@ export default function MemberShip() {
   const [Memberpassword1, setMemberPassword1] = useState("");
   const [Username, setUserName] = useState("");
   const [Userphonenumber, setUserPhoneNumber] = useState("");
+  const [isAdmin, setIsAdmin] = useState(
+    Boolean(localStorage.getItem("token") === "admin")
+  );
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  function handleLoginSuccess() {
+    setIsAdmin(true);
+    goMypage();
+  }
   const movePage = useNavigate();
 
   function goHome() {
@@ -79,16 +93,18 @@ export default function MemberShip() {
   return (
     <div className="membership-page">
       <nav className="NavMenu">
-        <Login />
+        <Login onLoginSuccess={handleLoginSuccess} />
         <button onClick={goMypage} className="NavMenuTitle">
           마이페이지 이동
         </button>
         <button onClick={goBoard} className="NavMenuTitle">
           고객지원
         </button>
-        <button onClick={goAdmin} className="NavMenuTitle">
-          관리자페이지
-        </button>
+        {isAdmin && (
+          <button onClick={goAdmin} className="NavMenuTitle">
+            관리자페이지
+          </button>
+        )}
       </nav>
       <form className="membership_form" onSubmit={onSubmit1}>
         <h1 onClick={goHome}>P H O P O</h1>
