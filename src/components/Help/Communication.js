@@ -5,7 +5,6 @@ import {
   EnvironmentOutlined,
   PhoneOutlined,
   MailOutlined,
-  CommentOutlined,
 } from "@ant-design/icons";
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
@@ -63,27 +62,22 @@ export default function Communication() {
       <div id="Communication">
         {/* 문의 안내 부분 */}
         <div id="CommunicationReach">
-          <h3>Reach Me</h3>
+          <h3>Contact</h3>
           <hr />
           <div id="CommunicationReachContent">
-            {/* 추후에 자세한 내용은 수정 */}
             <div id="CommunicationReachDetail">
               <EnvironmentOutlined
                 style={{ fontSize: "50px", color: "#025ce2" }}
               />
-              <div>based&nbsp;in&nbsp;Seoul, S.Korea</div>
+              <div>Kosmo&nbsp;2강의실</div>
             </div>
             <div id="CommunicationReachDetail">
               <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Tel:&nbsp;010 1234&nbsp;5678</div>
+              <div>02-321-4567</div>
             </div>
             <div id="CommunicationReachDetail">
               <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Email: Test@naver.com</div>
-            </div>
-            <div id="CommunicationReachDetail">
-              <CommentOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Kakao: test1234</div>
+              <div>Kosmo@example.com</div>
             </div>
           </div>
         </div>

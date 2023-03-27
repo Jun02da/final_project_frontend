@@ -30,8 +30,12 @@
 }
 #HelpHeaderMenu {
   margin: 20px;
-  padding: 15px;
-  font-size: 26px;
+  padding: 20px;
+  font-size: 30px;
+}
+#HelpHeaderMenu:hover {
+  border-bottom: 3px solid red;
+  color: red;
 }
 #HelpHeaderBanner {
   margin: 0 auto;

@@ -8,7 +8,6 @@ import BoardEdit from "./components/Help/BoardEdit";
 import FAQ from "./components/Help/FAQ.js";
 import Communication from "./components/Help/Communication.js";
 import Bio from "./components/MyPage/Bio.js";
-import OtherBio from "./components/MyPage/OtherBio.js";
 import Board from "./components/Help/Board.js";
 import BoardDetail from "./components/Help/Board/BoardDetail";
 import Dashboard from "./components/MyPage/Dashboard.js";
@@ -27,7 +26,6 @@ export default function App() {
           <Route path={"/Communication"} element={<Communication />}></Route>
           <Route path={"/mypage"} element={<Mypage />}></Route>
           <Route path={"/Bio"} element={<Bio />}></Route>
-          <Route path={"/OtherBio"} element={<OtherBio />}></Route>
           <Route path={"/Board"} element={<Board />}></Route>
           <Route path={"/BoardDetail"} element={<BoardDetail />}></Route>
           <Route path={"/Dashboard"} element={<Dashboard />}></Route>

@@ -111,11 +111,11 @@
 }
 /* 그래프 관련 */
 #MyPageChartDiv {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 }
 #MyPageDashboard {
-  width: 75%;
+  width: 66%;
   margin: 50px auto;
   padding: 25px;
   /* 테두리 설정 */
