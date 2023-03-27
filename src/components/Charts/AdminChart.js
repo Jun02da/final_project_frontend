@@ -6,8 +6,17 @@ import seriesBar from "./sampleData/seriesBar.json";
 import seriesDonut from "./sampleData/seriesDonut.json";
 import seriesArea from "./sampleData/seriesArea.json";
 import seriesPolarArea from "./sampleData/seriesPolarArea.json";
+// import axios from "axios";
 
 function AdminChart() {
+  // axios.get('seriesBar 주소')
+  // .then((Response)=>{seriesBar = Response.data})
+  // axios.get('seriesDonut 주소')
+  // .then((Response)=>{seriesDonut = Response.data})
+  // axios.get('seriesArea 주소')
+  // .then((Response)=>{seriesArea = Response.data})
+  // axios.get('seriesPolarArea 주소')
+  // .then((Response)=>{seriesPolarArea = Response.data})
   // Bar 변수
   var optionsBar = {
     chart: {
