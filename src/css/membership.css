@@ -1,4 +1,4 @@
-.membership-page {
+.membership_page {
   min-height: 100vh; /* 최소 높이 설정 */
   width: 100%;
   background: url("../image/membership_background.jpg");
@@ -28,7 +28,7 @@
   font-size: 100px;
   font-weight: bold;
   font-family: "Palatino Linotype";
-
+  cursor: pointer;
   color: #111;
 }
 

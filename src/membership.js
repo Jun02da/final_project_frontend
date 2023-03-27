@@ -22,17 +22,15 @@ export default function MemberShip() {
   }, []);
 
   function handleLoginSuccess() {
+    localStorage.setItem("token");
     setIsAdmin(true);
-    goMypage();
   }
   const movePage = useNavigate();
 
   function goHome() {
     movePage("/");
   }
-  function goMypage() {
-    movePage("/mypage");
-  }
+
   function goBoard() {
     movePage("/Board");
   }
@@ -91,12 +89,9 @@ export default function MemberShip() {
     }
   };
   return (
-    <div className="membership-page">
+    <div className="membership_page">
       <nav className="NavMenu">
         <Login onLoginSuccess={handleLoginSuccess} />
-        <button onClick={goMypage} className="NavMenuTitle">
-          마이페이지 이동
-        </button>
         <button onClick={goBoard} className="NavMenuTitle">
           고객지원
         </button>

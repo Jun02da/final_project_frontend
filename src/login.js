@@ -178,14 +178,6 @@ export default function Login() {
         </div>
         <br />
       </Modal>
-      {isLoggedIn ? null : (
-        <button
-          className="NavMenuTitle"
-          onClick={() => (window.location.href = "/MemberShip")}
-        >
-          회원가입
-        </button>
-      )}
     </div>
   );
 }

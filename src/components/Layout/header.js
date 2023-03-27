@@ -8,15 +8,20 @@ export default function Header() {
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
+      setIsLoggedIn(Boolean(localStorage.getItem("token")));
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
   function handleLoginSuccess() {
     setIsAdmin(true);
+    setIsLoggedIn(true);
   }
   function goMypage() {
     movePage("/mypage");
@@ -31,15 +36,26 @@ export default function Header() {
   function goHome() {
     movePage("/");
   }
+  function goMemberShip() {
+    movePage("/membership");
+  }
 
   return (
     <header>
       <div>
         <nav className="NavMenu">
           <Login onLoginSuccess={handleLoginSuccess} />
-          <button onClick={goMypage} className="NavMenuTitle">
-            마이페이지
-          </button>
+
+          {isLoggedIn ? null : (
+            <button onClick={goMemberShip} className="NavMenuTitle">
+              회원가입
+            </button>
+          )}
+          {isLoggedIn && (
+            <button onClick={goMypage} className="NavMenuTitle">
+              마이페이지
+            </button>
+          )}
           <button onClick={goBoard} className="NavMenuTitle">
             고객지원
           </button>
