@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import BoardPagination from "./Board/BoardPagination.js";
 // sampleData로 임시 import
 import list from "./Board/sampleData/boardList.json";
+// import axios from "axios";
 
 function Board() {
   const movePage = useNavigate();
@@ -14,6 +15,10 @@ function Board() {
     movePage("/BoardEdit");
   }
   // 데이터 부분
+
+  // axios.get('list 주소')
+  // .then((Response)=>{list = Response.data})
+
   const [contentInfo, setContentInfo] = useState([]);
 
   useEffect(() => {

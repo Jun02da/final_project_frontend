@@ -4,12 +4,35 @@ import "../../css/Bio.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
+import bioDefaultImg from "../../image/bioDefault.jpg";
+// import axios from "axios";
 
 export default function Bio() {
   // ==== 이미지 부분 ====
-  const [BioImage, setBioImage] = useState(
-    "https://pbs.twimg.com/media/DumtB0bUwAA2k7U.jpg" // 임시 이미지
-  );
+  const [BioImage, setBioImage] = useState(bioDefaultImg);
+  // // axios 사용 부분
+  // axios.get('주소', {
+  //   params: {
+  //     id: 로그인한 사람
+  //   }
+  // })
+  // .then(function(response)=>{console.log(response.data)})
+
+  // // async와 await을 사용하는 방식 - 내가 원할 때 then()을 사용할 수 있다
+  // const getBioTextData = async () => {
+  //   let response = await axios.get("주소", {
+  //   params: {
+  //     id: 로그인한 사람
+  //   }
+  // });
+  //   return response.data;
+  // };
+  // let res = getBioTextData();
+
+  // res.then((data) => {
+  //   console.log(data);
+  // });
+
   const BioFileInput = useRef(null);
   const [BioFile, setBioFile] = useState(""); // eslint-disable-line no-unused-vars
 
@@ -30,12 +53,8 @@ export default function Bio() {
     reader.readAsDataURL(e.target.files[0]);
   };
   // ==== 텍스트 부분 ====
-  const [BioText, setBioText] =
-    useState(`압구정동 찻집에서 만난 백다흠 씨는 인근 로데오 거리에 어울리는 상큼한 모습으로 나타났다.
-    김훈 고은 공지영 신경숙 은희경 윤대녕 김인숙 김경욱 김영하 등 내로라하는 문인 60여 명을 렌즈로 담아냈으니 자신감이 툭 배어나올 것 같은데 정반대였다.
-    천천히 신중하게 말하는 스타일인 그는 “사진이 좋다는 얘기가 퍼지면서 의뢰가 많아진 거 아니냐”고 물어야 마지못해 “입소문이 재미있고 무섭던데요”라고 했다.
-    “백 작가한테 안찍으면 일류가 아니라는 말 나오겠다”고 하자 “그렇게 생각해주시면 너무 고맙지요”라고 가까스로 대답했다.
-    그러면서 “사람 찍는 게 가장 어려워요”라고 했다.`);
+  const [BioText, setBioText] = useState("No Data");
+
   // editable은 읽기모드 또는 편집가능 상태로 만들기
   const [editable, setEditable] = useState(false);
   const editToggle = () => {
@@ -49,7 +68,7 @@ export default function Bio() {
   // 권한이 있을 경우만 edit버튼이 활성화됨
   const BioEditButtonTrue = true; // 임시로 설정
   // const BioEditButtonfalse = false;
-  //
+
   function BioEditButton() {
     return (
       <>

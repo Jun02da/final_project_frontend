@@ -39,3 +39,22 @@
     
   }
 
+  /* 카테고리 기능 */
+
+  .category {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .category_box {
+    height: 40px;
+    width: 140px;
+    border-radius: 10px;
+    border-color: darkgrey;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  
+

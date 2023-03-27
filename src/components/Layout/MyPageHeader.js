@@ -58,7 +58,7 @@ export default function MyPageHeader() {
     <>
       {/* 고정 부분 */}
       <div id="SubHeaderLayout">
-        <div onClick={goHome} id="SubLogo">
+        <div onClick={goHome} className="SubLogo">
           PHOPO
         </div>
         <nav className="NavMenu">
