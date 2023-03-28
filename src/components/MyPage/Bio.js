@@ -41,6 +41,7 @@ export default function Bio() {
       setBioFile(e.target.files[0]);
     } else {
       setBioImage(BioImage); // 업로드 취소할 시 기존이미지 유지
+      return;
     }
     //화면에 프로필 사진 표시
     const reader = new FileReader();

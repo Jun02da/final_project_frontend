@@ -1,7 +1,6 @@
 import BoardList from "./Board/BoardList";
 import Header from "../Layout/HelpHeader.js";
 import Footer from "../Layout/footer.js";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import BoardPagination from "./Board/BoardPagination.js";
 // sampleData로 임시 import
@@ -9,11 +8,6 @@ import list from "./Board/sampleData/boardList.json";
 // import axios from "axios";
 
 function Board() {
-  const movePage = useNavigate();
-
-  function goBoardEdit() {
-    movePage("/BoardEdit");
-  }
   // 데이터 부분
 
   // axios.get('list 주소')
@@ -39,10 +33,6 @@ function Board() {
     <div>
       <Header />
       <div id="BoardContentDiv">
-        {/* === 글쓰기 버튼 부분 === */}
-        <button id="BoardWriteButton" onClick={goBoardEdit}>
-          글쓰기
-        </button>
         {/* === 게시판 헤드 부분 === */}
         <div className="BoardContentHeader">
           <span className="BoardContentHeaderId">번호</span>

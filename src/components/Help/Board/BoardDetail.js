@@ -18,19 +18,12 @@ export function BoardDetail() {
   function goBoard() {
     movePage("/Board");
   }
-  function goBoardEdit() {
-    movePage("/BoardEdit");
-  }
   return (
     <div>
       <Header />
       <div id="BoardDetailSection">
         <button id="BoardWriteButton" onClick={goBoard}>
           목록
-        </button>
-        {/* === 수정 버튼 부분 === */}
-        <button id="BoardWriteButton" onClick={goBoardEdit}>
-          수정
         </button>
         <div id="BoardDetailSectionContent" key={id}>
           <div id="BoardDetailTitle">{title}</div>

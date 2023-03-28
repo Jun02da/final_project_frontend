@@ -54,7 +54,7 @@ export default function HelpHeader() {
       {/* 고객지원 내용 */}
       <div id="HelpHeaderMenuSection">
         <span onClick={goBoard} id="HelpHeaderMenu">
-          게시판
+          공지사항
         </span>
         <span onClick={goPageFAQ} id="HelpHeaderMenu">
           FAQ
