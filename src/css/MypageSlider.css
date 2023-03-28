@@ -1,15 +1,12 @@
 .swiper {
   height: 100%;
-  width:  100%;
-  
+  width: 100%;
 }
 
 .swiper-slide {
   background: #fff;
 
-  
   justify-content: center;
-  
 }
 
 .swiper-slide img {
@@ -31,8 +28,8 @@
 .MySwiperTop {
   height: 75vh;
   width: 115vh;
-  overflow:hidden;
-  margin:0 auto;
+  overflow: hidden;
+  margin: 0 auto;
 }
 /* 메인 이미지 슬라이드 */
 .mySwiper2 {
@@ -57,7 +54,6 @@
   width: 15%;
   height: 100%;
   opacity: 0.3;
-  
 }
 
 .mySwiper .swiper-slide-thumb-active {

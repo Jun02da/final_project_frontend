@@ -1,24 +1,18 @@
 .floating {
-    position: fixed; 
-    right: 0px;
-    bottom: 0px; 
-    text-align:center;
-    margin: 80px;
-    background-color: black;
-    border: none;
-    color: aliceblue;
-    border-radius: 50px;
-    width: 80px;
-    height: 30px;
-    font-weight: bold;
-  }
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  text-align: center;
+  margin: 40px;
+  margin-bottom: 100px;
+  width: 80px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
 
-  .floating:hover {
-    background-color: white;
-    color: black;
-    transition: 0.8s;
-    font-weight: bold;
-    border: 1px solid black;
-  }
-
-
+.floating:hover {
+  transition: 0.8s;
+  font-weight: bold;
+  color: #adb5bd;
+}

@@ -1,20 +1,19 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
+import { RiImageAddLine } from "react-icons/ri";
+import PreviewModal from "./PreviewModal";
 
 function ImageUploader({ onUpload }) {
   const [images, setImages] = useState([]);
-  const [previewImage, setPreviewImage] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const image = acceptedFiles[0];
-    setImages([image]);
-    setPreviewImage(null);
-    setModalIsOpen(true);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      setImages([...images, ...acceptedFiles]);
+      setModalIsOpen(true);
+    },
+    [images]
+  );
 
   const { getRootProps } = useDropzone({
     onDrop,
@@ -26,49 +25,35 @@ function ImageUploader({ onUpload }) {
     const uploadedImages = await uploadImages(images);
     onUpload(uploadedImages);
     setImages([]);
-    setPreviewImage(null);
     setModalIsOpen(false);
   };
 
   const handleCloseModal = () => {
     setImages([]);
-    setPreviewImage(null);
     setModalIsOpen(false);
   };
 
-  useEffect(() => {
-    if (images.length > 0) {
-      const image = images[0];
-      const imageUrl = URL.createObjectURL(image);
-      setPreviewImage(imageUrl);
-    }
-  }, [images]);
-
-  const uploadImages = async (images) => {
+  const uploadImages = async (image) => {
     // TODO: 이미지 업로드 로직 구현
-    return images;
+    return image;
   };
 
   return (
     <div className="image-uploader">
-      <div {...getRootProps()} className="dropzone">
-        UPLOAD
+      <div
+        {...getRootProps()}
+        className="dropzone"
+        style={{ fontSize: "40px" }}
+      >
+        <RiImageAddLine />
       </div>
-      {previewImage && (
-        <Modal
+      {modalIsOpen && (
+        <PreviewModal
           isOpen={modalIsOpen}
-          onRequestClose={handleCloseModal}
-          style={{ overlay: { zIndex: 1000 }, content: { zIndex: 1000 } }}
-        >
-          <h2>이미지 미리보기</h2>
-          <img src={previewImage} alt="Preview" />
-          <div className="modal-buttons">
-            <button onClick={handleCloseModal}>취소</button>
-            {images.length > 0 && (
-              <button onClick={handleUpload}>업로드</button>
-            )}
-          </div>
-        </Modal>
+          onCloseModal={handleCloseModal}
+          onUpload={handleUpload}
+          images={images}
+        />
       )}
     </div>
   );
