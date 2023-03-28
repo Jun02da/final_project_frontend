@@ -1,37 +1,31 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../css/mypage.css";
 import "../../css/Bio.css";
 import Header from "../Layout/MyPageHeader";
 import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 import bioDefaultImg from "../../image/bioDefault.jpg";
-// import axios from "axios";
+import axios from "axios";
 
 export default function Bio() {
+  // === axios 부분 ===
+  const fetchBioData = async () => {
+    try {
+      const response = await axios.get("http://192.168.0.209:8090/user/me");
+      const proImage = response.data.proImage;
+      const introduce = response.data.introduce;
+      setBioImage(proImage);
+      setBioText(introduce);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  // 컴포넌트가 처음 마운트될 때 받아옴
+  useEffect(() => {
+    fetchBioData();
+  }, []);
   // ==== 이미지 부분 ====
   const [BioImage, setBioImage] = useState(bioDefaultImg);
-  // // axios 사용 부분
-  // axios.get('주소', {
-  //   params: {
-  //     id: 로그인한 사람
-  //   }
-  // })
-  // .then(function(response)=>{console.log(response.data)})
-
-  // // async와 await을 사용하는 방식 - 내가 원할 때 then()을 사용할 수 있다
-  // const getBioTextData = async () => {
-  //   let response = await axios.get("주소", {
-  //   params: {
-  //     id: 로그인한 사람
-  //   }
-  // });
-  //   return response.data;
-  // };
-  // let res = getBioTextData();
-
-  // res.then((data) => {
-  //   console.log(data);
-  // });
 
   const BioFileInput = useRef(null);
   const [BioFile, setBioFile] = useState(""); // eslint-disable-line no-unused-vars
@@ -52,10 +46,13 @@ export default function Bio() {
     };
     // readAsDataURL : 파일을 URL로 만듬
     reader.readAsDataURL(e.target.files[0]);
+    // // 이미지 axios.put
+    // axios.post("http://192.168.0.209:8090/user/me", {
+    //   proImage: "e.target.files[0]",
+    // });
   };
   // ==== 텍스트 부분 ====
-  const [BioText, setBioText] = useState("No Data");
-
+  const [BioText, setBioText] = useState("");
   // editable은 읽기모드 또는 편집가능 상태로 만들기
   const [editable, setEditable] = useState(false);
   const editToggle = () => {
@@ -64,11 +61,15 @@ export default function Bio() {
   // 내용의 변화를 감지해서 BioText를 바꾸어준다.
   const handleBioTextChange = (e) => {
     setBioText(e.target.value);
+
+    // // 텍스트 axios.put
+    // axios.post("http://192.168.0.209:8090/user/me", {
+    //   introduce: e.target.value,
+    // });
   };
   // === editButton 부분 ===
   // 권한이 있을 경우만 edit버튼이 활성화됨
-  const BioEditButtonTrue = true; // 임시로 설정
-  // const BioEditButtonfalse = false;
+  let BioEditButtonToggle = true;
 
   function BioEditButton() {
     return (
@@ -115,7 +116,7 @@ export default function Bio() {
           />
         </div>
         {/* === edit 버튼 부분 === */}
-        <div>{BioEditButtonTrue ? <BioEditButton /> : ""}</div>
+        <div>{BioEditButtonToggle ? <BioEditButton /> : ""}</div>
         <br />
         {/* === 소개글 부분 === */}
         {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
@@ -127,9 +128,12 @@ export default function Bio() {
             id="BioTextareaEditOn"
           />
         ) : (
-          <textarea id="BioTextareaEditOff" rows={10} readOnly>
-            {BioText}
-          </textarea>
+          <textarea
+            value={BioText}
+            id="BioTextareaEditOff"
+            rows={10}
+            readOnly
+          />
         )}
       </div>
       <Footer />
