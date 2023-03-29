@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import AccountDelete from "./AccountDelete";
+import AccountDelete from "./AccountDelete"; // AccountDelete 컴포넌트 import
 import Announcement from "./Announcement";
 import ReportedPosts from "./ReportedPosts";
 import AdminChart from "./Charts/AdminChart.js";

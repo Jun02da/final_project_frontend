@@ -15,14 +15,14 @@ export function BoardDetail() {
 
   const movePage = useNavigate();
 
-  function goBoard() {
-    movePage("/Board");
+  function goHelpUser() {
+    movePage("/HelpUser");
   }
   return (
     <div>
       <Header />
       <div id="BoardDetailSection">
-        <button id="BoardWriteButton" onClick={goBoard}>
+        <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>
         <div id="BoardDetailSectionContent" key={id}>

@@ -1,37 +1,29 @@
-import React, { useState, useRef } from "react";
-import "../../css/mypage.css";
+import React, { useState, useRef, useEffect } from "react";
 import "../../css/Bio.css";
-import Header from "../Layout/MyPageHeader";
-import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 import bioDefaultImg from "../../image/bioDefault.jpg";
-// import axios from "axios";
+import axios from "axios";
 
-export default function Bio() {
-  // ==== 이미지 부분 ====
-  const [BioImage, setBioImage] = useState(bioDefaultImg);
-  // // axios 사용 부분
-  // axios.get('주소', {
-  //   params: {
-  //     id: 로그인한 사람
+export default function Bio({ isLoggedIn, proImageTest, content }) {
+  // === axios 부분 ===
+  // const fetchBioData = async () => {
+  //   try {
+  //     // const response = await axios.get("http://192.168.0.209:8090/user/me");
+  //     // const proImage = response.data.proImage;
+  //     const proImage = proImageTest;
+  //     const introduce = content;
+  //     setBioImage(proImage);
+  //     setBioText(introduce);
+  //   } catch (error) {
+  //     console.error(error);
   //   }
-  // })
-  // .then(function(response)=>{console.log(response.data)})
-
-  // // async와 await을 사용하는 방식 - 내가 원할 때 then()을 사용할 수 있다
-  // const getBioTextData = async () => {
-  //   let response = await axios.get("주소", {
-  //   params: {
-  //     id: 로그인한 사람
-  //   }
-  // });
-  //   return response.data;
   // };
-  // let res = getBioTextData();
-
-  // res.then((data) => {
-  //   console.log(data);
-  // });
+  // // 컴포넌트가 처음 마운트될 때 받아옴
+  // useEffect(() => {
+  //   fetchBioData();
+  // }, []);
+  // ==== 이미지 부분 ====
+  const [BioImage, setBioImage] = useState(proImageTest);
 
   const BioFileInput = useRef(null);
   const [BioFile, setBioFile] = useState(""); // eslint-disable-line no-unused-vars
@@ -52,10 +44,13 @@ export default function Bio() {
     };
     // readAsDataURL : 파일을 URL로 만듬
     reader.readAsDataURL(e.target.files[0]);
+    // // 이미지 axios.put
+    // axios.post("http://192.168.0.209:8090/user/me", {
+    //   proImage: "e.target.files[0]",
+    // });
   };
   // ==== 텍스트 부분 ====
-  const [BioText, setBioText] = useState("No Data");
-
+  const [BioText, setBioText] = useState("");
   // editable은 읽기모드 또는 편집가능 상태로 만들기
   const [editable, setEditable] = useState(false);
   const editToggle = () => {
@@ -64,11 +59,12 @@ export default function Bio() {
   // 내용의 변화를 감지해서 BioText를 바꾸어준다.
   const handleBioTextChange = (e) => {
     setBioText(e.target.value);
+
+    // // 텍스트 axios.put
+    // axios.post("http://192.168.0.209:8090/user/me", {
+    //   introduce: e.target.value,
+    // });
   };
-  // === editButton 부분 ===
-  // 권한이 있을 경우만 edit버튼이 활성화됨
-  const BioEditButtonTrue = true; // 임시로 설정
-  // const BioEditButtonfalse = false;
 
   function BioEditButton() {
     return (
@@ -98,41 +94,45 @@ export default function Bio() {
       </>
     );
   }
+  // const [editButton, setEditButton] = useState(false);
+  // const showEditButton = () => {
+  //   setEditButton;
+  // };
   return (
-    <div>
-      <Header />
-      <div className="profile_author">
-        <div>
-          {/* === 이미지 부분 === */}
-          <img src={BioImage} alt="BioImage" />
-          <input
-            type="file"
-            style={{ display: "none" }}
-            accept="image/jpg,image/png,image/jpeg"
-            name="profile_img"
-            onChange={onChangeBioImage}
-            ref={BioFileInput}
-          />
-        </div>
-        {/* === edit 버튼 부분 === */}
-        <div>{BioEditButtonTrue ? <BioEditButton /> : ""}</div>
-        <br />
-        {/* === 소개글 부분 === */}
-        {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
-        {editable ? (
-          <textarea
-            rows={10}
-            value={BioText}
-            onChange={(e) => handleBioTextChange(e)}
-            id="BioTextareaEditOn"
-          />
-        ) : (
-          <textarea id="BioTextareaEditOff" rows={10} readOnly>
-            {BioText}
-          </textarea>
-        )}
+    <div className="profile_author">
+      <div>{content}</div>
+      <div>
+        {/* === 이미지 부분 === */}
+        <img src={BioImage} alt="BioImage" />
+        <input
+          type="file"
+          style={{ display: "none" }}
+          accept="image/jpg,image/png,image/jpeg"
+          name="profile_img"
+          onChange={onChangeBioImage}
+          ref={BioFileInput}
+        />
       </div>
-      <Footer />
+      {/* === edit 버튼 부분 === */}
+      {/*
+        레이아웃에서 로그인 여부를 나타내는 변수 isLoggedIn를 가져옴
+        로그인 여부에 따라서 edit 버튼을 표시해줌
+      */}
+      <div>{isLoggedIn && <BioEditButton />}</div>
+      {/* <div value={CheckLogin}></div> */}
+      <br />
+      {/* === 소개글 부분 === */}
+      {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
+      {editable ? (
+        <textarea
+          rows={10}
+          value={BioText}
+          onChange={(e) => handleBioTextChange(e)}
+          id="BioTextareaEditOn"
+        />
+      ) : (
+        <textarea value={BioText} id="BioTextareaEditOff" rows={10} readOnly />
+      )}
     </div>
   );
 }

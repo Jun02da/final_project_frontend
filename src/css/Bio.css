@@ -22,3 +22,6 @@
   margin: 10px;
   padding: 10px;
 }
+#BioEditSpan:hover {
+  opacity: 0.5;
+}

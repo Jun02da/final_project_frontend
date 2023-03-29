@@ -66,44 +66,38 @@ export default function Login() {
   }, [rememberEmail, email]);
 
   const handleLogin = () => {
-    if (email === "admin" && password === "123") {
-      // check if admin credentials are entered
-      const token = "admin"; // create a mock token for the admin user
-      localStorage.setItem("token", token);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      setIsLoggedIn(true);
-      alert("로그인 성공.");
-      handleCloseModal();
-      setIsModalOpen(false);
-    } else {
-      axios
-        .post(
-          "http://192.168.0.209:8090/login",
-          { email, password },
-          { withCredentials: true, crossDomain: true, credentials: "include" }
-        )
-        .then((response) => {
-          const token = response.data;
-          alert("로그인 성공.");
-          if (token) {
-            localStorage.setItem("token", token);
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-            setIsLoggedIn(true);
-            handleCloseModal();
-            setIsModalOpen(false);
-            window.location.reload(); // 회원가입 버튼 숨기기 위해 페이지 다시 로드
+    axios
+      .post(
+        "http://192.168.0.209:8090/login",
+        { email, password },
+        { withCredentials: true, crossDomain: true, credentials: "include" }
+      )
+      .then((response) => {
+        const token = response.data;
+        alert("로그인 성공.");
+        if (token) {
+          localStorage.setItem("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          setIsLoggedIn(true);
+          handleCloseModal();
+          setIsModalOpen(false);
+          if (email === "admin") {
+            window.location.href = "/Admin";
           } else {
-            delete axios.defaults.headers.common["Authorization"];
-            alert("토큰 받기 실패");
+            window.location.reload(); // 회원가입 버튼 숨기기 위해 페이지 다시 로드
           }
-        })
-        .catch((error) => {
-          console.error(error);
-          setPassword("");
-          alert("로그인에 실패했습니다.");
-        });
-    }
+        } else {
+          delete axios.defaults.headers.common["Authorization"];
+          alert("토큰 받기 실패");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setPassword("");
+        alert("로그인에 실패했습니다.");
+      });
   };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
@@ -167,14 +161,16 @@ export default function Login() {
           로그인
         </button>
         <br />
-        <div className="Membership_Text">
-          아직 Phopo 계정이 없으신가요?&nbsp;
-          <label
-            className="MemberShip_Btn"
-            onClick={() => (window.location.href = "/MemberShip")}
-          >
-            지금 가입하기
-          </label>
+        <div className="login_button_container">
+          <div className="Membership_Text">
+            아직 Phopo 계정이 없으신가요?&nbsp;
+            <label
+              className="MemberShip_Btn"
+              onClick={() => (window.location.href = "/MemberShip")}
+            >
+              지금 가입하기
+            </label>
+          </div>
         </div>
         <br />
       </Modal>

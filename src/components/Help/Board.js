@@ -1,6 +1,4 @@
 import BoardList from "./Board/BoardList";
-import Header from "../Layout/HelpHeader.js";
-import Footer from "../Layout/footer.js";
 import { useState, useEffect } from "react";
 import BoardPagination from "./Board/BoardPagination.js";
 // sampleData로 임시 import
@@ -30,29 +28,24 @@ function Board() {
     }
   };
   return (
-    <div>
-      <Header />
-      <div id="BoardContentDiv">
-        {/* === 게시판 헤드 부분 === */}
-        <div className="BoardContentHeader">
-          <span className="BoardContentHeaderId">번호</span>
-          <span className="BoardContentHeaderTitle">제목</span>
-          <span className="BoardContentHeaderCreateAt">작성일</span>
-          <span className="BoardContentHeaderName">글쓴이</span>
-        </div>
-        <hr />
-        {/* === 게시판 내용 부분 === */}
-        <BoardList items={postsData(contentInfo)} />
-        {/* === Pagination 부분 === */}
-        <BoardPagination
-          limit={limit}
-          page={page}
-          totalPosts={contentInfo.length}
-          setPage={setPage}
-        />
+    <div id="BoardContentDiv">
+      {/* === 게시판 헤드 부분 === */}
+      <div className="BoardContentHeader">
+        <span className="BoardContentHeaderId">번호</span>
+        <span className="BoardContentHeaderTitle">제목</span>
+        <span className="BoardContentHeaderCreateAt">작성일</span>
+        <span className="BoardContentHeaderName">글쓴이</span>
       </div>
-      <br />
-      <Footer />
+      <hr />
+      {/* === 게시판 내용 부분 === */}
+      <BoardList items={postsData(contentInfo)} />
+      {/* === Pagination 부분 === */}
+      <BoardPagination
+        limit={limit}
+        page={page}
+        totalPosts={contentInfo.length}
+        setPage={setPage}
+      />
     </div>
   );
 }

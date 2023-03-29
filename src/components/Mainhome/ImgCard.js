@@ -1,23 +1,41 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import Avatar from '@mui/material/Avatar';
-import { Link } from "react-router-dom";
-import test from "./ImgCard.json"; //ImgCard.json <<<< 테스트용 데이터
-import "../../css/MainHome.css"; //메인홈 이미지 카드에서 프로필 정보를 보기 위한 css
-
+import Avatar from "@mui/material/Avatar";
+import { Link, useNavigate } from "react-router-dom";
+import "../../css/MainHome.css";
+import axios from "axios";
 
 export default function MasonryImageList() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [postData, setPostData] = useState([]);
+  const [userData, setUserData] = useState([]);
+
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  const filteredData = selectedCategory === "all" ? test.itemData : test.itemData.filter(item => item.category === selectedCategory);
-  const [showAllImages, setShowAllImages] = useState(false);
-  const visibleImages = showAllImages ? filteredData : filteredData.slice(0, 30);
 
+  useEffect(() => {
+    //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
+    axios.get("http://192.168.0.209:8090/post").then((response) => {
+      const data = response.data;
+      setPostData(data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
+    });
+    //user 테이블에서 프로필 사진과 닉네임 가져오기
+    axios.get("http://192.168.0.209:8090/user/all").then((response) => {
+      setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
+    });
+  }, []);
+
+  //카테고리로 사진 걸러서 받기
+  const filteredData =
+    selectedCategory === "all"
+      ? postData
+      : postData.filter((item) => item.category === selectedCategory);
+
+  const movePage = useNavigate();
   return (
     <>
       <Box
@@ -38,43 +56,71 @@ export default function MasonryImageList() {
             <option value="all">최신 인기 사진</option>
             <option value="Home">Home</option>
             <option value="IT">IT</option>
-          <option value="Food">Food</option>
-          <option value="Sports">Sports</option>
-          <option value="Nature">Nature</option>
-        </select>
-      </div>
+            <option value="Food">Food</option>
+            <option value="Sports">Sports</option>
+            <option value="Nature">Nature</option>
+          </select>
+        </div>
 
-      <ImageList variant="masonry" cols={4} gap={10} >
-        {/* ImgCard.json에서 데이터를 가져오는 부분 */}
-        {filteredData.map((item) => (
-          // hover-zoom 을 이용해서 이미지 위에 마우스를 올리면 이미지가 확대되는 효과
-          <ImageListItem key={item.img} className="banner_img" >
-            <Link to="mypage">
-              <img
-                src={`${item.img}?w=400&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                
-              />
-            </Link>
-            {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
-            {/* 프로필 사진과 닉네임 */}
-            <ul className="hover_text" style = {{listStyleType: 'none'}} >
+        <ImageList variant="masonry" cols={4} gap={10}>
+          {filteredData.map((post, index) => {
+            // postData -> post로 변수명 변경
+            const user = userData.find((user) => user.email === post.email);
+            // const linkTo = `/mypage/${post.email}`;
 
-              <li style ={{float: "left", margin: 8, marginLeft: -10}}>
-                <Avatar alt="icon" src={item.profile} />
-              </li>
-
-              <li style ={{float: "left", marginTop : 8}}>
-                <p>닉네임 나오는 곳</p>
-              </li>
-
-            </ul>
-
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </Box>
+            function goMypage() {
+              // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
+              movePage("/mypage", {
+                state: {
+                  category: post.category,
+                  content: post.content,
+                  created_at: post.created_at,
+                  postEmail: post.email,
+                  image_url: post.image_url,
+                  likeCnt: post.likeCnt,
+                  modified_at: post.modified_at,
+                  post_id: post.post_id,
+                  birth: user.birth,
+                  userEmail: user.email,
+                  gender: user.gender,
+                  introduce: user.introduce,
+                  nickname: user.nickname,
+                  password: user.password,
+                  phone: user.phone,
+                  proImage: user.proImage,
+                  role: user.role,
+                  visitCnt: user.visitCnt,
+                  website: user.website,
+                },
+              });
+            }
+            return (
+              <ImageListItem key={index} className="banner_img">
+                <div onClick={goMypage}>
+                  <img
+                    src={`${post.image_url}?w=400&fit=crop&auto=format`}
+                    alt={`Imagefile ${index}`}
+                  />
+                </div>
+                {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
+                {/* 프로필 사진과 닉네임 */}
+                <ul className="hover_text" style={{ listStyleType: "none" }}>
+                  {user.profile_image && (
+                    <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
+                      <Avatar alt="icon" src={user.profile_image} />
+                    </li>
+                  )}
+                  {user.nickname && (
+                    <li style={{ float: "left", marginTop: 8 }}>
+                      <p>{user.nickname}</p>
+                    </li>
+                  )}
+                </ul>
+              </ImageListItem>
+            );
+          })}
+        </ImageList>
+      </Box>
     </>
   );
 }
