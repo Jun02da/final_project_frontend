@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/HelpHeader.css";
-import Login from "../../login";
-import banner from "../../image/HelpHeaderBanner.jpg";
+import HelpBoard from "./components/Help/Board";
+import HelpFAQ from "./components/Help/FAQ";
+import HelpCommunication from "./components/Help/Communication";
+import Login from "./login";
+import banner from "./image/HelpHeaderBanner.jpg";
+import Footer from "./components/Layout/footer";
+import "./css/HelpHeader.css";
 
-export default function HelpHeader() {
+export default function HelpUser() {
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
@@ -22,7 +26,30 @@ export default function HelpHeader() {
     setIsAdmin(true);
     setIsLoggedIn(true);
   }
+
+  // 3개중 1개만 true로 설정하여서 클릭한 1개만 나오도록 설정
+  const [showHelpBoard, setShowHelpBoard] = useState(true);
+  const [showHelpFAQ, setShowHelpFAQ] = useState(false);
+  const [showHelpCommunication, setShowHelpCommunication] = useState(false);
+
+  const onlyShowHelpBoard = () => {
+    setShowHelpBoard(true);
+    setShowHelpFAQ(false);
+    setShowHelpCommunication(false);
+  };
+  const onlyShowHelpFAQ = () => {
+    setShowHelpBoard(false);
+    setShowHelpFAQ(true);
+    setShowHelpCommunication(false);
+  };
+  const onlyShowHelpCommunication = () => {
+    setShowHelpBoard(false);
+    setShowHelpFAQ(false);
+    setShowHelpCommunication(true);
+  };
+
   const movePage = useNavigate();
+
   function goHome() {
     movePage("/");
   }
@@ -38,10 +65,11 @@ export default function HelpHeader() {
   function goAdmin() {
     movePage("/Admin");
   }
+
   return (
-    <>
+    <div>
       <div id="SubHeaderLayout">
-        <div onClick={goHome} id="SubLogo">
+        <div onClick={goHome} className="SubLogo">
           PHOPO
         </div>
         <nav className="NavMenu">
@@ -72,6 +100,24 @@ export default function HelpHeader() {
       <div id="HelpHeaderBanner">
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
-    </>
+      {/* 고객지원 내용 */}
+      <div id="HelpHeaderMenuSection">
+        <button onClick={onlyShowHelpBoard} id="HelpHeaderMenu" autoFocus>
+          공지사항
+        </button>
+        <button onClick={onlyShowHelpFAQ} id="HelpHeaderMenu">
+          FAQ
+        </button>
+        <button onClick={onlyShowHelpCommunication} id="HelpHeaderMenu">
+          문의
+        </button>
+      </div>
+      <div>
+        {showHelpBoard && <HelpBoard />}
+        {showHelpFAQ && <HelpFAQ />}
+        {showHelpCommunication && <HelpCommunication />}
+      </div>
+      <Footer />
+    </div>
   );
 }

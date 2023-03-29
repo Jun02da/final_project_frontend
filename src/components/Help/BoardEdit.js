@@ -29,13 +29,13 @@ function BoardEdit() {
   };
   const movePage = useNavigate();
 
-  function goBoard() {
-    movePage("/Board");
+  function goHelpUser() {
+    movePage("/HelpUser");
   }
   return (
     <>
       <Header />
-      <button id="BoardWriteButton" onClick={goBoard}>
+      <button id="BoardWriteButton" onClick={goHelpUser}>
         목록
       </button>
       <div className="container">

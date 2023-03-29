@@ -1,5 +1,3 @@
-import Header from "../Layout/HelpHeader.js";
-import Footer from "../Layout/footer.js";
 import { Collapse } from "antd";
 import "../../css/FAQ.css";
 
@@ -81,15 +79,10 @@ const FAQContent = () => (
 );
 export default function FAQ() {
   return (
-    <div>
-      <Header />
-      <div id="FAQContentOutter">
-        <h3>자주 묻는 질문</h3>
-        <hr />
-        <FAQContent />
-      </div>
-      <br />
-      <Footer />
+    <div id="FAQContentOutter">
+      <h3>자주 묻는 질문</h3>
+      <hr />
+      <FAQContent />
     </div>
   );
 }

@@ -1,13 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../../css/mypage.css";
 import "../../css/Bio.css";
-import Header from "../Layout/MyPageHeader";
-import Footer from "../Layout/footer";
 import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 import bioDefaultImg from "../../image/bioDefault.jpg";
 import axios from "axios";
 
-export default function Bio() {
+export default function Bio({ isLoggedIn }) {
   // === axios 부분 ===
   const fetchBioData = async () => {
     try {
@@ -67,9 +64,6 @@ export default function Bio() {
     //   introduce: e.target.value,
     // });
   };
-  // === editButton 부분 ===
-  // 권한이 있을 경우만 edit버튼이 활성화됨
-  let BioEditButtonToggle = true;
 
   function BioEditButton() {
     return (
@@ -99,44 +93,44 @@ export default function Bio() {
       </>
     );
   }
+  // const [editButton, setEditButton] = useState(false);
+  // const showEditButton = () => {
+  //   setEditButton;
+  // };
   return (
-    <div>
-      <Header />
-      <div className="profile_author">
-        <div>
-          {/* === 이미지 부분 === */}
-          <img src={BioImage} alt="BioImage" />
-          <input
-            type="file"
-            style={{ display: "none" }}
-            accept="image/jpg,image/png,image/jpeg"
-            name="profile_img"
-            onChange={onChangeBioImage}
-            ref={BioFileInput}
-          />
-        </div>
-        {/* === edit 버튼 부분 === */}
-        <div>{BioEditButtonToggle ? <BioEditButton /> : ""}</div>
-        <br />
-        {/* === 소개글 부분 === */}
-        {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
-        {editable ? (
-          <textarea
-            rows={10}
-            value={BioText}
-            onChange={(e) => handleBioTextChange(e)}
-            id="BioTextareaEditOn"
-          />
-        ) : (
-          <textarea
-            value={BioText}
-            id="BioTextareaEditOff"
-            rows={10}
-            readOnly
-          />
-        )}
+    <div className="profile_author">
+      <div>
+        {/* === 이미지 부분 === */}
+        <img src={BioImage} alt="BioImage" />
+        <input
+          type="file"
+          style={{ display: "none" }}
+          accept="image/jpg,image/png,image/jpeg"
+          name="profile_img"
+          onChange={onChangeBioImage}
+          ref={BioFileInput}
+        />
       </div>
-      <Footer />
+      {/* === edit 버튼 부분 === */}
+      {/*
+        레이아웃에서 로그인 여부를 나타내는 변수 isLoggedIn를 가져옴
+        로그인 여부에 따라서 edit 버튼을 표시해줌
+      */}
+      <div>{isLoggedIn && <BioEditButton />}</div>
+      {/* <div value={CheckLogin}></div> */}
+      <br />
+      {/* === 소개글 부분 === */}
+      {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
+      {editable ? (
+        <textarea
+          rows={10}
+          value={BioText}
+          onChange={(e) => handleBioTextChange(e)}
+          id="BioTextareaEditOn"
+        />
+      ) : (
+        <textarea value={BioText} id="BioTextareaEditOff" rows={10} readOnly />
+      )}
     </div>
   );
 }

@@ -27,8 +27,8 @@ export default function Header() {
     movePage("/mypage");
   }
 
-  function goBoard() {
-    movePage("/Board");
+  function goHelpUser() {
+    movePage("/HelpUser");
   }
   function goAdmin() {
     movePage("/Admin");
@@ -56,7 +56,7 @@ export default function Header() {
               마이페이지
             </button>
           )}
-          <button onClick={goBoard} className="NavMenuTitle">
+          <button onClick={goHelpUser} className="NavMenuTitle">
             고객지원
           </button>
           {isAdmin && (

@@ -1,5 +1,3 @@
-import Header from "../Layout/HelpHeader.js";
-import Footer from "../Layout/footer.js";
 import "../../css/Communication.css";
 import {
   EnvironmentOutlined,
@@ -57,75 +55,71 @@ export default function Communication() {
       );
   };
   return (
-    <div>
-      <Header />
-      <div id="Communication">
-        {/* 문의 안내 부분 */}
-        <div id="CommunicationReach">
-          <h3>Contact</h3>
-          <hr />
-          <div id="CommunicationReachContent">
-            <div id="CommunicationReachDetail">
-              <EnvironmentOutlined
-                style={{ fontSize: "50px", color: "#025ce2" }}
-              />
-              <div>Kosmo&nbsp;2강의실</div>
-            </div>
-            <div id="CommunicationReachDetail">
-              <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>02-321-4567</div>
-            </div>
-            <div id="CommunicationReachDetail">
-              <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
-              <div>Kosmo@example.com</div>
-            </div>
+    <div id="Communication">
+      {/* 문의 안내 부분 */}
+      <div id="CommunicationReach">
+        <h3>Contact</h3>
+        <hr />
+        <div id="CommunicationReachContent">
+          <div id="CommunicationReachDetail">
+            <EnvironmentOutlined
+              style={{ fontSize: "50px", color: "#025ce2" }}
+            />
+            <div>Kosmo&nbsp;2강의실</div>
+          </div>
+          <div id="CommunicationReachDetail">
+            <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
+            <div>02-321-4567</div>
+          </div>
+          <div id="CommunicationReachDetail">
+            <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
+            <div>Kosmo@example.com</div>
           </div>
         </div>
-        {/* 이메일 전송 부분 */}
-        <div id="CommunicationMail">
-          <h3>Or Mail Me</h3>
-          <hr />
-          <form ref={form} onSubmit={sendEmail}>
-            <div>
-              <input
-                name="CommunicationName"
-                onChange={onChange}
-                value={CommunicationName}
-                id="CommunicationName"
-                placeholder=" Name"
-                required
-              />
-            </div>
-            <div>
-              <input
-                name="CommunicationEmail"
-                onChange={onChange}
-                value={CommunicationEmail}
-                id="CommunicationEmail"
-                placeholder=" Email"
-                required
-              />
-            </div>
-            <div>
-              <textarea
-                name="CommunicationMessage"
-                onChange={onChange}
-                value={CommunicationMessage}
-                id="CommunicationMessage"
-                placeholder=" Message"
-                required
-              />
-            </div>
-            {/* 전송 버튼 
+      </div>
+      {/* 이메일 전송 부분 */}
+      <div id="CommunicationMail">
+        <h3>Or Mail Me</h3>
+        <hr />
+        <form ref={form} onSubmit={sendEmail}>
+          <div>
+            <input
+              name="CommunicationName"
+              onChange={onChange}
+              value={CommunicationName}
+              id="CommunicationName"
+              placeholder=" Name"
+              required
+            />
+          </div>
+          <div>
+            <input
+              name="CommunicationEmail"
+              onChange={onChange}
+              value={CommunicationEmail}
+              id="CommunicationEmail"
+              placeholder=" Email"
+              required
+            />
+          </div>
+          <div>
+            <textarea
+              name="CommunicationMessage"
+              onChange={onChange}
+              value={CommunicationMessage}
+              id="CommunicationMessage"
+              placeholder=" Message"
+              required
+            />
+          </div>
+          {/* 전송 버튼 
                 input창들이 빈칸일 경우 알려줌
             */}
-            <button type="submit" id="CommunicationSendButton">
-              Send
-            </button>
-          </form>
-        </div>
+          <button type="submit" id="CommunicationSendButton">
+            Send
+          </button>
+        </form>
       </div>
-      <Footer />
     </div>
   );
 }
