@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/MainHome.css";
 import axios from "axios";
 
@@ -17,16 +17,13 @@ export default function MasonryImageList() {
     setSelectedCategory(event.target.value);
   };
 
-  //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
   useEffect(() => {
+    //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
     axios.get("http://192.168.0.209:8090/post").then((response) => {
       const data = response.data;
       setPostData(data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
     });
-  }, []);
-
-  //user 테이블에서 프로필 사진과 닉네임 가져오기
-  useEffect(() => {
+    //user 테이블에서 프로필 사진과 닉네임 가져오기
     axios.get("http://192.168.0.209:8090/user/all").then((response) => {
       setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
     });
@@ -38,6 +35,7 @@ export default function MasonryImageList() {
       ? postData
       : postData.filter((item) => item.category === selectedCategory);
 
+  const movePage = useNavigate();
   return (
     <>
       <Box
@@ -65,39 +63,64 @@ export default function MasonryImageList() {
         </div>
 
         <ImageList variant="masonry" cols={4} gap={10}>
-          {filteredData.map((post, index) => { // postData -> post로 변수명 변경
+          {filteredData.map((post, index) => {
+            // postData -> post로 변수명 변경
             const user = userData.find((user) => user.email === post.email);
-            const linkTo = `/mypage/${post.email}`;
+            // const linkTo = `/mypage/${post.email}`;
+
+            function goMypage() {
+              // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
+              movePage("/mypage", {
+                state: {
+                  category: post.category,
+                  content: post.content,
+                  created_at: post.created_at,
+                  postEmail: post.email,
+                  image_url: post.image_url,
+                  likeCnt: post.likeCnt,
+                  modified_at: post.modified_at,
+                  post_id: post.post_id,
+                  birth: user.birth,
+                  userEmail: user.email,
+                  gender: user.gender,
+                  introduce: user.introduce,
+                  nickname: user.nickname,
+                  password: user.password,
+                  phone: user.phone,
+                  proImage: user.proImage,
+                  role: user.role,
+                  visitCnt: user.visitCnt,
+                  website: user.website,
+                },
+              });
+            }
             return (
               <ImageListItem key={index} className="banner_img">
-                <Link to={linkTo}>
+                <div onClick={goMypage}>
                   <img
                     src={`${post.image_url}?w=400&fit=crop&auto=format`}
                     alt={`Imagefile ${index}`}
                   />
-                </Link>
-               {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
-               {/* 프로필 사진과 닉네임 */}
-               <ul className="hover_text" style={{ listStyleType: "none" }}>
-                 {user.profile_image && (
-                   <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
-                     <Avatar alt="icon" src={user.profile_image} />
-                   </li>
-                 )}
-                 {user.nickname && (
-                   <li style={{ float: "left", marginTop: 8 }}>
-                     <p>{user.nickname}</p>
-                   </li>
-                 )}
-               </ul>
-             </ImageListItem>
-           );
+                </div>
+                {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
+                {/* 프로필 사진과 닉네임 */}
+                <ul className="hover_text" style={{ listStyleType: "none" }}>
+                  {user.profile_image && (
+                    <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
+                      <Avatar alt="icon" src={user.profile_image} />
+                    </li>
+                  )}
+                  {user.nickname && (
+                    <li style={{ float: "left", marginTop: 8 }}>
+                      <p>{user.nickname}</p>
+                    </li>
+                  )}
+                </ul>
+              </ImageListItem>
+            );
           })}
         </ImageList>
       </Box>
     </>
   );
 }
-
-
-

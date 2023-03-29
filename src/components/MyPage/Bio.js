@@ -4,25 +4,26 @@ import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 import bioDefaultImg from "../../image/bioDefault.jpg";
 import axios from "axios";
 
-export default function Bio({ isLoggedIn }) {
+export default function Bio({ isLoggedIn, proImageTest, content }) {
   // === axios 부분 ===
-  const fetchBioData = async () => {
-    try {
-      const response = await axios.get("http://192.168.0.209:8090/user/me");
-      const proImage = response.data.proImage;
-      const introduce = response.data.introduce;
-      setBioImage(proImage);
-      setBioText(introduce);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  // 컴포넌트가 처음 마운트될 때 받아옴
-  useEffect(() => {
-    fetchBioData();
-  }, []);
+  // const fetchBioData = async () => {
+  //   try {
+  //     // const response = await axios.get("http://192.168.0.209:8090/user/me");
+  //     // const proImage = response.data.proImage;
+  //     const proImage = proImageTest;
+  //     const introduce = content;
+  //     setBioImage(proImage);
+  //     setBioText(introduce);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // // 컴포넌트가 처음 마운트될 때 받아옴
+  // useEffect(() => {
+  //   fetchBioData();
+  // }, []);
   // ==== 이미지 부분 ====
-  const [BioImage, setBioImage] = useState(bioDefaultImg);
+  const [BioImage, setBioImage] = useState(proImageTest);
 
   const BioFileInput = useRef(null);
   const [BioFile, setBioFile] = useState(""); // eslint-disable-line no-unused-vars
@@ -99,6 +100,7 @@ export default function Bio({ isLoggedIn }) {
   // };
   return (
     <div className="profile_author">
+      <div>{content}</div>
       <div>
         {/* === 이미지 부분 === */}
         <img src={BioImage} alt="BioImage" />

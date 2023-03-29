@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import MypageImgslider from "./components/MypageImgslider";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
@@ -11,6 +11,27 @@ import Login from "./login";
 import { Button } from "react-bootstrap";
 
 export default function Mypage() {
+  const location = useLocation();
+  const category = location.state.category;
+  const content = location.state.content;
+  const created_at = location.state.created_at;
+  const postEmail = location.state.email;
+  const image_url = location.state.image_url;
+  const likeCnt = location.state.likeCnt;
+  const modified_at = location.state.modified_at;
+  const post_id = location.state.post_id;
+  const birth = location.state.birth;
+  const userEmail = location.state.email;
+  const gender = location.state.gender;
+  const introduce = location.state.introduce;
+  const nickname = location.state.nickname;
+  const password = location.state.password;
+  const phone = location.state.phone;
+  const proImage = location.state.proImage;
+  const role = location.state.role;
+  const visitCnt = location.state.visitCnt;
+  const website = location.state.website;
+
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
   const [isAdmin, setIsAdmin] = useState(
@@ -73,6 +94,25 @@ export default function Mypage() {
   return (
     <div>
       <>
+        <div>{category}</div>
+        <div>{content}</div>
+        <div>{created_at}</div>
+        <div>{postEmail}</div>
+        <div>{image_url}</div>
+        <div>{likeCnt}</div>
+        <div>{modified_at}</div>
+        <div>{post_id}</div>
+        <div>{birth}</div>
+        <div>{userEmail}</div>
+        <div>{gender}</div>
+        <div>{introduce}</div>
+        <div>{nickname}</div>
+        <div>{password}</div>
+        <div>{phone}</div>
+        <div>{proImage}</div>
+        <div>{role}</div>
+        <div>{visitCnt}</div>
+        <div>{website}</div>
         {/* === 헤드 부분 === */}
         <div id="SubHeaderLayout">
           <div onClick={goHome} className="SubLogo">
@@ -158,7 +198,13 @@ export default function Mypage() {
       {/* === 내용 부분 === */}
       <div>
         {showMypageImgslider && <MypageImgslider />}
-        {showMypageBio && <MypageBio isLoggedIn={isLoggedIn} />}
+        {showMypageBio && (
+          <MypageBio
+            isLoggedIn={isLoggedIn}
+            proImageTest={proImage}
+            content={content}
+          />
+        )}
         {showMypageDashboard && <MypageDashboard />}
       </div>
       <Footer />
