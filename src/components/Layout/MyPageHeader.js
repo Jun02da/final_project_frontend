@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../../css/MyPageHeader.css";
@@ -15,6 +15,16 @@ import { Button } from "react-bootstrap";
 const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
 export default function MyPageHeader() {
+  const [isAdmin, setIsAdmin] = useState(
+    Boolean(localStorage.getItem("token") === "admin")
+  );
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
   const movePage = useNavigate();
 
   function goMypage() {
@@ -23,7 +33,9 @@ export default function MyPageHeader() {
   function goBoard() {
     movePage("/Board");
   }
-
+  function goAdmin() {
+    movePage("/Admin");
+  }
   function goHome() {
     movePage("/");
   }
@@ -57,6 +69,11 @@ export default function MyPageHeader() {
           <button onClick={goBoard} className="NavMenuTitle">
             고객지원
           </button>
+          {isAdmin && (
+            <button onClick={goAdmin} className="NavMenuTitle">
+              관리자페이지
+            </button>
+          )}
         </nav>
         <br />
       </div>
