@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import MypageImgslider from "./components/MypageImgslider";
+import MpImgSliderGuest from "./components/MpImgSliderGuest";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
 import "./css/mypage.css";
@@ -9,19 +9,19 @@ import Footer from "./components/Layout/footer";
 import Login from "./login";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
-// 마이페이지 유저 페이지입니다
-export default function Mypage() {
+// 마이페이지 게스트 페이지입니다
+export default function MypageGuest() {
   const location = useLocation();
   const category = location.state.category;
   const content = location.state.content;
   const created_at = location.state.created_at;
-  const postEmail = location.state.email;
+  const postEmail = location.state.postEmail;
   const image_url = location.state.image_url;
   const likeCnt = location.state.likeCnt;
   const modified_at = location.state.modified_at;
   const post_id = location.state.post_id;
   const birth = location.state.birth;
-  const userEmail = location.state.email;
+  const userEmail = location.state.userEmail;
   const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
@@ -31,7 +31,7 @@ export default function Mypage() {
   const role = location.state.role;
   const visitCnt = location.state.visitCnt;
   const website = location.state.website;
-
+  
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
   const [isAdmin, setIsAdmin] = useState(
@@ -94,25 +94,6 @@ export default function Mypage() {
   return (
     <div>
       <>
-        <div>{category}</div>
-        <div>{content}</div>
-        <div>{created_at}</div>
-        <div>{postEmail}</div>
-        <div>{image_url}</div>
-        <div>{likeCnt}</div>
-        <div>{modified_at}</div>
-        <div>{post_id}</div>
-        <div>{birth}</div>
-        <div>{userEmail}</div>
-        <div>{gender}</div>
-        <div>{introduce}</div>
-        <div>{nickname}</div>
-        <div>{password}</div>
-        <div>{phone}</div>
-        <div>{proImage}</div>
-        <div>{role}</div>
-        <div>{visitCnt}</div>
-        <div>{website}</div>
         {/* === 헤드 부분 === */}
         <div id="SubHeaderLayout">
           <div onClick={goHome} className="SubLogo">
@@ -196,7 +177,7 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider/>}
+        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail}/>}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
@@ -205,6 +186,7 @@ export default function Mypage() {
           />
         )}
         {showMypageDashboard && <MypageDashboard />}
+        
       </div>
       <Footer />
     </div>
