@@ -20,7 +20,7 @@ export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
 
-  const handleUpload = (newImages) => {
+  const handleUpload = (newImages, text, category) => {
     const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
     setImageUrls([...imageUrls, ...newImageUrls]);
 
@@ -28,6 +28,8 @@ export default function MypageImgslider() {
     newImages.forEach((image) => {
       formData.append("file", image);
     });
+    formData.append("content", text); // 텍스트 데이터 추가
+    formData.append("category", category); // 카테고리 데이터 추가
 
     axios
       .post("http://192.168.0.209:8090/post/add", formData)
@@ -47,7 +49,7 @@ export default function MypageImgslider() {
       );
       const email = responseEmail.data.email;
       const responseImages = await axios.get(
-        `http://192.168.0.209:8090/post/${email}`
+        `http://192.168.0.209:8090/post/email/${email}`
       );
       const urls = responseImages.data.map((post) => post.image_url);
       setImageUrls(urls);

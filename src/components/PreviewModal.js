@@ -19,22 +19,30 @@ function PreviewModal({
   onCloseModal,
   onUpload,
   images,
+  text,
+  setText,
+  category,
+  setCategory,
 }) {
   const [currentPreviewImage, setCurrentPreviewImage] = useState(previewImage);
-  const [text, setText] = useState("");
 
   const handleUpload = async () => {
     const uploadedImage = await uploadImage(previewImage);
-    onUpload({ image: uploadedImage, text });
+    onUpload({ image: uploadedImage, text, category });
     onCloseModal();
+    setText(""); // text state 초기화
   };
 
   const handleCloseModal = () => {
     onCloseModal();
   };
 
-  const handleTextChange = (event) => {
-    setText(event.target.value);
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
   };
 
   const uploadImage = async (image) => {
@@ -57,9 +65,16 @@ function PreviewModal({
       }}
     >
       <h2 className="modal_h2">새 게시물 만들기</h2>
-      <div className="modal_buttons">
-        <button onClick={handleUpload}>업로드</button>
-        <button onClick={handleCloseModal}>취소</button>
+      <div className="modal_category">
+        <label htmlFor="category">카테고리:</label>
+        <select onChange={handleCategoryChange} value={category}>
+          <option value="">선택하세요</option>
+          <option value="Home">Home</option>
+          <option value="IT">IT</option>
+          <option value="Food">Food</option>
+          <option value="Sports">Sports</option>
+          <option value="Nature">Nature</option>
+        </select>
       </div>
       <div className="modal_image">
         <Swiper
@@ -80,8 +95,17 @@ function PreviewModal({
           ))}
         </Swiper>
       </div>
-      <div className="modal-text">
-        <input type="text" value={text} onChange={handleTextChange} />
+      <div>
+        <textarea
+          type="text"
+          className="modal_text"
+          value={text}
+          onChange={handleTextChange}
+        />
+      </div>
+      <div className="modal_buttons">
+        <button onClick={handleUpload}>업로드</button>
+        <button onClick={handleCloseModal}>취소</button>
       </div>
     </Modal>
   );

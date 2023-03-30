@@ -197,7 +197,7 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider />}
+        {showMypageImgslider && <MypageImgslider image_url={image_url} />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}

@@ -6,6 +6,8 @@ import PreviewModal from "./PreviewModal";
 function ImageUploader({ onUpload }) {
   const [images, setImages] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [category, setCategory] = useState("");
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -23,7 +25,7 @@ function ImageUploader({ onUpload }) {
 
   const handleUpload = async () => {
     const uploadedImages = await uploadImages(images);
-    onUpload(uploadedImages);
+    onUpload(uploadedImages, text, category);
     setImages([]);
     setModalIsOpen(false);
   };
@@ -53,6 +55,9 @@ function ImageUploader({ onUpload }) {
           onCloseModal={handleCloseModal}
           onUpload={handleUpload}
           images={images}
+          text={text}
+          setText={setText}
+          setCategory={setCategory}
         />
       )}
     </div>
