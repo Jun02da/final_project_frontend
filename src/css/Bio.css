@@ -21,6 +21,9 @@
   font-size: 22px;
   margin: 10px;
   padding: 10px;
+  /* 버튼 디자인 제거 */
+  border: 0;
+  background-color: transparent;
 }
 #BioEditSpan:hover {
   opacity: 0.5;

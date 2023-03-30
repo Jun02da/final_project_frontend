@@ -4,33 +4,30 @@ import { EditOutlined, CameraOutlined, SaveOutlined } from "@ant-design/icons";
 import bioDefaultImg from "../../image/bioDefault.jpg";
 import axios from "axios";
 
-export default function Bio({ isLoggedIn, proImageTest, content }) {
-  // === axios 부분 ===
-  // const fetchBioData = async () => {
-  //   try {
-  //     // const response = await axios.get("http://192.168.0.209:8090/user/me");
-  //     // const proImage = response.data.proImage;
-  //     const proImage = proImageTest;
-  //     const introduce = content;
-  //     setBioImage(proImage);
-  //     setBioText(introduce);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // // 컴포넌트가 처음 마운트될 때 받아옴
-  // useEffect(() => {
-  //   fetchBioData();
-  // }, []);
-  // ==== 이미지 부분 ====
-  const [BioImage, setBioImage] = useState(proImageTest);
-
-  const BioFileInput = useRef(null);
+export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
+  const [BioImage, setBioImage] = useState(bioDefaultImg);
   const [BioFile, setBioFile] = useState(""); // eslint-disable-line no-unused-vars
-
+  const BioFileInput = useRef(null);
+  const [BioText, setBioText] = useState("");
+  const [editable, setEditable] = useState(false);
+  // ==== 이미지 부분 ====
   const onChangeBioImage = (e) => {
-    if (e.target.files[0]) {
-      setBioFile(e.target.files[0]);
+    e.preventDefault();
+    // ==== 사진을 업로드하는 부분 ====
+    if (e.target.files) {
+      const uploadFile = e.target.files[0];
+      setBioFile(uploadFile); // 변경한 사진으로 변경
+      let formData = new FormData(); // 변경한 사진을 FormData에 넣음
+      formData.append("file", uploadFile);
+      formData.append("introduce", BioText);
+      axios // 프로필 사진 변경하는 API요청
+        .post("http://192.168.0.209:8090/user/editProfile", formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } else {
       setBioImage(BioImage); // 업로드 취소할 시 기존이미지 유지
       return;
@@ -44,28 +41,26 @@ export default function Bio({ isLoggedIn, proImageTest, content }) {
     };
     // readAsDataURL : 파일을 URL로 만듬
     reader.readAsDataURL(e.target.files[0]);
-    // // 이미지 axios.put
-    // axios.post("http://192.168.0.209:8090/user/me", {
-    //   proImage: "e.target.files[0]",
-    // });
   };
   // ==== 텍스트 부분 ====
-  const [BioText, setBioText] = useState("");
   // editable은 읽기모드 또는 편집가능 상태로 만들기
-  const [editable, setEditable] = useState(false);
   const editToggle = () => {
     setEditable(!editable);
   };
   // 내용의 변화를 감지해서 BioText를 바꾸어준다.
   const handleBioTextChange = (e) => {
     setBioText(e.target.value);
-
-    // // 텍스트 axios.put
-    // axios.post("http://192.168.0.209:8090/user/me", {
-    //   introduce: e.target.value,
-    // });
   };
-
+  // mypage에서 받아온 데이터로 프로필 사진과 소개글을 변경
+  useEffect(() => {
+    if (proImage) {
+      setBioImage(proImage);
+    }
+    if (introduce) {
+      setBioText(introduce);
+    }
+  }, []);
+  // ==== 편집 버튼 부분 ====
   function BioEditButton() {
     return (
       <>
@@ -76,41 +71,37 @@ export default function Bio({ isLoggedIn, proImageTest, content }) {
             BioFileInput.current.click();
           }}
         >
-          <CameraOutlined style={{ fontSize: "40px" }} />
+          <CameraOutlined style={{ fontSize: "32px" }} />
           &nbsp; 사진 변경
         </span>
         {/* 편집 On/Off 버튼*/}
         {editable ? (
           <span id="BioEditSpan" onClick={() => editToggle()}>
-            <SaveOutlined style={{ fontSize: "40px" }} />
-            &nbsp; 소개글 저장
+            <SaveOutlined style={{ fontSize: "32px" }} />
+            &nbsp; 변경 완료
           </span>
         ) : (
           <span id="BioEditSpan" onClick={() => editToggle()}>
-            <EditOutlined style={{ fontSize: "40px" }} />
+            <EditOutlined style={{ fontSize: "32px" }} />
             &nbsp; 소개글 변경
           </span>
         )}
       </>
     );
   }
-  // const [editButton, setEditButton] = useState(false);
-  // const showEditButton = () => {
-  //   setEditButton;
-  // };
+
   return (
     <div className="profile_author">
-      <div>{content}</div>
       <div>
         {/* === 이미지 부분 === */}
         <img src={BioImage} alt="BioImage" />
         <input
           type="file"
-          style={{ display: "none" }}
-          accept="image/jpg,image/png,image/jpeg"
-          name="profile_img"
+          accept="image/*"
+          id="profile-upload"
           onChange={onChangeBioImage}
           ref={BioFileInput}
+          style={{ display: "none" }}
         />
       </div>
       {/* === edit 버튼 부분 === */}
@@ -119,7 +110,6 @@ export default function Bio({ isLoggedIn, proImageTest, content }) {
         로그인 여부에 따라서 edit 버튼을 표시해줌
       */}
       <div>{isLoggedIn && <BioEditButton />}</div>
-      {/* <div value={CheckLogin}></div> */}
       <br />
       {/* === 소개글 부분 === */}
       {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}

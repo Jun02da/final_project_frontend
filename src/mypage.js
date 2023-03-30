@@ -12,6 +12,7 @@ import { Button } from "react-bootstrap";
 
 export default function Mypage() {
   const location = useLocation();
+
   const category = location.state.category;
   const content = location.state.content;
   const created_at = location.state.created_at;
@@ -94,25 +95,25 @@ export default function Mypage() {
   return (
     <div>
       <>
-        <div>{category}</div>
-        <div>{content}</div>
-        <div>{created_at}</div>
-        <div>{postEmail}</div>
-        <div>{image_url}</div>
-        <div>{likeCnt}</div>
-        <div>{modified_at}</div>
-        <div>{post_id}</div>
-        <div>{birth}</div>
-        <div>{userEmail}</div>
-        <div>{gender}</div>
-        <div>{introduce}</div>
-        <div>{nickname}</div>
-        <div>{password}</div>
-        <div>{phone}</div>
-        <div>{proImage}</div>
-        <div>{role}</div>
-        <div>{visitCnt}</div>
-        <div>{website}</div>
+        <div>category: {category}</div>
+        <div>content: {content}</div>
+        <div>created_at: {created_at}</div>
+        <div>postEmail: {postEmail}</div>
+        <div>image_url: {image_url}</div>
+        <div>likeCnt: {likeCnt}</div>
+        <div>modified_at: {modified_at}</div>
+        <div>post_id: {post_id}</div>
+        <div>birth: {birth}</div>
+        <div>userEmail: {userEmail}</div>
+        <div>gender: {gender}</div>
+        <div>introduce: {introduce}</div>
+        <div>nickname: {nickname}</div>
+        <div>password: {password}</div>
+        <div>phone: {phone}</div>
+        <div>proImage: {proImage}</div>
+        <div>role: {role}</div>
+        <div>visitCnt: {visitCnt}</div>
+        <div>website: {website}</div>
         {/* === 헤드 부분 === */}
         <div id="SubHeaderLayout">
           <div onClick={goHome} className="SubLogo">
@@ -201,8 +202,9 @@ export default function Mypage() {
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
-            proImageTest={proImage}
-            content={content}
+            proImage={proImage}
+            introduce={introduce}
+            userEmail={userEmail}
           />
         )}
         {showMypageDashboard && <MypageDashboard />}
