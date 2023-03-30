@@ -31,7 +31,7 @@ export default function MypageGuest() {
   const role = location.state.role;
   const visitCnt = location.state.visitCnt;
   const website = location.state.website;
-  
+
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
   const [isAdmin, setIsAdmin] = useState(
@@ -154,9 +154,7 @@ export default function MypageGuest() {
           </Button>
         </div>
         {/* 한줄소개 */}
-        <p className="AboutMe">
-        {introduce}
-        </p>
+        <p className="AboutMe">{introduce}</p>
         {/* Dashboard 페이지로 이동 추가 */}
         <div className="stat_set">
           <div className="stat" onClick={onlyShowMypageDashboard}>
@@ -177,16 +175,16 @@ export default function MypageGuest() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail}/>}
+        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail} />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
-            proImageTest={proImage}
-            content={content}
+            proImage={proImage}
+            introduce={introduce}
+            userEmail={userEmail}
           />
         )}
         {showMypageDashboard && <MypageDashboard />}
-        
       </div>
       <Footer />
     </div>
