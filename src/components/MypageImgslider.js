@@ -15,7 +15,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
 import "../css/MypageSlider.css";
 import "../css/Imguploadbtn.css";
-
+// 이미지 슬라이더 유저 버전입니다
 export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
