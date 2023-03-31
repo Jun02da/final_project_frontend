@@ -1,20 +1,19 @@
 import BoardList from "./Board/BoardList";
 import { useState, useEffect } from "react";
 import BoardPagination from "./Board/BoardPagination.js";
-// sampleData로 임시 import
-import list from "./Board/sampleData/boardList.json";
-// import axios from "axios";
+import axios from "axios";
 
 function Board() {
-  // 데이터 부분
-
-  // axios.get('list 주소')
-  // .then((Response)=>{list = Response.data})
-
   const [contentInfo, setContentInfo] = useState([]);
 
   useEffect(() => {
-    setContentInfo(list);
+    // 데이터 부분
+    axios
+      .get("http://192.168.0.209:8090/notice")
+      .then((res) => {
+        setContentInfo(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
   // 페이징 부분
   const [page, setPage] = useState(1); //페이지
@@ -34,7 +33,7 @@ function Board() {
         <span className="BoardContentHeaderId">번호</span>
         <span className="BoardContentHeaderTitle">제목</span>
         <span className="BoardContentHeaderCreateAt">작성일</span>
-        <span className="BoardContentHeaderName">글쓴이</span>
+        <span className="BoardContentHeaderName">수정일</span>
       </div>
       <hr />
       {/* === 게시판 내용 부분 === */}

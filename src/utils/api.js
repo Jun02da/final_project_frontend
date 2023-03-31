@@ -1,22 +1,69 @@
-// 백엔드 서버 주소
-const SERVER_URL = "http://localhost:8000";
+import axios from "axios";
 
-// 계정 삭제 API 요청을 보내는 함수
-export const deleteAccount = async (username) => {
-  const response = await fetch(`${SERVER_URL}/api/accounts/${username}`, {
-    method: "DELETE",
-  });
-  if (!response.ok) {
-    throw new Error("계정을 삭제 실패");
+export const addAnnouncement = async (title, content, token) => {
+  try {
+    const response = await axios.post(
+      "http://192.168.0.209:8090/notice/add",
+      { title, content },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };
 
-// 공지사항 API 요청을 보내는 함수
 export const getAnnouncements = async () => {
-  const response = await fetch(`${SERVER_URL}/api/announcements`);
-  if (!response.ok) {
-    throw new Error("공지사항 업로드 실패");
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("http://192.168.0.209:8090/notice", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
-  const data = await response.json();
-  return data;
+};
+export const deleteAnnouncement = async (announcementId, token) => {
+  try {
+    const response = await axios.delete(
+      `http://192.168.0.209:8090/notice/${announcementId.notice_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data);
+  }
+};
+
+export const editAnnouncement = async (
+  editingAnnouncement,
+  title,
+  content,
+  token
+) => {
+  try {
+    await axios.put(
+      `http://192.168.0.209:8090/notice/${editingAnnouncement.notice_id}`,
+      { title, content }, // title과 content 정보를 모두 전달
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw new Error(error.response.data);
+  }
 };

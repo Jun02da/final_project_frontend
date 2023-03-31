@@ -89,7 +89,7 @@ export default function Mypage() {
   function goAdmin() {
     movePage("/Admin");
   }
-  const userName = "Han Yongjae";
+  const userName = nickname;
 
   return (
     <div>
@@ -175,18 +175,23 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {/* 
-        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail}/>} */}
         {showMypageImgslider && <MypageImgslider userEmail={userEmail} />}
-
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
-            proImageTest={proImage}
-            content={content}
+            proImage={proImage}
+            introduce={introduce}
+            userEmail={userEmail}
           />
         )}
-        {showMypageDashboard && <MypageDashboard />}
+        {showMypageDashboard && (
+          <MypageDashboard
+            visitCnt={visitCnt}
+            nickname={nickname}
+            likeCnt={likeCnt}
+            userEmail={userEmail}
+          />
+        )}
       </div>
       <Footer />
     </div>

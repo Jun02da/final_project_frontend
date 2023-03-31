@@ -12,6 +12,7 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -20,6 +21,8 @@ export default function Admin() {
   const [showAnnouncement, setShowAnnouncement] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [showChart, setShowChart] = useState(false);
+  const [adminUserAll, setAdminUserAll] = useState([]);
+  const [adminPost, setAdminPost] = useState([]);
 
   const handleDeleteToggle = () => {
     setShowDelete(!showDelete);
@@ -32,6 +35,19 @@ export default function Admin() {
   };
   const handleChartToggle = () => {
     setShowChart(!showChart);
+    // admin 통계에서 사용할 데이터 관련
+    axios
+      .get("http://192.168.0.209:8090/user/all")
+      .then((response) => {
+        setAdminUserAll(response.data);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("http://192.168.0.209:8090/post")
+      .then((response) => {
+        setAdminPost(response.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleMenuItemClick = (event) => {
@@ -99,7 +115,9 @@ export default function Admin() {
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
             {showReport && <ReportedPosts />}
-            {showChart && <AdminChart />}
+            {showChart && (
+              <AdminChart adminUserAll={adminUserAll} adminPost={adminPost} />
+            )}
           </Content>
         </Layout>
       </Content>

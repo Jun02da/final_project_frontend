@@ -7,6 +7,7 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
+import axios from "axios";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 게스트 페이지입니다
@@ -179,11 +180,19 @@ export default function MypageGuest() {
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
-            proImageTest={proImage}
-            content={content}
+            proImage={proImage}
+            introduce={introduce}
+            userEmail={userEmail}
           />
         )}
-        {showMypageDashboard && <MypageDashboard />}
+        {showMypageDashboard && (
+          <MypageDashboard
+            visitCnt={visitCnt}
+            nickname={nickname}
+            likeCnt={likeCnt}
+            userEmail={userEmail}
+          />
+        )}
       </div>
       <Footer />
     </div>
