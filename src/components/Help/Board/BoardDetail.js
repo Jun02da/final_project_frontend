@@ -1,10 +1,29 @@
-import React from "react";
-import Header from "../../Layout/HelpHeader.js";
+import React, { useState, useEffect } from "react";
 import Footer from "../../Layout/footer.js";
 import { useLocation, useNavigate } from "react-router-dom";
+import Login from "../../../login.js";
+import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
+import "../../../css/HelpHeader.css";
 
 export function BoardDetail() {
+  const [isAdmin, setIsAdmin] = useState(
+    Boolean(localStorage.getItem("token") === "admin")
+  );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
+      setIsLoggedIn(Boolean(localStorage.getItem("token")));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+  function handleLoginSuccess() {
+    setIsAdmin(true);
+    setIsLoggedIn(true);
+  }
   // BoardItem에서 클릭한 데이터를 받음
   const location = useLocation();
   const notice_id = location.state.notice_id;
@@ -15,12 +34,55 @@ export function BoardDetail() {
 
   const movePage = useNavigate();
 
+  function goHome() {
+    movePage("/");
+  }
+  function goMemberShip() {
+    movePage("/membership");
+  }
+  function goMypage() {
+    movePage("/mypage");
+  }
   function goHelpUser() {
     movePage("/HelpUser");
   }
+  function goAdmin() {
+    movePage("/Admin");
+  }
   return (
     <div>
-      <Header />
+      <div id="SubHeaderLayout">
+        <div onClick={goHome} className="SubLogo">
+          PHOPO
+        </div>
+        <nav className="NavMenu">
+          <Login onLoginSuccess={handleLoginSuccess} />
+          {isLoggedIn ? null : (
+            <button onClick={goMemberShip} className="NavMenuTitle">
+              회원가입
+            </button>
+          )}
+          {isLoggedIn && (
+            <button onClick={goMypage} className="NavMenuTitle">
+              마이페이지
+            </button>
+          )}
+          <button onClick={goHelpUser} className="NavMenuTitle">
+            고객지원
+          </button>
+          {isAdmin && (
+            <button onClick={goAdmin} className="NavMenuTitle">
+              관리자페이지
+            </button>
+          )}
+        </nav>
+        <br />
+      </div>
+      <br />
+      {/* 고객지원 배너 이미지 */}
+      <div id="HelpHeaderBanner">
+        <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
+      </div>
       <div id="BoardDetailSection">
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
