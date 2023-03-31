@@ -92,6 +92,9 @@ function AdminChart({ adminUserAll, adminPost }) {
   // area변수 신규 사용자 부분
   var optionsArea = {
     chart: {
+      zoom: {
+        enabled: false,
+      },
       toolbar: {
         show: false,
       },
