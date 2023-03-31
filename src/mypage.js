@@ -195,7 +195,7 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider />}
+        {showMypageImgslider && <MypageImgslider userEmail={userEmail} />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}

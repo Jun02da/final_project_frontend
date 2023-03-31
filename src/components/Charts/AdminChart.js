@@ -1,10 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import "../../css/chart.css";
-// sampleData로 임시 import
-// import seriesBar from "./sampleData/seriesBar.json";
-// import seriesArea from "./sampleData/seriesArea.json";
-// import seriesPolarArea from "./sampleData/seriesPolarArea.json";
+import "../../css/adminChart.css";
 
 function AdminChart({ adminUserAll, adminPost }) {
   // 남여 비율 관련
@@ -28,12 +24,19 @@ function AdminChart({ adminUserAll, adminPost }) {
   });
   // 좋아요 관련
   var totalLikeCnt = 0;
+  var totalCreated_at = []; // 생성일 관련
   adminPost.map((e) => {
     if (e.likeCnt) {
       totalLikeCnt = totalLikeCnt + e.likeCnt;
+    } else if (e.created_at) {
+      totalCreated_at.push(e.created_at.substr(0, 10)); // 년만 짤라서 넣음
     }
   });
-  // // Bar 변수
+  const resultCreated_at = totalCreated_at.reduce((accu, curr) => {
+    accu[curr] = (accu[curr] || 0) + 1;
+    return accu;
+  }, {});
+  // // Bar 변수 조회수,좋아요,게시물 부분
   // var optionsBar = {
   //   chart: {
   //     toolbar: {
@@ -86,56 +89,28 @@ function AdminChart({ adminUserAll, adminPost }) {
       text: "No Data", // 데이터가 없는 경우
     },
   };
-  // // area변수
-  // var optionsArea = {
-  //   chart: {
-  //     toolbar: {
-  //       show: true,
-  //       tools: {
-  //         download: false,
-  //         zoom: true, // zoom기능을 메인기능으로 선정
-  //       },
-  //     },
-  //     width: "100%",
-  //   },
-  //   dataLabels: {
-  //     enabled: false, // 값 표시 X
-  //   },
-  //   stroke: {
-  //     curve: "straight", // 모서리 각지게
-  //   },
-  //   noData: {
-  //     text: "No Data", // 데이터가 없는 경우
-  //   },
-  // };
-  // // PolarArea 변수
-  // var optionsPolarArea = {
-  //   chart: {
-  //     width: "100%",
-  //   },
-  //   labels: [
-  //     "00:00 ~ 03:00",
-  //     "03:00 ~ 06:00",
-  //     "06:00 ~ 09:00",
-  //     "09:00 ~ 12:00",
-  //     "12:00 ~ 15:00",
-  //     "15:00 ~ 18:00",
-  //     "18:00 ~ 21:00",
-  //     "21:00 ~ 24:00",
-  //   ],
-  //   stroke: {
-  //     show: true,
-  //     colors: ["#fff"],
-  //     width: 2,
-  //   },
-  //   fill: {
-  //     opacity: 0.8, // 투명도
-  //   },
-  //   dataLabels: {
-  //     enabled: true, // 수치 표시
-  //   },
-  // };
-  // 그래프 옵션 관련
+  // area변수 신규 사용자 부분
+  var optionsArea = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+      width: "100%",
+    },
+    dataLabels: {
+      enabled: true, // 값 표시 X
+    },
+    stroke: {
+      curve: "straight", // 모서리 각지게
+    },
+    noData: {
+      text: "No Data", // 데이터가 없는 경우
+    },
+    xaxis: {
+      categories: Object.keys(resultCreated_at),
+    },
+  };
+  // ==== 조회수,좋아요,게시물 그래프 옵션 관련 ====
   var ViewsOptions = {
     chart: {
       toolbar: {
@@ -193,6 +168,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       enabled: true,
     },
   };
+  // ==== 전체 조회수 / 전체 좋아요 / 전체 게시물 데이터 ====
   let ViewData = [
     {
       name: "전체 데이터",
@@ -203,35 +179,30 @@ function AdminChart({ adminUserAll, adminPost }) {
       ],
     },
   ];
+  // ==== 신규 가입자 데이터 부분 ====
+  let SeriesCreated_at = [
+    {
+      name: "신규 가입자",
+      data: Object.values(resultCreated_at),
+    },
+  ];
 
   return (
     <div>
       <h1>통계</h1>
       <hr />
-      {/* <div id="chartArea">
-        <h3>이번주 방문자</h3>
-        <Chart options={optionsBar} series={totalDashboard} type="bar" />
-      </div> */}
       <div id="chartArea">
-        <h3>전체회원 남여비율</h3>
-        {/* donut 그래프 */}
+        <p>사용자 남여 비율</p>
         <Chart options={optionsDonut} series={totalGender} type="donut" />
       </div>
-      <div>
+      <div id="chartArea">
+        <p>신규 사용자</p>
+        <Chart options={optionsArea} series={SeriesCreated_at} type="area" />
+      </div>
+      <div id="chartArea">
+        <p>전체 데이터</p>
         <Chart options={ViewsOptions} series={ViewData} type="bar" />
       </div>
-      {/* <div id="chartArea">
-        <h3>전체 조회수</h3>
-        <Chart options={optionsArea} series={seriesArea} type="area" />
-      </div> */}
-      {/* <div id="chartArea">
-        <h3>방문 시간대</h3>
-        <Chart
-          options={optionsPolarArea}
-          series={seriesPolarArea}
-          type="polarArea"
-        />
-      </div> */}
     </div>
   );
 }

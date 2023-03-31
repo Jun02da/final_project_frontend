@@ -38,11 +38,15 @@ export default function Admin() {
     // admin 통계에서 사용할 데이터 관련
     axios
       .get("http://192.168.0.209:8090/user/all")
-      .then((response) => setAdminUserAll(response.data))
+      .then((response) => {
+        setAdminUserAll(response.data);
+      })
       .catch((err) => console.log(err));
     axios
       .get("http://192.168.0.209:8090/post")
-      .then((response) => setAdminPost(response.data))
+      .then((response) => {
+        setAdminPost(response.data);
+      })
       .catch((err) => console.log(err));
   };
 
