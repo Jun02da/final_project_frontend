@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import MypageImgslider from "./components/MypageImgslider";
+import MpImgSliderGuest from "./components/MpImgSliderGuest";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
 import "./css/mypage.css";
@@ -9,28 +9,28 @@ import Footer from "./components/Layout/footer";
 import Login from "./login";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
-// 마이페이지 유저 페이지입니다
-export default function Mypage() {
+// 마이페이지 게스트 페이지입니다
+export default function MypageGuest() {
   const location = useLocation();
-  const category = location.state ? location.state.category : null;
-  const content = location.state ? location.state.content : null;
-  const created_at = location.state ? location.state.created_at : null;
-  const postEmail = location.state ? location.state.email : null;
-  const image_url = location.state ? location.state.image_url : null;
-  const likeCnt = location.state ? location.state.likeCnt : null;
-  const modified_at = location.state ? location.state.modified_at : null;
-  const post_id = location.state ? location.state.post_id : null;
-  const birth = location.state ? location.state.birth : null;
-  const userEmail = location.state ? location.state.email : null;
-  const gender = location.state ? location.state.gender : null;
-  const introduce = location.state ? location.state.introduce : null;
-  const nickname = location.state ? location.state.nickname : null;
-  const password = location.state ? location.state.password : null;
-  const phone = location.state ? location.state.phone : null;
-  const proImage = location.state ? location.state.proImage : null;
-  const role = location.state ? location.state.role : null;
-  const visitCnt = location.state ? location.state.visitCnt : null;
-  const website = location.state ? location.state.website : null;
+  const category = location.state.category;
+  const content = location.state.content;
+  const created_at = location.state.created_at;
+  const postEmail = location.state.postEmail;
+  const image_url = location.state.image_url;
+  const likeCnt = location.state.likeCnt;
+  const modified_at = location.state.modified_at;
+  const post_id = location.state.post_id;
+  const birth = location.state.birth;
+  const userEmail = location.state.userEmail;
+  const gender = location.state.gender;
+  const introduce = location.state.introduce;
+  const nickname = location.state.nickname;
+  const password = location.state.password;
+  const phone = location.state.phone;
+  const proImage = location.state.proImage;
+  const role = location.state.role;
+  const visitCnt = location.state.visitCnt;
+  const website = location.state.website;
 
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
@@ -175,10 +175,7 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {/* 
-        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail}/>} */}
-        {showMypageImgslider && <MypageImgslider userEmail={userEmail} />}
-
+        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail} />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}

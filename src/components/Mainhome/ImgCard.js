@@ -59,6 +59,7 @@ export default function MasonryImageList() {
             <option value="Food">Food</option>
             <option value="Sports">Sports</option>
             <option value="Nature">Nature</option>
+            <option value="Person">Person</option>
           </select>
         </div>
 
@@ -70,7 +71,7 @@ export default function MasonryImageList() {
 
             function goMypage() {
               // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
-              movePage("/mypage", {
+              movePage("/MypageGuest", {
                 state: {
                   category: post.category,
                   content: post.content,
@@ -94,6 +95,7 @@ export default function MasonryImageList() {
                 },
               });
             }
+
             return (
               <ImageListItem key={index} className="banner_img">
                 <div onClick={goMypage}>
@@ -105,16 +107,12 @@ export default function MasonryImageList() {
                 {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
                 {/* 프로필 사진과 닉네임 */}
                 <ul className="hover_text" style={{ listStyleType: "none" }}>
-                  {user.profile_image && (
-                    <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
-                      <Avatar alt="icon" src={user.profile_image} />
-                    </li>
-                  )}
-                  {user.nickname && (
-                    <li style={{ float: "left", marginTop: 8 }}>
-                      <p>{user.nickname}</p>
-                    </li>
-                  )}
+                  <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
+                    <Avatar alt="icon" src={user.proImage} />
+                  </li>
+                  <li style={{ float: "left", marginTop: 8 }}>
+                    <p>{user.nickname}</p>
+                  </li>
                 </ul>
               </ImageListItem>
             );

@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper";
 import { Link } from "react-router-dom";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper";
-import ImageUploader from "./ImageUploader";
 import axios from "axios";
 
 import "swiper/css";
@@ -16,64 +15,34 @@ import "swiper/css/mousewheel";
 import "../css/MypageSlider.css";
 import "../css/Imguploadbtn.css";
 
-// 이미지 슬라이더 유저 버전입니다
-export default function MypageImgslider() {
+export default function MpImgSliderGuest({ userEmail }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-  const [email, setEmail] = useState("");
-
-  const handleUpload = async (newImages, text, category) => {
-    const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
-    setImageUrls([...imageUrls, ...newImageUrls]);
-
-    const formData = new FormData();
-    newImages.forEach((image) => {
-      formData.append("file", image);
-    });
-    formData.append("content", text); // 텍스트 데이터 추가
-    formData.append("category", category); // 카테고리 데이터 추가
-
-    try {
-      await axios.post("http://192.168.0.209:8090/post/add", formData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchImages = async () => {
-    try {
-      const responseEmail = await axios.get(
-        "http://192.168.0.209:8090/user/me"
-      );
-      const email = responseEmail.data.email;
-      setEmail(email);
-      const responseImages = await axios.get(
-        `http://192.168.0.209:8090/post/email/${email}`
-      );
-
-      const urls = responseImages.data.map((post) => post.image_url);
-      setImageUrls(urls);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const responseImages = await axios.get(
+          `http://192.168.0.209:8090/post`
+        );
+        const posts = responseImages.data.filter(
+          (post) => post.email === userEmail
+        );
+        const urls = posts.map((post) => post.image_url);
+        setImageUrls(urls);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchImages();
-  }, []);
+  }, [userEmail]);
 
   return (
     <>
-      {/* 업로드 버튼 */}
-      <button className="floating">
-        <ImageUploader onUpload={handleUpload} />
-      </button>
-
       <div className="MySwiperTop">
         <Swiper
           spaceBetween={10}
           loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }} //자동으로 사진 넘겨주는 슬라이드기능
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           effect="fade"
           thumbs={{
             swiper:
@@ -82,17 +51,16 @@ export default function MypageImgslider() {
           modules={[FreeMode, Navigation, Thumbs, Autoplay, EffectFade]}
           className="mySwiper2"
         >
-          {/* 업로드된 이미지 보여주기 */}
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
-              <Link to="/detail" state={{ email }}>
+              <Link to="/detail">
                 <img src={imageUrl} alt={`Imagefile ${index}`} />
               </Link>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-      {/* 하단 미리보기 이미지 부분 */}
+
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
@@ -103,7 +71,6 @@ export default function MypageImgslider() {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {/* 업로드된 이미지 보여주기 */}
         {imageUrls.map((imageUrl, index) => (
           <SwiperSlide key={index}>
             <img src={imageUrl} alt={`Imagefile ${index}`} />

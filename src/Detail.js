@@ -1,10 +1,14 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import Feed from "./components/Feed";
+import { useLocation } from "react-router-dom";
 
 export default function Main() {
   const [commentData, setCommentData] = useState([]);
   const [feedData, setFeedData] = useState([]);
+
+  const location = useLocation();
+  console.log(location.state["email"]);
 
   // useEffect(() => {
   //   const fetchData = async () => {

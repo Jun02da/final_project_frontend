@@ -3,6 +3,7 @@ import Home from "./home";
 import Membership from "./membership";
 import Detail from "./Detail";
 import Mypage from "./mypage";
+import MypageGuest from "./mypageGuest ";
 import Admin from "./components/Admin";
 import HelpUser from "./HelpUser";
 import BoardDetail from "./components/Help/Board/BoardDetail";
@@ -17,6 +18,7 @@ export default function App() {
           <Route path={"/membership"} element={<Membership />}></Route>
           <Route path={"/detail"} element={<Detail />}></Route>
           <Route path={"/mypage"} element={<Mypage />}></Route>
+          <Route path={"/MypageGuest"} element={<MypageGuest />}></Route>
           <Route path={"/Admin"} element={<Admin />}></Route>
           <Route path={"/HelpUser"} element={<HelpUser />}></Route>
           <Route path={"/BoardDetail"} element={<BoardDetail />}></Route>

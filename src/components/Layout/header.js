@@ -26,7 +26,6 @@ export default function Header() {
   function goMypage() {
     movePage("/mypage");
   }
-
   function goHelpUser() {
     movePage("/HelpUser");
   }

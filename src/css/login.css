@@ -4,7 +4,7 @@
 
 .login_modal {
   width: 20vw;
-  height: 40vh;
+  height: 38vh;
   min-width: 300px;
   min-height: 300px;
   position: absolute;
@@ -25,6 +25,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+.login_button_container {
+  position: relative;
 }
 
 .login_button {
@@ -78,6 +81,8 @@
 .Membership_Text {
   margin-top: 30px;
   font-size: 11px;
+  position: absolute;
+  bottom: -20px;
 }
 
 .MemberShip_Btn {

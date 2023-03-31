@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./css/membership.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,21 +10,7 @@ export default function MemberShip() {
   const [Memberpassword1, setMemberPassword1] = useState("");
   const [Username, setUserName] = useState("");
   const [Userphonenumber, setUserPhoneNumber] = useState("");
-  const [isAdmin, setIsAdmin] = useState(
-    Boolean(localStorage.getItem("token") === "admin")
-  );
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
-
-  function handleLoginSuccess() {
-    localStorage.setItem("token");
-    setIsAdmin(true);
-  }
   const movePage = useNavigate();
 
   function goHome() {
@@ -34,9 +20,7 @@ export default function MemberShip() {
   function goBoard() {
     movePage("/Board");
   }
-  function goAdmin() {
-    movePage("/Admin");
-  }
+
   const onMemberemail = (e) => {
     setMemberEmail(e.target.value);
   };
@@ -67,9 +51,11 @@ export default function MemberShip() {
 
   const onSubmit1 = async (e) => {
     e.preventDefault();
+
     if (!passwordValid()) {
       return;
     }
+
     try {
       const response = await axios.post("http://192.168.0.209:8090/signup", {
         email: Memberemail,
@@ -77,6 +63,7 @@ export default function MemberShip() {
         nickname: Username,
         phone: Userphonenumber,
       });
+
       if (response.status === 201) {
         goHome();
       }
@@ -88,19 +75,19 @@ export default function MemberShip() {
       }
     }
   };
+
   return (
     <div className="membership_page">
       <nav className="NavMenu">
-        <Login onLoginSuccess={handleLoginSuccess} />
+        <Login />
+        <button onClick={goHome} className="NavMenuTitle">
+          홈
+        </button>
         <button onClick={goBoard} className="NavMenuTitle">
           고객지원
         </button>
-        {isAdmin && (
-          <button onClick={goAdmin} className="NavMenuTitle">
-            관리자페이지
-          </button>
-        )}
       </nav>
+
       <form className="membership_form" onSubmit={onSubmit1}>
         <h1 onClick={goHome}>P H O P O</h1>
         <h2>회원가입</h2>
@@ -128,6 +115,7 @@ export default function MemberShip() {
             onChange={onMemberpassword}
           />
         </div>
+
         <div>
           <input
             type="password"

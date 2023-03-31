@@ -1,31 +1,97 @@
-import React, { useState } from "react";
-import { deleteAccount } from "../utils/api";
+import React, { useState, useEffect } from "react";
+import { Button, Modal, Table } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import axios from "axios";
 
-function AccountDelete() {
-  const [username, setUsername] = useState("");
+export default function AccountDelete() {
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleDelete = async (event) => {
-    event.preventDefault();
-    await deleteAccount(username);
-    setUsername("");
+  useEffect(() => {
+    fetchUsers().then((data) => setUsers(data));
+  }, []);
+  const fetchUsers = async () => {
+    try {
+      const token = localStorage.getItem("token"); // 토큰을 로컬 스토리지에서 가져옴
+      const response = await axios.get("http://192.168.0.209:8090/user/all", {
+        headers: {
+          Authorization: `Bearer ${token}`, // 토큰을 요청 헤더에 포함
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+  const handleDeleteClick = (user) => {
+    setSelectedUser(user);
+    setModalVisible(true);
   };
 
+  const handleDeleteUser = () => {
+    if (!selectedUser) return;
+    handleAccountDelete(selectedUser.email);
+    setUsers(users.filter((user) => user.email !== selectedUser.email));
+    setSelectedUser(null);
+    setModalVisible(false);
+  };
+  const handleAccountDelete = async (email) => {
+    try {
+      const token = localStorage.getItem("token"); // 토큰을 로컬 스토리지에서 가져옴
+      await axios.delete(`http://192.168.0.209:8090/user/${email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // 토큰을 요청 헤더에 포함
+        },
+      });
+      console.log(`User ${email} deleted`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const columns = [
+    {
+      title: "닉네임",
+      dataIndex: "nickname",
+      key: "nickname",
+    },
+    {
+      title: "이메일",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "삭제",
+      key: "delete",
+      render: (user) => (
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => handleDeleteClick(user)}
+        >
+          삭제
+        </Button>
+      ),
+    },
+  ];
+
   return (
-    <div className="AccountDelete">
+    <div>
       <h2>계정 삭제</h2>
-      <form onSubmit={handleDelete}>
-        <label>
-          삭제할 계정의 사용자 ID:
-          <input
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-        <button type="submit">삭제</button>
-      </form>
+      <Table dataSource={users} columns={columns} />
+      <Modal
+        title="경고"
+        visible={modalVisible}
+        onOk={handleDeleteUser}
+        onCancel={() => setModalVisible(false)}
+        okText="확인"
+        cancelText="취소"
+      >
+        <p>
+          "{selectedUser ? selectedUser.email : ""}"의 계정을 삭제하시겠습니까?
+        </p>
+      </Modal>
     </div>
   );
 }
-
-export default AccountDelete;
