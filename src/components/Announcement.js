@@ -5,6 +5,7 @@ import {
   deleteAnnouncement,
   editAnnouncement,
 } from "../utils/api";
+import AnnouncementDetails from "./AnnouncementDetails";
 
 function Announcement() {
   const [title, setTitle] = useState("");
@@ -12,16 +13,28 @@ function Announcement() {
   const [announcements, setAnnouncements] = useState([]);
   const [showList, setShowList] = useState(false);
   const [editingAnnouncement, setEditingAnnouncement] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
 
+  const handleShowDetails = (announcement) => {
+    setSelectedAnnouncement(announcement);
+    setShowDetails(true);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const response = await addAnnouncement(title, announcement, token);
-      console.log(response);
-      setTitle("");
-      setAnnouncement("");
-      alert("등록이 완료되었습니다.");
+      if (editingAnnouncement) {
+        await editAnnouncement(editingAnnouncement, title, announcement, token);
+        alert("수정이 완료되었습니다.");
+        setEditingAnnouncement(null);
+      } else {
+        const response = await addAnnouncement(title, announcement, token);
+        console.log(response);
+        setTitle("");
+        setAnnouncement("");
+        alert("등록이 완료되었습니다.");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -38,19 +51,13 @@ function Announcement() {
       console.error(error);
     }
   };
-  const handleEditAnnouncement = async (event) => {
-    event.preventDefault();
-    try {
-      const token = localStorage.getItem("token");
-      await editAnnouncement(editingAnnouncement, title, announcement, token);
-      setTitle("");
-      setAnnouncement("");
-      setEditingAnnouncement(null);
-      alert("수정이 완료되었습니다.");
-    } catch (error) {
-      console.error(error);
-    }
+
+  const handleEditAnnouncement = (announcement) => {
+    setEditingAnnouncement(announcement);
+    setTitle(announcement.title);
+    setAnnouncement(announcement.content);
   };
+
   const handleToggleList = () => {
     setShowList(!showList);
   };
@@ -66,17 +73,11 @@ function Announcement() {
     };
     fetchAnnouncements();
   }, []);
-  const handleEditClick = (announcement) => {
-    setEditingAnnouncement(announcement);
-    setTitle(announcement.title);
-    setAnnouncement(announcement.content);
-  };
+
   return (
     <div className="Announcement">
       <h2>공지사항</h2>
-      <form
-        onSubmit={editingAnnouncement ? handleEditAnnouncement : handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <label>
           제목:
           <input
@@ -93,47 +94,76 @@ function Announcement() {
             onChange={(event) => setAnnouncement(event.target.value)}
           />
         </label>
-        <button type="submit">
-          {editingAnnouncement ? "수정하기" : "등록"}
-        </button>
-        {editingAnnouncement && (
-          <button type="button" onClick={() => setEditingAnnouncement(null)}>
-            취소
+        <div className="form-buttons">
+          <button type="submit">
+            {editingAnnouncement ? "수정하기" : "등록"}
           </button>
-        )}
+          {editingAnnouncement && (
+            <button type="button" onClick={() => setEditingAnnouncement(null)}>
+              취소
+            </button>
+          )}
+        </div>
       </form>
-      <h3>
-        공지사항 목록{" "}
-        <button onClick={handleToggleList}>
-          {showList ? "목록 숨기기" : "목록 보이기"}
-        </button>
-      </h3>
-      {showList && ( // showList가 true일 때만 목록을 표시하도록 함
+      <button className="announcement-list" onClick={handleToggleList}>
+        {showList ? "공지사항 숨기기" : "공지사항 리스트"}
+      </button>
+      {!editingAnnouncement && (
         <>
-          <ul>
-            {announcements.map((announcement) => (
-              <div key={announcement.id} className="announcement-item">
-                <h4>{announcement.title}</h4>
-                <button onClick={() => handleDeleteAnnouncement(announcement)}>
-                  삭제
-                </button>
-                <button onClick={() => handleEditClick(announcement)}>
-                  수정
-                </button>
-                <p className="announcement_content">{announcement.content}</p>
-                <div className="announcement_at">
-                  <span>
-                    생성일: {new Date(announcement.created_at).toLocaleString()}
-                  </span>
-                  &nbsp;&nbsp;&nbsp;
-                  <span>
-                    수정일:
-                    {new Date(announcement.modified_at).toLocaleString()}
-                  </span>
+          {showList && (
+            <ul>
+              {announcements.map((announcement) => (
+                <div key={announcement.id} className="announcement-box">
+                  <h4
+                    className="Announcement-title"
+                    onClick={() => handleShowDetails(announcement)}
+                  >
+                    {announcement.title}
+                  </h4>
+                  <div className="">
+                    <button
+                      className="announcement-list-btn"
+                      onClick={() => {
+                        handleShowDetails(announcement);
+                      }}
+                    >
+                      자세히 보기
+                    </button>
+                    <button
+                      className="announcement-list-btn"
+                      onClick={() => handleEditAnnouncement(announcement)}
+                    >
+                      수정
+                    </button>
+                    <button
+                      className="announcement-list-btn"
+                      onClick={() => handleDeleteAnnouncement(announcement)}
+                    >
+                      삭제
+                    </button>
+                    <div className="announcement_at">
+                      <span>
+                        생성일:{" "}
+                        {new Date(announcement.created_at).toLocaleString()}
+                      </span>
+                      &nbsp;&nbsp;&nbsp;
+                      <span>
+                        수정일:
+                        {new Date(announcement.modified_at).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          )}
+          {showDetails && (
+            <AnnouncementDetails
+              announcement={selectedAnnouncement}
+              isOpen={showDetails}
+              onClose={() => setShowDetails(false)}
+            />
+          )}
         </>
       )}
     </div>
