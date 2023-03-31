@@ -8,7 +8,9 @@ export default function Main() {
   const [feedData, setFeedData] = useState([]);
 
   const location = useLocation();
-  console.log(location.state["email"]);
+  console.log(location.state["postAll"]);
+  console.log(location.state["userAll"]);
+  console.log(location.state["location"]);
 
   // useEffect(() => {
   //   const fetchData = async () => {

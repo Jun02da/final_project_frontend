@@ -20,7 +20,9 @@ import "../css/Imguploadbtn.css";
 export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
+  const [userAll, setUserAll] = useState([]);
+  const [postAll, setPostAll] = useState([]);
 
   const handleUpload = async (newImages, text, category) => {
     const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
@@ -39,16 +41,19 @@ export default function MypageImgslider() {
       console.error(error);
     }
   };
-
+  // 이미지 슬라이더에 사용자 자신에 사진을 보여준다
   const fetchImages = async () => {
     try {
       const responseEmail = await axios.get(
         "http://192.168.0.209:8090/user/me"
       );
       const email = responseEmail.data.email;
-      setEmail(email);
+      const userAll = responseEmail.data;
+
+      setUserAll(userAll);
+
       const responseImages = await axios.get(
-        `http://192.168.0.209:8090/post/email/${email}`
+        `http://192.168.0.209:8090/post/email/${userAll.email}`
       );
 
       const urls = responseImages.data.map((post) => post.image_url);
@@ -61,7 +66,28 @@ export default function MypageImgslider() {
   useEffect(() => {
     fetchImages();
   }, []);
+  // user정보와 post 정보를 한번에 detail 페이지로 보내기 위해 만들어짐
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const responsePostId = await axios.get(
+          "http://192.168.0.209:8090/user/me"
+        );
+        const alldata = responsePostId.data;
+        const responsePost = await axios.get(
+          `http://192.168.0.209:8090/post/email/${alldata.email}`
+        );
+        const postAll = responsePost.data;
+        setPostAll(postAll);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    fetchPost();
+  }, []);
+  console.log(postAll);
+  console.log(userAll);
   return (
     <>
       {/* 업로드 버튼 */}
@@ -85,7 +111,8 @@ export default function MypageImgslider() {
           {/* 업로드된 이미지 보여주기 */}
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
-              <Link to="/detail" state={{ email }}>
+              <Link to="/detail" state={{ userAll, postAll }}>
+                {/* <Link to="/detail" state={{ email }}> */}
                 <img src={imageUrl} alt={`Imagefile ${index}`} />
               </Link>
             </SwiperSlide>
