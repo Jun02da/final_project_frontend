@@ -204,7 +204,9 @@ export default function Mypage() {
             userEmail={userEmail}
           />
         )}
-        {showMypageDashboard && <MypageDashboard />}
+        {showMypageDashboard && (
+          <MypageDashboard visitCnt={visitCnt} nickname={nickname} />
+        )}
       </div>
       <Footer />
     </div>

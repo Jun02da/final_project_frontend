@@ -28,7 +28,6 @@ export default function MasonryImageList() {
       setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
     });
   }, []);
-  
 
   //카테고리로 사진 걸러서 받기
   const filteredData =
@@ -96,7 +95,7 @@ export default function MasonryImageList() {
                 },
               });
             }
-            
+
             return (
               <ImageListItem key={index} className="banner_img">
                 <div onClick={goMypage}>
@@ -108,16 +107,13 @@ export default function MasonryImageList() {
                 {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
                 {/* 프로필 사진과 닉네임 */}
                 <ul className="hover_text" style={{ listStyleType: "none" }}>
-                  
-                    <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
-                      <Avatar alt="icon" src={user.proImage} />
-                    </li>
-                  
-                  
-                    <li style={{ float: "left", marginTop: 8 }}>
-                      <p>{user.nickname}</p>
-                    </li>
-                  
+                  <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
+                    <Avatar alt="icon" src={user.proImage} />
+                  </li>
+
+                  <li style={{ float: "left", marginTop: 8 }}>
+                    <p>{user.nickname}</p>
+                  </li>
                 </ul>
               </ImageListItem>
             );
