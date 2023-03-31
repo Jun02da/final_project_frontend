@@ -7,10 +7,10 @@ import "../../../css/BoardDetail.css";
 export function BoardDetail() {
   // BoardItem에서 클릭한 데이터를 받음
   const location = useLocation();
-  const id = location.state.id;
+  const notice_id = location.state.notice_id;
   const title = location.state.title;
-  const createdAt = location.state.createdAt;
-  const name = location.state.name;
+  const created_at = location.state.created_at;
+  const modified_at = location.state.modified_at;
   const content = location.state.content;
 
   const movePage = useNavigate();
@@ -25,10 +25,10 @@ export function BoardDetail() {
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>
-        <div id="BoardDetailSectionContent" key={id}>
+        <div id="BoardDetailSectionContent" key={notice_id}>
           <div id="BoardDetailTitle">{title}</div>
-          <div id="BoardDetailName">글쓴이: {name}</div>
-          <div id="BoardDetailCreateAt">작성일: {createdAt}</div>
+          <div id="BoardDetailCreateAt">작성일: {created_at}</div>
+          <div id="BoardDetailCreateAt">수정일: {modified_at}</div>
           <hr />
           <div id="BoardDetailContent">{content}</div>
         </div>

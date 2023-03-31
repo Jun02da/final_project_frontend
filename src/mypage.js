@@ -90,7 +90,7 @@ export default function Mypage() {
   function goAdmin() {
     movePage("/Admin");
   }
-  const userName = "Han Yongjae";
+  const userName = nickname;
 
   return (
     <div>
@@ -174,9 +174,7 @@ export default function Mypage() {
           </Button>
         </div>
         {/* 한줄소개 */}
-        <p className="AboutMe">
-        {introduce}
-        </p>
+        <p className="AboutMe">{introduce}</p>
         {/* Dashboard 페이지로 이동 추가 */}
         <div className="stat_set">
           <div className="stat" onClick={onlyShowMypageDashboard}>
@@ -197,7 +195,7 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider/>}
+        {showMypageImgslider && <MypageImgslider />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
