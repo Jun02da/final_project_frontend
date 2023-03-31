@@ -16,13 +16,13 @@ export default function Mypage() {
   const category = location.state.category;
   const content = location.state.content;
   const created_at = location.state.created_at;
-  const postEmail = location.state.email;
+  const postEmail = location.state.postEmail;
   const image_url = location.state.image_url;
   const likeCnt = location.state.likeCnt;
   const modified_at = location.state.modified_at;
   const post_id = location.state.post_id;
   const birth = location.state.birth;
-  const userEmail = location.state.email;
+  const userEmail = location.state.userEmail;
   const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
@@ -205,7 +205,12 @@ export default function Mypage() {
           />
         )}
         {showMypageDashboard && (
-          <MypageDashboard visitCnt={visitCnt} nickname={nickname} />
+          <MypageDashboard
+            visitCnt={visitCnt}
+            nickname={nickname}
+            likeCnt={likeCnt}
+            userEmail={userEmail}
+          />
         )}
       </div>
       <Footer />
