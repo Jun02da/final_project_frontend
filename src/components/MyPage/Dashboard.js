@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Chart from "../Charts/MyPageChart.js";
+import axios from "axios";
 
 export default function Dashboard({ visitCnt, nickname, likeCnt, userEmail }) {
-  // // 좋아요 현황 조회 가져오기
-  // axios
-  //   .get("http://192.168.0.209:8090/like")
-  //   .then((response) => {
-  //     console.log(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
-  //   })
-  //   .catch((err) => console.log(err));
-  var contentCnt = 149;
+  const [contentCnt, setContentCnt] = useState([]);
+  axios
+    .get(`http://192.168.0.209:8090/post/email/${userEmail}`)
+    .then((response) => {
+      setContentCnt(response.data.length);
+    })
+    .catch((err) => console.log(err));
   return (
     <div>
       <Chart
@@ -17,7 +17,6 @@ export default function Dashboard({ visitCnt, nickname, likeCnt, userEmail }) {
         likeCnt={likeCnt}
         contentCnt={contentCnt}
         nickname={nickname}
-        userEmail={userEmail}
       />
     </div>
   );
