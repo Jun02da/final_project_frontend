@@ -9,7 +9,7 @@ function MyPageChart({ visitCnt, likeCnt, contentCnt, nickname }) {
       data: [
         { x: "전체 조회수", y: visitCnt },
         { x: "전체 좋아요", y: likeCnt },
-        { x: "전체 게시물", y: contentCnt },
+        { x: "전체 게시물", y: contentCnt + 1 }, // 0이면 오류남
       ],
     },
   ];
