@@ -1,6 +1,10 @@
 import { React, useState } from "react";
 import axios from "axios";
 
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+
 const CommentInputLine = ({
   feedData,
   commentData,
@@ -9,27 +13,23 @@ const CommentInputLine = ({
   setComment,
 }) => {
   const [commentValue, setCommentValue] = useState("");
-  const [nextId, setNextId] = useState(560);
   const onChange = (e) => {
     setCommentValue(e.target.value);
   };
   const onSubmit = (e) => {
     e.preventDefault();
     if (commentValue === "") return;
-    addComment(feedNum, commentValue, nextId);
+    addComment(feedNum, commentValue);
   };
-  const addComment = async (feedNum, commentValue, nextId) => {
+  const addComment = async (feedNum, commentValue) => {
     axios
-      .post(`https://jsonplaceholder.typicode.com/comments`, {
-        postId: feedNum,
-        id: nextId,
-        name: "로그인한 닉네임",
-        body: commentValue,
+      .post(`http://192.168.0.209:8090/comment/${feedNum}`, {
+        post_id: feedNum,
+        content: commentValue,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setCommentData([...commentData, response.data]);
-        setNextId(nextId + 1);
         setCommentValue("");
       })
       .catch((error) => {
@@ -39,15 +39,24 @@ const CommentInputLine = ({
   };
 
   return (
-    <form className="commentLine" onSubmit={onSubmit}>
-      <input
-        type="text"
-        placeholder="add on comment..."
-        className="comment"
-        value={commentValue}
-        onChange={onChange}
-      />
-      <button type="submit">comment</button>
+    <form onSubmit={onSubmit}>
+      <InputGroup className="lg">
+        <Form.Control
+          placeholder="Recipient's username"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+          value={commentValue}
+          onChange={onChange}
+        />
+        <Button
+          variant="outline-secondary"
+          id="button-addon2"
+          type="submit"
+          style={{ height: "35px", marginRight: "15px" }}
+        >
+          Comment
+        </Button>
+      </InputGroup>
     </form>
   );
 };

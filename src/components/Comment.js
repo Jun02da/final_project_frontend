@@ -1,7 +1,9 @@
 import { React, useState } from "react";
 import axios from "axios";
-import Like from "./Like";
+// import Like from "./Like";
 import GetFormattedDate from "../utils/FormatDate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Comment = ({
   userData,
@@ -11,16 +13,32 @@ const Comment = ({
   setCommentData,
 }) => {
   const [showFullComments, setShowingFullComments] = useState(false);
-  const comment = commentData.filter((comment) => comment.postId === feedNum);
 
-  async function deleteComment(id) {
+  const comment = commentData.filter((comment) => comment.post_id === feedNum);
+
+  async function deleteComment(comment_id) {
     await axios
-      .delete(`https://jsonplaceholder.typicode.com/comments/${id}`)
+      .delete(`http://192.168.0.209:8090/comment/${comment_id}`)
       .then(() =>
-        setCommentData(commentData.filter((comment) => comment.id !== id))
+        setCommentData(
+          commentData.filter((comment) => comment.comment_id !== comment_id)
+        )
       )
       .catch((error) => console.error(error));
   }
+  // const displayCreatedAt = (createdAt) => {
+  //     let startTime = new Date(createdAt);
+  //     let nowTime = Date.now();
+  //     if (parseInt(startTime - nowTime) > -60000) {
+  //       return <Moment format="방금 전">{startTime}</Moment>;
+  //     }
+  //     if (parseInt(startTime - nowTime) < -86400000) {
+  //       return <Moment format="MMM D일">{startTime}</Moment>;
+  //     }
+  //     if (parseInt(startTime - nowTime) > -86400000) {
+  //       return <Moment fromNow>{startTime}</Moment>;
+  //     }
+  //   };
 
   return comment?.length >= 1 ? (
     <div>
@@ -42,30 +60,27 @@ const Comment = ({
             ?.slice(0, !showFullComments ? 4 : comment.length)
             ?.map((el, i) => {
               return (
-                el.postId === feedNum && (
-                  <div key={i}>
+                el.post_id === feedNum && (
+                  <div className="comment" key={i}>
                     <span className="id">
-                      <strong>{el.name}</strong>
+                      <strong>{el.nickname}</strong>
+                      &nbsp;&nbsp;
+                      {el.content}
                     </span>
-                    {el.body}
-                    <div className="commentImage">
-                      <Like />
-                      {feedData?.postDate && (
-                        <span>
-                          <GetFormattedDate
-                            date={el?.commentDate?.seconds}
-                            ago
-                          />
-                        </span>
-                      )}
-                      {/* 로그인 한 유저 id와 댓글의 id가 같아야지만 삭제가 가능 */}
-                      {
-                        // el?.user_id === userData.user_id &&
-                        <button onClick={() => deleteComment(el.id)}>
-                          Delete
-                        </button>
-                      }
-                    </div>
+                    &nbsp;
+                    <span>
+                      <GetFormattedDate date={el?.created_at?.seconds} />
+                      <span className="commentImage">
+                        {/* 로그인 한 유저 id와 댓글의 id가 같아야지만 삭제가 가능 */}
+                        {/* // el?.user_id === userData.user_id && */}
+                        &nbsp;&nbsp;
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          onClick={() => deleteComment(el.comment_id)}
+                        />
+                      </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
                   </div>
                 )
               );

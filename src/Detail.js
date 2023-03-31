@@ -1,17 +1,15 @@
-import { React, useState, useEffect } from "react";
-import axios from "axios";
-import Feed from "./components/Feed";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import Post from "./components/Post";
+import Header from "./components/Layout/postHeader";
+// import { useLocation } from "react-router-dom";
+// import "./css/MyPageHeader.css";
 
-export default function Main() {
-  const [commentData, setCommentData] = useState([]);
-  const [feedData, setFeedData] = useState([]);
-
-  const location = useLocation();
-  console.log(location.state["postAll"]);
-  console.log(location.state["userAll"]);
-  console.log(location.state["location"]);
-
+import "./css/Detail.css";
+export default function Detail({ email }) {
+  // const location = useLocation();
+  // console.log(location.state["postAll"]);  ---> 한용재 수정 내용 (mypage에서 정보전달)
+  // console.log(location.state["userAll"]);
+  // console.log(location.state["location"]);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     await axios
@@ -22,34 +20,11 @@ export default function Main() {
   //   fetchData();
   // }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get("https://jsonplaceholder.typicode.com/comments")
-        .then((response) => setCommentData(response.data))
-        .catch((error) => console.error(error));
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await axios
-        .get("http://localhost:3000/data/feedData.json")
-        .then((response) => setFeedData(response.data))
-        .catch((error) => console.error(error));
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="main">
       <div className="body">
-        <Feed
-          feedData={feedData}
-          commentData={commentData}
-          setCommentData={setCommentData}
-        />
+        <Header />
+        <Post email={email} />
       </div>
     </div>
   );

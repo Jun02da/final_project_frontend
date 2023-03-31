@@ -20,9 +20,9 @@ const ContentShowMore = ({ content }) => {
   return (
     <span>
       {commenter}
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <span onClick={() => setIsShowMore(!isShowMore)}>
-        {content.length > textLimit.current &&
-          (isShowMore ? "닫기" : "...더보기")}
+        {content.length > textLimit.current && (isShowMore ? "" : "...더보기")}
       </span>
     </span>
   );
