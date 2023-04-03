@@ -22,6 +22,19 @@ function AdminChart({ adminUserAll, adminPost }) {
       totalVisitCnt = totalVisitCnt + e.visitCnt;
     }
   });
+  // 팔로우 관련
+  var totalFollowerCnt = 0;
+  var totalFollowingCnt = 0;
+  adminUserAll.map((e) => {
+    if (e.followerCnt) {
+      totalFollowerCnt = totalFollowerCnt + e.followerCnt;
+    }
+  });
+  adminUserAll.map((e) => {
+    if (e.followingCnt) {
+      totalFollowingCnt = totalFollowingCnt + e.followingCnt;
+    }
+  });
   // 좋아요 관련
   var totalLikeCnt = 0;
   var totalCreated_at = []; // 생성일 관련
@@ -176,9 +189,11 @@ function AdminChart({ adminUserAll, adminPost }) {
     {
       name: "전체 데이터",
       data: [
-        { x: "전체 조회수", y: totalVisitCnt },
-        { x: "전체 좋아요", y: totalLikeCnt },
-        { x: "전체 게시물", y: adminPost.length },
+        { x: "조회수", y: totalVisitCnt },
+        { x: "좋아요", y: totalLikeCnt },
+        { x: "팔로우 받은 수", y: totalFollowerCnt },
+        { x: "팔로우 한 수", y: totalFollowingCnt },
+        { x: "게시물", y: adminPost.length },
       ],
     },
   ];

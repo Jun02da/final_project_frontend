@@ -22,6 +22,8 @@ export default function MypageGuest() {
   const post_id = location.state.post_id;
   const birth = location.state.birth;
   const userEmail = location.state.userEmail;
+  const followerCnt = location.state.followerCnt;
+  const followingCnt = location.state.followingCnt;
   const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
@@ -216,7 +218,16 @@ export default function MypageGuest() {
             userEmail={userEmail}
           />
         )}
-        {showMypageDashboard && <MypageDashboard />}
+        {showMypageDashboard && (
+          <MypageDashboard
+            visitCnt={visitCnt}
+            nickname={nickname}
+            likeCnt={likeCnt}
+            userEmail={userEmail}
+            followerCnt={followerCnt}
+            followingCnt={followingCnt}
+          />
+        )}
       </div>
       <Footer />
     </div>

@@ -71,7 +71,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
     })
     .catch((err) => console.log(err));
   if (realMine === userEmail) {
-    setThisIsFalse(!thisIsFalse);
+    setThisIsFalse(true);
   }
   // ==== 편집 버튼 부분 ====
   function BioEditButton() {

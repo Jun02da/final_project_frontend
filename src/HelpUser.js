@@ -95,7 +95,6 @@ export default function HelpUser() {
         </nav>
         <br />
       </div>
-      <br />
       {/* 고객지원 배너 이미지 */}
       <div id="HelpHeaderBanner">
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />

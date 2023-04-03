@@ -19,14 +19,20 @@ export default function MasonryImageList() {
 
   useEffect(() => {
     //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
-    axios.get("http://192.168.0.209:8090/post").then((response) => {
-      const data = response.data;
-      setPostData(data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
-    });
+    axios
+      .get("http://192.168.0.209:8090/post")
+      .then((response) => {
+        const data = response.data;
+        setPostData(data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
+      })
+      .catch((err) => console.log(err));
     //user 테이블에서 프로필 사진과 닉네임 가져오기
-    axios.get("http://192.168.0.209:8090/user/all").then((response) => {
-      setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
-    });
+    axios
+      .get("http://192.168.0.209:8090/user/all")
+      .then((response) => {
+        setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   //카테고리로 사진 걸러서 받기
@@ -83,6 +89,8 @@ export default function MasonryImageList() {
                   post_id: post.post_id,
                   birth: user.birth,
                   userEmail: user.email,
+                  followerCnt: user.followerCnt,
+                  followingCnt: user.followingCnt,
                   gender: user.gender,
                   introduce: user.introduce,
                   nickname: user.nickname,

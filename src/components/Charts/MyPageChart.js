@@ -1,15 +1,45 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import "../../css/Dashboard.css";
-function MyPageChart({ visitCnt, likeCnt, contentCnt, nickname }) {
+function MyPageChart({
+  visitCnt,
+  likeCnt,
+  contentCnt,
+  nickname,
+  followerCnt,
+  followingCnt,
+}) {
   // 그래프 데이터 관련
+  // undefined가 그래프에 들어가면 오류발생
+  var content = 0;
+  var like = 0;
+  var visit = 0;
+  var follower = 0;
+  var following = 0;
+  if (contentCnt) {
+    content += contentCnt;
+  }
+  if (likeCnt) {
+    like += likeCnt;
+  }
+  if (visitCnt) {
+    visit += visitCnt;
+  }
+  if (followerCnt) {
+    follower += followerCnt;
+  }
+  if (followingCnt) {
+    following += followingCnt;
+  }
   let ViewData = [
     {
       name: nickname + "님의 정보",
       data: [
-        { x: "전체 조회수", y: visitCnt },
-        { x: "전체 좋아요", y: likeCnt },
-        { x: "전체 게시물", y: contentCnt + 1 }, // 0이면 오류남
+        { x: "전체 조회수", y: visit },
+        { x: "전체 게시물", y: content },
+        { x: "전체 좋아요", y: like },
+        { x: "팔로우 받은 수", y: follower },
+        { x: "팔로우 한 수", y: following },
       ],
     },
   ];

@@ -22,6 +22,8 @@ export default function Mypage() {
   const post_id = location.state ? location.state.post_id : null;
   const birth = location.state ? location.state.birth : null;
   const userEmail = location.state ? location.state.email : null;
+  const followerCnt = location.state ? location.state.followerCnt : null;
+  const followingCnt = location.state ? location.state.followingCnt : null;
   const gender = location.state ? location.state.gender : null;
   const introduce = location.state ? location.state.introduce : null;
   const nickname = location.state ? location.state.nickname : null;
@@ -190,6 +192,8 @@ export default function Mypage() {
             nickname={nickname}
             likeCnt={likeCnt}
             userEmail={userEmail}
+            followerCnt={followerCnt}
+            followingCnt={followingCnt}
           />
         )}
       </div>
