@@ -34,6 +34,7 @@ export default function MasonryImageList() {
       })
       .catch((err) => console.log(err));
   }, []);
+    
 
   //카테고리로 사진 걸러서 받기
   const filteredData =
@@ -108,7 +109,8 @@ export default function MasonryImageList() {
               <ImageListItem key={index} className="banner_img">
                 <div onClick={goMypage}>
                   <img
-                    src={`${post.image_url}?w=400&fit=crop&auto=format`}
+                    src={`${post.image_url}?w=200&fit=auto&auto=format`}
+                    srcSet={`${post.image_url}?w=200&fit=auto&auto=format&dpr=2 2x`}
                     alt={`Imagefile ${index}`}
                   />
                 </div>

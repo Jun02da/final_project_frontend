@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link, useLocation  } from "react-router-dom";
 import MpImgSliderGuest from "./components/MpImgSliderGuest";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
@@ -33,8 +33,37 @@ export default function MypageGuest() {
   const role = location.state.role;
   const visitCnt = location.state.visitCnt;
   const website = location.state.website;
-
+  
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
+  
+
+  const [activeButton, setActiveButton] = useState('게시물'); // 현재 활성화된 버튼 상태
+
+  const buttonClickImgslider = () => {
+    setActiveButton('게시물');
+    onlyShowMypageImgslider();
+    // 게시물 버튼 클릭시 실행할 함수
+  };
+
+  const buttonClickMypageBio = () => {
+    setActiveButton('정보');
+    onlyShowMypageBio();
+    // 정보 버튼 클릭시 실행할 함수
+  };
+
+  const buttonClickDashboard = () => {
+    setActiveButton('통계');
+    onlyShowMypageDashboard()
+    // 통계 버튼 클릭시 실행할 함수
+  };
+
+  const buttonClickFavorites = () => {
+    setActiveButton('즐겨찾기');  
+    // 즐겨찾기 버튼 클릭시 실행할 함수
+  };
+
+
+
 
   const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
 
@@ -150,9 +179,9 @@ export default function MypageGuest() {
         </div>
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
-          <p className="mypage_id">{nickname}</p>
+            <p className="mypage_id">{nickname}</p>
           <Button
-            variant={activeButton === "게시물" ? "dark" : "outline-dark"}
+            variant={activeButton === '게시물' ? 'dark' : 'outline-dark'}
             size="lg"
             className="button_active"
             onClick={buttonClickImgslider}
@@ -160,7 +189,7 @@ export default function MypageGuest() {
             게시물
           </Button>
           <Button
-            variant={activeButton === "정보" ? "dark" : "outline-dark"}
+            variant={activeButton === '정보' ? 'dark' : 'outline-dark'}
             size="lg"
             className="button_active"
             onClick={buttonClickMypageBio}
@@ -169,15 +198,16 @@ export default function MypageGuest() {
           </Button>
           {/* Dashboard 페이지로 이동 추가 */}
           <Button
-            variant={activeButton === "통계" ? "dark" : "outline-dark"}
+            variant={activeButton === '통계' ? 'dark' : 'outline-dark'}
             size="lg"
             className="button_active"
             onClick={buttonClickDashboard}
           >
             통계
           </Button>
+
           <Button
-            variant={activeButton === "즐겨찾기" ? "dark" : "outline-dark"}
+            variant={activeButton === '즐겨찾기' ? 'dark' : 'outline-dark'}
             size="lg"
             className="button_active"
             onClick={buttonClickFavorites}
@@ -207,9 +237,7 @@ export default function MypageGuest() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && (
-          <MpImgSliderGuest userEmail={userEmail} location={location} />
-        )}
+        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail} location = {location} />}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
