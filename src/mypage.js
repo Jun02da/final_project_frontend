@@ -12,53 +12,71 @@ import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
 export default function Mypage() {
   const location = useLocation();
-  const category = location.state ? location.state.category : null;
-  const content = location.state ? location.state.content : null;
-  const created_at = location.state ? location.state.created_at : null;
-  const postEmail = location.state ? location.state.email : null;
-  const image_url = location.state ? location.state.image_url : null;
-  const likeCnt = location.state ? location.state.likeCnt : null;
-  const modified_at = location.state ? location.state.modified_at : null;
-  const post_id = location.state ? location.state.post_id : null;
-  const birth = location.state ? location.state.birth : null;
-  const userEmail = location.state ? location.state.email : null;
-  const followerCnt = location.state ? location.state.followerCnt : null;
-  const followingCnt = location.state ? location.state.followingCnt : null;
-  const gender = location.state ? location.state.gender : null;
-  const introduce = location.state ? location.state.introduce : null;
-  const nickname = location.state ? location.state.nickname : null;
-  const password = location.state ? location.state.password : null;
-  const phone = location.state ? location.state.phone : null;
-  const proImage = location.state ? location.state.proImage : null;
-  const role = location.state ? location.state.role : null;
-  const visitCnt = location.state ? location.state.visitCnt : null;
-  const website = location.state ? location.state.website : null;
+  // const category = location.state ? location.state.category : null;
+  // const content = location.state ? location.state.content : null;
+  // const created_at = location.state ? location.state.created_at : null;
+  // const postEmail = location.state ? location.state.email : null;
+  // const image_url = location.state ? location.state.image_url : null;
+  // const likeCnt = location.state ? location.state.likeCnt : null;
+  // const modified_at = location.state ? location.state.modified_at : null;
+  // const post_id = location.state ? location.state.post_id : null;
+  // const birth = location.state ? location.state.birth : null;
+  // const userEmail = location.state ? location.state.email : null;
+  // const followerCnt = location.state ? location.state.followerCnt : null;
+  // const followingCnt = location.state ? location.state.followingCnt : null;
+  // const gender = location.state ? location.state.gender : null;
+  // const introduce = location.state ? location.state.introduce : null;
+  // const nickname = location.state ? location.state.nickname : null;
+  // const password = location.state ? location.state.password : null;
+  // const phone = location.state ? location.state.phone : null;
+  // const proImage = location.state ? location.state.proImage : null;
+  // const role = location.state ? location.state.role : null;
+  // const visitCnt = location.state ? location.state.visitCnt : null;
+  // const website = location.state ? location.state.website : null;
+
+  const category = location.state.category;
+  const content = location.state.content;
+  const created_at = location.state.created_at;
+  const postEmail = location.state.postEmail;
+  const image_url = location.state.image_url;
+  const likeCnt = location.state.likeCnt;
+  const modified_at = location.state.modified_at;
+  const post_id = location.state.post_id;
+  const birth = location.state.birth;
+  const userEmail = location.state.userEmail;
+  const followerCnt = location.state.followerCnt;
+  const followingCnt = location.state.followingCnt;
+  const gender = location.state.gender;
+  const introduce = location.state.introduce;
+  const nickname = location.state.nickname;
+  const password = location.state.password;
+  const phone = location.state.phone;
+  const proImage = location.state.proImage;
+  const role = location.state.role;
+  const visitCnt = location.state.visitCnt;
+  const website = location.state.website;
 
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
-
-    const [activeButton, setActiveButton] = useState('게시물'); // 현재 활성화된 버튼 상태
+  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
 
   const buttonClickImgslider = () => {
-    setActiveButton('게시물');
+    setActiveButton("게시물");
     onlyShowMypageImgslider();
     // 게시물 버튼 클릭시 실행할 함수
   };
 
   const buttonClickMypageBio = () => {
-    setActiveButton('정보');
+    setActiveButton("정보");
     onlyShowMypageBio();
     // 정보 버튼 클릭시 실행할 함수
   };
 
   const buttonClickDashboard = () => {
-    setActiveButton('통계');
-    onlyShowMypageDashboard()
+    setActiveButton("통계");
+    onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
   };
-
-
-
 
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
@@ -116,7 +134,6 @@ export default function Mypage() {
     movePage("/Admin");
   }
 
-
   return (
     <div>
       <>
@@ -150,9 +167,9 @@ export default function Mypage() {
         </div>
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
-            <p className="mypage_id">{nickname}</p>
+          <p className="mypage_id">{nickname}</p>
           <Button
-            variant={activeButton === '게시물' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickImgslider}
@@ -160,7 +177,7 @@ export default function Mypage() {
             게시물
           </Button>
           <Button
-            variant={activeButton === '정보' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "정보" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickMypageBio}
@@ -169,7 +186,7 @@ export default function Mypage() {
           </Button>
           {/* Dashboard 페이지로 이동 추가 */}
           <Button
-            variant={activeButton === '통계' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "통계" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickDashboard}
@@ -199,7 +216,9 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider userEmail={userEmail} />}
+        {showMypageImgslider && (
+          <MypageImgslider userEmail={userEmail} location={location} />
+        )}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}

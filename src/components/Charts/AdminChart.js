@@ -49,44 +49,6 @@ function AdminChart({ adminUserAll, adminPost }) {
     accu[curr] = (accu[curr] || 0) + 1;
     return accu;
   }, {});
-  // // Bar 변수 조회수,좋아요,게시물 부분
-  // var optionsBar = {
-  //   chart: {
-  //     toolbar: {
-  //       show: true,
-  //       tools: {
-  //         download: true, // download기능을 메인기능으로 선정
-  //         zoom: false,
-  //       },
-  //     },
-  //     stacked: true, // 위에 쌓아서 나타내기
-  //     width: "100%",
-  //   },
-  //   plotOptions: {
-  //     bar: {
-  //       horizontal: false, // 가로 or 세로
-  //       borderRadius: 10, // 모서리 동글동글
-  //     },
-  //   },
-  //   dataLabels: {
-  //     enabled: true, // 수치 표시
-  //   },
-  //   stroke: {
-  //     curve: "smooth", // 포인트를 곡선 방식으로 연결합니다. 스플라인이라고도 함
-  //   },
-  //   grid: {
-  //     row: {
-  //       opacity: 0.5, // 투명도
-  //     },
-  //   },
-  //   xaxis: {
-  //     categories: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"], // x축
-  //   },
-  //   colors: ["#546E7A", "#E91E63"], // 색상 지정
-  //   noData: {
-  //     text: "No Data", // 데이터가 없는 경우
-  //   },
-  // };
   // Donut 변수
   var optionsDonut = {
     chart: {

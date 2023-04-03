@@ -68,6 +68,8 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
     .get("http://192.168.0.209:8090/user/me")
     .then((response) => {
       setRealMine(response.data.email);
+      console.log(response.data.email);
+      console.log(userEmail);
     })
     .catch((err) => console.log(err));
   if (realMine === userEmail) {
