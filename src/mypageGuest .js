@@ -63,33 +63,6 @@ export default function MypageGuest() {
   };
 
 
-
-
-  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
-
-  const buttonClickImgslider = () => {
-    setActiveButton("게시물");
-    onlyShowMypageImgslider();
-    // 게시물 버튼 클릭시 실행할 함수
-  };
-
-  const buttonClickMypageBio = () => {
-    setActiveButton("정보");
-    onlyShowMypageBio();
-    // 정보 버튼 클릭시 실행할 함수
-  };
-
-  const buttonClickDashboard = () => {
-    setActiveButton("통계");
-    onlyShowMypageDashboard();
-    // 통계 버튼 클릭시 실행할 함수
-  };
-
-  const buttonClickFavorites = () => {
-    setActiveButton("즐겨찾기");
-    // 즐겨찾기 버튼 클릭시 실행할 함수
-  };
-
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
