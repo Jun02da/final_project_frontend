@@ -72,31 +72,6 @@ export default function Header() {
         },
       });
     });
-    // movePage("/MypageGuest", {
-    //   state: {
-    //     category: post.category,
-    //     content: post.content,
-    //     created_at: post.created_at,
-    //     postEmail: post.email,
-    //     image_url: post.image_url,
-    //     likeCnt: post.likeCnt,
-    //     modified_at: post.modified_at,
-    //     post_id: post.post_id,
-    //     birth: user.birth,
-    //     userEmail: user.email,
-    //     followerCnt: user.followerCnt,
-    //     followingCnt: user.followingCnt,
-    //     gender: user.gender,
-    //     introduce: user.introduce,
-    //     nickname: user.nickname,
-    //     password: user.password,
-    //     phone: user.phone,
-    //     proImage: user.proImage,
-    //     role: user.role,
-    //     visitCnt: user.visitCnt,
-    //     website: user.website,
-    //   },
-    // })
   }
   function goHelpUser() {
     movePage("/HelpUser");

@@ -86,8 +86,8 @@ export default function MypageImgslider() {
 
     fetchPost();
   }, []);
-  console.log(postAll);
-  console.log(userAll);
+  // console.log(postAll);
+  // console.log(userAll);
   return (
     <>
       {/* 업로드 버튼 */}

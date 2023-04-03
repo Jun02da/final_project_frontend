@@ -62,18 +62,16 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   }, []);
 
   // ==== 본인 여부 확인 부분 ==
-  const [realMine, setRealMine] = useState([]);
-  const [thisIsFalse, setThisIsFalse] = useState(false);
+  const [whoAreYou, setWhoAreYou] = useState([]);
+  const [thisIsMine, setThisIsMine] = useState(false);
   axios
     .get("http://192.168.0.209:8090/user/me")
     .then((response) => {
-      setRealMine(response.data.email);
-      console.log(response.data.email);
-      console.log(userEmail);
+      setWhoAreYou(response.data.email);
     })
     .catch((err) => console.log(err));
-  if (realMine === userEmail) {
-    setThisIsFalse(true);
+  if (whoAreYou === userEmail) {
+    setThisIsMine(true);
   }
   // ==== 편집 버튼 부분 ====
   function BioEditButton() {
@@ -126,7 +124,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
         로그인 여부에 따라서 edit 버튼을 표시해줌
         로그인한 사람과 게시물 이메일을 서로 비교하여 같은 경우 버튼 표시
       */}
-      <div>{isLoggedIn && thisIsFalse && <BioEditButton />}</div>
+      <div>{isLoggedIn && thisIsMine && <BioEditButton />}</div>
       <br />
       {/* === 소개글 부분 === */}
       {/* editable의 값에 따라 readOnly를 on/off 해줍니다 */}
