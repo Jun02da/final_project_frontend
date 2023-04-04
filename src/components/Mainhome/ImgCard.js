@@ -17,6 +17,8 @@ export default function MasonryImageList() {
     setSelectedCategory(event.target.value);
   };
 
+
+
   useEffect(() => {
     //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
     axios
@@ -37,10 +39,20 @@ export default function MasonryImageList() {
     
 
   //카테고리로 사진 걸러서 받기
-  const filteredData =
-    selectedCategory === "all"
-      ? postData
-      : postData.filter((item) => item.category === selectedCategory);
+const filteredData = selectedCategory === "all" ? postData : postData.filter(item => item.category === selectedCategory);
+
+const uniqueEmails = [];
+const filteredByEmailData = filteredData.filter(item => {
+  if (uniqueEmails.indexOf(item.email) === -1) {
+    uniqueEmails.push(item.email);
+    return true;
+  }
+  return false;
+});
+
+
+  
+  console.log(filteredByEmailData)
 
   const movePage = useNavigate();
   return (
@@ -71,7 +83,7 @@ export default function MasonryImageList() {
         </div>
 
         <ImageList variant="masonry" cols={4} gap={10}>
-          {filteredData.map((post, index) => {
+          {filteredByEmailData.map((post, index) => {
             // postData -> post로 변수명 변경
             const user = userData.find((user) => user.email === post.email);
             // const linkTo = `/mypage/${post.email}`;
