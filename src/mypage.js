@@ -7,32 +7,12 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
+import Bookmark from "./components/Bookmark"
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
 export default function Mypage() {
   const location = useLocation();
-  // const category = location.state ? location.state.category : null;
-  // const content = location.state ? location.state.content : null;
-  // const created_at = location.state ? location.state.created_at : null;
-  // const postEmail = location.state ? location.state.email : null;
-  // const image_url = location.state ? location.state.image_url : null;
-  // const likeCnt = location.state ? location.state.likeCnt : null;
-  // const modified_at = location.state ? location.state.modified_at : null;
-  // const post_id = location.state ? location.state.post_id : null;
-  // const birth = location.state ? location.state.birth : null;
-  // const userEmail = location.state ? location.state.email : null;
-  // const followerCnt = location.state ? location.state.followerCnt : null;
-  // const followingCnt = location.state ? location.state.followingCnt : null;
-  // const gender = location.state ? location.state.gender : null;
-  // const introduce = location.state ? location.state.introduce : null;
-  // const nickname = location.state ? location.state.nickname : null;
-  // const password = location.state ? location.state.password : null;
-  // const phone = location.state ? location.state.phone : null;
-  // const proImage = location.state ? location.state.proImage : null;
-  // const role = location.state ? location.state.role : null;
-  // const visitCnt = location.state ? location.state.visitCnt : null;
-  // const website = location.state ? location.state.website : null;
 
   const category = location.state.category;
   const content = location.state.content;
@@ -77,6 +57,11 @@ export default function Mypage() {
     onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
   };
+  const buttonClickFavorites = () => {
+    setActiveButton('즐겨찾기');
+    onlyShowMyPageBookmark();  
+    // 즐겨찾기 버튼 클릭시 실행할 함수
+  };
 
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
@@ -99,21 +84,31 @@ export default function Mypage() {
   const [showMypageImgslider, setShowMypageImgslider] = useState(true);
   const [showMypageBio, setShowMypageBio] = useState(false);
   const [showMypageDashboard, setShowMypageDashboard] = useState(false);
+  const [ShowMyPageBookmark, setShowMyPageBookmark] = useState(false);
 
   const onlyShowMypageImgslider = () => {
     setShowMypageImgslider(true);
     setShowMypageBio(false);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageBio = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(true);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageDashboard = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(false);
     setShowMypageDashboard(true);
+    setShowMyPageBookmark(false);
+  };
+  const onlyShowMyPageBookmark = () => {
+    setShowMypageImgslider(false);
+    setShowMypageBio(false);
+    setShowMypageDashboard(false);
+    setShowMyPageBookmark(true);
   };
 
   const movePage = useNavigate();
@@ -193,6 +188,14 @@ export default function Mypage() {
           >
             통계
           </Button>
+          <Button
+            variant={activeButton === '즐겨찾기' ? 'dark' : 'outline-dark'}
+            size="lg"
+            className="button_active"
+            onClick={buttonClickFavorites}
+          >
+            팔로워
+          </Button>
         </div>
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
@@ -236,6 +239,9 @@ export default function Mypage() {
             followerCnt={followerCnt}
             followingCnt={followingCnt}
           />
+        )}
+        {ShowMyPageBookmark && (
+          <Bookmark />
         )}
       </div>
       <Footer />

@@ -57,10 +57,6 @@ export default function MypageGuest() {
     // 통계 버튼 클릭시 실행할 함수
   };
 
-  const buttonClickFavorites = () => {
-    setActiveButton('즐겨찾기');  
-    // 즐겨찾기 버튼 클릭시 실행할 함수
-  };
 
 
   const [isAdmin, setIsAdmin] = useState(
@@ -179,14 +175,6 @@ export default function MypageGuest() {
             통계
           </Button>
 
-          <Button
-            variant={activeButton === '즐겨찾기' ? 'dark' : 'outline-dark'}
-            size="lg"
-            className="button_active"
-            onClick={buttonClickFavorites}
-          >
-            즐겨찾기
-          </Button>
         </div>
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
