@@ -10,8 +10,8 @@ import "./css/HelpHeader.css";
 import axios from "axios";
 
 export default function HelpUser() {
-  const [postData, setPostData] = useState();
-  const [userData, setUserData] = useState();
+  const [postAllData, setPostAllData] = useState();
+  const [userMeData, setUserMeData] = useState();
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
@@ -19,18 +19,16 @@ export default function HelpUser() {
     Boolean(localStorage.getItem("token"))
   );
   useEffect(() => {
-    //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
     axios
-      .get("http://192.168.0.209:8090/post")
+      .get("http://192.168.0.209:8090/user/me")
       .then((response) => {
-        setPostData(response.data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
+        setUserMeData(response.data);
       })
       .catch((err) => console.log(err));
-    //user 테이블에서 프로필 사진과 닉네임 가져오기
     axios
-      .get("http://192.168.0.209:8090/user/all")
+      .get("http://192.168.0.209:8090/post/all")
       .then((response) => {
-        setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
+        setPostAllData(response.data);
       })
       .catch((err) => console.log(err));
 
@@ -75,33 +73,33 @@ export default function HelpUser() {
     movePage("/membership");
   }
   function goMypage() {
-    postData.map((post) => {
-      const user = userData.find((user) => user.email === post.email);
-      movePage("/mypage", {
-        state: {
-          category: post.category,
-          content: post.content,
-          created_at: post.created_at,
-          postEmail: post.email,
-          image_url: post.image_url,
-          likeCnt: post.likeCnt,
-          modified_at: post.modified_at,
-          post_id: post.post_id,
-          birth: user.birth,
-          userEmail: user.email,
-          followerCnt: user.followerCnt,
-          followingCnt: user.followingCnt,
-          gender: user.gender,
-          introduce: user.introduce,
-          nickname: user.nickname,
-          password: user.password,
-          phone: user.phone,
-          proImage: user.proImage,
-          role: user.role,
-          visitCnt: user.visitCnt,
-          website: user.website,
-        },
-      });
+    const postMe = postAllData.filter(
+      (postAll) => postAll.email === userMeData.email
+    );
+    movePage("/mypage", {
+      state: {
+        category: postMe.category,
+        content: postMe.content,
+        created_at: postMe.created_at,
+        postEmail: postMe.email,
+        image_url: postMe.image_url,
+        likeCnt: postMe.likeCnt,
+        modified_at: postMe.modified_at,
+        post_id: postMe.post_id,
+        birth: userMeData.birth,
+        userEmail: userMeData.email,
+        followerCnt: userMeData.followerCnt,
+        followingCnt: userMeData.followingCnt,
+        gender: userMeData.gender,
+        introduce: userMeData.introduce,
+        nickname: userMeData.nickname,
+        password: userMeData.password,
+        phone: userMeData.phone,
+        proImage: userMeData.proImage,
+        role: userMeData.role,
+        visitCnt: userMeData.visitCnt,
+        website: userMeData.website,
+      },
     });
   }
   function goHelpUser() {
