@@ -7,6 +7,7 @@ import MypageGuest from "./mypageGuest ";
 import Admin from "./components/Admin";
 import HelpUser from "./HelpUser";
 import BoardDetail from "./components/Help/Board/BoardDetail";
+import Bookmark from "./components/Bookmark";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path={"/Admin"} element={<Admin />}></Route>
           <Route path={"/HelpUser"} element={<HelpUser />}></Route>
           <Route path={"/BoardDetail"} element={<BoardDetail />}></Route>
+          <Route path={"/Bookmark"} element={<Bookmark />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

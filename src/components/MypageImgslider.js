@@ -86,7 +86,6 @@ export default function MypageImgslider() {
 
     fetchPost();
   }, []);
-
   return (
     <>
       {/* 업로드 버튼 */}

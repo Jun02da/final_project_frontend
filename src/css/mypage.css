@@ -9,11 +9,11 @@
   list-style: none;
   font-size: 25px;
 }
-.mypage_menu > a {
+.mypage_id {
   /* 마이페이지 메뉴안에 Han Yonjae 글씨 css */
   text-decoration: none;
   color: black;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 900;
 }
 
@@ -23,7 +23,9 @@
   /* background-color: rgba(0, 0, 0, 0); 배경 투명색 */
   margin-right: 10px;
   margin-left: 10px;
-  width: 110px;
+  margin-top: 25px;
+  margin-bottom: -20px;
+  width: 118px;
   height: 50px;
   font-weight: bold;
   font-size: medium;

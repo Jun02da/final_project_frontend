@@ -15,10 +15,9 @@ import "swiper/css/mousewheel";
 import "../css/MypageSlider.css";
 import "../css/Imguploadbtn.css";
 
-export default function MpImgSliderGuest({ userEmail, location }) {
+export default function MpImgSliderGuest({ userEmail , location }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-  console.log({ location });
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -54,7 +53,7 @@ export default function MpImgSliderGuest({ userEmail, location }) {
         >
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
-              <Link to="/detail" state={{ location }}>
+              <Link to="/detail" state={{  location  }}>
                 <img src={imageUrl} alt={`Imagefile ${index}`} />
               </Link>
             </SwiperSlide>

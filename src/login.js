@@ -42,9 +42,9 @@ export default function Login() {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios
         .get("http://192.168.0.209:8090/user/me")
-        .then((response) => {
-          console.log(response.data);
-        })
+        // .then((response) => {
+        //   console.log(response.data);
+        // })
         .catch((error) => {
           console.log(error);
         });

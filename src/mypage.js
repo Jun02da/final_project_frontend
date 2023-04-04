@@ -7,32 +7,61 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
+import Bookmark from "./components/Bookmark"
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
 export default function Mypage() {
   const location = useLocation();
-  const category = location.state ? location.state.category : null;
-  const content = location.state ? location.state.content : null;
-  const created_at = location.state ? location.state.created_at : null;
-  const postEmail = location.state ? location.state.email : null;
-  const image_url = location.state ? location.state.image_url : null;
-  const likeCnt = location.state ? location.state.likeCnt : null;
-  const modified_at = location.state ? location.state.modified_at : null;
-  const post_id = location.state ? location.state.post_id : null;
-  const birth = location.state ? location.state.birth : null;
-  const userEmail = location.state ? location.state.email : null;
-  const gender = location.state ? location.state.gender : null;
-  const introduce = location.state ? location.state.introduce : null;
-  const nickname = location.state ? location.state.nickname : null;
-  const password = location.state ? location.state.password : null;
-  const phone = location.state ? location.state.phone : null;
-  const proImage = location.state ? location.state.proImage : null;
-  const role = location.state ? location.state.role : null;
-  const visitCnt = location.state ? location.state.visitCnt : null;
-  const website = location.state ? location.state.website : null;
+
+  const category = location.state.category;
+  const content = location.state.content;
+  const created_at = location.state.created_at;
+  const postEmail = location.state.postEmail;
+  const image_url = location.state.image_url;
+  const likeCnt = location.state.likeCnt;
+  const modified_at = location.state.modified_at;
+  const post_id = location.state.post_id;
+  const birth = location.state.birth;
+  const userEmail = location.state.userEmail;
+  const followerCnt = location.state.followerCnt;
+  const followingCnt = location.state.followingCnt;
+  const gender = location.state.gender;
+  const introduce = location.state.introduce;
+  const nickname = location.state.nickname;
+  const password = location.state.password;
+  const phone = location.state.phone;
+  const proImage = location.state.proImage;
+  const role = location.state.role;
+  const visitCnt = location.state.visitCnt;
+  const website = location.state.website;
 
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
+
+  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
+
+  const buttonClickImgslider = () => {
+    setActiveButton("게시물");
+    onlyShowMypageImgslider();
+    // 게시물 버튼 클릭시 실행할 함수
+  };
+
+  const buttonClickMypageBio = () => {
+    setActiveButton("정보");
+    onlyShowMypageBio();
+    // 정보 버튼 클릭시 실행할 함수
+  };
+
+  const buttonClickDashboard = () => {
+    setActiveButton("통계");
+    onlyShowMypageDashboard();
+    // 통계 버튼 클릭시 실행할 함수
+  };
+  const buttonClickFavorites = () => {
+    setActiveButton('즐겨찾기');
+    onlyShowMyPageBookmark();  
+    // 즐겨찾기 버튼 클릭시 실행할 함수
+  };
 
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
@@ -55,21 +84,31 @@ export default function Mypage() {
   const [showMypageImgslider, setShowMypageImgslider] = useState(true);
   const [showMypageBio, setShowMypageBio] = useState(false);
   const [showMypageDashboard, setShowMypageDashboard] = useState(false);
+  const [ShowMyPageBookmark, setShowMyPageBookmark] = useState(false);
 
   const onlyShowMypageImgslider = () => {
     setShowMypageImgslider(true);
     setShowMypageBio(false);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageBio = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(true);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageDashboard = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(false);
     setShowMypageDashboard(true);
+    setShowMyPageBookmark(false);
+  };
+  const onlyShowMyPageBookmark = () => {
+    setShowMypageImgslider(false);
+    setShowMypageBio(false);
+    setShowMypageDashboard(false);
+    setShowMyPageBookmark(true);
   };
 
   const movePage = useNavigate();
@@ -89,7 +128,6 @@ export default function Mypage() {
   function goAdmin() {
     movePage("/Admin");
   }
-  const userName = nickname;
 
   return (
     <div>
@@ -124,33 +162,39 @@ export default function Mypage() {
         </div>
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
-          <Link to="/mypage">
-            <p className="mypage_id">{userName}</p>
-          </Link>
+          <p className="mypage_id">{nickname}</p>
           <Button
-            variant="dark"
+            variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
-            onClick={onlyShowMypageImgslider}
+            onClick={buttonClickImgslider}
           >
             게시물
           </Button>
           <Button
-            variant="outline-dark"
+            variant={activeButton === "정보" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
-            onClick={onlyShowMypageBio}
+            onClick={buttonClickMypageBio}
           >
             정보
           </Button>
           {/* Dashboard 페이지로 이동 추가 */}
           <Button
-            variant="outline-dark"
+            variant={activeButton === "통계" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
-            onClick={onlyShowMypageDashboard}
+            onClick={buttonClickDashboard}
           >
             통계
+          </Button>
+          <Button
+            variant={activeButton === '즐겨찾기' ? 'dark' : 'outline-dark'}
+            size="lg"
+            className="button_active"
+            onClick={buttonClickFavorites}
+          >
+            팔로워
           </Button>
         </div>
         {/* 한줄소개 */}
@@ -175,7 +219,9 @@ export default function Mypage() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MypageImgslider userEmail={userEmail} />}
+        {showMypageImgslider && (
+          <MypageImgslider userEmail={userEmail} location={location} />
+        )}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}
@@ -190,7 +236,12 @@ export default function Mypage() {
             nickname={nickname}
             likeCnt={likeCnt}
             userEmail={userEmail}
+            followerCnt={followerCnt}
+            followingCnt={followingCnt}
           />
+        )}
+        {ShowMyPageBookmark && (
+          <Bookmark />
         )}
       </div>
       <Footer />
