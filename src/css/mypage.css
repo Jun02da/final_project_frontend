@@ -88,6 +88,7 @@
   display: inline;
 }
 
+
 .button_active:active {
   /* 마이페이지 메뉴 버튼 클릭시 색 변경 */
   color: lightsteelblue;
