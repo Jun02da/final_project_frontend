@@ -8,16 +8,7 @@ function BoardList({ items, showDeleteButton = false, handleDeleteItem }) {
   return (
     <div>
       {items.map((item) => (
-<<<<<<< HEAD
-        <BoardItem
-          item={item}
-          showDeleteButton={showDeleteButton}
-          key={item.notice_id}
-          handleDeleteItem={handleDeleteItem}
-        />
-=======
         <BoardItem item={item} key={item.notice_id} />
->>>>>>> 642c747163890df69c4a7eb07b53954afd5f2ea0
       ))}
 
       <hr />
