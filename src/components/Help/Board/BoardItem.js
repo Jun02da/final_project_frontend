@@ -6,7 +6,7 @@ import "../../../css/BoardItem.css";
     해당 item의 id, title, createdAt, name을
     박스에 담아 출력한다
 */
-function BoardItem({ item }) {
+function BoardItem({ item, showDeleteButton, handleDeleteItem }) {
   // 년-월-일
   const simpleCreated_at = item.created_at.substr(0, 10);
   const simpleModified_at = item.modified_at.substr(0, 10);
@@ -30,13 +30,21 @@ function BoardItem({ item }) {
       },
     });
   }
-
+  function handleDelete(e) {
+    e.stopPropagation();
+    handleDeleteItem(item.notice_id);
+  }
   return (
     <div className="BoardListContent" onClick={goBoardDetail}>
       <span className="BoardListContentId">{item.notice_id}</span>
       <span className="BoardListContentTitle">{item.title}</span>
       <span className="BoardListContentCreateAt">{simpleCreated_at}</span>
       <span className="BoardListContentName">{simpleModified_at}</span>
+      {showDeleteButton && (
+        <button className="Announcement-delete" onClick={handleDelete}>
+          x
+        </button>
+      )}
     </div>
   );
 }

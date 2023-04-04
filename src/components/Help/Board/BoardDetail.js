@@ -6,7 +6,7 @@ import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
 
-export function BoardDetail() {
+export default function BoardDetail() {
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
@@ -20,6 +20,7 @@ export function BoardDetail() {
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
+
   function handleLoginSuccess() {
     setIsAdmin(true);
     setIsLoggedIn(true);
@@ -84,20 +85,21 @@ export function BoardDetail() {
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
       <div id="BoardDetailSection">
+        <h3>공지사항</h3>
+        <div id="BoardDetailSectionContent" key={notice_id}>
+          <div id="BoardDetailTitle">{title}</div>
+
+          <div id="BoardDetailContent">{content}</div>
+        </div>
+        <div id="BoardDetailCreateAt">
+          <span>작성일 : {created_at}</span>&nbsp;&nbsp;
+          <span>수정일 : {modified_at}</span>
+        </div>
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>
-        <div id="BoardDetailSectionContent" key={notice_id}>
-          <div id="BoardDetailTitle">{title}</div>
-          <div id="BoardDetailCreateAt">작성일: {created_at}</div>
-          <div id="BoardDetailCreateAt">수정일: {modified_at}</div>
-          <hr />
-          <div id="BoardDetailContent">{content}</div>
-        </div>
       </div>
       <Footer />
     </div>
   );
 }
-
-export default BoardDetail;

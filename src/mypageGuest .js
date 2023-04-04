@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MpImgSliderGuest from "./components/MpImgSliderGuest";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
@@ -12,27 +12,27 @@ import { Button } from "react-bootstrap";
 // 마이페이지 게스트 페이지입니다
 export default function MypageGuest() {
   const location = useLocation();
-  const category = location.state.category;
-  const content = location.state.content;
-  const created_at = location.state.created_at;
-  const postEmail = location.state.postEmail;
-  const image_url = location.state.image_url;
+  // const category = location.state.category;
+  // const content = location.state.content;
+  // const created_at = location.state.created_at;
+  // const postEmail = location.state.postEmail;
+  // const image_url = location.state.image_url;
   const likeCnt = location.state.likeCnt;
-  const modified_at = location.state.modified_at;
-  const post_id = location.state.post_id;
-  const birth = location.state.birth;
+  // const modified_at = location.state.modified_at;
+  // const post_id = location.state.post_id;
+  // const birth = location.state.birth;
   const userEmail = location.state.userEmail;
   const followerCnt = location.state.followerCnt;
   const followingCnt = location.state.followingCnt;
-  const gender = location.state.gender;
+  // const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
-  const password = location.state.password;
-  const phone = location.state.phone;
+  // const password = location.state.password;
+  // const phone = location.state.phone;
   const proImage = location.state.proImage;
-  const role = location.state.role;
+  // const role = location.state.role;
   const visitCnt = location.state.visitCnt;
-  const website = location.state.website;
+  // const website = location.state.website;
 
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 

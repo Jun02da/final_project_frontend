@@ -92,3 +92,10 @@
   background: #fbfbfb;
   outline: 0;
 }
+
+.Announcement-delete {
+  font-size: 0.7rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}

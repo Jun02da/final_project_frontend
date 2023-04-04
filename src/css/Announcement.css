@@ -1,112 +1,15 @@
-.Announcement {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+.BoardContentDiv {
+  background-color: white;
 }
-
-.Announcement h2 {
-  font-size: 2em;
-  text-align: center;
-}
-
-.Announcement form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.Announcement label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.Announcement label input,
-.Announcement label textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1.2em;
-  width: 100%;
-}
-.Announcement label textarea {
-  height: 200px;
-}
-.Announcement button[type="submit"],
-.Announcement button[type="button"] {
-  margin-right: 10px;
-  padding: 10px;
-  background-color: #ccc;
-  color: #fff;
+.announcement-up {
+  background-color: #4a90e2;
+  color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.Announcement .form-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-left: auto;
-}
-.Announcement button[type="submit"]:hover,
-.Announcement button[type="button"]:hover {
-  background-color: #aaa;
-}
-
-.Announcement h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.Announcement ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.announcement-box {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding-top: 5px;
-  margin-bottom: 30px;
-  background-color: #fff;
-  font-family: "Arial", sans-serif;
-}
-.announcement-title {
-  font-weight: 50px;
-}
-.announcement_content {
-  border-top: 1px solid #ccc;
-  padding: 3px;
-}
-.announcement-list {
-  border: none;
-  margin-bottom: 10px;
-  padding: 5px 10px;
   border-radius: 5px;
-  font-size: 16px;
-}
-.announcement-list-btn {
-  margin: 5px;
-  float: right;
-  background-color: #ccc;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.8em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  float: right;
 }
-
-.announcement-list-btn:hover {
-  background-color: #aaa;
-}
-
-.announcement_at {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-top: 1px solid #ccc;
-  font-size: 0.8em;
-  color: #666;
+.BoardContentHeader {
+  padding-top: 10px;
 }

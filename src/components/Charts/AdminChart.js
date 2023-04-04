@@ -49,8 +49,9 @@ function AdminChart({ adminUserAll, adminPost }) {
     accu[curr] = (accu[curr] || 0) + 1;
     return accu;
   }, {});
-  // Donut 변수
-  var optionsDonut = {
+  // === 옵션 관련 ===
+  // 이용자 남여 비율
+  var optionsGender = {
     chart: {
       width: "100%",
     },
@@ -59,13 +60,27 @@ function AdminChart({ adminUserAll, adminPost }) {
       position: "bottom",
     },
     labels: ["Male", "Female"],
-    colors: ["#546E7A", "#E91E63"], // 색상 지정
+    colors: ["#07B9E8", "#E91E63"], // 색상 지정
     noData: {
       text: "No Data", // 데이터가 없는 경우
     },
+    title: {
+      text: "이용자 남여 비율",
+      align: "left",
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        fontFamily: undefined,
+        color: "#263238",
+      },
+    },
   };
-  // area변수 신규 사용자 부분
-  var optionsArea = {
+  // 신규 이용자
+  var optionsNew = {
     chart: {
       zoom: {
         enabled: false,
@@ -87,9 +102,23 @@ function AdminChart({ adminUserAll, adminPost }) {
     xaxis: {
       categories: Object.keys(resultCreated_at),
     },
+    title: {
+      text: "신규 이용자",
+      align: "left",
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        fontFamily: undefined,
+        color: "#263238",
+      },
+    },
   };
-  // ==== 조회수,좋아요,게시물 그래프 옵션 관련 ====
-  var ViewsOptions1 = {
+  // 이용자 상호작용
+  var optionsInteraction = {
     chart: {
       toolbar: {
         show: false,
@@ -100,7 +129,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       // 값 표시
       enabled: true,
       style: {
-        fontSize: "28px",
+        fontSize: "20px",
         fontWeight: "bold",
       },
       background: {
@@ -136,42 +165,44 @@ function AdminChart({ adminUserAll, adminPost }) {
     legend: {
       // 추가적으로 표시되는 미니바
       show: true,
-      position: "top",
+      position: "right",
       horizontalAlign: "center",
-      fontSize: "20px",
+      fontSize: "15px",
       fontFamily: "Arial",
     },
     tooltip: {
       // 마우스 오버 옵션
       enabled: true,
     },
-  };
-  // ==== 전체 조회수 / 전체 좋아요 / 전체 게시물 데이터 ====
-  let ViewData1 = [
-    {
-      name: "전체 데이터",
-      data: [
-        // { x: "조회수", y: totalVisitCnt },
-        { x: "좋아요", y: totalLikeCnt },
-        { x: "팔로우 받은 수", y: totalFollowerCnt },
-        { x: "팔로우 한 수", y: totalFollowingCnt },
-        // { x: "게시물", y: adminPost.length },
-      ],
+    title: {
+      text: "이용자 상호작용",
+      align: "left",
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        fontFamily: undefined,
+        color: "#263238",
+      },
     },
-  ];
-  // ==== 조회수,좋아요,게시물 그래프 옵션 관련 ====
-  var ViewsOptions2 = {
+  };
+  // 이용자 데이터
+  var optionsData = {
     chart: {
       toolbar: {
         show: false,
       },
       width: "100%",
+      height: "100%",
     },
     dataLabels: {
       // 값 표시
       enabled: true,
       style: {
-        fontSize: "28px",
+        fontSize: "20px",
         fontWeight: "bold",
       },
       background: {
@@ -206,17 +237,52 @@ function AdminChart({ adminUserAll, adminPost }) {
       // 추가적으로 표시되는 미니바
       show: true,
       position: "top",
-      horizontalAlign: "center",
-      fontSize: "20px",
+      horizontalAlign: "right",
+      fontSize: "15px",
       fontFamily: "Arial",
     },
     tooltip: {
       // 마우스 오버 옵션
       enabled: true,
     },
+    title: {
+      text: "이용자 데이터",
+      align: "left",
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        fontFamily: undefined,
+        color: "#263238",
+      },
+    },
   };
-  // ==== 전체 조회수 / 전체 좋아요 / 전체 게시물 데이터 ====
-  let ViewData2 = [
+  // === 데이터 관련 ===
+  // 신규 이용자
+  let dataNew = [
+    {
+      name: "신규 가입자",
+      data: Object.values(resultCreated_at),
+    },
+  ];
+  // 이용자 상호작용
+  let dataInteraction = [
+    {
+      name: "전체 데이터",
+      data: [
+        // { x: "조회수", y: totalVisitCnt },
+        { x: "좋아요", y: totalLikeCnt },
+        { x: "팔로우 받은 수", y: totalFollowerCnt },
+        { x: "팔로우 한 수", y: totalFollowingCnt },
+        // { x: "게시물", y: adminPost.length },
+      ],
+    },
+  ];
+  // 이용자 데이터
+  let dataData = [
     {
       name: "전체 데이터",
       data: [
@@ -228,33 +294,44 @@ function AdminChart({ adminUserAll, adminPost }) {
       ],
     },
   ];
-  // ==== 신규 가입자 데이터 부분 ====
-  let SeriesCreated_at = [
-    {
-      name: "신규 가입자",
-      data: Object.values(resultCreated_at),
-    },
-  ];
 
   return (
     <div>
       <h1>통계</h1>
       <hr />
-      <div id="chartArea">
-        <p>사용자 남여 비율</p>
-        <Chart options={optionsDonut} series={totalGender} type="donut" />
-      </div>
-      <div id="chartArea">
-        <p>신규 사용자</p>
-        <Chart options={optionsArea} series={SeriesCreated_at} type="area" />
-      </div>
-      <div id="chartArea">
-        <p>전체 데이터</p>
-        <Chart options={ViewsOptions1} series={ViewData1} type="bar" />
-      </div>
-      <div id="chartArea">
-        <p>전체 데이터</p>
-        <Chart options={ViewsOptions2} series={ViewData2} type="bar" />
+      <div id="chartAreaOutter">
+        <div id="chartArea">
+          <Chart
+            options={optionsGender}
+            series={totalGender}
+            type="donut"
+            width="550px"
+          />
+        </div>
+        <div id="chartArea">
+          <Chart
+            options={optionsNew}
+            series={dataNew}
+            type="area"
+            width="550px"
+          />
+        </div>
+        <div id="chartArea">
+          <Chart
+            options={optionsInteraction}
+            series={dataInteraction}
+            type="bar"
+            width="550px"
+          />
+        </div>
+        <div id="chartArea">
+          <Chart
+            options={optionsData}
+            series={dataData}
+            type="bar"
+            width="550px"
+          />
+        </div>
       </div>
     </div>
   );
