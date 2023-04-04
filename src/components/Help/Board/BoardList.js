@@ -8,7 +8,7 @@ function BoardList({ items }) {
   return (
     <div>
       {items.map((item) => (
-        <BoardItem item={item} />
+        <BoardItem item={item} key={item.notice_id} />
       ))}
       <hr />
     </div>

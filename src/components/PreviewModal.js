@@ -67,6 +67,7 @@ function PreviewModal({
           <option value="Food">Food</option>
           <option value="Sports">Sports</option>
           <option value="Nature">Nature</option>
+          <option value="Person">Person</option>
         </select>
       </div>
       <div className="modal_image">
