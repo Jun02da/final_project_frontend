@@ -1,173 +1,74 @@
-import React, { useState, useEffect } from "react";
-import {
-  addAnnouncement,
-  getAnnouncements,
-  deleteAnnouncement,
-  editAnnouncement,
-} from "../utils/api";
-import AnnouncementDetails from "./AnnouncementDetails";
+import BoardList from "./Help/Board/BoardList";
+import { useState, useEffect } from "react";
+import BoardPagination from "./Help/Board/BoardPagination";
+import { getAnnouncements, deleteAnnouncement } from "../utils/api";
+import Announcement_Modal from "./Announcement_Modal";
 
-function Announcement() {
-  const [title, setTitle] = useState("");
-  const [announcement, setAnnouncement] = useState("");
-  const [announcements, setAnnouncements] = useState([]);
-  const [showList, setShowList] = useState(false);
-  const [editingAnnouncement, setEditingAnnouncement] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
+export default function Announcement() {
+  const [contentInfo, setContentInfo] = useState([]);
+  // 페이징 부분
+  const [page, setPage] = useState(1); //페이지
+  const limit = 10; // posts가 보일 최대한의 갯수
+  const offset = (page - 1) * limit; // 시작점과 끝점을 구하는 offset
 
-  const handleShowDetails = (announcement) => {
-    setSelectedAnnouncement(announcement);
-    setShowDetails(true);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const token = localStorage.getItem("token");
-      if (editingAnnouncement) {
-        await editAnnouncement(editingAnnouncement, title, announcement, token);
-        alert("수정이 완료되었습니다.");
-        setEditingAnnouncement(null);
-      } else {
-        const response = await addAnnouncement(title, announcement, token);
-        console.log(response);
-        setTitle("");
-        setAnnouncement("");
-        alert("등록이 완료되었습니다.");
-      }
-    } catch (error) {
-      console.error(error);
+  const postsData = (posts) => {
+    if (posts) {
+      let result = posts.slice(offset, offset + limit);
+      return result;
     }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAnnouncements();
+      setContentInfo(data);
+    };
+    fetchData();
+  }, []);
+
+  const handleUpdateContentInfo = async () => {
+    const data = await getAnnouncements();
+    setContentInfo(data);
   };
 
   const handleDeleteAnnouncement = async (announcementId) => {
     const token = localStorage.getItem("token");
     try {
       await deleteAnnouncement(announcementId, token);
-      if (window.confirm("정말 삭제하시겠습니까?")) {
-        window.location.reload();
-      }
+      await handleUpdateContentInfo();
+      alert("게시글이 삭제되었습니다.");
     } catch (error) {
       console.error(error);
+      alert("게시글 삭제에 실패했습니다.");
     }
   };
-
-  const handleEditAnnouncement = (announcement) => {
-    setEditingAnnouncement(announcement);
-    setTitle(announcement.title);
-    setAnnouncement(announcement.content);
-  };
-
-  const handleToggleList = () => {
-    setShowList(!showList);
-  };
-
-  useEffect(() => {
-    const fetchAnnouncements = async () => {
-      try {
-        const response = await getAnnouncements();
-        setAnnouncements(response);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchAnnouncements();
-  }, []);
-
   return (
-    <div className="Announcement">
-      <h2>공지사항</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          제목:
-          <input
-            type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          내용:
-          <textarea
-            value={announcement}
-            onChange={(event) => setAnnouncement(event.target.value)}
-          />
-        </label>
-        <div className="form-buttons">
-          <button type="submit">
-            {editingAnnouncement ? "수정하기" : "등록"}
-          </button>
-          {editingAnnouncement && (
-            <button type="button" onClick={() => setEditingAnnouncement(null)}>
-              취소
-            </button>
-          )}
-        </div>
-      </form>
-      <button className="announcement-list" onClick={handleToggleList}>
-        {showList ? "공지사항 숨기기" : "공지사항 리스트"}
-      </button>
-      {!editingAnnouncement && (
-        <>
-          {showList && (
-            <ul>
-              {announcements.map((announcement) => (
-                <div key={announcement.id} className="announcement-box">
-                  <h4
-                    className="Announcement-title"
-                    onClick={() => handleShowDetails(announcement)}
-                  >
-                    {announcement.title}
-                  </h4>
-                  <div className="">
-                    <button
-                      className="announcement-list-btn"
-                      onClick={() => {
-                        handleShowDetails(announcement);
-                      }}
-                    >
-                      자세히 보기
-                    </button>
-                    <button
-                      className="announcement-list-btn"
-                      onClick={() => handleEditAnnouncement(announcement)}
-                    >
-                      수정
-                    </button>
-                    <button
-                      className="announcement-list-btn"
-                      onClick={() => handleDeleteAnnouncement(announcement)}
-                    >
-                      삭제
-                    </button>
-                    <div className="announcement_at">
-                      <span>
-                        생성일:{" "}
-                        {new Date(announcement.created_at).toLocaleString()}
-                      </span>
-                      &nbsp;&nbsp;&nbsp;
-                      <span>
-                        수정일:
-                        {new Date(announcement.modified_at).toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </ul>
-          )}
-          {showDetails && (
-            <AnnouncementDetails
-              announcement={selectedAnnouncement}
-              isOpen={showDetails}
-              onClose={() => setShowDetails(false)}
-            />
-          )}
-        </>
-      )}
+    <div className="BoardContentDiv">
+      {/* === 게시판 헤드 부분 === */}
+      <div className="BoardContentHeader">
+        <span className="BoardContentHeaderId">번호</span>
+        <span className="BoardContentHeaderTitle">제목</span>
+        <span className="BoardContentHeaderCreateAt">작성일</span>
+        <span className="BoardContentHeaderName">수정일</span>
+      </div>
+      <hr />
+      {/* === 게시판 내용 부분 === */}
+
+      <BoardList
+        items={postsData(contentInfo)}
+        showDeleteButton={true}
+        handleDeleteItem={handleDeleteAnnouncement}
+      />
+
+      {/* === Pagination 부분 === */}
+      <BoardPagination
+        limit={limit}
+        page={page}
+        totalPosts={contentInfo.length}
+        setPage={setPage}
+      />
+      <div className="announcement-up">
+        <Announcement_Modal />
+      </div>
     </div>
   );
 }
-
-export default Announcement;
