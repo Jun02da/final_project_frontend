@@ -10,6 +10,29 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   const BioFileInput = useRef(null);
   const [BioText, setBioText] = useState("");
   const [editable, setEditable] = useState(false);
+  const [whoAreYou, setWhoAreYou] = useState([]);
+  const [thisIsMine, setThisIsMine] = useState(false);
+  // mypage에서 받아온 데이터로 프로필 사진과 소개글을 변경
+  useEffect(() => {
+    if (proImage) {
+      setBioImage(proImage);
+    }
+    if (introduce) {
+      setBioText(introduce);
+    }
+    if (isLoggedIn) {
+      // ==== 본인 여부 확인 부분 ==
+      axios
+        .get("http://192.168.0.209:8090/user/me")
+        .then((response) => {
+          setWhoAreYou(response.data.email);
+          if (response.data.email === userEmail) {
+            setThisIsMine(true);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [userEmail]);
   // ==== 이미지 부분 ====
   const onChangeBioImage = (e) => {
     e.preventDefault();
@@ -22,9 +45,9 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
       formData.append("introduce", BioText);
       axios // 프로필 사진 변경하는 API요청
         .post("http://192.168.0.209:8090/user/editProfile", formData)
-        .then((response) => {
-          console.log(response);
-        })
+        // .then((response) => {
+        //   console.log(response);
+        // })
         .catch((error) => {
           console.error(error);
         });
@@ -51,28 +74,6 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   const handleBioTextChange = (e) => {
     setBioText(e.target.value);
   };
-  // mypage에서 받아온 데이터로 프로필 사진과 소개글을 변경
-  useEffect(() => {
-    if (proImage) {
-      setBioImage(proImage);
-    }
-    if (introduce) {
-      setBioText(introduce);
-    }
-  }, []);
-
-  // ==== 본인 여부 확인 부분 ==
-  const [whoAreYou, setWhoAreYou] = useState([]);
-  const [thisIsMine, setThisIsMine] = useState(false);
-  axios
-    .get("http://192.168.0.209:8090/user/me")
-    .then((response) => {
-      setWhoAreYou(response.data.email);
-    })
-    .catch((err) => console.log(err));
-  if (whoAreYou === userEmail) {
-    setThisIsMine(true);
-  }
   // ==== 편집 버튼 부분 ====
   function BioEditButton() {
     return (
@@ -105,7 +106,6 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
 
   return (
     <div className="profile_author">
-      {/* <div>{realMine}</div> */}
       <div>
         {/* === 이미지 부분 === */}
         <img src={BioImage} alt="BioImage" />
