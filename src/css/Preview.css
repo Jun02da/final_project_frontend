@@ -3,6 +3,7 @@
   margin-top: 100px;
   background-color: white;
   max-width: 600px;
+  max-height: 80%;
   height: 80%;
   border: 1.5px solid #ccc;
   border-radius: 20px;
@@ -35,6 +36,8 @@
   width: 100%;
   max-width: 600px;
   max-height: 450px;
+  min-width: 600px;
+  /* min-height: 450px;  */
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -42,15 +45,25 @@
 }
 
 /* 버튼 위치 */
-.modal_button_1 {
-  float: left;
-  margin-left: 20px;
-  margin-top: 10px;
+.modal_buttons_wrapper {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  z-index: 1;
 }
-.modal_button_2 {
-  float: right;
-  margin-right: 20px;
-  margin-top: 10px;
+
+.modal_buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1.5px solid #ccc;
+  border-top: none;
 }
 
 /* 버튼 css */
@@ -70,7 +83,6 @@
   background-color: #00a8ff;
 }
 
-/* 텍스트 상자 */
 .modal_text {
   width: 100%;
   max-width: 558px;

@@ -81,18 +81,16 @@ function PreviewModal({
           </div>
         ))}
       </div>
-      <div className="modal_text_main">
+      <div className="modal_text_wrapper">
         <textarea
           type="text"
           className="modal_text"
           value={text}
           onChange={handleTextChange}
         />
-        <div className="modal_buttons">
-          <div className="modal_button_1">
+        <div className="modal_buttons_wrapper">
+          <div className="modal_buttons">
             <button onClick={handleUpload}>업로드</button>
-          </div>
-          <div className="modal_button_2">
             <button onClick={handleCloseModal}>취소</button>
           </div>
         </div>
