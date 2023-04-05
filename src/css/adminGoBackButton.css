@@ -1,0 +1,40 @@
+/* 버튼 관련 */
+#AdminGoBackButton {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: var(--Communication-button-bg-color);
+  color: var(--Communication-button-color);
+
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 4px;
+
+  display: inline-block;
+  width: auto;
+
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  transition: 0.5s;
+}
+#AdminGoBackButton:active,
+#AdminGoBackButton:hover,
+#AdminGoBackButton:focus {
+  background: var(--Communication-button-hover-bg-color);
+  outline: 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+#AdminGoBackButton:disabled {
+  opacity: 0.5;
+}

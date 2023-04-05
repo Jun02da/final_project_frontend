@@ -216,8 +216,9 @@ export default function MypageGuest() {
             통계
           </Button>
         </div>
+        <br />
         {/* 한줄소개 */}
-        <p className="AboutMe">{introduce}</p>
+        {/* <p className="AboutMe">{introduce}</p> */}
         {/* Dashboard 페이지로 이동 추가 */}
         {/* <div className="stat_set">
           <div className="stat" onClick={onlyShowMypageDashboard}>

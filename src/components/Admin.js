@@ -9,10 +9,11 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   SoundOutlined,
-  HomeOutlined,
+  RollbackOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../css/adminGoBackButton.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -63,11 +64,11 @@ export default function Admin() {
       handleChartToggle();
     }
   };
-  // Home으로 이동하는 함수
+  // 뒤로 이동하는 함수
   const movePage = useNavigate();
 
-  function goHome() {
-    movePage("/");
+  function goBack() {
+    movePage(-1);
   }
 
   return (
@@ -78,9 +79,10 @@ export default function Admin() {
       </Header>
       <Content style={{ padding: "0 50px" }}>
         {/* Home 버튼 */}
-        <button onClick={goHome}>
-          <HomeOutlined />
-          &nbsp;&nbsp;HOME
+        <br />
+        <button onClick={goBack} id="AdminGoBackButton">
+          <RollbackOutlined />
+          &nbsp;&nbsp;뒤로&nbsp;가기
         </button>
         <Layout
           className="site-layout-background"

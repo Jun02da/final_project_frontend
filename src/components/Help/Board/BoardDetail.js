@@ -127,10 +127,8 @@ export default function BoardDetail() {
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
       <div id="BoardDetailSection">
-        <h3>공지사항</h3>
         <div id="BoardDetailSectionContent" key={notice_id}>
           <div id="BoardDetailTitle">{title}</div>
-
           <div id="BoardDetailContent">{content}</div>
         </div>
         <div id="BoardDetailCreateAt">
