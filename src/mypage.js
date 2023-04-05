@@ -119,7 +119,7 @@ export default function Mypage() {
     movePage("/membership");
   }
   function goMypage() {
-    movePage("/mypage");
+    movePage(0);
   }
   function goHelpUser() {
     movePage("/HelpUser");
