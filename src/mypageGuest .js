@@ -9,8 +9,12 @@ import Footer from "./components/Layout/footer";
 import Login from "./login";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
+import axios from "axios";
+
 // 마이페이지 게스트 페이지입니다
 export default function MypageGuest() {
+  const [postAllData, setPostAllData] = useState();
+  const [userMeData, setUserMeData] = useState();
   const location = useLocation();
   // const category = location.state.category;
   // const content = location.state.content;
@@ -63,6 +67,18 @@ export default function MypageGuest() {
     Boolean(localStorage.getItem("token"))
   );
   useEffect(() => {
+    axios
+      .get("http://192.168.0.209:8090/user/me")
+      .then((response) => {
+        setUserMeData(response.data);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("http://192.168.0.209:8090/post/all")
+      .then((response) => {
+        setPostAllData(response.data);
+      })
+      .catch((err) => console.log(err));
     const intervalId = setInterval(() => {
       setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
@@ -103,7 +119,34 @@ export default function MypageGuest() {
     movePage("/membership");
   }
   function goMypage() {
-    movePage("/mypage");
+    const postMe = postAllData.filter(
+      (postAll) => postAll.email === userMeData.email
+    );
+    movePage("/mypage", {
+      state: {
+        category: postMe.category,
+        content: postMe.content,
+        created_at: postMe.created_at,
+        postEmail: postMe.email,
+        image_url: postMe.image_url,
+        likeCnt: postMe.likeCnt,
+        modified_at: postMe.modified_at,
+        post_id: postMe.post_id,
+        birth: userMeData.birth,
+        userEmail: userMeData.email,
+        followerCnt: userMeData.followerCnt,
+        followingCnt: userMeData.followingCnt,
+        gender: userMeData.gender,
+        introduce: userMeData.introduce,
+        nickname: userMeData.nickname,
+        password: userMeData.password,
+        phone: userMeData.phone,
+        proImage: userMeData.proImage,
+        role: userMeData.role,
+        visitCnt: userMeData.visitCnt,
+        website: userMeData.website,
+      },
+    });
   }
   function goHelpUser() {
     movePage("/HelpUser");
