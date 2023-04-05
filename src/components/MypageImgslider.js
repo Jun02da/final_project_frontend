@@ -86,6 +86,8 @@ export default function MypageImgslider() {
 
     fetchPost();
   }, []);
+  // console.log(postAll);
+  // console.log(userAll);
   return (
     <>
       {/* 업로드 버튼 */}
@@ -110,6 +112,7 @@ export default function MypageImgslider() {
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
               <Link to="/detail" state={{ userAll, postAll }}>
+                {/* <Link to="/detail" state={{ email }}> */}
                 <img src={imageUrl} alt={`Imagefile ${index}`} />
               </Link>
             </SwiperSlide>
