@@ -299,38 +299,22 @@ function AdminChart({ adminUserAll, adminPost }) {
     <div>
       <h1>통계</h1>
       <hr />
-      <div id="chartAreaOutter">
+      <div>
         <div id="chartArea">
-          <Chart
-            options={optionsGender}
-            series={totalGender}
-            type="donut"
-            width="550px"
-          />
+          <Chart options={optionsGender} series={totalGender} type="donut" />
         </div>
         <div id="chartArea">
-          <Chart
-            options={optionsNew}
-            series={dataNew}
-            type="area"
-            width="550px"
-          />
+          <Chart options={optionsNew} series={dataNew} type="area" />
         </div>
         <div id="chartArea">
           <Chart
             options={optionsInteraction}
             series={dataInteraction}
             type="bar"
-            width="550px"
           />
         </div>
         <div id="chartArea">
-          <Chart
-            options={optionsData}
-            series={dataData}
-            type="bar"
-            width="550px"
-          />
+          <Chart options={optionsData} series={dataData} type="bar" />
         </div>
       </div>
     </div>

@@ -5,8 +5,11 @@ import Login from "../../../login.js";
 import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
+import axios from "axios";
 
 export default function BoardDetail() {
+  const [postAllData, setPostAllData] = useState();
+  const [userMeData, setUserMeData] = useState();
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
@@ -14,6 +17,18 @@ export default function BoardDetail() {
     Boolean(localStorage.getItem("token"))
   );
   useEffect(() => {
+    axios
+      .get("http://192.168.0.209:8090/user/me")
+      .then((response) => {
+        setUserMeData(response.data);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("http://192.168.0.209:8090/post/all")
+      .then((response) => {
+        setPostAllData(response.data);
+      })
+      .catch((err) => console.log(err));
     const intervalId = setInterval(() => {
       setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
@@ -42,7 +57,34 @@ export default function BoardDetail() {
     movePage("/membership");
   }
   function goMypage() {
-    movePage("/mypage");
+    const postMe = postAllData.filter(
+      (postAll) => postAll.email === userMeData.email
+    );
+    movePage("/mypage", {
+      state: {
+        category: postMe.category,
+        content: postMe.content,
+        created_at: postMe.created_at,
+        postEmail: postMe.email,
+        image_url: postMe.image_url,
+        likeCnt: postMe.likeCnt,
+        modified_at: postMe.modified_at,
+        post_id: postMe.post_id,
+        birth: userMeData.birth,
+        userEmail: userMeData.email,
+        followerCnt: userMeData.followerCnt,
+        followingCnt: userMeData.followingCnt,
+        gender: userMeData.gender,
+        introduce: userMeData.introduce,
+        nickname: userMeData.nickname,
+        password: userMeData.password,
+        phone: userMeData.phone,
+        proImage: userMeData.proImage,
+        role: userMeData.role,
+        visitCnt: userMeData.visitCnt,
+        website: userMeData.website,
+      },
+    });
   }
   function goHelpUser() {
     movePage("/HelpUser");
