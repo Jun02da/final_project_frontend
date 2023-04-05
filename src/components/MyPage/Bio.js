@@ -79,7 +79,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
     return (
       <>
         {/* 이미지 편집 버튼 */}
-        <span
+        <button
           id="BioEditSpan"
           onClick={() => {
             BioFileInput.current.click();
@@ -87,18 +87,18 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
         >
           <CameraOutlined style={{ fontSize: "32px" }} />
           &nbsp; 사진 변경
-        </span>
+        </button>
         {/* 편집 On/Off 버튼*/}
         {editable ? (
-          <span id="BioEditSpan" onClick={() => editToggle()}>
+          <button id="BioEditSpan" onClick={() => editToggle()}>
             <SaveOutlined style={{ fontSize: "32px" }} />
             &nbsp; 변경 완료
-          </span>
+          </button>
         ) : (
-          <span id="BioEditSpan" onClick={() => editToggle()}>
+          <button id="BioEditSpan" onClick={() => editToggle()}>
             <EditOutlined style={{ fontSize: "32px" }} />
             &nbsp; 소개글 변경
-          </span>
+          </button>
         )}
       </>
     );
@@ -108,7 +108,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
     <div className="profile_author">
       <div>
         {/* === 이미지 부분 === */}
-        <img src={BioImage} alt="BioImage" />
+        <img src={BioImage} alt="BioImage" id="BioImageDiv" />
         <input
           type="file"
           accept="image/*"
@@ -124,6 +124,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
         로그인 여부에 따라서 edit 버튼을 표시해줌
         로그인한 사람과 게시물 이메일을 서로 비교하여 같은 경우 버튼 표시
       */}
+      <br />
       <div>{isLoggedIn && thisIsMine && <BioEditButton />}</div>
       <br />
       {/* === 소개글 부분 === */}

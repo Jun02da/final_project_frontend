@@ -47,7 +47,7 @@ function MyPageChart({
       toolbar: {
         show: false,
       },
-      width: "100%",
+      width: "auto%",
     },
     dataLabels: {
       // 값 표시

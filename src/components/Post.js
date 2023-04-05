@@ -5,13 +5,15 @@ import Content from "./Content";
 import { useEffect, useState, useRef } from "react";
 // import { useInView } from "react-intersection-observer";
 
-const Post = () => {
+const Post = (user) => {
   const [postData, setPostData] = useState([]);
   const [page, setPage] = useState(1);
   const [load, setLoad] = useState(true);
   const preventRef = useRef(true);
   const obsRef = useRef(null);
-  const email = "wnsdud2021@naver.com";
+
+  const email = user.user.userEmail;
+  console.log(user);
   useEffect(() => {
     getPost();
     const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
@@ -56,7 +58,7 @@ const Post = () => {
             {postData.map((el, index) => {
               return (
                 <div key={index}>
-                  <Content email={email} post={el} posts={postData} />
+                  <Content user={user} post={el} posts={postData} />
                 </div>
               );
             })}

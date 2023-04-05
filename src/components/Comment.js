@@ -1,14 +1,17 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 // import Like from "./Like";
-import GetFormattedDate from "../utils/FormatDate";
+// import GetFormattedDate from "../utils/FormatDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Moment from "react-moment";
+import "moment/locale/ko";
 
 const Comment = ({
-  userData,
+  user,
+  authUser,
+  isLoggedIn,
   feedNum,
-  feedData,
   commentData,
   setCommentData,
 }) => {
@@ -26,19 +29,19 @@ const Comment = ({
       )
       .catch((error) => console.error(error));
   }
-  // const displayCreatedAt = (createdAt) => {
-  //     let startTime = new Date(createdAt);
-  //     let nowTime = Date.now();
-  //     if (parseInt(startTime - nowTime) > -60000) {
-  //       return <Moment format="방금 전">{startTime}</Moment>;
-  //     }
-  //     if (parseInt(startTime - nowTime) < -86400000) {
-  //       return <Moment format="MMM D일">{startTime}</Moment>;
-  //     }
-  //     if (parseInt(startTime - nowTime) > -86400000) {
-  //       return <Moment fromNow>{startTime}</Moment>;
-  //     }
-  //   };
+  const displayCreatedAt = (createdAt) => {
+    let startTime = new Date(createdAt);
+    let nowTime = Date.now();
+    if (parseInt(startTime - nowTime) > -60000) {
+      return <Moment format="방금 전">{startTime}</Moment>;
+    }
+    if (parseInt(startTime - nowTime) < -86400000) {
+      return <Moment format="MMM D일">{startTime}</Moment>;
+    }
+    if (parseInt(startTime - nowTime) > -86400000) {
+      return <Moment fromNow>{startTime}</Moment>;
+    }
+  };
 
   return comment?.length >= 1 ? (
     <div>
@@ -69,15 +72,16 @@ const Comment = ({
                     </span>
                     &nbsp;
                     <span>
-                      <GetFormattedDate date={el?.created_at?.seconds} />
+                      {displayCreatedAt(el.created_at)}
                       <span className="commentImage">
                         {/* 로그인 한 유저 id와 댓글의 id가 같아야지만 삭제가 가능 */}
-                        {/* // el?.user_id === userData.user_id && */}
                         &nbsp;&nbsp;
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          onClick={() => deleteComment(el.comment_id)}
-                        />
+                        {isLoggedIn && el?.email === authUser.email ? (
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            onClick={() => deleteComment(el.comment_id)}
+                          />
+                        ) : null}
                       </span>
                       &nbsp;&nbsp;&nbsp;&nbsp;
                     </span>

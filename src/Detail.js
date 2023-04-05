@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Post from "./components/Post";
 import Header from "./components/Layout/postHeader";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import "./css/MyPageHeader.css";
 
 import "./css/Detail.css";
-export default function Detail({ email }) {
-  // const location = useLocation();
-  // console.log(location.state["postAll"]);  ---> 한용재 수정 내용 (mypage에서 정보전달)
+export default function Detail() {
+  const location = useLocation();
+  // console.log(location.state["postAll"]);
   // console.log(location.state["userAll"]);
-  // console.log(location.state["location"]);
+  // const userEmail = location.state?.userEmail;
+
+  console.log(location.state);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     await axios
@@ -24,7 +26,7 @@ export default function Detail({ email }) {
     <div className="main">
       <div className="body">
         <Header />
-        <Post email={email} />
+        <Post user={location.state} />
       </div>
     </div>
   );

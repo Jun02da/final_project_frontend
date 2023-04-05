@@ -19,7 +19,8 @@
   margin-top: 0px;
   display: flex;
   float: left;
-  font-size: 40px;
+  /* 40px에서 50px로 증가 */
+  font-size: 50px;
   font-weight: bold;
   font-family: "Palatino Linotype";
   cursor: pointer;

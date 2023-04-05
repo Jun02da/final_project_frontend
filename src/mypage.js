@@ -36,7 +36,7 @@ export default function Mypage() {
   const visitCnt = location.state.visitCnt;
   // const website = location.state.website;
 
-  const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
+  // const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
   const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
 
@@ -201,7 +201,7 @@ export default function Mypage() {
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
         {/* Dashboard 페이지로 이동 추가 */}
-        <div className="stat_set">
+        {/* <div className="stat_set">
           <div className="stat" onClick={onlyShowMypageDashboard}>
             <p className="stat_2">총 즐겨찾기 수</p>
             <p className="stat_1">{stat[0].bookmark}회</p>
@@ -216,7 +216,7 @@ export default function Mypage() {
             <p className="stat_2">전체 게시물</p>
             <p className="stat_1">{stat[0].post}개</p>
           </div>
-        </div>
+        </div> */}
       </>
       {/* === 내용 부분 === */}
       <div>
