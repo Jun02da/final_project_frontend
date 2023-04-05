@@ -8,6 +8,7 @@ import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
 import Bookmark from "./components/Bookmark";
+
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
@@ -162,6 +163,7 @@ export default function Mypage() {
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
           <p className="mypage_id">{nickname}</p>
+
           <Button
             variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"

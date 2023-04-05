@@ -24,6 +24,7 @@ export default function MypageImgslider() {
 
   const handleUpload = async (newImages, text, category) => {
     const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
+    // newImages를 url 이미지로 변환하는 구간
 
     const formData = new FormData();
     newImages.forEach((image) => {
@@ -39,6 +40,7 @@ export default function MypageImgslider() {
     } catch (error) {
       console.error(error);
     }
+    console.log(fetchImages);
   };
 
   const fetchImages = async () => {

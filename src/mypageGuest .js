@@ -7,6 +7,7 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
+import BookmarkButton from "./components/BookmarkButton";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 게스트 페이지입니다
@@ -146,7 +147,9 @@ export default function MypageGuest() {
         </div>
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
-          <p className="mypage_id">{nickname}</p>
+          <p className="mypage_id">
+            {nickname} <BookmarkButton />
+          </p>
           <Button
             variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"
@@ -173,6 +176,7 @@ export default function MypageGuest() {
             통계
           </Button>
         </div>
+        isLoggedIn
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
         {/* Dashboard 페이지로 이동 추가 */}
