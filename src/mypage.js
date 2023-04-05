@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MypageImgslider from "./components/MypageImgslider";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
@@ -7,34 +7,33 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
-import Bookmark from "./components/Bookmark"
+import Bookmark from "./components/Bookmark";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
 export default function Mypage() {
   const location = useLocation();
-
-  const category = location.state.category;
-  const content = location.state.content;
-  const created_at = location.state.created_at;
-  const postEmail = location.state.postEmail;
-  const image_url = location.state.image_url;
+  // const category = location.state.category;
+  // const content = location.state.content;
+  // const created_at = location.state.created_at;
+  // const postEmail = location.state.postEmail;
+  // const image_url = location.state.image_url;
   const likeCnt = location.state.likeCnt;
-  const modified_at = location.state.modified_at;
-  const post_id = location.state.post_id;
-  const birth = location.state.birth;
+  // const modified_at = location.state.modified_at;
+  // const post_id = location.state.post_id;
+  // const birth = location.state.birth;
   const userEmail = location.state.userEmail;
   const followerCnt = location.state.followerCnt;
   const followingCnt = location.state.followingCnt;
-  const gender = location.state.gender;
+  // const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
-  const password = location.state.password;
-  const phone = location.state.phone;
+  // const password = location.state.password;
+  // const phone = location.state.phone;
   const proImage = location.state.proImage;
-  const role = location.state.role;
+  // const role = location.state.role;
   const visitCnt = location.state.visitCnt;
-  const website = location.state.website;
+  // const website = location.state.website;
 
   const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
@@ -58,8 +57,8 @@ export default function Mypage() {
     // 통계 버튼 클릭시 실행할 함수
   };
   const buttonClickFavorites = () => {
-    setActiveButton('즐겨찾기');
-    onlyShowMyPageBookmark();  
+    setActiveButton("즐겨찾기");
+    onlyShowMyPageBookmark();
     // 즐겨찾기 버튼 클릭시 실행할 함수
   };
 
@@ -189,7 +188,7 @@ export default function Mypage() {
             통계
           </Button>
           <Button
-            variant={activeButton === '즐겨찾기' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "즐겨찾기" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickFavorites}
@@ -240,9 +239,7 @@ export default function Mypage() {
             followingCnt={followingCnt}
           />
         )}
-        {ShowMyPageBookmark && (
-          <Bookmark />
-        )}
+        {ShowMyPageBookmark && <Bookmark />}
       </div>
       <Footer />
     </div>

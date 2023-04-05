@@ -10,6 +10,7 @@ export default function MemberShip() {
   const [Memberpassword1, setMemberPassword1] = useState("");
   const [Username, setUserName] = useState("");
   const [Userphonenumber, setUserPhoneNumber] = useState("");
+  const [Gender, setGender] = useState("");
 
   const movePage = useNavigate();
 
@@ -40,7 +41,10 @@ export default function MemberShip() {
   const onUserphonenumber = (e) => {
     setUserPhoneNumber(e.target.value);
   };
-
+  const onGenderChange = (e) => {
+    const { value } = e.target;
+    setGender(value);
+  };
   const passwordValid = () => {
     if (Memberpassword !== Memberpassword1) {
       alert("비밀번호가 일치하지 않습니다.");
@@ -62,6 +66,7 @@ export default function MemberShip() {
         password: Memberpassword,
         nickname: Username,
         phone: Userphonenumber,
+        gender: Gender,
       });
 
       if (response.status === 201) {
@@ -150,7 +155,32 @@ export default function MemberShip() {
             onChange={onUserphonenumber}
           />
         </div>
-        <br />
+
+        <div className="gender-input">
+          <label>
+            <input
+              className="gender-M"
+              type="radio"
+              name="gender"
+              value="male"
+              checked={Gender === "male"}
+              onChange={onGenderChange}
+            />
+            남성
+          </label>
+          &nbsp; &nbsp;
+          <label>
+            <input
+              className="gender-F"
+              type="radio"
+              name="gender"
+              value="female"
+              checked={Gender === "female"}
+              onChange={onGenderChange}
+            />
+            여성
+          </label>
+        </div>
 
         <button type="submit">가입하기</button>
       </form>

@@ -1,0 +1,67 @@
+.announcement-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 550px;
+  background-color: #f7f7f7;
+  border: 1px solid;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.announcement-modal h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.announcement-modal label {
+  display: block;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.announcement-modal input,
+.announcement-modal textarea {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* 추가 */
+  display: block; /* 추가 */
+}
+#announcement-content {
+  height: 250px;
+  white-space: pre-line;
+}
+.announcement-modal button {
+  width: 30%;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.announcement-modal button:hover {
+  background-color: #3a77c1;
+}
+
+.announcement-modal button[type="button"] {
+  background-color: #ccc;
+  color: #333;
+  margin-top: 20px;
+}
+
+.announcement-modal button[type="button"]:hover {
+  background-color: #bbb;
+}

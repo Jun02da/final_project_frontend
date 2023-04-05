@@ -10,7 +10,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   const BioFileInput = useRef(null);
   const [BioText, setBioText] = useState("");
   const [editable, setEditable] = useState(false);
-  const [whoAreYou, setWhoAreYou] = useState([]);
+  const [whoAreYou, setWhoAreYou] = useState([]); // eslint-disable-line no-unused-vars
   const [thisIsMine, setThisIsMine] = useState(false);
   // mypage에서 받아온 데이터로 프로필 사진과 소개글을 변경
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
         })
         .catch((err) => console.log(err));
     }
-  }, [userEmail]);
+  }, []);
   // ==== 이미지 부분 ====
   const onChangeBioImage = (e) => {
     e.preventDefault();

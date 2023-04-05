@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation  } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MpImgSliderGuest from "./components/MpImgSliderGuest";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
@@ -12,52 +12,49 @@ import { Button } from "react-bootstrap";
 // 마이페이지 게스트 페이지입니다
 export default function MypageGuest() {
   const location = useLocation();
-  const category = location.state.category;
-  const content = location.state.content;
-  const created_at = location.state.created_at;
-  const postEmail = location.state.postEmail;
-  const image_url = location.state.image_url;
+  // const category = location.state.category;
+  // const content = location.state.content;
+  // const created_at = location.state.created_at;
+  // const postEmail = location.state.postEmail;
+  // const image_url = location.state.image_url;
   const likeCnt = location.state.likeCnt;
-  const modified_at = location.state.modified_at;
-  const post_id = location.state.post_id;
-  const birth = location.state.birth;
+  // const modified_at = location.state.modified_at;
+  // const post_id = location.state.post_id;
+  // const birth = location.state.birth;
   const userEmail = location.state.userEmail;
   const followerCnt = location.state.followerCnt;
   const followingCnt = location.state.followingCnt;
-  const gender = location.state.gender;
+  // const gender = location.state.gender;
   const introduce = location.state.introduce;
   const nickname = location.state.nickname;
-  const password = location.state.password;
-  const phone = location.state.phone;
+  // const password = location.state.password;
+  // const phone = location.state.phone;
   const proImage = location.state.proImage;
-  const role = location.state.role;
+  // const role = location.state.role;
   const visitCnt = location.state.visitCnt;
-  const website = location.state.website;
-  
-  const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
-  
+  // const website = location.state.website;
 
-  const [activeButton, setActiveButton] = useState('게시물'); // 현재 활성화된 버튼 상태
+  const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
+
+  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
 
   const buttonClickImgslider = () => {
-    setActiveButton('게시물');
+    setActiveButton("게시물");
     onlyShowMypageImgslider();
     // 게시물 버튼 클릭시 실행할 함수
   };
 
   const buttonClickMypageBio = () => {
-    setActiveButton('정보');
+    setActiveButton("정보");
     onlyShowMypageBio();
     // 정보 버튼 클릭시 실행할 함수
   };
 
   const buttonClickDashboard = () => {
-    setActiveButton('통계');
-    onlyShowMypageDashboard()
+    setActiveButton("통계");
+    onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
   };
-
-
 
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
@@ -123,6 +120,7 @@ export default function MypageGuest() {
           <div onClick={goHome} className="SubLogo">
             PHOPO
           </div>
+
           <nav className="NavMenu">
             <Login onLoginSuccess={handleLoginSuccess} />
             {isLoggedIn ? null : (
@@ -148,9 +146,9 @@ export default function MypageGuest() {
         </div>
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
-            <p className="mypage_id">{nickname}</p>
+          <p className="mypage_id">{nickname}</p>
           <Button
-            variant={activeButton === '게시물' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickImgslider}
@@ -158,7 +156,7 @@ export default function MypageGuest() {
             게시물
           </Button>
           <Button
-            variant={activeButton === '정보' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "정보" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickMypageBio}
@@ -167,14 +165,13 @@ export default function MypageGuest() {
           </Button>
           {/* Dashboard 페이지로 이동 추가 */}
           <Button
-            variant={activeButton === '통계' ? 'dark' : 'outline-dark'}
+            variant={activeButton === "통계" ? "dark" : "outline-dark"}
             size="lg"
             className="button_active"
             onClick={buttonClickDashboard}
           >
             통계
           </Button>
-
         </div>
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
@@ -198,7 +195,9 @@ export default function MypageGuest() {
       </>
       {/* === 내용 부분 === */}
       <div>
-        {showMypageImgslider && <MpImgSliderGuest userEmail={userEmail} location = {location} />}
+        {showMypageImgslider && (
+          <MpImgSliderGuest userEmail={userEmail} location={location} />
+        )}
         {showMypageBio && (
           <MypageBio
             isLoggedIn={isLoggedIn}

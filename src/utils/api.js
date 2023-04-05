@@ -34,7 +34,7 @@ export const getAnnouncements = async () => {
 export const deleteAnnouncement = async (announcementId, token) => {
   try {
     const response = await axios.delete(
-      `http://192.168.0.209:8090/notice/${announcementId.notice_id}`,
+      `http://192.168.0.209:8090/notice/${announcementId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

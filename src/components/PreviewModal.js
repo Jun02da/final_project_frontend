@@ -67,6 +67,7 @@ function PreviewModal({
           <option value="Food">Food</option>
           <option value="Sports">Sports</option>
           <option value="Nature">Nature</option>
+          <option value="Person">Person</option>
         </select>
       </div>
       <div className="modal_image">
@@ -81,18 +82,16 @@ function PreviewModal({
           </div>
         ))}
       </div>
-      <div className="modal_text_main">
+      <div className="modal_text_wrapper">
         <textarea
           type="text"
           className="modal_text"
           value={text}
           onChange={handleTextChange}
         />
-        <div className="modal_buttons">
-          <div className="modal_button_1">
+        <div className="modal_buttons_wrapper">
+          <div className="modal_buttons">
             <button onClick={handleUpload}>업로드</button>
-          </div>
-          <div className="modal_button_2">
             <button onClick={handleCloseModal}>취소</button>
           </div>
         </div>
