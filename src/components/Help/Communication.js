@@ -63,16 +63,16 @@ export default function Communication() {
         <div id="CommunicationReachContent">
           <div id="CommunicationReachDetail">
             <EnvironmentOutlined
-              style={{ fontSize: "50px", color: "#025ce2" }}
+              style={{ fontSize: "36px", color: "#025ce2" }}
             />
             <div>Kosmo&nbsp;2강의실</div>
           </div>
           <div id="CommunicationReachDetail">
-            <PhoneOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
+            <PhoneOutlined style={{ fontSize: "36px", color: "#025ce2" }} />
             <div>02-321-4567</div>
           </div>
           <div id="CommunicationReachDetail">
-            <MailOutlined style={{ fontSize: "50px", color: "#025ce2" }} />
+            <MailOutlined style={{ fontSize: "36px", color: "#025ce2" }} />
             <div>Kosmo@example.com</div>
           </div>
         </div>

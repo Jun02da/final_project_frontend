@@ -42,36 +42,58 @@ const text9 = `
 // 자주 묻는 질문 내용
 const FAQContent = () => (
   <Collapse accordion size="large">
-    <Panel header="PHOPO 사용을 시작하려면 어떻게 해야 합니까?" key="1">
+    <Panel
+      header="PHOPO 사용을 시작하려면 어떻게 해야 합니까?"
+      key="1"
+      id="FAQPanel"
+    >
       <p>{text1}</p>
     </Panel>
-    <Panel header="회원가입은 누구나 할 수 있나요?" key="2">
+    <Panel header="회원가입은 누구나 할 수 있나요?" key="2" id="FAQPanel">
       <p>{text2}</p>
     </Panel>
-    <Panel header="아이디/비밀번호를 분실했어요 어떻게 하나요?" key="3">
+    <Panel
+      header="아이디/비밀번호를 분실했어요 어떻게 하나요?"
+      key="3"
+      id="FAQPanel"
+    >
       <p>{text3}</p>
     </Panel>
-    <Panel header="내 청소년 자녀의 계정에 액세스할 수 있나요?" key="4">
+    <Panel
+      header="내 청소년 자녀의 계정에 액세스할 수 있나요?"
+      key="4"
+      id="FAQPanel"
+    >
       <p>{text4}</p>
     </Panel>
-    <Panel header="PHOPO 이용에 문제가 발생했습니다" key="5">
+    <Panel header="PHOPO 이용에 문제가 발생했습니다" key="5" id="FAQPanel">
       <p>{text5}</p>
     </Panel>
-    <Panel header="PHOPO에서 갈등 또는 악용 사례에 대처하려면?" key="6">
+    <Panel
+      header="PHOPO에서 갈등 또는 악용 사례에 대처하려면?"
+      key="6"
+      id="FAQPanel"
+    >
       <p>{text6}</p>
     </Panel>
     <Panel
       header="PHOPO의 수익화 기능은 어디서 자세히 알아볼 수 있나요?"
       key="7"
+      id="FAQPanel"
     >
       <p>{text7}</p>
     </Panel>
-    <Panel header="문의 페이지에서 발송한 메일을 취소할 수 있나요?" key="8">
+    <Panel
+      header="문의 페이지에서 발송한 메일을 취소할 수 있나요?"
+      key="8"
+      id="FAQPanel"
+    >
       <p>{text8}</p>
     </Panel>
     <Panel
       header="게시물에서 초반 30분 동안 공감을 많이 받을 경우 이러한 게시물의 순위가 더 높아지나요?"
       key="9"
+      id="FAQPanel"
     >
       <p>{text9}</p>
     </Panel>
@@ -80,9 +102,11 @@ const FAQContent = () => (
 export default function FAQ() {
   return (
     <div id="FAQContentOutter">
-      <h3>자주 묻는 질문</h3>
-      <hr />
-      <FAQContent />
+      <div id="FAQContentInner">
+        <h3>자주 묻는 질문</h3>
+        <hr />
+        <FAQContent />
+      </div>
     </div>
   );
 }
