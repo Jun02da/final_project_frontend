@@ -6,9 +6,12 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const CommentInputLine = ({
-  feedData,
+  user,
+  authUser,
+  isLoggedIn,
   commentData,
   setCommentData,
+  refreshFunction,
   feedNum,
   setComment,
 }) => {
@@ -24,12 +27,11 @@ const CommentInputLine = ({
   const addComment = async (feedNum, commentValue) => {
     axios
       .post(`http://192.168.0.209:8090/comment/${feedNum}`, {
-        post_id: feedNum,
         content: commentValue,
       })
       .then((response) => {
-        // console.log(response.data);
-        setCommentData([...commentData, response.data]);
+        console.log(response.data);
+        refreshFunction(response.data);
         setCommentValue("");
       })
       .catch((error) => {
@@ -42,11 +44,12 @@ const CommentInputLine = ({
     <form onSubmit={onSubmit}>
       <InputGroup className="lg">
         <Form.Control
-          placeholder="Recipient's username"
+          placeholder="응원과 격려가 힘이 됩니다..."
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           value={commentValue}
           onChange={onChange}
+          disabled={!isLoggedIn}
         />
         <Button
           variant="outline-secondary"
