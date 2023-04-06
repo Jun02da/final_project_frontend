@@ -21,17 +21,13 @@
     rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 #CommunicationReachContent {
-  display: flex;
-  width: 100%;
-  padding: 10px;
+  text-align: center;
 }
 #CommunicationReachDetail {
-  margin: 10px;
+  display: inline-block;
   text-align: center;
-  flex: auto;
-}
-#CommunicationReachDetail > div {
-  font-size: 20px;
+  margin: 20px;
+  font-size: 25px;
 }
 #CommunicationName,
 #CommunicationEmail {
