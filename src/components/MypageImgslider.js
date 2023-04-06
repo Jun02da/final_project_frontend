@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper";
 import ImageUploader from "./ImageUploader";
 import axios from "axios";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -14,7 +15,6 @@ import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
 import "../css/MypageSlider.css";
-import "../css/Imguploadbtn.css";
 
 export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -128,7 +128,12 @@ export default function MypageImgslider() {
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
               <div className="image-container">
-                <button onClick={() => handleDeleteImage(index)}>삭제</button>
+                <button
+                  className="image_delete_button"
+                  onClick={() => handleDeleteImage(index)}
+                >
+                  <RiDeleteBin6Line />
+                </button>
                 <Link to="/detail" state={{ userAll, postAll }}>
                   <img src={imageUrl.image_url} alt={`Imagefile ${index}`} />
                 </Link>

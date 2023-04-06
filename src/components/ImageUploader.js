@@ -45,7 +45,9 @@ function ImageUploader({ onUpload }) {
       <div
         {...getRootProps()}
         className="dropzone"
-        style={{ fontSize: "40px" }}
+        style={{
+          fontSize: "40px",
+        }}
       >
         <RiImageAddLine />
       </div>

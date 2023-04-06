@@ -4,12 +4,12 @@ import axios from "axios";
 function FollowBut({ userEmail }) {
   const [isFollowed, setIsFollowed] = useState(false);
   const [user, setUser] = useState(null);
-
   console.log(isFollowed);
   const fetchFollowData = async () => {
     try {
-      const response = await axios.get(`http://192.168.0.209:8090/following`);
+      const response = await axios.get(`http://192.168.0.209:8090/following/`);
       const data = response.data;
+
       if (data.find((e) => e.email === userEmail)) {
         setIsFollowed(true);
       } else {
@@ -37,13 +37,14 @@ function FollowBut({ userEmail }) {
   };
   useEffect(() => {
     fetchFollowData();
+
     fetchUserData();
   }, [userEmail]);
 
   const handleFollowClick = async () => {
     if (!user) {
       // 로그인되지 않은 경우, 팔로우를 할 수 없도록 예외처리합니다.
-
+      console.log("로그인이 필요합니다.");
       return;
     }
 
