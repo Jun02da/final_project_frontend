@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea } from "@mui/material";
 import axios from "axios";
 
 const PostSide = (user) => {
@@ -30,15 +33,23 @@ const PostSide = (user) => {
             return (
               <Link to={`${index}`} spy={true} smooth={true}>
                 <span>
-                  <img
-                    style={{
-                      width: "70px",
-                      margin: "2px",
-                      borderRadius: "5px",
+                  <Card
+                    sx={{
+                      maxWidth: 100,
+                      borderRadius: 2,
+                      boxShadow: 5,
+                      my: "5px",
                     }}
-                    src={`${el.image_url}`}
-                    alt={`${el.nickname}`}
-                  />
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="auto"
+                        image={`${el.image_url}`}
+                        alt={`${el.nickname}`}
+                      />
+                    </CardActionArea>
+                  </Card>
                 </span>
               </Link>
             );

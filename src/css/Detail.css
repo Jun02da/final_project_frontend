@@ -34,16 +34,15 @@ body {
 .SideBlock {
   width: auto;
   max-height: 300px;
-  border: solid;
-  border-radius: 10% / 50%;
   position: fixed;
   right: 0rem;
-  padding: 5px;
+  padding: 7px;
   margin: auto, 0;
   margin-right: 100px;
   overflow-y: scroll;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  z-index: 10;
 }
 
 .SideBlock::-webkit-scrollbar {
