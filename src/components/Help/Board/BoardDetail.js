@@ -6,6 +6,7 @@ import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
 import axios from "axios";
+import BoardDetail_Modal from "./BoardDetail_Modal.js";
 
 export default function BoardDetail() {
   const [postAllData, setPostAllData] = useState();
@@ -16,6 +17,7 @@ export default function BoardDetail() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
+
   useEffect(() => {
     axios
       .get("http://192.168.0.209:8090/user/me")
@@ -135,6 +137,7 @@ export default function BoardDetail() {
           <span>작성일 : {created_at}</span>&nbsp;&nbsp;
           <span>수정일 : {modified_at}</span>
         </div>
+        <BoardDetail_Modal announcement={{ id: notice_id, title, content }} />
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>
