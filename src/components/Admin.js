@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import AccountDelete from "./AccountDelete"; // AccountDelete 컴포넌트 import
 import Announcement from "./Announcement";
-import ReportedPosts from "./ReportedPosts";
+
 import AdminChart from "./Charts/AdminChart.js";
 import {
   BarChartOutlined,
@@ -104,10 +104,7 @@ export default function Admin() {
                 <SoundOutlined />
                 &nbsp;&nbsp;공지사항
               </Menu.Item>
-              <Menu.Item key="report">
-                <ExclamationCircleOutlined />
-                &nbsp;&nbsp;신고 게시물 관리
-              </Menu.Item>
+
               <Menu.Item key="chart">
                 <BarChartOutlined />
                 &nbsp;&nbsp;통계
@@ -117,7 +114,7 @@ export default function Admin() {
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
-            {showReport && <ReportedPosts />}
+
             {showChart && (
               <AdminChart adminUserAll={adminUserAll} adminPost={adminPost} />
             )}

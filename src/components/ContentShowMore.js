@@ -3,7 +3,7 @@ import { useState, useRef, useMemo } from "react";
 
 const ContentShowMore = ({ content }) => {
   const [isShowMore, setIsShowMore] = useState(false);
-  const textLimit = useRef(5);
+  const textLimit = useRef(30);
 
   const commenter = useMemo(() => {
     const shortReview = content.slice(0, textLimit.current);

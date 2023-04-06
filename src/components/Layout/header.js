@@ -9,9 +9,7 @@ export default function Header() {
   const [userMeData, setUserMeData] = useState();
 
   const movePage = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(
-    Boolean(localStorage.getItem("token") === "admin")
-  );
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -30,13 +28,12 @@ export default function Header() {
       })
       .catch((err) => console.log(err));
     const intervalId = setInterval(() => {
-      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
+
   function handleLoginSuccess() {
-    setIsAdmin(true);
     setIsLoggedIn(true);
   }
 
@@ -88,7 +85,6 @@ export default function Header() {
       <div>
         <nav className="NavMenu">
           <Login onLoginSuccess={handleLoginSuccess} />
-
           {isLoggedIn ? null : (
             <button onClick={goMemberShip} className="NavMenuTitle">
               회원가입
@@ -104,7 +100,8 @@ export default function Header() {
               고객지원
             </button>
           )}
-          {isAdmin && (
+
+          {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>

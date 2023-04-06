@@ -13,9 +13,7 @@ import { Button } from "react-bootstrap";
 export default function HelpUser() {
   const [postAllData, setPostAllData] = useState();
   const [userMeData, setUserMeData] = useState();
-  const [isAdmin, setIsAdmin] = useState(
-    Boolean(localStorage.getItem("token") === "admin")
-  );
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -34,13 +32,11 @@ export default function HelpUser() {
       .catch((err) => console.log(err));
 
     const intervalId = setInterval(() => {
-      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
   function handleLoginSuccess() {
-    setIsAdmin(true);
     setIsLoggedIn(true);
   }
   const [activeButton, setActiveButton] = useState("공지사항"); // 현재 활성화된 버튼 상태
@@ -146,12 +142,10 @@ export default function HelpUser() {
               마이페이지
             </button>
           )}
-          {isLoggedIn && (
-            <button onClick={goHelpUser} className="NavMenuTitle">
-              고객지원
-            </button>
-          )}
-          {isAdmin && (
+          <button onClick={goHelpUser} className="NavMenuTitle">
+            고객지원
+          </button>
+          {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>

@@ -244,7 +244,7 @@ export default function Mypage() {
             followingCnt={followingCnt}
           />
         )}
-        {ShowMyPageBookmark && <Bookmark userEmail={userEmail}/>}
+        {ShowMyPageBookmark && <Bookmark userEmail={userEmail} />}
       </div>
       <Footer />
     </div>
