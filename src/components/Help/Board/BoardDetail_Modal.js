@@ -5,7 +5,7 @@ import "../../../css/BoardDetail_Modal.css";
 
 Modal.setAppElement("#root");
 
-export default function BoardDetail_Modal({ announcement }) {
+export default function BoardDetail_Modal({ announcement, isAdmin }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
@@ -44,6 +44,7 @@ export default function BoardDetail_Modal({ announcement }) {
       <button className="BoardDetail-change" onClick={handleOpenModal}>
         수정
       </button>
+
       <Modal
         className="BoardDetail-modal"
         isOpen={isModalOpen}

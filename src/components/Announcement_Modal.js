@@ -33,7 +33,7 @@ function Announcement_Modal({}) {
   };
   return (
     <div>
-      <button className="announcement-up" onClick={handleOpenModal}>
+      <button className="announcement_up" onClick={handleOpenModal}>
         등록
       </button>
       <Modal

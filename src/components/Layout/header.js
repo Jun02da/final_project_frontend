@@ -9,9 +9,7 @@ export default function Header() {
   const [userMeData, setUserMeData] = useState();
 
   const movePage = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(
-    Boolean(localStorage.getItem("token") === "admin")
-  );
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -30,13 +28,11 @@ export default function Header() {
       })
       .catch((err) => console.log(err));
     const intervalId = setInterval(() => {
-      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
   function handleLoginSuccess() {
-    setIsAdmin(true);
     setIsLoggedIn(true);
   }
 
@@ -88,7 +84,6 @@ export default function Header() {
       <div>
         <nav className="NavMenu">
           <Login onLoginSuccess={handleLoginSuccess} />
-
           {isLoggedIn ? null : (
             <button onClick={goMemberShip} className="NavMenuTitle">
               회원가입
@@ -99,12 +94,19 @@ export default function Header() {
               마이페이지
             </button>
           )}
+<<<<<<< Updated upstream
           {isLoggedIn && (
             <button onClick={goHelpUser} className="NavMenuTitle">
               고객지원
             </button>
           )}
           {isAdmin && (
+=======
+          <button onClick={goHelpUser} className="NavMenuTitle">
+            고객지원
+          </button>
+          {userMeData && userMeData.email === "admin" && (
+>>>>>>> Stashed changes
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>
