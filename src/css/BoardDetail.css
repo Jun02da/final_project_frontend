@@ -11,10 +11,16 @@
 }
 #BoardWriteButton {
   background-color: #2765c5;
-  color: #fff;
-  margin-bottom: 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   float: right;
+  margin-bottom: 20px;
+  width: 7%;
+  padding: 10px;
+  font-family: "Arial", sans-serif;
 }
 
 #BoardDetailTitle {

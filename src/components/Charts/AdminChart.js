@@ -10,6 +10,7 @@ function AdminChart({ adminUserAll, adminPost }) {
     if ((e.gender = "femail")) {
       femailCount += 1;
     } else if ((e.gender = "male")) {
+      console.log(e.gender);
       mailCount += 1;
     }
   });
@@ -297,40 +298,24 @@ function AdminChart({ adminUserAll, adminPost }) {
 
   return (
     <div>
-      <h1>통계</h1>
+      <h3>통계</h3>
       <hr />
-      <div id="chartAreaOutter">
+      <div>
         <div id="chartArea">
-          <Chart
-            options={optionsGender}
-            series={totalGender}
-            type="donut"
-            width="550px"
-          />
+          <Chart options={optionsGender} series={totalGender} type="donut" />
         </div>
         <div id="chartArea">
-          <Chart
-            options={optionsNew}
-            series={dataNew}
-            type="area"
-            width="550px"
-          />
+          <Chart options={optionsNew} series={dataNew} type="area" />
         </div>
         <div id="chartArea">
           <Chart
             options={optionsInteraction}
             series={dataInteraction}
             type="bar"
-            width="550px"
           />
         </div>
         <div id="chartArea">
-          <Chart
-            options={optionsData}
-            series={dataData}
-            type="bar"
-            width="550px"
-          />
+          <Chart options={optionsData} series={dataData} type="bar" />
         </div>
       </div>
     </div>

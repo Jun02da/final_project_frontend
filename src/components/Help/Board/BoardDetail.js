@@ -5,15 +5,32 @@ import Login from "../../../login.js";
 import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
+import axios from "axios";
+import BoardDetail_Modal from "./BoardDetail_Modal.js";
 
 export default function BoardDetail() {
+  const [postAllData, setPostAllData] = useState();
+  const [userMeData, setUserMeData] = useState();
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
+
   useEffect(() => {
+    axios
+      .get("http://192.168.0.209:8090/user/me")
+      .then((response) => {
+        setUserMeData(response.data);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("http://192.168.0.209:8090/post/all")
+      .then((response) => {
+        setPostAllData(response.data);
+      })
+      .catch((err) => console.log(err));
     const intervalId = setInterval(() => {
       setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
@@ -42,7 +59,34 @@ export default function BoardDetail() {
     movePage("/membership");
   }
   function goMypage() {
-    movePage("/mypage");
+    const postMe = postAllData.filter(
+      (postAll) => postAll.email === userMeData.email
+    );
+    movePage("/mypage", {
+      state: {
+        category: postMe.category,
+        content: postMe.content,
+        created_at: postMe.created_at,
+        postEmail: postMe.email,
+        image_url: postMe.image_url,
+        likeCnt: postMe.likeCnt,
+        modified_at: postMe.modified_at,
+        post_id: postMe.post_id,
+        birth: userMeData.birth,
+        userEmail: userMeData.email,
+        followerCnt: userMeData.followerCnt,
+        followingCnt: userMeData.followingCnt,
+        gender: userMeData.gender,
+        introduce: userMeData.introduce,
+        nickname: userMeData.nickname,
+        password: userMeData.password,
+        phone: userMeData.phone,
+        proImage: userMeData.proImage,
+        role: userMeData.role,
+        visitCnt: userMeData.visitCnt,
+        website: userMeData.website,
+      },
+    });
   }
   function goHelpUser() {
     movePage("/HelpUser");
@@ -85,16 +129,15 @@ export default function BoardDetail() {
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
       <div id="BoardDetailSection">
-        <h3>공지사항</h3>
         <div id="BoardDetailSectionContent" key={notice_id}>
           <div id="BoardDetailTitle">{title}</div>
-
           <div id="BoardDetailContent">{content}</div>
         </div>
         <div id="BoardDetailCreateAt">
           <span>작성일 : {created_at}</span>&nbsp;&nbsp;
           <span>수정일 : {modified_at}</span>
         </div>
+        <BoardDetail_Modal announcement={{ id: notice_id, title, content }} />
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>

@@ -120,7 +120,7 @@ export default function Mypage() {
     movePage("/membership");
   }
   function goMypage() {
-    movePage("/mypage");
+    movePage(0);
   }
   function goHelpUser() {
     movePage("/HelpUser");
@@ -149,9 +149,11 @@ export default function Mypage() {
                 마이페이지
               </button>
             )}
-            <button onClick={goHelpUser} className="NavMenuTitle">
-              고객지원
-            </button>
+            {isLoggedIn && (
+              <button onClick={goHelpUser} className="NavMenuTitle">
+                고객지원
+              </button>
+            )}
             {isAdmin && (
               <button onClick={goAdmin} className="NavMenuTitle">
                 관리자페이지
@@ -198,8 +200,9 @@ export default function Mypage() {
             팔로워
           </Button>
         </div>
+        <br />
         {/* 한줄소개 */}
-        <p className="AboutMe">{introduce}</p>
+        {/* <p className="AboutMe">{introduce}</p> */}
         {/* Dashboard 페이지로 이동 추가 */}
         {/* <div className="stat_set">
           <div className="stat" onClick={onlyShowMypageDashboard}>

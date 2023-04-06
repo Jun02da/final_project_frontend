@@ -8,6 +8,7 @@ import banner from "./image/HelpHeaderBanner.jpg";
 import Footer from "./components/Layout/footer";
 import "./css/HelpHeader.css";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 export default function HelpUser() {
   const [postAllData, setPostAllData] = useState();
@@ -42,7 +43,25 @@ export default function HelpUser() {
     setIsAdmin(true);
     setIsLoggedIn(true);
   }
+  const [activeButton, setActiveButton] = useState("공지사항"); // 현재 활성화된 버튼 상태
 
+  const buttonClickHelpBoard = () => {
+    // 공지사항 버튼 클릭시 실행할 함수
+    setActiveButton("공지사항");
+    onlyShowHelpBoard();
+  };
+
+  const buttonClickHelpFAQ = () => {
+    // FAQ 버튼 클릭시 실행할 함수
+    setActiveButton("FAQ");
+    onlyShowHelpFAQ();
+  };
+
+  const buttonClickHelpCommunication = () => {
+    // 문의 버튼 클릭시 실행할 함수
+    setActiveButton("문의");
+    onlyShowHelpCommunication();
+  };
   // 3개중 1개만 true로 설정하여서 클릭한 1개만 나오도록 설정
   const [showHelpBoard, setShowHelpBoard] = useState(true);
   const [showHelpFAQ, setShowHelpFAQ] = useState(false);
@@ -127,9 +146,11 @@ export default function HelpUser() {
               마이페이지
             </button>
           )}
-          <button onClick={goHelpUser} className="NavMenuTitle">
-            고객지원
-          </button>
+          {isLoggedIn && (
+            <button onClick={goHelpUser} className="NavMenuTitle">
+              고객지원
+            </button>
+          )}
           {isAdmin && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
@@ -144,21 +165,40 @@ export default function HelpUser() {
       </div>
       {/* 고객지원 내용 */}
       <div id="HelpHeaderMenuSection">
-        <button onClick={onlyShowHelpBoard} id="HelpHeaderMenu" autoFocus>
+        {/* 마이페이지 버튼 사용 */}
+        <Button
+          variant={activeButton === "공지사항" ? "dark" : "outline-dark"}
+          size="lg"
+          className="button_active"
+          onClick={buttonClickHelpBoard}
+        >
           공지사항
-        </button>
-        <button onClick={onlyShowHelpFAQ} id="HelpHeaderMenu">
+        </Button>
+        <Button
+          variant={activeButton === "FAQ" ? "dark" : "outline-dark"}
+          size="lg"
+          className="button_active"
+          onClick={buttonClickHelpFAQ}
+        >
           FAQ
-        </button>
-        <button onClick={onlyShowHelpCommunication} id="HelpHeaderMenu">
+        </Button>
+        {/* Dashboard 페이지로 이동 추가 */}
+        <Button
+          variant={activeButton === "문의" ? "dark" : "outline-dark"}
+          size="lg"
+          className="button_active"
+          onClick={buttonClickHelpCommunication}
+        >
           문의
-        </button>
+        </Button>
       </div>
+      <br />
       <div>
         {showHelpBoard && <HelpBoard />}
         {showHelpFAQ && <HelpFAQ />}
         {showHelpCommunication && <HelpCommunication />}
       </div>
+      <br />
       <Footer />
     </div>
   );

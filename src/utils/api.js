@@ -54,16 +54,14 @@ export const editAnnouncement = async (
   token
 ) => {
   try {
-    await axios.put(
-      `http://192.168.0.209:8090/notice/${editingAnnouncement.notice_id}`,
-      { title, content }, // title과 content 정보를 모두 전달
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+    console.log("editAnnouncement", editingAnnouncement, title, content, token);
+    const response = await axios.put(
+      `http://192.168.0.209:8090/notice/${editingAnnouncement.id}`,
+      { title, content } // title과 content 정보를 모두 전달
     );
+    return response.data;
   } catch (error) {
-    throw new Error(error.response.data);
+    console.error(error);
+    throw new Error("수정 중 오류가 발생했습니다.");
   }
 };

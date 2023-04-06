@@ -6,7 +6,7 @@
   --Communication-button-hover-bg-color: #025ce2;
 }
 #BioTextareaEditOff {
-  width: 75%;
+  width: 50%;
   border: none;
   border-radius: 20px;
   resize: none;
@@ -16,17 +16,18 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 #BioTextareaEditOn {
-  width: 75%;
-  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
+  width: 50%;
   resize: none;
   border-radius: 20px;
   text-align: center;
   overflow-x: hidden;
   margin: 20px;
   font-family: "Noto Sans KR", sans-serif;
+  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
 }
 #BioImageDiv {
-  box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 /* 수정 버튼 */
 /* 버튼 관련 문의 페이지 버튼 재사용*/
@@ -53,8 +54,8 @@
   display: inline-block;
   width: auto;
 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
   transition: 0.5s;
 }
@@ -63,6 +64,8 @@
 #BioEditSpan:focus {
   background: var(--Communication-button-hover-bg-color);
   outline: 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 #BioEditSpan:disabled {
   opacity: 0.5;

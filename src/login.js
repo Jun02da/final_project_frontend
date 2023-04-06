@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import "./css/login.css";
 import "./css/MainHeader.css";
@@ -97,13 +98,17 @@ export default function Login() {
         alert("로그인에 실패했습니다.");
       });
   };
-
+  const movePage = useNavigate();
+  function goHome() {
+    movePage("/");
+  }
   const handleLogout = () => {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
     setIsLoggedIn(false); // 로그아웃이 성공하면 isLoggedIn 값을 false로 설정
     alert("로그아웃되었습니다.");
-    window.location.reload();
+    // window.location.reload();
+    goHome(); // 홈으로 돌아가도록 설정
   };
 
   const handleButtonClick = () => {

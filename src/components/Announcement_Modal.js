@@ -4,7 +4,7 @@ import { addAnnouncement } from "../utils/api";
 import "../css/Announcement_Modal.css";
 Modal.setAppElement("#root");
 
-function Announcement_Modal({ onUpdateContentInfo }) {
+function Announcement_Modal({}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
