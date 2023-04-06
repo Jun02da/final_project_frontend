@@ -134,7 +134,15 @@ export default function MypageImgslider() {
                 >
                   <RiDeleteBin6Line />
                 </button>
-                <Link to="/detail" state={{ userAll, postAll }}>
+                <Link
+                  to="/detail"
+                  state={{
+                    userEmail: userAll.email,
+                    introduce: userAll.introduce,
+                    nickname: userAll.nickname,
+                    proImage: userAll.proImage,
+                  }}
+                >
                   <img src={imageUrl.image_url} alt={`Imagefile ${index}`} />
                 </Link>
               </div>

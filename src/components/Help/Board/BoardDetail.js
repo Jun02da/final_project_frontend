@@ -114,10 +114,6 @@ export default function BoardDetail() {
               고객지원
             </button>
           )}
-<<<<<<< HEAD
-
-=======
->>>>>>> d48e85010b7b8915fccb60cd629d4b706e671a7c
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
