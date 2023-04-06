@@ -2,66 +2,6 @@ body {
   background-color: #fafafa;
 }
 
-.postContainer {
-  width: 1500px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  background-color: #fafafa;
-  margin: 100px auto;
-}
-.imageContainer {
-  text-align: center;
-}
-.imageContainer .image {
-  width: 1450px;
-}
-.textContainer {
-  padding: 20px;
-}
-
-.feedTop {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.feedTop span {
-  display: flex;
-}
-
-.feedTop span a {
-  margin-left: 15px;
-}
-
-.feedbottom {
-  margin-left: 15px;
-  margin-bottom: 10px;
-}
-
-.feedbottom .heartLine {
-  display: flex;
-}
-.feedbottom .buttonLine {
-  padding-top: 10px;
-}
-
-.commentLine .comment {
-  width: 92%;
-}
-
-.comment {
-  display: flex;
-}
-
-.comment .id {
-  width: 92%;
-}
-
-.contentLine .content {
-  font-size: 20px;
-}
-
 .NavMenu {
   list-style-type: none;
   vertical-align: top;
@@ -89,4 +29,32 @@ body {
 }
 #SubHeaderLayout {
   margin-bottom: 100px;
+}
+
+.SideBlock {
+  width: auto;
+  max-height: 300px;
+  border: solid;
+  border-radius: 10% / 50%;
+  position: fixed;
+  right: 0rem;
+  padding: 5px;
+  margin: auto, 0;
+  margin-right: 100px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.SideBlock::-webkit-scrollbar {
+  display: none;
+}
+
+.SideBlock div {
+  display: flex;
+  flex-direction: column;
+}
+
+.SideBlock span {
+  cursor: pointer;
 }

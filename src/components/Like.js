@@ -3,7 +3,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
-
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
   const [isLiked, setIsLiked] = useState(false);
   const fetchData = async () => {
@@ -11,7 +12,7 @@ const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
       .get(`http://192.168.0.209:8090/like/${feedNum}`)
       .then((response) => {
         const a = response.data;
-        console.log(a);
+        // console.log(a);
         if (a.length === 1) setIsLiked(true);
         else setIsLiked(false);
       })
@@ -20,7 +21,7 @@ const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
   useEffect(() => {
     // console.log(isLiked);
     fetchData();
-    console.log(isLiked);
+    // console.log(isLiked);
   }, []);
   // console.log(!!authUser);
   const handleLikeClick = async () => {
@@ -54,10 +55,11 @@ const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
   };
 
   return isLoggedIn ? (
-    <FontAwesomeIcon
-      icon={isLiked ? faSolidHeart : faHeart}
-      onClick={handleLikeClick}
-    />
+    isLiked ? (
+      <FavoriteIcon onClick={handleLikeClick} />
+    ) : (
+      <FavoriteBorderIcon onClick={handleLikeClick} />
+    )
   ) : null;
 };
 

@@ -44,7 +44,7 @@ const CommentInputLine = ({
     <form onSubmit={onSubmit}>
       <InputGroup className="lg">
         <Form.Control
-          placeholder="응원과 격려가 힘이 됩니다..."
+          placeholder="조언과 정보는 힘이 됩니다..."
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           value={commentValue}

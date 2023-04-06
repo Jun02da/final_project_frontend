@@ -13,7 +13,7 @@ const Post = (user) => {
   const obsRef = useRef(null);
 
   const email = user.user.userEmail;
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     getPost();
     const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
@@ -57,7 +57,7 @@ const Post = (user) => {
           <>
             {postData.map((el, index) => {
               return (
-                <div key={index}>
+                <div id={index}>
                   <Content user={user} post={el} posts={postData} />
                 </div>
               );
