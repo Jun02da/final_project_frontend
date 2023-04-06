@@ -11,7 +11,7 @@ export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [rememberEmail, setRememberEmail] = useState(false); // 이메일 기억하기 상태
 

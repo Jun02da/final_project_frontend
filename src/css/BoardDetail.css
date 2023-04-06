@@ -31,14 +31,13 @@
   border: none;
   border-radius: 20px;
 
-  display: inline-block;
+  float: right;
   width: auto;
 
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
   transition: 0.5s;
-  float: right;
 }
 
 #BoardDetailTitle {
@@ -64,17 +63,4 @@
   font-size: 1rem;
   color: #999;
   float: left;
-}
-#BoardWriteButton {
-  background-color: #2765c5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  float: right;
-  margin-bottom: 20px;
-  width: 7%;
-  padding: 10px;
-  font-family: "Noto Sans KR", sans-serif;
 }
