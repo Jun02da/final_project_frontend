@@ -17,13 +17,13 @@
 }
 #BioTextareaEditOn {
   width: 75%;
-  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
   resize: none;
   border-radius: 20px;
   text-align: center;
   overflow-x: hidden;
   margin: 20px;
   font-family: "Noto Sans KR", sans-serif;
+  border: 1px solid black; /* 테두리 on/off 차이로 수정가능여부 시각화 */
 }
 #BioImageDiv {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
