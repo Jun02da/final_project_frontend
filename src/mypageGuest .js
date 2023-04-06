@@ -8,6 +8,7 @@ import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
 import FollowBut from "./components/FollowBut";
+import Bookmark from "./components/Bookmark";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 import axios from "axios";
@@ -41,7 +42,12 @@ export default function MypageGuest() {
 
   // const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
-  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
+  const [activeButton, setActiveButton] = useState("게시물");
+
+  const [ShowMyPageBookmark, setShowMyPageBookmark] = useState(false);
+  
+
+  // 현재 활성화된 버튼 상태
   const buttonClickImgslider = () => {
     setActiveButton("게시물");
     onlyShowMypageImgslider();
@@ -58,6 +64,11 @@ export default function MypageGuest() {
     setActiveButton("통계");
     onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
+  };
+    const buttonClickFavorites = () => {
+    setActiveButton("즐겨찾기");
+    onlyShowMyPageBookmark();
+    // 즐겨찾기 버튼 클릭시 실행할 함수
   };
 
   const [isAdmin, setIsAdmin] = useState(
@@ -98,17 +109,27 @@ export default function MypageGuest() {
     setShowMypageImgslider(true);
     setShowMypageBio(false);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageBio = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(true);
     setShowMypageDashboard(false);
+    setShowMyPageBookmark(false);
   };
   const onlyShowMypageDashboard = () => {
     setShowMypageImgslider(false);
     setShowMypageBio(false);
     setShowMypageDashboard(true);
+    setShowMyPageBookmark(false);
   };
+  const onlyShowMyPageBookmark = () => {
+    setShowMypageImgslider(false);
+    setShowMypageBio(false);
+    setShowMypageDashboard(false);
+    setShowMyPageBookmark(true);
+  };
+    
 
   const movePage = useNavigate();
 
@@ -219,6 +240,14 @@ export default function MypageGuest() {
           >
             통계
           </Button>
+          <Button
+            variant={activeButton === "즐겨찾기" ? "dark" : "outline-dark"}
+            size="lg"
+            className="button_active"
+            onClick={buttonClickFavorites}
+          >
+            팔로워
+          </Button>
         </div>
         {/* 한줄소개 */}
         {/* <p className="AboutMe">{introduce}</p> */}
@@ -263,7 +292,9 @@ export default function MypageGuest() {
             followingCnt={followingCnt}
           />
         )}
+        {ShowMyPageBookmark && <Bookmark userEmail={userEmail}/>}
       </div>
+      
       <Footer />
     </div>
   );

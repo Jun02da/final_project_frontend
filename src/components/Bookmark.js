@@ -8,7 +8,7 @@ import { Grid, CardActionArea } from "@mui/material";
 import "../css/Bookmark.css";
 import axios from "axios";
 
-export default function Bookmark() {
+export default function Bookmark({userEmail}) {
   const [FollowerData, setFollowerData] = useState([]);
   const [followingData, setfollowingData] = useState([]);
 
@@ -20,12 +20,12 @@ export default function Bookmark() {
 
   //팔로우,팔로워 정보 받아오는곳
   useEffect(() => {
-    axios.get("http://192.168.0.209:8090/follower").then((response) => {
+    axios.get(`http://192.168.0.209:8090/follower/${userEmail}`).then((response) => {
       const followerdata = response.data;
       setFollowerData(followerdata);
     });
 
-    axios.get("http://192.168.0.209:8090/following").then((response) => {
+    axios.get(`http://192.168.0.209:8090/following/${userEmail}`).then((response) => {
       const followingdata = response.data;
       setfollowingData(followingdata);
     });
@@ -44,6 +44,10 @@ export default function Bookmark() {
     setisFollowingActive(!isFollowingActive);
     setisFollowerActive(false);
   };
+  
+
+
+  console.log(FollowerData)
 
   return (
     <div>
