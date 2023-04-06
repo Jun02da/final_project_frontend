@@ -35,12 +35,7 @@ const Comment = ({
     if (parseInt(startTime - nowTime) > -60000) {
       return <Moment format="방금 전">{startTime}</Moment>;
     }
-    if (parseInt(startTime - nowTime) < -86400000) {
-      return <Moment format="MMM D일">{startTime}</Moment>;
-    }
-    if (parseInt(startTime - nowTime) > -86400000) {
-      return <Moment fromNow>{startTime}</Moment>;
-    }
+    return <Moment fromNow>{startTime}</Moment>;
   };
 
   return comment?.length >= 1 ? (
@@ -67,15 +62,15 @@ const Comment = ({
                   <div className="comment" key={i}>
                     <span className="id">
                       <strong>{el.nickname}</strong>
-                      &nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;
                       {el.content}
                     </span>
-                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <span>
                       {displayCreatedAt(el.created_at)}
                       <span className="commentImage">
                         {/* 로그인 한 유저 id와 댓글의 id가 같아야지만 삭제가 가능 */}
-                        &nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         {isLoggedIn && el?.email === authUser.email ? (
                           <FontAwesomeIcon
                             icon={faTrash}

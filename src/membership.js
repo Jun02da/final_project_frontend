@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./css/membership.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Login from "./login";
+// import Login from "./login";
 
 export default function MemberShip() {
   const [Memberemail, setMemberEmail] = useState("");
@@ -79,17 +79,16 @@ export default function MemberShip() {
 
   return (
     <div className="membership_page">
-      <nav className="NavMenu">
+      {/* <nav className="NavMenu">
         <Login />
         <button onClick={goHome} className="NavMenuTitle">
           홈
         </button>
-      </nav>
+      </nav> */}
 
       <form className="membership_form" onSubmit={onSubmit1}>
         <h1 onClick={goHome}>P H O P O</h1>
         <h2>회원가입</h2>
-
         <div>
           <input
             type="email"
