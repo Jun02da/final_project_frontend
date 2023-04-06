@@ -14,19 +14,31 @@
   margin: 0 auto;
 }
 .BoardPaginationLeftArrow {
-  background: var(--Pagination-button-bg-color);
+  /* background: var(--Pagination-button-bg-color); */
+  background-color: white;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  border: none;
   padding: 5px 10px;
+
 }
+
 .BoardPaginationButton {
-  background: var(--Pagination-button-bg-color);
+  /* background: var(--Pagination-button-bg-color); */
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin: 3px;
   padding: 5px 10px;
 }
 .BoardPaginationRightArrow {
-  background: var(--Pagination-button-bg-color);
+  /* background: var(--Pagination-button-bg-color); */
+  background-color: white;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  border: none;
   padding: 5px 10px;
 }
 .BoardPaginationLeftArrow:active,
@@ -38,8 +50,11 @@
 .BoardPaginationLeftArrow:focus,
 .BoardPaginationButton:focus,
 .BoardPaginationRightArrow:focus {
-  background: var(--Pagination-button-hover-bg-color);
-  color: var(--Pagination-button-hover-color);
+  /* background: var(--Pagination-button-hover-bg-color);
+  color: var(--Pagination-button-hover-color); */
+  transition: 0.4s;
+  background-color: black;
+  color: white;
   outline: 0;
 }
 .BoardPaginationLeftArrow:disabled,
