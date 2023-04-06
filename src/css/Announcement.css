@@ -2,12 +2,6 @@
   background-color: white;
 }
 .announcement-up {
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
   float: right;
 }
 .BoardContentHeader {

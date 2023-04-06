@@ -4,11 +4,121 @@ import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Avatar from "@mui/material/Avatar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../css/MainHome.css";
 import axios from "axios";
+import Modal from "react-modal";
+import "../../css/login.css";
+import "../../css/MainHeader.css";
+
+Modal.setAppElement("#root");
 
 export default function MasonryImageList() {
+  // ======== 로그인 부분
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [rememberEmail, setRememberEmail] = useState(false); // 이메일 기억하기 상태
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleRememberEmailChange = (event) => {
+    if (!event.target.checked) {
+      setPassword("");
+    }
+    setRememberEmail(event.target.checked);
+  };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios.get("http://192.168.0.209:8090/user/me").catch((error) => {
+        console.log(error);
+      });
+    }
+    setIsLoggedIn(!!token);
+    const storedEmail = localStorage.getItem("rememberedEmail");
+    if (storedEmail) {
+      setRememberEmail(true);
+      setEmail(storedEmail);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (rememberEmail) {
+      localStorage.setItem("rememberedEmail", email);
+    } else {
+      localStorage.removeItem("rememberedEmail");
+    }
+  }, [rememberEmail, email]);
+
+  const handleLogin = () => {
+    axios
+      .post(
+        "http://192.168.0.209:8090/login",
+        { email, password },
+        { withCredentials: true, crossDomain: true, credentials: "include" }
+      )
+      .then((response) => {
+        const token = response.data;
+        alert("로그인 성공.");
+        if (token) {
+          localStorage.setItem("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          setIsLoggedIn(true);
+          handleCloseModal();
+          setIsModalOpen(false);
+          if (email === "admin") {
+            window.location.href = "/Admin";
+          } else {
+            window.location.reload();
+          }
+        } else {
+          delete axios.defaults.headers.common["Authorization"];
+          alert("토큰 받기 실패");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setPassword("");
+        alert("로그인에 실패했습니다.");
+      });
+  };
+  function goHome() {
+    movePage("/");
+  }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    delete axios.defaults.headers.common["Authorization"];
+    setIsLoggedIn(false);
+    alert("로그아웃되었습니다.");
+    goHome();
+  };
+
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      handleLogout();
+    } else {
+      handleOpenModal();
+    }
+  };
+  // 여기까지 로그인 부분
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [postData, setPostData] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -16,26 +126,22 @@ export default function MasonryImageList() {
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-
   useEffect(() => {
-    //post 테이블에서 이미지 주소와 카테고리 정보 가져오기
     axios
       .get("http://192.168.0.209:8090/post")
       .then((response) => {
         const data = response.data;
-        setPostData(data); // postData의 데이터 구조를 post 테이블의 데이터 구조로 변경
+        setPostData(data);
       })
       .catch((err) => console.log(err));
-    //user 테이블에서 프로필 사진과 닉네임 가져오기
     axios
       .get("http://192.168.0.209:8090/user/all")
       .then((response) => {
-        setUserData(response.data); // userData의 데이터 구조를 user 테이블의 데이터 구조로 변경
+        setUserData(response.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  //카테고리로 사진 걸러서 받기
   const filteredData =
     selectedCategory === "all"
       ? postData
@@ -55,6 +161,70 @@ export default function MasonryImageList() {
   const movePage = useNavigate();
   return (
     <>
+      {/* 로그인 부분 시작 */}
+      <div>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          className="login_modal"
+          closeTimeoutMS={0}
+          style={{
+            overlay: { zIndex: 1000 },
+            content: { zIndex: 1000 },
+          }}
+        >
+          <button className="login_close_button" onClick={handleCloseModal}>
+            X
+          </button>
+          <h2 className="login">로그인</h2>
+          {errorMessage && <div className="login_error">{errorMessage}</div>}
+          <div className="login_form">
+            <input
+              type="email"
+              placeholder="이메일 입력"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </div>
+          <div className="login_form">
+            <input
+              type="password"
+              placeholder="비밀번호 입력"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="remember-email-checkbox"
+              checked={rememberEmail}
+              onChange={handleRememberEmailChange}
+            />
+            <label className="RememberEmail" htmlFor="remember-email-checkbox">
+              이메일 유지
+            </label>
+          </div>
+          <br />
+          <button className="login_button" onClick={handleLogin}>
+            로그인
+          </button>
+          <br />
+          <div className="login_button_container">
+            <div className="Membership_Text">
+              아직 Phopo 계정이 없으신가요?&nbsp;
+              <label
+                className="MemberShip_Btn"
+                onClick={() => (window.location.href = "/MemberShip")}
+              >
+                지금 가입하기
+              </label>
+            </div>
+          </div>
+          <br />
+        </Modal>
+      </div>
+      {/* 여기까지 로그인 부분 */}
       <Box
         sx={{
           width: "auto",
@@ -88,31 +258,35 @@ export default function MasonryImageList() {
 
             function goMypage() {
               // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
-              movePage("/MypageGuest", {
-                state: {
-                  category: post.category,
-                  content: post.content,
-                  created_at: post.created_at,
-                  postEmail: post.email,
-                  image_url: post.image_url,
-                  likeCnt: post.likeCnt,
-                  modified_at: post.modified_at,
-                  post_id: post.post_id,
-                  birth: user.birth,
-                  userEmail: user.email,
-                  followerCnt: user.followerCnt,
-                  followingCnt: user.followingCnt,
-                  gender: user.gender,
-                  introduce: user.introduce,
-                  nickname: user.nickname,
-                  password: user.password,
-                  phone: user.phone,
-                  proImage: user.proImage,
-                  role: user.role,
-                  visitCnt: user.visitCnt,
-                  website: user.website,
-                },
-              });
+              if (isLoggedIn) {
+                movePage("/MypageGuest", {
+                  state: {
+                    category: post.category,
+                    content: post.content,
+                    created_at: post.created_at,
+                    postEmail: post.email,
+                    image_url: post.image_url,
+                    likeCnt: post.likeCnt,
+                    modified_at: post.modified_at,
+                    post_id: post.post_id,
+                    birth: user.birth,
+                    userEmail: user.email,
+                    followerCnt: user.followerCnt,
+                    followingCnt: user.followingCnt,
+                    gender: user.gender,
+                    introduce: user.introduce,
+                    nickname: user.nickname,
+                    password: user.password,
+                    phone: user.phone,
+                    proImage: user.proImage,
+                    role: user.role,
+                    visitCnt: user.visitCnt,
+                    website: user.website,
+                  },
+                });
+              } else {
+                handleButtonClick(); // 로그인을 하지않은 상태이므로 로그인창으로 이동
+              }
             }
 
             return (

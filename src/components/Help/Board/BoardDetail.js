@@ -11,9 +11,7 @@ import BoardDetail_Modal from "./BoardDetail_Modal.js";
 export default function BoardDetail() {
   const [postAllData, setPostAllData] = useState();
   const [userMeData, setUserMeData] = useState();
-  const [isAdmin, setIsAdmin] = useState(
-    Boolean(localStorage.getItem("token") === "admin")
-  );
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -31,15 +29,14 @@ export default function BoardDetail() {
         setPostAllData(response.data);
       })
       .catch((err) => console.log(err));
+
     const intervalId = setInterval(() => {
-      setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
       setIsLoggedIn(Boolean(localStorage.getItem("token")));
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
 
   function handleLoginSuccess() {
-    setIsAdmin(true);
     setIsLoggedIn(true);
   }
   // BoardItem에서 클릭한 데이터를 받음
@@ -117,7 +114,7 @@ export default function BoardDetail() {
               고객지원
             </button>
           )}
-          {isAdmin && (
+          {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>
@@ -139,7 +136,9 @@ export default function BoardDetail() {
           <span>작성일 : {created_at}</span>&nbsp;&nbsp;
           <span>수정일 : {modified_at}</span>
         </div>
-        <BoardDetail_Modal announcement={{ id: notice_id, title, content }} />
+        {userMeData && userMeData.email === "admin" && (
+          <BoardDetail_Modal announcement={{ id: notice_id, title, content }} />
+        )}
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
         </button>

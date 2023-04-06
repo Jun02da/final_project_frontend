@@ -10,8 +10,8 @@ function BoardList({ items, showDeleteButton = false, handleDeleteItem }) {
   return (
     <div>
       {items
-        .slice(0)
-        .reverse()
+        // .slice(0)
+        // .reverse()
         .map((item) => (
           <BoardItem
             item={item}
