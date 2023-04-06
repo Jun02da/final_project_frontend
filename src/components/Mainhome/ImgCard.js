@@ -250,7 +250,7 @@ export default function MasonryImageList() {
           </select>
         </div>
 
-        <ImageList variant="masonry" cols={4} gap={10}>
+        <ImageList variant="masonry" cols={3} gap={10}>
           {filteredByEmailData.map((post, index) => {
             // postData -> post로 변수명 변경
             const user = userData.find((user) => user.email === post.email);
