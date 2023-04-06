@@ -148,9 +148,11 @@ export default function Mypage() {
                 마이페이지
               </button>
             )}
-            <button onClick={goHelpUser} className="NavMenuTitle">
-              고객지원
-            </button>
+            {isLoggedIn && (
+              <button onClick={goHelpUser} className="NavMenuTitle">
+                고객지원
+              </button>
+            )}
             {isAdmin && (
               <button onClick={goAdmin} className="NavMenuTitle">
                 관리자페이지

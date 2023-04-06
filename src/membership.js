@@ -18,10 +18,6 @@ export default function MemberShip() {
     movePage("/");
   }
 
-  function goBoard() {
-    movePage("/Board");
-  }
-
   const onMemberemail = (e) => {
     setMemberEmail(e.target.value);
   };
@@ -87,9 +83,6 @@ export default function MemberShip() {
         <Login />
         <button onClick={goHome} className="NavMenuTitle">
           홈
-        </button>
-        <button onClick={goBoard} className="NavMenuTitle">
-          고객지원
         </button>
       </nav>
 

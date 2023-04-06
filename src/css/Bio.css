@@ -6,7 +6,7 @@
   --Communication-button-hover-bg-color: #025ce2;
 }
 #BioTextareaEditOff {
-  width: 75%;
+  width: 50%;
   border: none;
   border-radius: 20px;
   resize: none;
@@ -16,7 +16,7 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 #BioTextareaEditOn {
-  width: 75%;
+  width: 50%;
   resize: none;
   border-radius: 20px;
   text-align: center;
