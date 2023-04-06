@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
 #BoardDetailSection {
   max-width: 1200px;
   margin: 20px auto;
@@ -8,19 +10,6 @@
   text-align: center;
   border-bottom: 3px solid #999999d0;
   padding-bottom: 25px;
-}
-#BoardWriteButton {
-  background-color: #2765c5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  float: right;
-  margin-bottom: 20px;
-  width: 7%;
-  padding: 10px;
-  font-family: "Arial", sans-serif;
 }
 
 #BoardDetailTitle {
@@ -46,4 +35,17 @@
   font-size: 1rem;
   color: #999;
   float: left;
+}
+#BoardWriteButton {
+  background-color: #2765c5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  float: right;
+  margin-bottom: 20px;
+  width: 7%;
+  padding: 10px;
+  font-family: "Noto Sans KR", sans-serif;
 }

@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-:root {
-  --Communication-button-color: #ffffff;
-  --Communication-button-bg-color: #0d6efd;
-  --Communication-button-hover-bg-color: #025ce2;
-}
-
 #Communication {
   margin: 0 auto;
   padding: 20px;
@@ -47,8 +41,8 @@
   -moz-appearance: none;
   appearance: none;
 
-  background: var(--Communication-button-bg-color);
-  color: var(--Communication-button-color);
+  background: #0d6efd;
+  color: #ffffff;
 
   margin: 0;
   padding: 0.5rem 1rem;
@@ -73,7 +67,7 @@
 #CommunicationSendButton:active,
 #CommunicationSendButton:hover,
 #CommunicationSendButton:focus {
-  background: var(--Communication-button-hover-bg-color);
+  background: #025ce2;
   outline: 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;

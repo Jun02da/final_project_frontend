@@ -24,13 +24,18 @@ const FAQContent = () => (
       </p>
     </Panel>
     <Panel
-      header="아이디/비밀번호를 분실했어요 어떻게 하나요?"
+      header="내 사진을 개선하려면 어떻게 해야 하나요?"
       key="3"
       id="FAQPanel"
     >
-      <p>
-        문의 페이지에 명시된 정보를 확인하시어 이용에 차질 없으시길 바람니다
-      </p>
+      <p>다음 사항을 검토해보세요</p>
+      <td>
+        <p>1. Exposure or light</p>
+        <p>2. Noise or lens and sensor dust</p>
+        <p>3. Color</p>
+        <p>4. Focus</p>
+        <p>5. Blur</p>
+      </td>
     </Panel>
     <Panel
       header="내 청소년 자녀의 계정에 액세스할 수 있나요?"
