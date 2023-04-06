@@ -63,7 +63,7 @@ function PreviewModal({
         <select onChange={handleCategoryChange} value={category}>
           <option value="">선택하세요</option>
           <option value="Home">Home</option>
-          <option value="IT">IT</option>
+          <option value="Animal">Animal</option>
           <option value="Food">Food</option>
           <option value="Sports">Sports</option>
           <option value="Nature">Nature</option>

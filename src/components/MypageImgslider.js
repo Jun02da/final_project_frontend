@@ -129,7 +129,7 @@ export default function MypageImgslider() {
             <SwiperSlide key={index}>
               <div className="image-container">
                 <button
-                  className="image_delete_button"
+                  className="delete_button"
                   onClick={() => handleDeleteImage(index)}
                 >
                   <RiDeleteBin6Line />
