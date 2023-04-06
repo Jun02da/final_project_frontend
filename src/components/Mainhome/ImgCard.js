@@ -122,6 +122,7 @@ export default function MasonryImageList() {
                     src={`${post.image_url}?w=200&fit=auto&auto=format`}
                     srcSet={`${post.image_url}?w=200&fit=auto&auto=format&dpr=2 2x`}
                     alt={`Imagefile ${index}`}
+                    style={{margin: "auto",display: "block", width: "100%", height:"100%" }}
                   />
                 </div>
                 {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}
