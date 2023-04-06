@@ -109,20 +109,12 @@ export default function BoardDetail() {
               마이페이지
             </button>
           )}
-<<<<<<< Updated upstream
           {isLoggedIn && (
             <button onClick={goHelpUser} className="NavMenuTitle">
               고객지원
             </button>
           )}
-          {isAdmin && (
-=======
-
-          <button onClick={goHelpUser} className="NavMenuTitle">
-            고객지원
-          </button>
           {userMeData && userMeData.email === "admin" && (
->>>>>>> Stashed changes
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>
