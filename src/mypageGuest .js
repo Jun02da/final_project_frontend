@@ -7,7 +7,7 @@ import "./css/mypage.css";
 import "./css/MyPageHeader.css";
 import Footer from "./components/Layout/footer";
 import Login from "./login";
-import BookmarkButton from "./components/BookmarkButton";
+import FollowBut from "./components/FollowBut";
 //마이페이지 기능 버튼
 import { Button } from "react-bootstrap";
 // 마이페이지 게스트 페이지입니다
@@ -38,7 +38,6 @@ export default function MypageGuest() {
   // const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
 
   const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
-
   const buttonClickImgslider = () => {
     setActiveButton("게시물");
     onlyShowMypageImgslider();
@@ -148,7 +147,7 @@ export default function MypageGuest() {
         {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
           <p className="mypage_id">
-            {nickname} <BookmarkButton />
+            {nickname} <FollowBut userEmail={userEmail} />
           </p>
           <Button
             variant={activeButton === "게시물" ? "dark" : "outline-dark"}
@@ -176,7 +175,7 @@ export default function MypageGuest() {
             통계
           </Button>
         </div>
-        isLoggedIn
+
         {/* 한줄소개 */}
         <p className="AboutMe">{introduce}</p>
         {/* Dashboard 페이지로 이동 추가 */}

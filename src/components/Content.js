@@ -5,6 +5,7 @@ import Comment from "./Comment";
 import CommentInputLine from "./CommentInputLine";
 import ContentShowMore from "./ContentShowMore";
 import Like from "./Like";
+// import FollowButton from "./FollowButton";
 // import GetFormattedDate from "../utils/FormatDate";
 import Moment from "react-moment";
 import "moment/locale/ko";

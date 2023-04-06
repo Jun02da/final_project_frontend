@@ -11,7 +11,7 @@ const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
       .get(`http://192.168.0.209:8090/like/${feedNum}`)
       .then((response) => {
         const a = response.data;
-        // console.log(a);
+        console.log(a);
         if (a.length === 1) setIsLiked(true);
         else setIsLiked(false);
       })
@@ -20,7 +20,7 @@ const Like = ({ authUser, isLoggedIn, feedNum, likeCnt, setLikeCnt }) => {
   useEffect(() => {
     // console.log(isLiked);
     fetchData();
-    // console.log(isLiked);
+    console.log(isLiked);
   }, []);
   // console.log(!!authUser);
   const handleLikeClick = async () => {

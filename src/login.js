@@ -123,6 +123,10 @@ export default function Login() {
         onRequestClose={handleCloseModal}
         className="login_modal"
         closeTimeoutMS={0}
+        style={{
+          overlay: { zIndex: 1000 },
+          content: { zIndex: 1000 },
+        }}
       >
         <button className="login_close_button" onClick={handleCloseModal}>
           X
