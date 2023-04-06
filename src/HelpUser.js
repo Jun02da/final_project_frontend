@@ -196,6 +196,7 @@ export default function HelpUser() {
         {showHelpFAQ && <HelpFAQ />}
         {showHelpCommunication && <HelpCommunication />}
       </div>
+      <br />
       <Footer />
     </div>
   );
