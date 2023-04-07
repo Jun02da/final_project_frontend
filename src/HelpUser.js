@@ -117,9 +117,7 @@ export default function HelpUser() {
       },
     });
   }
-  function goHelpUser() {
-    movePage("/HelpUser");
-  }
+
   function goAdmin() {
     movePage("/Admin");
   }
@@ -142,9 +140,7 @@ export default function HelpUser() {
               마이페이지
             </button>
           )}
-          <button onClick={goHelpUser} className="NavMenuTitle">
-            고객지원
-          </button>
+
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지

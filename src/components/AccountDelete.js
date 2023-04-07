@@ -13,12 +13,7 @@ export default function AccountDelete() {
   }, []);
   const fetchUsers = async () => {
     try {
-      const token = localStorage.getItem("token"); // 토큰을 로컬 스토리지에서 가져옴
-      const response = await axios.get("http://192.168.0.209:8090/user/all", {
-        headers: {
-          Authorization: `Bearer ${token}`, // 토큰을 요청 헤더에 포함
-        },
-      });
+      const response = await axios.get("http://192.168.0.209:8090/user/all");
       return response.data;
     } catch (error) {
       console.error(error);

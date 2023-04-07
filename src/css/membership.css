@@ -53,8 +53,8 @@
   border-bottom: 2px solid #ccc;
 }
 
-.membership_form input {
-  width: 20%;
+.membership_form_input {
+  width: 400px;
   padding: 10px;
   margin: 0 auto 15px;
   font-size: 1rem;
@@ -64,17 +64,36 @@
 }
 
 .membership_form button {
-  background-color: #333;
-  color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background: #0d6efd;
+  color: #ffffff;
+
+  margin: 0 10px;
+  padding: 0.5rem 1rem;
+
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
+  border-radius: 4px;
+
+  display: inline-block;
+  width: auto;
+
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  transition: 0.5s;
 }
 
 .membership_form button:hover {
-  background-color: #555;
+  background: #025ce2;
 }
 .NavMenu {
   font-size: 16px;
@@ -83,4 +102,18 @@
   padding-bottom: 10px;
   color: #fff;
   font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .membership_form input {
+    width: 80%;
+  }
+
+  .membership_form h1 {
+    font-size: 60px;
+  }
+
+  .membership_form h2 {
+    font-size: 20px;
+  }
 }

@@ -6,7 +6,7 @@ import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
 import axios from "axios";
-import BoardDetail_Modal from "./BoardDetail_Modal.js";
+import BoardDetailModal from "./BoardDetailModal.js";
 
 export default function BoardDetail() {
   const [postAllData, setPostAllData] = useState();
@@ -109,15 +109,7 @@ export default function BoardDetail() {
               마이페이지
             </button>
           )}
-          {isLoggedIn && (
-            <button onClick={goHelpUser} className="NavMenuTitle">
-              고객지원
-            </button>
-          )}
-<<<<<<< HEAD
 
-=======
->>>>>>> d48e85010b7b8915fccb60cd629d4b706e671a7c
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
@@ -141,7 +133,7 @@ export default function BoardDetail() {
           <span>수정일 : {modified_at}</span>
         </div>
         {userMeData && userMeData.email === "admin" && (
-          <BoardDetail_Modal announcement={{ id: notice_id, title, content }} />
+          <BoardDetailModal announcement={{ id: notice_id, title, content }} />
         )}
         <button id="BoardWriteButton" onClick={goHelpUser}>
           목록
