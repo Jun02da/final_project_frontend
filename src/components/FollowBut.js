@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { RiCheckFill } from "react-icons/ri";
+import { TbPlus } from "react-icons/tb";
+import "../css/Bookmark.css";
 
 function FollowBut({ userEmail }) {
   const [isFollowed, setIsFollowed] = useState(false);
@@ -60,8 +63,16 @@ function FollowBut({ userEmail }) {
     }
   };
   return (
-    <button onClick={handleFollowClick}>
-      {isFollowed ? "언팔로우" : "팔로우"}
+    <button
+      className="follow_button"
+      onClick={handleFollowClick}
+      style={{
+        backgroundColor: isFollowed ? "#adb5bd" : "#252121",
+        color: "white",
+      }}
+    >
+      {isFollowed ? "팔로잉" : "팔로우"}
+      {isFollowed ? <RiCheckFill /> : <TbPlus />}
     </button>
   );
 }

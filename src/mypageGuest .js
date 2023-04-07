@@ -45,7 +45,6 @@ export default function MypageGuest() {
   const [activeButton, setActiveButton] = useState("게시물");
 
   const [ShowMyPageBookmark, setShowMyPageBookmark] = useState(false);
-  
 
   // 현재 활성화된 버튼 상태
   const buttonClickImgslider = () => {
@@ -65,7 +64,7 @@ export default function MypageGuest() {
     onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
   };
-    const buttonClickFavorites = () => {
+  const buttonClickFavorites = () => {
     setActiveButton("즐겨찾기");
     onlyShowMyPageBookmark();
     // 즐겨찾기 버튼 클릭시 실행할 함수
@@ -129,7 +128,6 @@ export default function MypageGuest() {
     setShowMypageDashboard(false);
     setShowMyPageBookmark(true);
   };
-    
 
   const movePage = useNavigate();
 
@@ -210,7 +208,6 @@ export default function MypageGuest() {
           </nav>
           <br />
         </div>
-        {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
           <p className="mypage_id">
             {nickname} <FollowBut userEmail={userEmail} />
@@ -231,7 +228,6 @@ export default function MypageGuest() {
           >
             정보
           </Button>
-          {/* Dashboard 페이지로 이동 추가 */}
           <Button
             variant={activeButton === "통계" ? "dark" : "outline-dark"}
             size="lg"
@@ -249,25 +245,6 @@ export default function MypageGuest() {
             팔로워
           </Button>
         </div>
-        {/* 한줄소개 */}
-        {/* <p className="AboutMe">{introduce}</p> */}
-        {/* Dashboard 페이지로 이동 추가 */}
-        {/* <div className="stat_set">
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">총 즐겨찾기 수</p>
-            <p className="stat_1">{stat[0].bookmark}회</p>
-          </div>
-
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">누적 조회수</p>
-            <p className="stat_1">{stat[0].views}회</p>
-          </div>
-
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">전체 게시물</p>
-            <p className="stat_1">{stat[0].post}개</p>
-          </div>
-        </div> */}
       </>
       {/* === 내용 부분 === */}
       <div>
@@ -292,9 +269,9 @@ export default function MypageGuest() {
             followingCnt={followingCnt}
           />
         )}
-        {ShowMyPageBookmark && <Bookmark userEmail={userEmail}/>}
+        {ShowMyPageBookmark && <Bookmark userEmail={userEmail} />}
       </div>
-      
+
       <Footer />
     </div>
   );

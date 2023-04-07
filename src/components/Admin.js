@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
-import AccountDelete from "./AccountDelete"; // AccountDelete 컴포넌트 import
+import { useNavigate } from "react-router-dom";
+import AccountDelete from "./AccountDelete";
 import Announcement from "./Announcement";
-
 import AdminChart from "./Charts/AdminChart.js";
+import { Layout, Menu } from "antd";
 import {
   BarChartOutlined,
   DeleteOutlined,
-  ExclamationCircleOutlined,
   SoundOutlined,
   RollbackOutlined,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "../css/adminGoBackButton.css";
+import axios from "axios";
 
-const { Header, Footer, Content, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 export default function Admin() {
   const [showDelete, setShowDelete] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(false);
-  const [showReport, setShowReport] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [adminUserAll, setAdminUserAll] = useState([]);
   const [adminPost, setAdminPost] = useState([]);
@@ -30,9 +27,6 @@ export default function Admin() {
   };
   const handleAnnouncementToggle = () => {
     setShowAnnouncement(!showAnnouncement);
-  };
-  const handleReportToggle = () => {
-    setShowReport(!showReport);
   };
   const handleChartToggle = () => {
     setShowChart(!showChart);
@@ -58,8 +52,6 @@ export default function Admin() {
       handleDeleteToggle();
     } else if (target === "announcement") {
       handleAnnouncementToggle();
-    } else if (target === "report") {
-      handleReportToggle();
     } else if (target === "chart") {
       handleChartToggle();
     }
@@ -86,13 +78,21 @@ export default function Admin() {
         </button>
         <Layout
           className="site-layout-background"
-          style={{ padding: "24px 0" }}
+          style={{
+            padding: "20px 0",
+          }}
         >
-          <Sider className="site-layout-background" width={200}>
+          <Sider className="site-layout-background" width={"auto"}>
             <Menu
               mode="inline"
               defaultSelectedKeys={[]}
-              style={{ height: "100%" }}
+              style={{
+                height: "100%",
+                fontFamily: "Noto Sans KR",
+                fontSize: "1rem",
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              }}
               onClick={handleMenuItemClick}
             >
               {/* 메뉴 앞에 아이콘 추가 */}
@@ -111,17 +111,18 @@ export default function Admin() {
               </Menu.Item>
             </Menu>
           </Sider>
-          <Content style={{ padding: "0 24px", minHeight: 280 }}>
+          <Content style={{ padding: "0 24px", minHeight: "auto" }}>
             {showDelete && <AccountDelete />}
             {showAnnouncement && <Announcement />}
-
             {showChart && (
               <AdminChart adminUserAll={adminUserAll} adminPost={adminPost} />
             )}
           </Content>
         </Layout>
       </Content>
-      <Footer style={{ textAlign: "center" }}>Footer</Footer>
+      <Header>
+        <div className="logo" />
+      </Header>
     </Layout>
   );
 }

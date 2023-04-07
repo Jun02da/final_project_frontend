@@ -201,25 +201,6 @@ export default function Mypage() {
           </Button>
         </div>
         <br />
-        {/* 한줄소개 */}
-        {/* <p className="AboutMe">{introduce}</p> */}
-        {/* Dashboard 페이지로 이동 추가 */}
-        {/* <div className="stat_set">
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">총 즐겨찾기 수</p>
-            <p className="stat_1">{stat[0].bookmark}회</p>
-          </div>
-
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">누적 조회수</p>
-            <p className="stat_1">{stat[0].views}회</p>
-          </div>
-
-          <div className="stat" onClick={onlyShowMypageDashboard}>
-            <p className="stat_2">전체 게시물</p>
-            <p className="stat_1">{stat[0].post}개</p>
-          </div>
-        </div> */}
       </>
       {/* === 내용 부분 === */}
       <div>

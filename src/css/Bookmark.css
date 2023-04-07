@@ -1,20 +1,29 @@
 .button_set {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: -60px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: -60px;
 }
 
 .button {
-    border: none;
-    font-size: 20px;
-    font-weight: 400;
-    background-color: white;
-    margin-left: 20px;
-    margin-right: 20px;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .button:hover {
-    transition: 0.8s;
-    background-color: black;
-    border-radius: 8px;
-    color: white;
+  transition: 0.8s;
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+}
+
+.follow_button {
+  border-radius: 7px;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 5px 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }

@@ -293,6 +293,12 @@ export default function MasonryImageList() {
               <ImageListItem key={index} className="banner_img">
                 <div onClick={goMypage}>
                   <img
+                    style={{
+                      margin: "auto",
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                    }}
                     src={`${post.image_url}?w=200&fit=auto&auto=format`}
                     srcSet={`${post.image_url}?w=200&fit=auto&auto=format&dpr=2 2x`}
                     alt={`Imagefile ${index}`}
