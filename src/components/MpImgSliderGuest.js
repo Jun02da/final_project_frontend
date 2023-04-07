@@ -73,7 +73,7 @@ export default function MpImgSliderGuest({ userEmail, location }) {
         onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={1}
-        slidesPerView={10}
+        slidesPerView={8}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}

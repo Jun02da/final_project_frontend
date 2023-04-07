@@ -75,19 +75,18 @@
   height: 100%;
   width: 100%;
   max-width: 600px;
-  max-height: 450px;
-  min-width: 600px;
-  /* min-height: 450px;  */
+  max-height: 400px;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
+  object-fit: cover;
 }
 
 /* 버튼 위치 */
 .modal_buttons_wrapper {
   position: fixed;
-  bottom: 60px;
+  bottom: 73px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -98,7 +97,7 @@
 .modal_buttons {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 15px;
   background-color: white;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -109,7 +108,7 @@
 .modal_text {
   width: 100%;
   max-width: 558px;
-  min-height: 150px;
+  min-height: 135px;
   font-size: 14px;
   border: 1px solid #ccc;
   margin: auto;
