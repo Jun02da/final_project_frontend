@@ -20,12 +20,9 @@ export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
   const [userAll, setUserAll] = useState([]);
-  const [postAll, setPostAll] = useState([]);
 
   const handleUpload = async (newImages, text, category) => {
     const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
-    // newImages를 url 이미지로 변환하는 구간
-
     const formData = new FormData();
     newImages.forEach((image) => {
       formData.append("file", image);
@@ -82,34 +79,14 @@ export default function MypageImgslider() {
 
   const handleDeleteImage = (index) => {
     const imageUrl = imageUrls[index];
-    handleDelete(imageUrl);
+    if (window.confirm("삭제하시겠습니까?")) {
+      handleDelete(imageUrl);
+    }
   };
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const responsePostId = await axios.get(
-          "http://192.168.0.209:8090/user/me"
-        );
-        const alldata = responsePostId.data;
-        const responsePost = await axios.get(
-          `http://192.168.0.209:8090/post/email/${alldata.email}`
-        );
-        const postAll = responsePost.data;
-        setPostAll(postAll);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPost();
-  }, []);
   return (
     <>
       {/* 업로드 버튼 */}
-      <button className="floating">
-        <ImageUploader onUpload={handleUpload} />
-      </button>
 
       <div className="MySwiperTop">
         <Swiper
@@ -128,12 +105,16 @@ export default function MypageImgslider() {
           {imageUrls.map((imageUrl, index) => (
             <SwiperSlide key={index}>
               <div className="image-container">
-                <button
-                  className="delete_button"
-                  onClick={() => handleDeleteImage(index)}
-                >
-                  <RiDeleteBin6Line />
-                </button>
+                <div className="images_button">
+                  <button className="delete_button">
+                    <RiDeleteBin6Line
+                      onClick={() => handleDeleteImage(index)}
+                    />
+                  </button>
+                  <button className="upload_button">
+                    <ImageUploader onUpload={handleUpload} />
+                  </button>
+                </div>
                 <Link
                   to="/detail"
                   state={{

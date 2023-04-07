@@ -36,19 +36,12 @@ function ImageUploader({ onUpload }) {
   };
 
   const uploadImages = async (image) => {
-    // TODO: 이미지 업로드 로직 구현
     return image;
   };
 
   return (
     <div className="image-uploader">
-      <div
-        {...getRootProps()}
-        className="dropzone"
-        style={{
-          fontSize: "40px",
-        }}
-      >
+      <div {...getRootProps()} className="dropzone">
         <RiImageAddLine />
       </div>
       {modalIsOpen && (

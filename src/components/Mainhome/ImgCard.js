@@ -242,7 +242,7 @@ export default function MasonryImageList() {
           >
             <option value="all">최신 인기 사진</option>
             <option value="Home">Home</option>
-            <option value="IT">IT</option>
+            <option value="Animal">Animal</option>
             <option value="Food">Food</option>
             <option value="Sports">Sports</option>
             <option value="Nature">Nature</option>
@@ -302,7 +302,6 @@ export default function MasonryImageList() {
                     src={`${post.image_url}?w=200&fit=auto&auto=format`}
                     srcSet={`${post.image_url}?w=200&fit=auto&auto=format&dpr=2 2x`}
                     alt={`Imagefile ${index}`}
-                    style={{margin: "auto",display: "block", width: "100%", height:"100%" }}
                   />
                 </div>
                 {/* 이미지 카드에 마우스 올리면 닉네임이 보임 */}

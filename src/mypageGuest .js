@@ -45,7 +45,6 @@ export default function MypageGuest() {
   const [activeButton, setActiveButton] = useState("게시물");
 
   const [ShowMyPageBookmark, setShowMyPageBookmark] = useState(false);
-  
 
   // 현재 활성화된 버튼 상태
   const buttonClickImgslider = () => {
@@ -65,7 +64,7 @@ export default function MypageGuest() {
     onlyShowMypageDashboard();
     // 통계 버튼 클릭시 실행할 함수
   };
-    const buttonClickFavorites = () => {
+  const buttonClickFavorites = () => {
     setActiveButton("즐겨찾기");
     onlyShowMyPageBookmark();
     // 즐겨찾기 버튼 클릭시 실행할 함수
@@ -129,7 +128,6 @@ export default function MypageGuest() {
     setShowMypageDashboard(false);
     setShowMyPageBookmark(true);
   };
-    
 
   const movePage = useNavigate();
 
@@ -292,9 +290,9 @@ export default function MypageGuest() {
             followingCnt={followingCnt}
           />
         )}
-        {ShowMyPageBookmark && <Bookmark userEmail={userEmail}/>}
+        {ShowMyPageBookmark && <Bookmark userEmail={userEmail} />}
       </div>
-      
+
       <Footer />
     </div>
   );

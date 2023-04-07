@@ -1,34 +1,23 @@
-.swiper {
-  height: 100%;
-  width: 100%;
-}
-
+/* 상단 여백 */
 .swiper-slide {
   background: #fff;
-
+  background-size: cover;
+  background-position: center;
   justify-content: center;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
+/* 하단 이미지 */
 .swiper {
   width: 100%;
-  height: 300px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.swiper-slide {
-  background-size: cover;
-  background-position: center;
-}
+/* 상단 이미지 */
 .MySwiperTop {
   height: 75vh;
-  width: 115vh;
+  width: 150vh;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -73,14 +62,25 @@
   color: slategrey;
   font-size: 25px;
   border: none;
-  position: absolute;
-  vertical-align: top;
   z-index: 1000;
   font-weight: bold;
-  left: 95%;
-  transition: transform 0.2s ease-in-out; /* transition 속성 추가 */
 }
 
 .image_delete_button:hover {
   transform: scale(1.2); /* transform 속성 추가 */
+}
+
+.images_button {
+  float: right;
+}
+.images_button button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+}
+
+.images_button button:hover {
+  transform: scale(1.2);
 }
