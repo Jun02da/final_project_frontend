@@ -149,25 +149,25 @@ export default function MypageImgslider() {
             </SwiperSlide>
           ))}
         </Swiper>
+        {/* 하단 미리보기 이미지 부분 */}
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          loop={true}
+          spaceBetween={1}
+          slidesPerView={10}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper"
+        >
+          {/* 업로드된 이미지 보여주기 */}
+          {imageUrls.map((imageUrl, index) => (
+            <SwiperSlide key={index}>
+              <img src={imageUrl.image_url} alt={`Imagefile ${index}`} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-      {/* 하단 미리보기 이미지 부분 */}
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={1}
-        slidesPerView={10}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
-      >
-        {/* 업로드된 이미지 보여주기 */}
-        {imageUrls.map((imageUrl, index) => (
-          <SwiperSlide key={index}>
-            <img src={imageUrl.image_url} alt={`Imagefile ${index}`} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
     </>
   );
 }
