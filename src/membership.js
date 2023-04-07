@@ -89,8 +89,10 @@ export default function MemberShip() {
       <form className="membership_form" onSubmit={onSubmit1}>
         <h1 onClick={goHome}>P H O P O</h1>
         <h2>회원가입</h2>
+
         <div>
           <input
+            className="membership_form_input"
             type="email"
             name="email"
             value={Memberemail}
@@ -102,6 +104,7 @@ export default function MemberShip() {
 
         <div className="password-input">
           <input
+            className="membership_form_input"
             type="password"
             value={Memberpassword}
             id="password"
@@ -115,6 +118,7 @@ export default function MemberShip() {
 
         <div>
           <input
+            className="membership_form_input"
             type="password"
             value={Memberpassword1}
             name="password1"
@@ -128,6 +132,7 @@ export default function MemberShip() {
 
         <div>
           <input
+            className="membership_form_input"
             type="text"
             value={Username}
             name="nickname"
@@ -139,6 +144,7 @@ export default function MemberShip() {
 
         <div>
           <input
+            className="membership_form_input"
             type="tel"
             value={Userphonenumber}
             name="phone"
@@ -147,11 +153,10 @@ export default function MemberShip() {
             onChange={onUserphonenumber}
           />
         </div>
-
         <div className="gender-input">
-          <label>
+          <label for="gender-M">
             <input
-              className="gender-M"
+              id="gender-M"
               type="radio"
               name="gender"
               value="male"
@@ -161,9 +166,9 @@ export default function MemberShip() {
             남성
           </label>
           &nbsp; &nbsp;
-          <label>
+          <label for="gender-F">
             <input
-              className="gender-F"
+              id="gender-F"
               type="radio"
               name="gender"
               value="female"

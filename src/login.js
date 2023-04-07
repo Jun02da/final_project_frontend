@@ -109,6 +109,7 @@ export default function Login() {
     alert("로그아웃되었습니다.");
     // window.location.reload();
     goHome(); // 홈으로 돌아가도록 설정
+    window.location.reload();
   };
 
   const handleButtonClick = () => {

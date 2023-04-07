@@ -5,7 +5,7 @@ import "../../../css/BoardDetail_Modal.css";
 
 Modal.setAppElement("#root");
 
-export default function BoardDetail_Modal({ announcement, isAdmin }) {
+export default function BoardDetailModal({ announcement }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");

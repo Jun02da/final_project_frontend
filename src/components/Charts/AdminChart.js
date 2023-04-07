@@ -19,7 +19,7 @@ function AdminChart({ adminUserAll, adminPost }) {
   var totalVisitCnt = 0;
   adminUserAll.map((e) => {
     if (e.visitCnt) {
-      totalVisitCnt = totalVisitCnt + e.visitCnt;
+      totalVisitCnt = totalVisitCnt + Math.ceil(e.visitCnt / 8);
     }
   });
   // 팔로우 관련

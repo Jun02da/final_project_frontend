@@ -4,7 +4,7 @@ import { addAnnouncement } from "../utils/api";
 import "../css/Announcement_Modal.css";
 Modal.setAppElement("#root");
 
-function Announcement_Modal({}) {
+function Announcement_Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -15,6 +15,8 @@ function Announcement_Modal({}) {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setTitle("");
+    setContent("");
   };
 
   const handleSubmit = async (event) => {
@@ -23,8 +25,6 @@ function Announcement_Modal({}) {
       const token = localStorage.getItem("token");
       await addAnnouncement(title, content, token); // 수정된 부분
       alert("게시글이 등록되었습니다.");
-      setTitle("");
-      setContent("");
       handleCloseModal(); // 모달을 닫습니다.
       window.location.reload(); // 게시글 목록을 다시 불러옵니다.
     } catch (error) {

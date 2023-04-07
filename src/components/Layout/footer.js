@@ -30,49 +30,68 @@ export default function App() {
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+              <h6 className='text-uppercase fw-bold mb-4'>참여자</h6>
+            <div style={{float:"left",marginRight:20}}>
               <p>
-                <a href='#!' className='text-reset'>
-                  Angular
+                <a>
+                  김준영
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  React
+                <a>
+                  김영준
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Vue
+                <a>
+                  도요한
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Laravel
+                <a>
+                  오준영
                 </a>
               </p>
+            </div>
+            <div>
+              <p>
+                <a>
+                  임현지
+                </a>
+              </p>
+              <p>
+                <a>
+                  한용재
+                </a>
+              </p>
+              <p>
+                <a>
+                  황상범
+                </a>
+              </p>
+            </div>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+              <h6 className='text-uppercase fw-bold mb-4'>사용되는 기술</h6>
               <p>
-                <a href='#!' className='text-reset'>
-                  Pricing
+                <a>
+                React 
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Settings
+                <a>
+                AWS S3
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Orders
+                <a>
+                Spring boot
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Help
+                <a>
+                Apexchart
                 </a>
               </p>
             </MDBCol>
