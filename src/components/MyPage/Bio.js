@@ -42,12 +42,11 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
       setBioFile(uploadFile); // 변경한 사진으로 변경
       let formData = new FormData(); // 변경한 사진을 FormData에 넣음
       formData.append("file", uploadFile);
-      formData.append("introduce", BioText);
       axios // 프로필 사진 변경하는 API요청
-        .post("http://192.168.0.209:8090/user/editProfile", formData)
-        // .then((response) => {
-        //   console.log(response);
-        // })
+        .post("http://192.168.0.209:8090/user/profile", formData)
+        .then((response) => {
+          console.log(response);
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -69,6 +68,16 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   // editable은 읽기모드 또는 편집가능 상태로 만들기
   const editToggle = () => {
     setEditable(!editable);
+    let introduceData = new FormData();
+    introduceData.append("introduce", BioText);
+    axios // 프로필 사진 변경하는 API요청
+      .post("http://192.168.0.209:8090/user/introduce", introduceData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   // 내용의 변화를 감지해서 BioText를 바꾸어준다.
   const handleBioTextChange = (e) => {

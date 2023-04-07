@@ -85,7 +85,7 @@ export default function Bookmark({userEmail}) {
           {FollowerData.map((FollowerData, index) => (
             <Grid item xs={10} sm={10} md={2} key={index}>
               <Card sx={{ maxWidth: 200 }}>
-                <CardActionArea>
+                <CardActionArea disableTouchRipple>
                   <CardMedia
                     component="img"
                     height="120"
@@ -122,7 +122,7 @@ export default function Bookmark({userEmail}) {
           {followingData.map((followingData, index) => (
             <Grid item xs={10} sm={10} md={2} key={index}>
               <Card sx={{ maxWidth: 200 }}>
-                <CardActionArea>
+                <CardActionArea disableTouchRipple>
                   <CardMedia
                     component="img"
                     height="120"
