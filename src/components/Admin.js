@@ -35,13 +35,14 @@ export default function Admin() {
       .get("http://192.168.0.209:8090/user/all")
       .then((response) => {
         setAdminUserAll(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => console.log(err));
     axios
       .get("http://192.168.0.209:8090/post")
       .then((response) => {
         setAdminPost(response.data);
+        // console.log(response.data);
       })
       .catch((err) => console.log(err));
   };

@@ -156,7 +156,7 @@ export default function MasonryImageList() {
     return false;
   });
 
-  console.log(filteredByEmailData);
+  // console.log(filteredByEmailData);
 
   const movePage = useNavigate();
   return (
@@ -253,9 +253,17 @@ export default function MasonryImageList() {
         <ImageList variant="masonry" cols={3} gap={10}>
           {filteredByEmailData.map((post, index) => {
             // postData -> post로 변수명 변경
-            const user = userData.find((user) => user.email === post.email);
+            const checkProImage = userData.filter(
+              (item) => item.proImage !== undefined
+            );
+            const checkNickname = checkProImage.filter(
+              (item) => item.nickname !== undefined
+            );
+            const user = checkNickname.find(
+              (user) => user.email === post.email
+            );
             // const linkTo = `/mypage/${post.email}`;
-
+            console.log(checkNickname);
             function goMypage() {
               // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
               if (isLoggedIn) {
@@ -308,10 +316,10 @@ export default function MasonryImageList() {
                 {/* 프로필 사진과 닉네임 */}
                 <ul className="hover_text" style={{ listStyleType: "none" }}>
                   <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
-                    {/* <Avatar alt="icon" src={user.proImage} /> */}
+                    <Avatar alt="icon" src={user.proImage} />
                   </li>
                   <li style={{ float: "left", marginTop: 8 }}>
-                    {/* <p>{user.nickname}</p> */}
+                    <p>{user.nickname}</p>
                   </li>
                 </ul>
               </ImageListItem>
