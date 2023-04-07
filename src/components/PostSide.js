@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import axios from "axios";
 
+// 게시글 사이드 네비게이션(Link 태그 사용)
 const PostSide = (user) => {
   const [postData, setPostData] = useState([]);
   const email = user.user.userEmail;

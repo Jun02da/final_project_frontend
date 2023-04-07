@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useRef, useMemo } from "react";
 
+// 게시글 text의 수를 제한하고 넘으면 더보기 버튼 구현
 const ContentShowMore = ({ content }) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const textLimit = useRef(30);
