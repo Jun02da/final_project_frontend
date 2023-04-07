@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Comment from "./Comment";
 import CommentInputLine from "./CommentInputLine";
@@ -74,6 +75,10 @@ const Content = ({ user, postData, post }) => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const movePage = useNavigate();
+  function goBack() {
+    movePage(-1);
+  }
   return (
     <Card
       sx={{
@@ -90,7 +95,11 @@ const Content = ({ user, postData, post }) => {
     >
       <CardHeader
         avatar={
-          <Avatar src={`${user.user.proImage}`} ait={user.user.nickname} />
+          <Avatar
+            src={`${user.user.proImage}`}
+            ait={user.user.nickname}
+            onClick={goBack}
+          />
         }
         title={
           <Typography
