@@ -23,7 +23,7 @@ function MyPageChart({
     like += likeCnt;
   }
   if (visitCnt) {
-    visit += visitCnt;
+    visit += Math.ceil(visitCnt / 8);
   }
   if (followerCnt) {
     follower += followerCnt;
