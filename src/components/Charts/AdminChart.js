@@ -4,17 +4,16 @@ import "../../css/adminChart.css";
 
 function AdminChart({ adminUserAll, adminPost }) {
   // 남여 비율 관련
-  var femailCount = 0;
-  var mailCount = 0;
+  var femaleCount = 0;
+  var maleCount = 0;
   adminUserAll.map((e) => {
-    if ((e.gender = "femail")) {
-      femailCount += 1;
-    } else if ((e.gender = "male")) {
-      console.log(e.gender);
-      mailCount += 1;
+    if (e.gender === "female") {
+      femaleCount += 1;
+    } else {
+      maleCount += 1;
     }
   });
-  var totalGender = [mailCount, femailCount];
+  var totalGender = [maleCount, femaleCount];
 
   // 조회수 관련
   var totalVisitCnt = 0;
@@ -58,7 +57,10 @@ function AdminChart({ adminUserAll, adminPost }) {
     },
     legend: {
       show: true,
-      position: "bottom",
+      position: "right",
+      horizontalAlign: "center",
+      fontSize: "15px",
+      fontFamily: "Noto Sans KR",
     },
     labels: ["Male", "Female"],
     colors: ["#07B9E8", "#E91E63"], // 색상 지정
@@ -75,7 +77,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       style: {
         fontSize: "20px",
         fontWeight: "bold",
-        fontFamily: undefined,
+        fontFamily: "Noto Sans KR",
         color: "#263238",
       },
     },
@@ -113,7 +115,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       style: {
         fontSize: "20px",
         fontWeight: "bold",
-        fontFamily: undefined,
+        fontFamily: "Noto Sans KR",
         color: "#263238",
       },
     },
@@ -169,7 +171,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       position: "right",
       horizontalAlign: "center",
       fontSize: "15px",
-      fontFamily: "Arial",
+      fontFamily: "Noto Sans KR",
     },
     tooltip: {
       // 마우스 오버 옵션
@@ -185,7 +187,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       style: {
         fontSize: "20px",
         fontWeight: "bold",
-        fontFamily: undefined,
+        fontFamily: "Noto Sans KR",
         color: "#263238",
       },
     },
@@ -240,7 +242,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       position: "top",
       horizontalAlign: "right",
       fontSize: "15px",
-      fontFamily: "Arial",
+      fontFamily: "Noto Sans KR",
     },
     tooltip: {
       // 마우스 오버 옵션
@@ -256,7 +258,7 @@ function AdminChart({ adminUserAll, adminPost }) {
       style: {
         fontSize: "20px",
         fontWeight: "bold",
-        fontFamily: undefined,
+        fontFamily: "Noto Sans KR",
         color: "#263238",
       },
     },
@@ -274,11 +276,9 @@ function AdminChart({ adminUserAll, adminPost }) {
     {
       name: "전체 데이터",
       data: [
-        // { x: "조회수", y: totalVisitCnt },
         { x: "좋아요", y: totalLikeCnt },
         { x: "팔로우 받은 수", y: totalFollowerCnt },
         { x: "팔로우 한 수", y: totalFollowingCnt },
-        // { x: "게시물", y: adminPost.length },
       ],
     },
   ];
@@ -287,9 +287,6 @@ function AdminChart({ adminUserAll, adminPost }) {
     {
       name: "전체 데이터",
       data: [
-        // { x: "좋아요", y: totalLikeCnt },
-        // { x: "팔로우 받은 수", y: totalFollowerCnt },
-        // { x: "팔로우 한 수", y: totalFollowingCnt },
         { x: "게시물", y: adminPost.length },
         { x: "조회수", y: totalVisitCnt },
       ],
@@ -298,25 +295,21 @@ function AdminChart({ adminUserAll, adminPost }) {
 
   return (
     <div>
-      <h3>통계</h3>
-      <hr />
-      <div>
-        <div id="chartArea">
-          <Chart options={optionsGender} series={totalGender} type="donut" />
-        </div>
-        <div id="chartArea">
-          <Chart options={optionsNew} series={dataNew} type="area" />
-        </div>
-        <div id="chartArea">
-          <Chart
-            options={optionsInteraction}
-            series={dataInteraction}
-            type="bar"
-          />
-        </div>
-        <div id="chartArea">
-          <Chart options={optionsData} series={dataData} type="bar" />
-        </div>
+      <div id="chartArea">
+        <Chart options={optionsGender} series={totalGender} type="donut" />
+      </div>
+      <div id="chartArea">
+        <Chart options={optionsNew} series={dataNew} type="area" />
+      </div>
+      <div id="chartArea">
+        <Chart
+          options={optionsInteraction}
+          series={dataInteraction}
+          type="bar"
+        />
+      </div>
+      <div id="chartArea">
+        <Chart options={optionsData} series={dataData} type="bar" />
       </div>
     </div>
   );

@@ -79,7 +79,6 @@ export default function AccountDelete() {
 
   return (
     <div>
-      <h2>계정 삭제</h2>
       <Table dataSource={users} columns={columns} />
       <Modal
         title="경고"
