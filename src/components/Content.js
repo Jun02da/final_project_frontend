@@ -6,7 +6,7 @@ import CommentInputLine from "./CommentInputLine";
 import ContentShowMore from "./ContentShowMore";
 import Like from "./Like";
 import Moment from "react-moment";
-import "moment/locale/kr";
+import "moment/locale/ko";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
