@@ -16,48 +16,28 @@
 
 /* 상단 이미지 */
 .MySwiperTop {
-  /* height: 75vh;
-  width: 115vh;
+  height: 75vh;
+  width: 150vh;
   overflow: hidden;
-  margin: 0 auto; */
-  position: relative;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  padding-bottom: 100%;
+  margin: 0 auto;
 }
 /* 메인 이미지 슬라이드 */
 .mySwiper2 {
   /* height: 75vh;
   width: 105vh; */
-  /* margin-top: 40px;
+  margin-top: 40px;
   width: 105vh;
   height: 75vh;
   object-fit: cover;
-  border-radius: 10px; */
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  text-align: right;
-  width: 50%;
-  height: 50%;
+  border-radius: 10px;
 }
 /* 하단 미리보기 이미지 슬라이드 */
 .mySwiper {
-  /* height: 15vh;
+  height: 15vh;
   width: 105vh;
   box-sizing: border-box;
   padding: 10px 0;
-  margin-bottom: 150px; */
-  position: absolute;
-  top: 38%;
-  left: 10%;
-  right: 10%;
-  bottom: 0;
-  text-align: center;
-  width: 66%;
-  height: 10%;
+  margin-bottom: 150px;
 }
 /* 하단 미리보기 이미지 */
 .mySwiper .swiper-slide {
@@ -101,6 +81,56 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.images_button button:hover {
+.images_button button :hover {
   transform: scale(1.2);
+}
+
+/* 미디어 쿼리 */
+@media only screen and (max-width: 1024px) {
+  .MySwiperTop {
+    width: 100vw;
+  }
+
+  .mySwiper2 {
+    width: 100vw;
+  }
+
+  .mySwiper {
+    width: 100vw;
+  }
+
+  .mySwiper .swiper-slide {
+    width: 20%;
+  }
+
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .MySwiperTop .image-container {
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MySwiperTop {
+    height: 50vh;
+  }
+
+  .mySwiper2 {
+    height: 50vh;
+  }
+
+  .mySwiper {
+    height: 10vh;
+    margin-bottom: 50px;
+  }
+
+  .mySwiper .swiper-slide {
+    width: 25%;
+  }
+
+  .MySwiperTop .image-container {
+    width: 100vw;
+  }
 }

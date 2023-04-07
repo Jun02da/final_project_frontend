@@ -7,7 +7,7 @@ import "../css/Bookmark.css";
 function FollowBut({ userEmail }) {
   const [isFollowed, setIsFollowed] = useState(false);
   const [user, setUser] = useState(null);
-  console.log(isFollowed);
+
   const fetchFollowData = async () => {
     try {
       const response = await axios.get(`http://192.168.0.209:8090/following/`);
@@ -22,7 +22,7 @@ function FollowBut({ userEmail }) {
       console.error(error);
     }
   };
-  console.log(isFollowed);
+
   const fetchUserData = async () => {
     try {
       const responseUserId = await axios.get(
