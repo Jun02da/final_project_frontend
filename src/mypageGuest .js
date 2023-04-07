@@ -35,7 +35,7 @@ export default function MypageGuest() {
   const nickname = location.state.nickname;
   // const password = location.state.password;
   // const phone = location.state.phone;
-  const proImage = location.state.proImage;
+  const proImage = location.state ? location.state.proImage : null;
   // const role = location.state.role;
   const visitCnt = location.state.visitCnt;
   // const website = location.state.website;

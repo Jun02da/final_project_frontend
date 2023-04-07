@@ -308,10 +308,10 @@ export default function MasonryImageList() {
                 {/* 프로필 사진과 닉네임 */}
                 <ul className="hover_text" style={{ listStyleType: "none" }}>
                   <li style={{ float: "left", margin: 8, marginLeft: -10 }}>
-                    <Avatar alt="icon" src={user.proImage} />
+                    {/* <Avatar alt="icon" src={user.proImage} /> */}
                   </li>
                   <li style={{ float: "left", marginTop: 8 }}>
-                    <p>{user.nickname}</p>
+                    {/* <p>{user.nickname}</p> */}
                   </li>
                 </ul>
               </ImageListItem>

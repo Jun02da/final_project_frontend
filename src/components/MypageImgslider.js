@@ -15,6 +15,7 @@ import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
 import "../css/MypageSlider.css";
+import "../css/Imguploadbtn.css";
 
 export default function MypageImgslider() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -23,6 +24,7 @@ export default function MypageImgslider() {
 
   const handleUpload = async (newImages, text, category) => {
     const newImageUrls = newImages.map((image) => URL.createObjectURL(image));
+
     const formData = new FormData();
     newImages.forEach((image) => {
       formData.append("file", image);
@@ -87,6 +89,9 @@ export default function MypageImgslider() {
   return (
     <>
       {/* 업로드 버튼 */}
+      <button className="floating">
+        <ImageUploader onUpload={handleUpload} />
+      </button>
 
       <div className="MySwiperTop">
         <Swiper
@@ -110,9 +115,6 @@ export default function MypageImgslider() {
                     <RiDeleteBin6Line
                       onClick={() => handleDeleteImage(index)}
                     />
-                  </button>
-                  <button className="upload_button">
-                    <ImageUploader onUpload={handleUpload} />
                   </button>
                 </div>
                 <Link
