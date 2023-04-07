@@ -45,6 +45,12 @@ body {
   z-index: 10;
 }
 
+@media screen and (max-width: 1618px) {
+  .SideBlock {
+    display: none;
+  }
+}
+
 .SideBlock::-webkit-scrollbar {
   display: none;
 }

@@ -5,9 +5,8 @@ import Comment from "./Comment";
 import CommentInputLine from "./CommentInputLine";
 import ContentShowMore from "./ContentShowMore";
 import Like from "./Like";
-// import GetFormattedDate from "../utils/FormatDate";
 import Moment from "react-moment";
-import "moment/locale/ko";
+import "moment/locale/kr";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -17,21 +16,17 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-import { useNavigate } from "react-router-dom";
-
 const Content = ({ user, postData, post }) => {
   const [commentData, setCommentData] = useState([]);
   const [likeCnt, setLikeCnt] = useState(post.likeCnt);
   const [authUser, setAuthUser] = useState([]);
-  // let navigate = useNavigate();
-  // function handleClick() {
-  //   navigate("/MypageGuest");
-  // }
+
   const refreshFunction = (newComment) => {
     //부모의 Comments state값을 업데이트하기위한 함수
     setCommentData(commentData.concat(newComment)); //자식들한테 값을 전달받아 Comments값 업데이트
   };
 
+  // get 호출을 통해 commentData 조회
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -42,9 +37,8 @@ const Content = ({ user, postData, post }) => {
     };
     fetchData();
   }, []);
-  // console.log(commentData);
-  // console.log(user.user.proImage);
 
+  // 게시글 생성 시간
   const displayCreatedAt = (createdAt) => {
     let startTime = new Date(createdAt);
     let nowTime = Date.now();
