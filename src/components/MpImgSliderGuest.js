@@ -69,24 +69,23 @@ export default function MpImgSliderGuest({ userEmail, location }) {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          loop={true}
-          spaceBetween={1}
-          slidesPerView={10}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper"
-        >
-          {imageUrls.map((imageUrl, index) => (
-            <SwiperSlide key={index}>
-              <img src={imageUrl} alt={`Imagefile ${index}`} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        loop={true}
+        spaceBetween={1}
+        slidesPerView={10}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper"
+      >
+        {imageUrls.map((imageUrl, index) => (
+          <SwiperSlide key={index}>
+            <img src={imageUrl} alt={`Imagefile ${index}`} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </>
   );
 }
