@@ -13,35 +13,42 @@ function AdminChart({ adminUserAll, adminPost }) {
       maleCount += 1;
     }
   });
-  var totalGender = [maleCount, femaleCount];
+  const totalGender = [maleCount, femaleCount];
 
   // 조회수 관련
   var totalVisitCnt = 0;
   adminUserAll.map((e) => {
     if (e.visitCnt) {
-      totalVisitCnt = totalVisitCnt + Math.ceil(e.visitCnt / 8);
+      totalVisitCnt += Math.ceil(e.visitCnt / 8);
     }
   });
+
   // 팔로우 관련
   var totalFollowerCnt = 0;
   var totalFollowingCnt = 0;
   adminUserAll.map((e) => {
     if (e.followerCnt) {
-      totalFollowerCnt = totalFollowerCnt + e.followerCnt;
+      totalFollowerCnt += e.followerCnt;
     }
   });
   adminUserAll.map((e) => {
     if (e.followingCnt) {
-      totalFollowingCnt = totalFollowingCnt + e.followingCnt;
+      totalFollowingCnt += e.followingCnt;
     }
   });
+
   // 좋아요 관련
   var totalLikeCnt = 0;
-  var totalCreated_at = []; // 생성일 관련
   adminPost.map((e) => {
     if (e.likeCnt) {
-      totalLikeCnt = totalLikeCnt + e.likeCnt;
-    } else if (e.created_at) {
+      totalLikeCnt += e.likeCnt;
+    }
+  });
+
+  // 생성일 관련
+  var totalCreated_at = []; // 생성일 관련
+  adminPost.map((e) => {
+    if (e.created_at) {
       totalCreated_at.push(e.created_at.substr(0, 10)); // 년만 짤라서 넣음
     }
   });
@@ -49,9 +56,10 @@ function AdminChart({ adminUserAll, adminPost }) {
     accu[curr] = (accu[curr] || 0) + 1;
     return accu;
   }, {});
-  // === 옵션 관련 ===
+
+  // === 옵션 부분 ===
   // 이용자 남여 비율
-  var optionsGender = {
+  const optionGender = {
     chart: {
       width: "100%",
     },
@@ -83,7 +91,7 @@ function AdminChart({ adminUserAll, adminPost }) {
     },
   };
   // 신규 이용자
-  var optionsNew = {
+  const optionNew = {
     chart: {
       zoom: {
         enabled: false,
@@ -121,7 +129,7 @@ function AdminChart({ adminUserAll, adminPost }) {
     },
   };
   // 이용자 상호작용
-  var optionsInteraction = {
+  const optionInteraction = {
     chart: {
       toolbar: {
         show: false,
@@ -193,7 +201,7 @@ function AdminChart({ adminUserAll, adminPost }) {
     },
   };
   // 이용자 데이터
-  var optionsData = {
+  const optionData = {
     chart: {
       toolbar: {
         show: false,
@@ -263,27 +271,28 @@ function AdminChart({ adminUserAll, adminPost }) {
       },
     },
   };
-  // === 데이터 관련 ===
+
+  // === 데이터 부분 ===
   // 신규 이용자
-  let dataNew = [
+  const dataNew = [
     {
       name: "신규 가입자",
       data: Object.values(resultCreated_at),
     },
   ];
   // 이용자 상호작용
-  let dataInteraction = [
+  const dataInteraction = [
     {
       name: "전체 데이터",
       data: [
-        { x: "좋아요", y: totalLikeCnt },
         { x: "팔로우 받은 수", y: totalFollowerCnt },
         { x: "팔로우 한 수", y: totalFollowingCnt },
+        { x: "좋아요", y: totalLikeCnt },
       ],
     },
   ];
   // 이용자 데이터
-  let dataData = [
+  const dataData = [
     {
       name: "전체 데이터",
       data: [
@@ -296,20 +305,20 @@ function AdminChart({ adminUserAll, adminPost }) {
   return (
     <div>
       <div id="chartArea">
-        <Chart options={optionsGender} series={totalGender} type="donut" />
+        <Chart options={optionGender} series={totalGender} type="donut" />
       </div>
       <div id="chartArea">
-        <Chart options={optionsNew} series={dataNew} type="area" />
+        <Chart options={optionNew} series={dataNew} type="area" />
       </div>
       <div id="chartArea">
         <Chart
-          options={optionsInteraction}
+          options={optionInteraction}
           series={dataInteraction}
           type="bar"
         />
       </div>
       <div id="chartArea">
-        <Chart options={optionsData} series={dataData} type="bar" />
+        <Chart options={optionData} series={dataData} type="bar" />
       </div>
     </div>
   );

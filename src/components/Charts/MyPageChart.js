@@ -1,26 +1,23 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import "../../css/Dashboard.css";
+
 function MyPageChart({
-  // 넘겨받은 데이터
-  visitCnt,
-  likeCnt,
-  contentCnt,
   nickname,
+  contentCnt,
+  visitCnt,
   followerCnt,
   followingCnt,
+  likeCnt,
 }) {
   // undefined가 그래프에 들어가면 오류발생
   var content = 0;
-  var like = 0;
   var visit = 0;
   var follower = 0;
   var following = 0;
+  var like = 0;
   if (contentCnt) {
     content += contentCnt;
-  }
-  if (likeCnt) {
-    like += likeCnt;
   }
   if (visitCnt) {
     visit += Math.ceil(visitCnt / 8);
@@ -31,8 +28,12 @@ function MyPageChart({
   if (followingCnt) {
     following += followingCnt;
   }
-  // 데이터 관련 부분
-  let viewData = [
+  if (likeCnt) {
+    like += likeCnt;
+  }
+  // === 데이터 부분 ===
+  // 조회수 데이터
+  const viewData = [
     {
       name: nickname + "님의 정보",
       data: [
@@ -41,8 +42,21 @@ function MyPageChart({
       ],
     },
   ];
-  // 그래프 옵션 관련
-  var viewOptions = {
+  // 좋아요, 팔로우 데이터
+  const chartData = [
+    {
+      name: nickname + "님의 정보",
+      data: [
+        { x: "팔로우 받은 수", y: follower },
+        { x: "팔로우 한 수", y: following },
+        { x: "전체 좋아요", y: like },
+      ],
+    },
+  ];
+
+  // === 그래프 옵션 부분 ===
+  // 조회수 그래프 옵션
+  const viewOption = {
     chart: {
       toolbar: {
         show: false,
@@ -97,19 +111,8 @@ function MyPageChart({
       enabled: true,
     },
   };
-  // 데이터 관련 부분
-  let chartData = [
-    {
-      name: nickname + "님의 정보",
-      data: [
-        { x: "전체 좋아요", y: like },
-        { x: "팔로우 받은 수", y: follower },
-        { x: "팔로우 한 수", y: following },
-      ],
-    },
-  ];
-  // 그래프 옵션 관련
-  var chartOptions = {
+  // 좋아요, 팔로우 그래프 옵션
+  const chartOption = {
     chart: {
       toolbar: {
         show: false,
@@ -166,10 +169,10 @@ function MyPageChart({
   return (
     <>
       <div id="MyPageDashboard">
-        <Chart options={viewOptions} series={viewData} type="bar" />
+        <Chart options={viewOption} series={viewData} type="bar" />
       </div>
       <div id="MyPageDashboard">
-        <Chart options={chartOptions} series={chartData} type="bar" />
+        <Chart options={chartOption} series={chartData} type="bar" />
       </div>
     </>
   );

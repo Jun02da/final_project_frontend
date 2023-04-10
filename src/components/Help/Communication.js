@@ -1,11 +1,11 @@
-import "../../css/Communication.css";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import {
   EnvironmentOutlined,
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import React, { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import "../../css/Communication.css";
 
 export default function Communication() {
   const [inputs, setInputs] = useState({
@@ -94,6 +94,7 @@ export default function Communication() {
         <h3>Or Mail Me</h3>
         <hr />
         <form ref={form} onSubmit={sendEmail}>
+          {/* input창들이 빈칸일 경우 알려줌 */}
           <div>
             <input
               name="CommunicationName"
@@ -124,9 +125,7 @@ export default function Communication() {
               required
             />
           </div>
-          {/* 전송 버튼 
-                input창들이 빈칸일 경우 알려줌
-            */}
+          {/* 전송 버튼 */}
           <button type="submit" id="CommunicationSendButton">
             Send
           </button>

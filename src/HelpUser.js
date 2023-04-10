@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import HelpBoard from "./components/Help/Board";
 import HelpFAQ from "./components/Help/FAQ";
 import HelpCommunication from "./components/Help/Communication";
 import Login from "./login";
-import banner from "./image/HelpHeaderBanner.jpg";
 import Footer from "./components/Layout/footer";
 import "./css/HelpHeader.css";
+import banner from "./image/HelpHeaderBanner.jpg";
 import axios from "axios";
-import { Button } from "react-bootstrap";
 
 export default function HelpUser() {
   const [postAllData, setPostAllData] = useState();
   const [userMeData, setUserMeData] = useState();
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
+
   useEffect(() => {
     axios
       .get("http://192.168.0.209:8090/user/me")
@@ -36,28 +36,11 @@ export default function HelpUser() {
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
+
   function handleLoginSuccess() {
     setIsLoggedIn(true);
   }
-  const [activeButton, setActiveButton] = useState("공지사항"); // 현재 활성화된 버튼 상태
 
-  const buttonClickHelpBoard = () => {
-    // 공지사항 버튼 클릭시 실행할 함수
-    setActiveButton("공지사항");
-    onlyShowHelpBoard();
-  };
-
-  const buttonClickHelpFAQ = () => {
-    // FAQ 버튼 클릭시 실행할 함수
-    setActiveButton("FAQ");
-    onlyShowHelpFAQ();
-  };
-
-  const buttonClickHelpCommunication = () => {
-    // 문의 버튼 클릭시 실행할 함수
-    setActiveButton("문의");
-    onlyShowHelpCommunication();
-  };
   // 3개중 1개만 true로 설정하여서 클릭한 1개만 나오도록 설정
   const [showHelpBoard, setShowHelpBoard] = useState(true);
   const [showHelpFAQ, setShowHelpFAQ] = useState(false);
@@ -117,10 +100,28 @@ export default function HelpUser() {
       },
     });
   }
-
   function goAdmin() {
     movePage("/Admin");
   }
+
+  // 현재 활성화된 버튼 상태
+  const [activeButton, setActiveButton] = useState("공지사항");
+
+  // 공지사항 버튼 클릭시 실행할 함수
+  const buttonClickHelpBoard = () => {
+    setActiveButton("공지사항");
+    onlyShowHelpBoard();
+  };
+  // FAQ 버튼 클릭시 실행할 함수
+  const buttonClickHelpFAQ = () => {
+    setActiveButton("FAQ");
+    onlyShowHelpFAQ();
+  };
+  // 문의 버튼 클릭시 실행할 함수
+  const buttonClickHelpCommunication = () => {
+    setActiveButton("문의");
+    onlyShowHelpCommunication();
+  };
 
   return (
     <div>
@@ -140,7 +141,6 @@ export default function HelpUser() {
               마이페이지
             </button>
           )}
-
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
@@ -153,9 +153,8 @@ export default function HelpUser() {
       <div id="HelpHeaderBanner">
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
-      {/* 고객지원 내용 */}
       <div id="HelpHeaderMenuSection">
-        {/* 마이페이지 버튼 사용 */}
+        {/* 마이페이지 버튼 활용 */}
         <Button
           variant={activeButton === "공지사항" ? "dark" : "outline-dark"}
           size="lg"
@@ -172,7 +171,6 @@ export default function HelpUser() {
         >
           FAQ
         </Button>
-        {/* Dashboard 페이지로 이동 추가 */}
         <Button
           variant={activeButton === "문의" ? "dark" : "outline-dark"}
           size="lg"
@@ -184,6 +182,7 @@ export default function HelpUser() {
       </div>
       <br />
       <div>
+        {/* 고객지원 내용 */}
         {showHelpBoard && <HelpBoard />}
         {showHelpFAQ && <HelpFAQ />}
         {showHelpCommunication && <HelpCommunication />}

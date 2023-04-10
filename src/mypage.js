@@ -1,74 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import MypageImgslider from "./components/MypageImgslider";
 import MypageBio from "./components/MyPage/Bio";
 import MypageDashboard from "./components/MyPage/Dashboard";
+import Bookmark from "./components/Bookmark";
+import Login from "./login";
+import Footer from "./components/Layout/footer";
 import "./css/mypage.css";
 import "./css/MyPageHeader.css";
-import Footer from "./components/Layout/footer";
-import Login from "./login";
-import Bookmark from "./components/Bookmark";
 
-//마이페이지 기능 버튼
-import { Button } from "react-bootstrap";
 // 마이페이지 유저 페이지입니다
 export default function Mypage() {
-  const location = useLocation();
-  // const category = location.state.category;
-  // const content = location.state.content;
-  // const created_at = location.state.created_at;
-  // const postEmail = location.state.postEmail;
-  // const image_url = location.state.image_url;
-  const likeCnt = location.state.likeCnt;
-  // const modified_at = location.state.modified_at;
-  // const post_id = location.state.post_id;
-  // const birth = location.state.birth;
-  const userEmail = location.state.userEmail;
-  const followerCnt = location.state.followerCnt;
-  const followingCnt = location.state.followingCnt;
-  // const gender = location.state.gender;
-  const introduce = location.state.introduce;
-  const nickname = location.state.nickname;
-  // const password = location.state.password;
-  // const phone = location.state.phone;
-  const proImage = location.state.proImage;
-  // const role = location.state.role;
-  const visitCnt = location.state.visitCnt;
-  // const website = location.state.website;
-
-  // const stat = [{ id: 1, bookmark: 123, views: 18449, post: 130 }];
-
-  const [activeButton, setActiveButton] = useState("게시물"); // 현재 활성화된 버튼 상태
-
-  const buttonClickImgslider = () => {
-    setActiveButton("게시물");
-    onlyShowMypageImgslider();
-    // 게시물 버튼 클릭시 실행할 함수
-  };
-
-  const buttonClickMypageBio = () => {
-    setActiveButton("정보");
-    onlyShowMypageBio();
-    // 정보 버튼 클릭시 실행할 함수
-  };
-
-  const buttonClickDashboard = () => {
-    setActiveButton("통계");
-    onlyShowMypageDashboard();
-    // 통계 버튼 클릭시 실행할 함수
-  };
-  const buttonClickFavorites = () => {
-    setActiveButton("즐겨찾기");
-    onlyShowMyPageBookmark();
-    // 즐겨찾기 버튼 클릭시 실행할 함수
-  };
-
   const [isAdmin, setIsAdmin] = useState(
     Boolean(localStorage.getItem("token") === "admin")
   );
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIsAdmin(Boolean(localStorage.getItem("token") === "admin"));
@@ -76,11 +26,46 @@ export default function Mypage() {
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
+
   function handleLoginSuccess() {
     setIsAdmin(true);
     setIsLoggedIn(true);
   }
-  // 3개중 1개만 true로 설정하여서 클릭한 1개만 나오도록 설정
+
+  const location = useLocation();
+  const likeCnt = location.state.likeCnt;
+  const userEmail = location.state.userEmail;
+  const followerCnt = location.state.followerCnt;
+  const followingCnt = location.state.followingCnt;
+  const introduce = location.state.introduce;
+  const nickname = location.state.nickname;
+  const proImage = location.state.proImage;
+  const visitCnt = location.state.visitCnt;
+
+  // 현재 활성화된 버튼 상태
+  const [activeButton, setActiveButton] = useState("게시물");
+  // 게시물 버튼 클릭시 실행할 함수
+  const buttonClickImgslider = () => {
+    setActiveButton("게시물");
+    onlyShowMypageImgslider();
+  };
+  // 정보 버튼 클릭시 실행할 함수
+  const buttonClickMypageBio = () => {
+    setActiveButton("정보");
+    onlyShowMypageBio();
+  };
+  // 통계 버튼 클릭시 실행할 함수
+  const buttonClickDashboard = () => {
+    setActiveButton("통계");
+    onlyShowMypageDashboard();
+  };
+  // 즐겨찾기 버튼 클릭시 실행할 함수
+  const buttonClickFavorites = () => {
+    setActiveButton("즐겨찾기");
+    onlyShowMyPageBookmark();
+  };
+
+  // 4개중 1개만 true로 설정하여서 클릭한 1개만 나오도록 설정
   const [showMypageImgslider, setShowMypageImgslider] = useState(true);
   const [showMypageBio, setShowMypageBio] = useState(false);
   const [showMypageDashboard, setShowMypageDashboard] = useState(false);
@@ -162,10 +147,9 @@ export default function Mypage() {
           </nav>
           <br />
         </div>
-        {/* 유저에 따라서 이름이 변경되야함 */}
         <div className="mypage_menu">
+          {/* 유저에 따라서 이름이 변경 */}
           <p className="mypage_id">{nickname}</p>
-
           <Button
             variant={activeButton === "게시물" ? "dark" : "outline-dark"}
             size="lg"
@@ -182,7 +166,6 @@ export default function Mypage() {
           >
             정보
           </Button>
-          {/* Dashboard 페이지로 이동 추가 */}
           <Button
             variant={activeButton === "통계" ? "dark" : "outline-dark"}
             size="lg"

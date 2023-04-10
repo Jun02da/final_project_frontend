@@ -3,12 +3,12 @@ import Chart from "../Charts/MyPageChart.js";
 import axios from "axios";
 
 export default function Dashboard({
-  visitCnt,
-  nickname,
-  likeCnt,
   userEmail,
+  nickname,
+  visitCnt,
   followerCnt,
   followingCnt,
+  likeCnt,
 }) {
   const [contentCnt, setContentCnt] = useState([]);
   axios
@@ -20,12 +20,12 @@ export default function Dashboard({
   return (
     <div>
       <Chart
-        visitCnt={visitCnt}
-        likeCnt={likeCnt}
-        contentCnt={contentCnt}
         nickname={nickname}
+        visitCnt={visitCnt}
+        contentCnt={contentCnt}
         followerCnt={followerCnt}
         followingCnt={followingCnt}
+        likeCnt={likeCnt}
       />
     </div>
   );

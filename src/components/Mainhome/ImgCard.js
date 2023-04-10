@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Modal from "react-modal";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Avatar from "@mui/material/Avatar";
-import { useNavigate } from "react-router-dom";
 import "../../css/MainHome.css";
-import axios from "axios";
-import Modal from "react-modal";
 import "../../css/login.css";
 import "../../css/MainHeader.css";
+import axios from "axios";
 
 Modal.setAppElement("#root");
 
@@ -100,9 +100,13 @@ export default function MasonryImageList() {
         alert("로그인에 실패했습니다.");
       });
   };
+
+  const movePage = useNavigate();
+
   function goHome() {
     movePage("/");
   }
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
@@ -156,9 +160,6 @@ export default function MasonryImageList() {
     return false;
   });
 
-  // console.log(filteredByEmailData);
-
-  const movePage = useNavigate();
   return (
     <>
       {/* 로그인 부분 시작 */}
@@ -253,6 +254,7 @@ export default function MasonryImageList() {
         <ImageList variant="masonry" cols={3} gap={10}>
           {filteredByEmailData.map((post, index) => {
             // postData -> post로 변수명 변경
+            // 프로필사진과 이름이 없는 경우 필터링
             const checkProImage = userData.filter(
               (item) => item.proImage !== undefined
             );
@@ -262,8 +264,7 @@ export default function MasonryImageList() {
             const user = checkNickname.find(
               (user) => user.email === post.email
             );
-            // const linkTo = `/mypage/${post.email}`;
-            console.log(checkNickname);
+
             function goMypage() {
               // 페이지를 넘어가면서 state(데이터)도 같이 넘긴다
               if (isLoggedIn) {

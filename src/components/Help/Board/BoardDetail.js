@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../../Layout/footer.js";
 import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../../Layout/footer.js";
 import Login from "../../../login.js";
+import BoardDetailModal from "./BoardDetailModal.js";
 import banner from "../../../image/HelpHeaderBanner.jpg";
 import "../../../css/BoardDetail.css";
 import "../../../css/HelpHeader.css";
 import axios from "axios";
-import BoardDetailModal from "./BoardDetailModal.js";
 
 export default function BoardDetail() {
   const [postAllData, setPostAllData] = useState();
   const [userMeData, setUserMeData] = useState();
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -39,6 +38,7 @@ export default function BoardDetail() {
   function handleLoginSuccess() {
     setIsLoggedIn(true);
   }
+
   // BoardItem에서 클릭한 데이터를 받음
   const location = useLocation();
   const notice_id = location.state.notice_id;
@@ -91,6 +91,7 @@ export default function BoardDetail() {
   function goAdmin() {
     movePage("/Admin");
   }
+
   return (
     <div>
       <div id="SubHeaderLayout">
@@ -109,7 +110,6 @@ export default function BoardDetail() {
               마이페이지
             </button>
           )}
-
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
@@ -123,6 +123,7 @@ export default function BoardDetail() {
       <div id="HelpHeaderBanner">
         <img src={banner} alt="banner" id="HelpHeaderBannerImg" />
       </div>
+      {/* 내용 부분 */}
       <div id="BoardDetailSection">
         <div id="BoardDetailSectionContent" key={notice_id}>
           <div id="BoardDetailTitle">{title}</div>

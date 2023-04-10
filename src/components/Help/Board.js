@@ -15,6 +15,7 @@ function Board() {
       })
       .catch((err) => console.log(err));
   }, []);
+
   // 페이징 부분
   const [page, setPage] = useState(1); //페이지
   const limit = 10; // posts가 보일 최대한의 갯수

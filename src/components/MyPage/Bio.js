@@ -12,6 +12,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
   const [editable, setEditable] = useState(false);
   const [whoAreYou, setWhoAreYou] = useState([]); // eslint-disable-line no-unused-vars
   const [thisIsMine, setThisIsMine] = useState(false);
+
   // mypage에서 받아온 데이터로 프로필 사진과 소개글을 변경
   useEffect(() => {
     if (proImage) {
@@ -33,20 +34,19 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
         .catch((err) => console.log(err));
     }
   }, []);
+
   // ==== 이미지 부분 ====
   const onChangeBioImage = (e) => {
     e.preventDefault();
+
     // ==== 사진을 업로드하는 부분 ====
     if (e.target.files) {
       const uploadFile = e.target.files[0];
       setBioFile(uploadFile); // 변경한 사진으로 변경
-      let formData = new FormData(); // 변경한 사진을 FormData에 넣음
-      formData.append("file", uploadFile);
-      axios // 프로필 사진 변경하는 API요청
+      let formData = new FormData();
+      formData.append("file", uploadFile); // 변경한 사진을 FormData에 넣음
+      axios // 소개글을 변경하는 API요청
         .post("http://192.168.0.209:8090/user/profile", formData)
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           console.error(error);
         });
@@ -54,7 +54,7 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
       setBioImage(BioImage); // 업로드 취소할 시 기존이미지 유지
       return;
     }
-    //화면에 프로필 사진 표시
+    // 화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -64,25 +64,25 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
     // readAsDataURL : 파일을 URL로 만듬
     reader.readAsDataURL(e.target.files[0]);
   };
+
   // ==== 텍스트 부분 ====
   // editable은 읽기모드 또는 편집가능 상태로 만들기
   const editToggle = () => {
     setEditable(!editable);
     let introduceData = new FormData();
     introduceData.append("introduce", BioText);
-    axios // 프로필 사진 변경하는 API요청
+    axios // 소개글을 변경하는 API요청
       .post("http://192.168.0.209:8090/user/introduce", introduceData)
-      .then((response) => {
-        console.log(response);
-      })
       .catch((error) => {
         console.error(error);
       });
   };
+
   // 내용의 변화를 감지해서 BioText를 바꾸어준다.
   const handleBioTextChange = (e) => {
     setBioText(e.target.value);
   };
+
   // ==== 편집 버튼 부분 ====
   function BioEditButton() {
     return (
@@ -127,13 +127,13 @@ export default function Bio({ isLoggedIn, proImage, introduce, userEmail }) {
           style={{ display: "none" }}
         />
       </div>
+      <br />
       {/* === edit 버튼 부분 === */}
       {/*
-        레이아웃에서 로그인 여부를 나타내는 변수 isLoggedIn를 가져옴
-        로그인 여부에 따라서 edit 버튼을 표시해줌
-        로그인한 사람과 게시물 이메일을 서로 비교하여 같은 경우 버튼 표시
+        로그인 여부를 나타내는 변수 isLoggedIn
+        로그인한 사람과 게시물 이메일을 서로 비교하는 변수 thisIsMine
+        둘다 참일 경우 버튼 표시
       */}
-      <br />
       <div>{isLoggedIn && thisIsMine && <BioEditButton />}</div>
       <br />
       {/* === 소개글 부분 === */}

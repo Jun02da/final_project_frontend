@@ -5,11 +5,9 @@ import Login from "../../login";
 import axios from "axios";
 
 export default function Header() {
+  const movePage = useNavigate();
   const [postAllData, setPostAllData] = useState();
   const [userMeData, setUserMeData] = useState();
-
-  const movePage = useNavigate();
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -100,16 +98,13 @@ export default function Header() {
               고객지원
             </button>
           )}
-
           {userMeData && userMeData.email === "admin" && (
             <button onClick={goAdmin} className="NavMenuTitle">
               관리자페이지
             </button>
           )}
         </nav>
-
         <br />
-
         <div onClick={goHome}>
           <h1 className="Title">P H O P O</h1>
         </div>
