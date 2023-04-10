@@ -14,11 +14,11 @@ import axios from "axios";
 Modal.setAppElement("#root");
 
 export default function MasonryImageList() {
-  // ======== 로그인 부분
+  // === 로그인 부분 ===
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [rememberEmail, setRememberEmail] = useState(false); // 이메일 기억하기 상태
 
@@ -52,11 +52,11 @@ export default function MasonryImageList() {
         console.log(error);
       });
     }
-    setIsLoggedIn(!!token);
-    const storedEmail = localStorage.getItem("rememberedEmail");
+    setIsLoggedIn(!!token); // isLoggedIn 상태를 localStorage에서 값을 불러와서 업데이트합니다
+    const storedEmail = localStorage.getItem("rememberedEmail"); // 로컬 스토리지에서 이메일 값을 불러와서
     if (storedEmail) {
-      setRememberEmail(true);
-      setEmail(storedEmail);
+      setRememberEmail(true); // 상태에 저장합니다.
+      setEmail(storedEmail); // 이메일 입력란에 불러온 값을 넣어줍니다.
     }
   }, []);
 
@@ -87,7 +87,7 @@ export default function MasonryImageList() {
           if (email === "admin") {
             window.location.href = "/Admin";
           } else {
-            window.location.reload();
+            window.location.reload(); // 회원가입 버튼 숨기기 위해 페이지 다시 로드
           }
         } else {
           delete axios.defaults.headers.common["Authorization"];
@@ -110,9 +110,10 @@ export default function MasonryImageList() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
-    setIsLoggedIn(false);
+    setIsLoggedIn(false); // 로그아웃이 성공하면 isLoggedIn 값을 false로 설정
     alert("로그아웃되었습니다.");
-    goHome();
+    goHome(); // 홈으로 돌아가도록 설정
+    window.location.reload();
   };
 
   const handleButtonClick = () => {
